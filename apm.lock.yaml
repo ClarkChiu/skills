@@ -1,0 +1,11 @@
+lockfile_version: '1'
+generated_at: '2026-05-25T06:15:51.747495+00:00'
+apm_version: 0.14.2
+dependencies:
+- repo_url: _local/skill-auditor
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/skill-auditor
+  - .claude/skills/skill-auditor
+  source: local
+  local_path: ./skill-auditor/

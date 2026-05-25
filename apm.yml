@@ -1,0 +1,13 @@
+name: skills
+version: 1.0.0
+description: Clark Chiu's Skills
+author: Clark Chiu
+targets:
+- claude
+- opencode
+dependencies:
+  apm:
+  - ./skill-auditor/
+  mcp: []
+includes: auto
+scripts: {}
