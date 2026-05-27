@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-05-25T06:15:51.747495+00:00'
+generated_at: '2026-05-27T08:51:37.187223+00:00'
 apm_version: 0.14.2
 dependencies:
 - repo_url: _local/skill-auditor
@@ -9,3 +9,58 @@ dependencies:
   - .claude/skills/skill-auditor
   source: local
   local_path: ./skill-auditor/
+- repo_url: _local/skill-finder
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/skill-finder
+  - .claude/skills/skill-finder
+  source: local
+  local_path: ./skill-finder/
+- repo_url: anthropics/skills
+  host: github.com
+  resolved_commit: 690f15cac7f7b4c055c5ab109c79ed9259934081
+  package_type: marketplace_plugin
+  deployed_files:
+  - .agents/skills/algorithmic-art
+  - .agents/skills/brand-guidelines
+  - .agents/skills/canvas-design
+  - .agents/skills/claude-api
+  - .agents/skills/doc-coauthoring
+  - .agents/skills/docx
+  - .agents/skills/frontend-design
+  - .agents/skills/internal-comms
+  - .agents/skills/mcp-builder
+  - .agents/skills/pdf
+  - .agents/skills/pptx
+  - .agents/skills/skill-creator
+  - .agents/skills/slack-gif-creator
+  - .agents/skills/theme-factory
+  - .agents/skills/web-artifacts-builder
+  - .agents/skills/webapp-testing
+  - .agents/skills/xlsx
+  - .claude/skills/algorithmic-art
+  - .claude/skills/brand-guidelines
+  - .claude/skills/canvas-design
+  - .claude/skills/claude-api
+  - .claude/skills/doc-coauthoring
+  - .claude/skills/docx
+  - .claude/skills/frontend-design
+  - .claude/skills/internal-comms
+  - .claude/skills/mcp-builder
+  - .claude/skills/pdf
+  - .claude/skills/pptx
+  - .claude/skills/skill-creator
+  - .claude/skills/slack-gif-creator
+  - .claude/skills/theme-factory
+  - .claude/skills/web-artifacts-builder
+  - .claude/skills/webapp-testing
+  - .claude/skills/xlsx
+  content_hash: sha256:7a4a0e3e4e60d1ead46aa2fed8bedde7bd565e6212b7541ed4aef2d41418b23a
+- repo_url: vercel-labs/agent-browser
+  host: github.com
+  resolved_commit: 4ad284890cb59564af603e6de403dd75dd19e832
+  package_type: marketplace_plugin
+  deployed_files:
+  - .agents/skills/agent-browser
+  - .claude/skills/agent-browser
+  content_hash: sha256:81b06d96f0ab78b14146652bbc3fc215a61fcd892b3455d775d4d8fe3d8e8f0a

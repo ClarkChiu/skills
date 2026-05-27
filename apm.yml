@@ -8,6 +8,9 @@ targets:
 dependencies:
   apm:
   - ./skill-auditor/
+  - ./skill-finder/
+  - vercel-labs/agent-browser
+  - anthropics/skills
   mcp: []
 includes: auto
 scripts: {}
