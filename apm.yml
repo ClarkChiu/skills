@@ -9,6 +9,7 @@ dependencies:
   apm:
   - ./skill-auditor/
   - ./skill-finder/
+  - ./p2pscout/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []
