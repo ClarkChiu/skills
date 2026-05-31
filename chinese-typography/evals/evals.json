@@ -1,0 +1,26 @@
+{
+  "skill_name": "chinese-typography",
+  "evals": [
+    {
+      "id": 0,
+      "name": "paste-mixed-snippet",
+      "prompt": "幫我把這段文字排版一下，台灣中文的格式：\n\n我今天用Python3寫了一個爬蟲,大概100行code,老闆說\"做得不錯\",叫我放到github上面(記得寫README)。版本是3.11.2,跑起來很順!",
+      "expected_output": "Returns the snippet normalized to Taiwan convention: 盤古之白 spacing (Python3, code, github, README spaced from Han), full-width punctuation (，。！（）), straight quotes → 「」, while protecting the version number 3.11.2 and the words github/README/code. No simplified chars present so conversion is a no-op.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "normalize-blog-file",
+      "prompt": "這個檔案 evals/files/blog-draft.md 是我的部落格草稿，但裡面標點符號、空格都很亂，還混到一些簡體字跟大陸用語。幫我做台灣繁體中文的排版正規化，輸出修正後的內容。",
+      "expected_output": "The .md is normalized: simplified chars and mainland vocab converted to Taiwan Traditional (程序→程式, 视频→影片/視頻→影片, 软件→軟體, 设置→設定, 加载→載入), 盤古之白 spacing added around Python/requests/BeautifulSoup/pip/code/github/etc., half-width punctuation → full-width, straight quotes \"...\" → 「...」, while code-ish tokens (pip install requests, src/spider.py, version 2.31.0, main.py) are preserved. Output shown to user (diff or full text).",
+      "files": ["files/blog-draft.md"]
+    },
+    {
+      "id": 2,
+      "name": "partial-spacing-and-trad-only",
+      "prompt": "下面這段幫我「簡轉繁 + 中英文之間加空格」就好，標點符號維持原樣不要動：\n\n我在用VSCode写代码,装了Python插件,感觉比之前的IDE好用多了,推荐给大家。",
+      "expected_output": "Only two transforms applied: Simplified→Traditional+Taiwan vocab (写代码→寫程式碼/代碼, 装→裝, 插件→外掛, 推荐→推薦) AND 盤古之白 spacing around VSCode/Python/IDE. Punctuation is LEFT as half-width commas because the user explicitly asked not to change punctuation — uses --no-punct --no-quotes. A good run recognizes the partial scope.",
+      "files": []
+    }
+  ]
+}
