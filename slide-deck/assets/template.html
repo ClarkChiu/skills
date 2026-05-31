@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deck</title>
+<!--
+  Self-contained slide deck. One file, no build, no dependencies.
+  Open in a browser. Arrow keys / Space / click to navigate. F = fullscreen.
+  Print (Ctrl/Cmd-P) → one slide per page → Save as PDF.
+
+  HOW IT WORKS
+  - Every <section class="slide"> is authored at a FIXED 1920x1080 canvas.
+  - One JS transform scales the whole stage to the viewport (letterboxed).
+  - Content NEVER reflows for small screens. It stays 16:9 everywhere.
+  - Use absolute px for everything (font-size, padding, gaps). No rem/vw/%.
+    The scaler handles responsiveness; you design at true pixel size.
+
+  EDIT THE THEME: change the :root variables below. One palette per deck.
+  ADD A SLIDE: copy a <section class="slide ..."> block. The nav dots and
+  page counter update automatically from the DOM — never hardcode counts.
+-->
+<style>
+  /* ---- THEME: one palette per deck. Dark never pure-black, light never dead-white. ---- */
+  :root {
+    --bg:     #faf9f5;   /* paper, not #ffffff */
+    --ink:    #1a2332;   /* near-black, not #000000 */
+    --muted:  #6b7280;   /* captions, labels, page numbers */
+    --accent: #2c5fb8;   /* ONE accent. Use at one spot per slide. */
+    --rule:   #e5e3dc;   /* hairlines */
+
+    --font-display: "Source Serif 4", Georgia, "Noto Serif TC", serif;
+    --font-body:    "Inter", system-ui, "Noto Sans TC", sans-serif;
+    --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+    /* Type scale for a 1920x1080 canvas. Body never below 28px. */
+    --t-hero:    176px;  /* cover title            */
+    --t-section: 104px;  /* section divider        */
+    --t-head:     68px;  /* page heading           */
+    --t-body:     36px;  /* body / bullets         */
+    --t-caption:  26px;  /* caption / label / page no. */
+    --t-bignum:  300px;  /* the one big number     */
+
+    --pad: 140px;        /* content inset from canvas edge. Never touch the edge. */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%; background: #0b0d12; overflow: hidden;
+    font-family: var(--font-body); color: var(--ink);
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+
+  /* The fixed stage. Scaled as a whole by JS. */
+  #stage {
+    position: absolute; top: 50%; left: 50%;
+    width: 1920px; height: 1080px;
+    transform-origin: center center;
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    width: 1920px; height: 1080px;
+    padding: var(--pad);
+    background: var(--bg); color: var(--ink);
+    display: flex; flex-direction: column; justify-content: center;
+    /* show/hide via opacity, NOT display:none — display rules can fight each other */
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .22s cubic-bezier(0,0,0.2,1);
+  }
+  .slide.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+  /* Chinese + Latin mixed text reads better with a touch more line-height. */
+  .slide { line-height: 1.5; text-wrap: pretty; }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-size: var(--t-caption);
+    letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 28px;
+  }
+  h1 { font-family: var(--font-display); font-size: var(--t-hero);
+       line-height: 1.04; font-weight: 800; }
+  h2 { font-family: var(--font-display); font-size: var(--t-section);
+       line-height: 1.1;  font-weight: 700; }
+  h3 { font-family: var(--font-display); font-size: var(--t-head);
+       line-height: 1.18; font-weight: 700; margin-bottom: 48px; }
+  p, li { font-size: var(--t-body); line-height: 1.55; }
+
+  .sub { font-size: var(--t-head); color: var(--muted); font-family: var(--font-body);
+         font-weight: 400; margin-top: 32px; line-height: 1.2; }
+
+  ul { list-style: none; }
+  ul li { position: relative; padding-left: 44px; margin-bottom: 32px; }
+  ul li::before {                      /* accent marker — one accent touch */
+    content: ""; position: absolute; left: 0; top: .62em;
+    width: 18px; height: 4px; background: var(--accent);
+  }
+
+  .bignum { font-family: var(--font-display); font-size: var(--t-bignum);
+            font-weight: 800; line-height: .9; color: var(--accent); }
+
+  blockquote { font-family: var(--font-display); font-size: var(--t-section);
+               line-height: 1.22; font-weight: 600; max-width: 1280px; }
+  blockquote + .attrib { margin-top: 48px; font-family: var(--font-mono);
+                         font-size: var(--t-caption); color: var(--muted);
+                         letter-spacing: .06em; }
+
+  /* two-column comparison */
+  .cols { display: flex; gap: 96px; }
+  .cols > div { flex: 1; }
+  .cols h4 { font-size: var(--t-head); font-weight: 700; margin-bottom: 32px; }
+
+  /* footer: page number + running label. Right-align is reserved for page numbers. */
+  .foot { position: absolute; left: var(--pad); right: var(--pad); bottom: 64px;
+          display: flex; justify-content: space-between;
+          font-family: var(--font-mono); font-size: var(--t-caption);
+          color: var(--muted); letter-spacing: .08em; }
+
+  /* nav dots */
+  #dots { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+          display: flex; gap: 10px; z-index: 10; }
+  #dots button { width: 9px; height: 9px; border-radius: 50%; border: 0;
+                 background: #4b5563; cursor: pointer; padding: 0; }
+  #dots button.on { background: #e5e7eb; }
+
+  /* PRINT → PDF: one slide per page, no scaling, no chrome */
+  @media print {
+    @page { size: 1920px 1080px; margin: 0; }
+    html, body { background: #fff; height: auto; overflow: visible; }
+    #stage { position: static; transform: none !important;
+             width: auto; height: auto; }
+    #dots { display: none; }
+    .slide { opacity: 1 !important; visibility: visible !important;
+             position: relative; page-break-after: always; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+  <!-- COVER (bare: no footer) -->
+  <section class="slide" data-label="Cover">
+    <div class="eyebrow">2026 · Product Review</div>
+    <h1>標題寫在這裡<br>One Idea, One Slide</h1>
+    <p class="sub">副標一句話，講清楚這份 deck 是什麼</p>
+  </section>
+
+  <!-- SECTION DIVIDER (almost nothing else on the page) -->
+  <section class="slide" data-label="Section">
+    <div class="eyebrow">01</div>
+    <h2>第一章：問題</h2>
+    <div class="foot"><span>Deck Title</span><span class="pageno"></span></div>
+  </section>
+
+  <!-- CONTENT: heading + ≤5 one-line bullets. Not heading + body AND a long list. -->
+  <section class="slide" data-label="Content">
+    <h3>三個重點</h3>
+    <ul>
+      <li>每個 bullet 一行講完，會折行就縮短或拆頁</li>
+      <li>一頁最多五點，超過就拆成續頁</li>
+      <li>擠了就拆頁，永遠不要把字縮小</li>
+    </ul>
+    <div class="foot"><span>Deck Title</span><span class="pageno"></span></div>
+  </section>
+
+  <!-- BIG NUMBER: one number fills ~half the page + a caption -->
+  <section class="slide" data-label="BigNumber">
+    <div class="bignum">87%</div>
+    <p class="sub">一個數字佔據視覺重心，配一句說明</p>
+    <div class="foot"><span>Deck Title</span><span class="pageno"></span></div>
+  </section>
+
+  <!-- QUOTE: big quote ≤ ~36 Han chars. No 3-column attached. -->
+  <section class="slide" data-label="Quote">
+    <blockquote>引言放這裡，短而有重量，最多三行</blockquote>
+    <div class="attrib">— 出處 / 講者</div>
+    <div class="foot"><span>Deck Title</span><span class="pageno"></span></div>
+  </section>
+
+  <!-- COMPARISON: 2 columns + gap -->
+  <section class="slide" data-label="Comparison">
+    <h3>之前 vs 之後</h3>
+    <div class="cols">
+      <div><h4>之前</h4><ul><li>痛點一</li><li>痛點二</li></ul></div>
+      <div><h4>之後</h4><ul><li>改善一</li><li>改善二</li></ul></div>
+    </div>
+    <div class="foot"><span>Deck Title</span><span class="pageno"></span></div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="slide" data-label="Closing">
+    <div class="eyebrow">Thank you</div>
+    <h2>一句收尾</h2>
+    <p class="sub">contact@example.com</p>
+  </section>
+
+</div>
+
+<div id="dots"></div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var stage  = document.getElementById('stage');
+  var dotbar = document.getElementById('dots');
+  var i = 0;
+
+  // page numbers (skip cover at index 0): N / total-content
+  var total = slides.length;
+  slides.forEach(function (s, n) {
+    var pn = s.querySelector('.pageno');
+    if (pn) pn.textContent = (n + 1) + ' / ' + total;
+  });
+
+  // nav dots, derived from the DOM — never hardcoded
+  slides.forEach(function (_, n) {
+    var b = document.createElement('button');
+    b.addEventListener('click', function () { go(n); });
+    dotbar.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotbar.children);
+
+  function show(n) {
+    slides.forEach(function (s, k) { s.classList.toggle('active', k === n); });
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === n); });
+  }
+  function go(n) { i = Math.max(0, Math.min(total - 1, n)); show(i); }
+
+  // scale the fixed stage to fit the viewport, preserving 16:9
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.transform = 'translate(-50%,-50%) scale(' + s + ')';
+  }
+
+  window.addEventListener('resize', fit);
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { go(i + 1); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { go(i - 1); }
+    else if (e.key === 'Home') { go(0); }
+    else if (e.key === 'End') { go(total - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  });
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('#dots')) return;
+    go(i + 1);
+  });
+
+  fit(); show(0);
+})();
+</script>
+</body>
+</html>

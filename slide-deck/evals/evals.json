@@ -1,0 +1,23 @@
+{
+  "skill_name": "slide-deck",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "幫我做一份 8 頁的產品發表簡報，介紹一個叫 Pulse 的團隊協作工具，給投資人看的 pitch deck。",
+      "expected_output": "A single self-contained HTML deck (~8 slides) at 1920×1080: cover, problem, solution, a big-number traction slide, comparison, closing. One coherent style preset, body text ≥28px, one idea per slide, no overflow. Passes check_deck.py with 0 errors.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Turn these notes into slides for a 20-minute conference talk on database connection pooling. Keep it speaker-led — I'll be presenting live.",
+      "expected_output": "A speaker-led deck: 1–3 bullets per slide, large type, more slides, section dividers for rhythm. Single HTML file, dark-neon or technical preset suits the topic. No slide exceeds the vertical budget; check_deck.py clean.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我有一份公司的 PowerPoint 模板，可以照它的風格幫我把這份產品週報做成投影片嗎？",
+      "expected_output": "Recognizes path D: offers to extract the .pptx (extract_pptx.py / python-pptx) for content + style, matches its palette/fonts into an original preset, rebuilds as an HTML deck without redistributing the source file. Asks for the file or the outline.",
+      "files": []
+    }
+  ]
+}
