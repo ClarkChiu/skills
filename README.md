@@ -11,6 +11,8 @@
 | [`skill-auditor`](./skill-auditor/) | 安裝任何 AI 代理技能**之前**必跑的安全稽核協議。讀取目標 `SKILL.md` 與整個技能目錄，依六步驟協議檢查惡意指令、權限濫用、提示注入、混淆與外洩行為，最後輸出含裁決（✅ SAFE／⚠️／❌）與安全執行計畫的 **SKILL AUDIT REPORT**。本身不執行任何程式碼，為純 Markdown。 |
 | [`skill-finder`](./skill-finder/) | 唯讀搜尋開放技能生態（`skills.sh`），抓取候選 `SKILL.md` 供檢視，並在任何安裝決定前轉交 `skill-auditor`。只發唯讀 HTTPS GET 請求，不執行 `npx skills`、不執行第三方程式碼、不傳送遙測。負責「發現與評估」，安裝由使用者自行決定。 |
 | [`p2pscout`](./p2pscout/) | 工具型技能（以 Go 撰寫，非純 Markdown）。跨多個索引來源搜尋 BitTorrent 資源，依實測的節點群健康度（分散式雜湊表加追蹤伺服器，可選握手驗證）排序，挑出現在真的抓得到的那一筆；下載委派 aria2。代理以 `go run ./cmd/p2pscout` 直接呼叫（首次編譯後進快取），無需手動建置。需本機安裝 Go 1.25 以上。 |
+| [`chinese-typography`](./chinese-typography/) | 台灣繁體中文排版與正規化。自動補盤古之白（中英文間空格）、半形標點轉全形、引號改直角引號「」『』、簡轉繁並在地化台灣用語（OpenCC `s2twp`）、修正異體字。核心是**確定性 Python 腳本**（非靠模型逐字猜）＋最高權限的個人字典 `user-dictionary.json`；通用表放 `data/defaults.json`，不動程式碼即可編輯。需本機 OpenCC 才做簡轉繁，缺套件會大聲警告而非默默略過。 |
+| [`slide-deck`](./slide-deck/) | 準則導向的投影片設計引擎（非套模板）。將內容生成**單一自包含 HTML 檔**：固定 1920×1080 畫布、縮放至任何螢幕、可列印成 PDF、手機可滑動導覽。內建原創風格預設與版式準則（一頁一想法、型階、垂直預算、配色／動效紀律、繁中換行），附確定性檢查器 `check_deck.py` 出貨前把關。repo 不放任何第三方模板資產；需可編輯 `.pptx` 時改用 ppt-master（見 `references/output-formats.md`）。 |
 
 ## 外部技能（經 APM 引入第三方）
 
@@ -56,7 +58,7 @@ apm install
 
 ### 手動符號連結（不經 APM）
 
-純 Markdown 技能載入只是讓指令對主機代理可用，不會執行程式碼，直接建立符號連結到對應目錄即可。`p2pscout` 為工具型技能，符號連結後另需本機有 Go 才能 `go run`。
+純 Markdown 技能載入只是讓指令對主機代理可用，不會執行程式碼，直接建立符號連結到對應目錄即可。部分技能附帶腳本，使用時需對應執行環境：`p2pscout` 需 Go 1.25 以上（`go run`）；`chinese-typography` 需 Python，簡轉繁另需 OpenCC；`slide-deck` 的檢查器 `check_deck.py` 需 Python。
 
 ```bash
 REPO="$(pwd)"  # 本專案根目錄
@@ -66,12 +68,16 @@ mkdir -p ~/.claude/skills
 ln -snf "$REPO/skill-auditor" ~/.claude/skills/skill-auditor
 ln -snf "$REPO/skill-finder" ~/.claude/skills/skill-finder
 ln -snf "$REPO/p2pscout" ~/.claude/skills/p2pscout
+ln -snf "$REPO/chinese-typography" ~/.claude/skills/chinese-typography
+ln -snf "$REPO/slide-deck" ~/.claude/skills/slide-deck
 
 # OpenCode
 mkdir -p ~/.config/opencode/skills
 ln -snf "$REPO/skill-auditor" ~/.config/opencode/skills/skill-auditor
 ln -snf "$REPO/skill-finder" ~/.config/opencode/skills/skill-finder
 ln -snf "$REPO/p2pscout" ~/.config/opencode/skills/p2pscout
+ln -snf "$REPO/chinese-typography" ~/.config/opencode/skills/chinese-typography
+ln -snf "$REPO/slide-deck" ~/.config/opencode/skills/slide-deck
 ```
 
 > `skill-finder` 在評估階段會呼叫 `skill-auditor`，兩者請一起安裝。
