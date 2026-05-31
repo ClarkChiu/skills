@@ -21,7 +21,8 @@
   #stage{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center center}
   .slide{position:absolute;inset:0;width:1920px;height:1080px;padding:var(--pad);background:var(--bg);color:var(--ink);
     display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;
-    line-height:1.6;text-wrap:pretty;transition:opacity .22s cubic-bezier(0,0,0.2,1)}
+    line-height:1.6;text-wrap:pretty;line-break:strict;text-spacing-trim:normal;hanging-punctuation:allow-end;
+    transition:opacity .22s cubic-bezier(0,0,0.2,1)}
   .slide.active{opacity:1;visibility:visible;pointer-events:auto}
   .eyebrow{font-family:var(--font-mono);font-size:var(--t-caption);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:30px}
   h1{font-family:var(--font-display);font-size:var(--t-hero);line-height:1.12;font-weight:900;letter-spacing:.01em}

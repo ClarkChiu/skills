@@ -30,3 +30,9 @@ originality" section in `SKILL.md` and `licensed-sources.md`.
   Swiss/International Typographic Style, editorial/magazine layout, brutalism. Styles are
   ideas, not owned works.
 - Fonts: Google Fonts (OFL/Apache), Fontshare (free commercial) — see `licensed-sources.md`.
+- Chinese line-breaking (§13 of `principles.md`): the 避頭尾 / 標點擠壓 / 標點懸掛
+  conventions and the choice of native CSS to express them are drawn from **W3C clreq**
+  (Requirements for Chinese Text Layout, https://www.w3.org/TR/clreq/) and the reference
+  designs **Han.css 漢字標準格式** (https://github.com/ethantw/Han, MIT) and **heti 赫蹏**
+  (https://github.com/sivan/heti, MIT). We use the native CSS properties (`line-break`,
+  `text-spacing-trim`, `hanging-punctuation`) rather than those libraries' code.

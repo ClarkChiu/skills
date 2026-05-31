@@ -19,6 +19,7 @@ enforces them. Read this before generating a deck; re-read when a slide feels of
 10. Deck rhythm (pacing)
 11. Depth, emphasis & shadow
 12. Visual self-review checklist
+13. Chinese line-breaking (繁中換行)
 
 ---
 
@@ -228,3 +229,40 @@ things a source linter can't fully see. These thresholds are worth eyeballing pe
   slide become a card grid?
 
 Fix by splitting or cutting (rule 2), never by shrinking.
+
+## 13. Chinese line-breaking (繁中換行)
+
+For Traditional-Chinese (and CJK) decks, a few line-break rules keep text from looking
+wrong. The engine's CSS handles the mechanical ones; you handle the judgment ones.
+
+**Handled by the engine's CSS (already on `.slide`):**
+
+- **避頭尾 (`line-break: strict`)** — punctuation like `。，、！？」）` never falls at the
+  *start* of a line, and `「（『` never at the *end*. The browser enforces it; you don't
+  have to hand-place breaks to avoid it.
+- **標點擠壓 (`text-spacing-trim: normal`)** — adjacent full-width punctuation (`」。`,
+  `，「`) is kerned tighter so it doesn't read loose. (Chrome-stable; progressive.)
+- **標點懸掛 (`hanging-punctuation: allow-end`)** — end-of-line punctuation hangs past the
+  margin so the text edge stays straight. (Safari only; ignored elsewhere, harmless.)
+
+All three are progressive enhancement — unsupported browsers ignore them and nothing
+breaks.
+
+**Your job (judgment — a script can't do this):**
+
+- **Break headings at word/phrase boundaries.** When you put a manual `<br>` in a Chinese
+  title, break *between* words, never inside one: `讓營運<br>永不中斷` ✓, not
+  `讓營運永不中<br>斷` ✗ (which splits the word 中斷). There is no deterministic algorithm
+  for this — Chinese segmentation (斷詞) is ambiguous — so read the phrase and break where
+  the meaning joins.
+- **No stranded glyph.** Don't let a lone character or a lone punctuation mark fall on the
+  last line of a block; shorten the text or rebreak.
+- **Keep terms and numbers whole.** Don't break inside `TXOne`, `IEC 62443-4-1`, or
+  `3,600+`.
+
+**One conflict to avoid (盤古之白 belongs to one layer).** Don't insert literal spaces for
+CJK↔Latin spacing in the deck *and* also rely on CSS `text-autospace` — you'd double the
+gap. The portable choice: space the text at the character level first (run it through the
+`chinese-typography` skill / `normalize.py`), then let these CSS rules handle the rendered
+line layout. That keeps `text-autospace` off and the normalizer as the single source of
+the spacing.

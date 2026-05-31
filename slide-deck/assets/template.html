@@ -71,8 +71,13 @@
   }
   .slide.active { opacity: 1; visibility: visible; pointer-events: auto; }
 
-  /* Chinese + Latin mixed text reads better with a touch more line-height. */
-  .slide { line-height: 1.5; text-wrap: pretty; }
+  /* Chinese + Latin mixed text: a touch more line-height, plus Taiwan line-breaking.
+     line-break:strict = 避頭尾 (punctuation never starts/ends a line wrongly);
+     text-spacing-trim = 標點擠壓 (kern adjacent full-width punctuation, Chrome);
+     hanging-punctuation = 標點懸掛 (Safari only). All three are progressive
+     enhancement — unsupported browsers ignore them, nothing breaks. */
+  .slide { line-height: 1.5; text-wrap: pretty;
+           line-break: strict; text-spacing-trim: normal; hanging-punctuation: allow-end; }
 
   .eyebrow {
     font-family: var(--font-mono); font-size: var(--t-caption);
