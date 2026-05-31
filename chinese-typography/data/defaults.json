@@ -1,0 +1,16 @@
+{
+  "_comment": "chinese-typography 的通用預設表（台灣／技術慣例，非個人偏好）。隨 skill 出貨、可自由編輯。casing＝專有名詞大小寫；always_fixes＝一律修正的異體字；formal_tai_map＝啟用 --formal-tai 時補強的 台→臺 地名。個人習慣請放 user-dictionary.json（權限更高，會蓋過這裡）。",
+  "casing": {
+    "github": "GitHub", "gitlab": "GitLab", "javascript": "JavaScript",
+    "typescript": "TypeScript", "nodejs": "Node.js", "node.js": "Node.js",
+    "ios": "iOS", "ipados": "iPadOS", "macos": "macOS", "iphone": "iPhone",
+    "ipad": "iPad", "android": "Android", "php": "PHP", "mysql": "MySQL",
+    "postgresql": "PostgreSQL", "graphql": "GraphQL", "html": "HTML",
+    "css": "CSS", "json": "JSON", "api": "API", "url": "URL", "sql": "SQL",
+    "youtube": "YouTube", "wifi": "Wi-Fi"
+  },
+  "always_fixes": { "裏": "裡" },
+  "formal_tai_map": {
+    "台灣": "臺灣", "台北": "臺北", "台中": "臺中", "台南": "臺南", "台東": "臺東"
+  }
+}

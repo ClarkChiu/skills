@@ -108,11 +108,11 @@ abbreviations. This is why `src/main.py` and `https://…` survive intact.
 
 ## Personal dictionary (highest priority)
 
-The script loads `user-dictionary.json` by searching **upward from the script
-toward the project root** (the user's skills repo root) — so the file lives at
-the repo root, shared across tools and not tied to this skill or to Claude.
-Override the path with `--dict`. This is the user's own file and it **outranks
-every rule, including OpenCC** — use it to encode their preferences rather than
+The script loads `user-dictionary.json` by searching **upward from the script**
+and taking the nearest match — so the copy that ships inside this skill
+(`chinese-typography/user-dictionary.json`) is found first. Override the path
+with `--dict` (e.g. point at a shared repo-root copy instead). This is the
+user's own file and it **outranks every rule, including OpenCC** — use it to encode their preferences rather than
 hard-coding them:
 
 ```json
@@ -126,6 +126,18 @@ hard-coding them:
 
 When the user states a recurring preference (a term they always write a certain
 way, a name to leave alone), prefer adding it here over editing the script.
+
+### Two layers: defaults vs. personal
+
+The general Taiwan/tech tables — the proper-noun casing map (`github→GitHub`),
+the always-on 異體字 fixes (`裏→裡`), and the 台→臺 place-name map used by
+`--formal-tai` — are **not** personal preferences, so they live in
+`data/defaults.json` (editable data, shipped with the skill), not hard-coded in
+Python. `user-dictionary.json` is the **personal** layer on top and overrides
+them. Edit `defaults.json` to change a general rule for everyone; edit
+`user-dictionary.json` to encode your own habit (the `formal_tai: false` entry
+there is the canonical example — 台 over 臺). If `defaults.json` is missing the
+script warns loudly and skips casing/異體字 rather than failing silently.
 
 ## Turning rules off
 

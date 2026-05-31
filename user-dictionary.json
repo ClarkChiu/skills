@@ -1,7 +1,0 @@
-{
-  "_comment": "個人字典：權限最高，凌駕所有規則與 OpenCC。此檔由你自己維護。replacements＝最後一步逐字替換（最高優先，連 OpenCC 的結果都能蓋掉）；casing＝併入專有名詞大小寫表並覆寫內建；protect＝全程不被任何規則更動的字串；formal_tai＝覆寫 台/臺 預設（false＝用通用的「台」，true＝官方「臺」）。改完直接生效，腳本預設會讀這個檔；也可用 --dict 指定其他路徑。",
-  "replacements": {},
-  "casing": {},
-  "protect": [],
-  "formal_tai": false
-}

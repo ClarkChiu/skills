@@ -1,0 +1,23 @@
+{
+  "_comment": "個人字典：權限最高，凌駕所有規則、OpenCC、以及 data/defaults.json。只放你自己的習慣，改完直接生效；也可用 --dict 指定別份。",
+  "_fields": {
+    "replacements": "最後一步逐字替換，最高優先（連 OpenCC 結果都能蓋掉）。無詞界線、無語境，通用詞勿放，只放不會撞車的專屬字串；目前留空。",
+    "casing": "覆寫／擴充 defaults.json 的專有名詞大小寫表",
+    "protect": "全程不被任何規則更動的字串（含大小寫／符號／數字貼中文的混合詞）",
+    "formal_tai": "台/臺 偏好：false＝通用「台」(你的習慣)，true＝官方「臺」"
+  },
+  "replacements": {},
+  "casing": {
+    "openai": "OpenAI",
+    "chatgpt": "ChatGPT",
+    "vscode": "VS Code",
+    "postgres": "Postgres",
+    "k8s": "K8s"
+  },
+  "protect": [
+    "p2pscout",
+    "Web3",
+    "C#"
+  ],
+  "formal_tai": false
+}

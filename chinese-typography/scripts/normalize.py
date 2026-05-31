@@ -27,6 +27,8 @@
 --no-spacing --no-fixes。
 """
 import argparse
+import json
+import os
 import re
 import sys
 
@@ -136,16 +138,32 @@ def _opencc_convert(text):
 # 麻煩的是 OpenCC s2twp 會把「所有」台都轉成 臺（連量詞「一台」也是），
 # 所以預設要把它還原回 台；只有使用者明確要官方字形（--formal-tai）才保留 臺。
 # 供 --no-convert 時補強用的地名對照表也一併保留。
-_FORMAL_TAI = {'台灣': '臺灣', '台北': '臺北', '台中': '臺中', '台南': '臺南', '台東': '臺東'}
-_ALWAYS_FIXES = {'裏': '裡'}   # 裏 → 裡（台灣標準字）
+# 通用預設表（casing／異體字／台臺地名）改由 data/defaults.json 載入，不再寫死在
+# 程式碼，這樣不動 Python 就能編輯。個人習慣（含 台/臺）放 user-dictionary.json。
+_DEFAULTS_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'defaults.json')
+
+
+def _load_defaults():
+    try:
+        with open(_DEFAULTS_PATH, encoding='utf-8') as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        # fail-loud：少了預設表會讓 casing／異體字修正默默失效，明講比靜默好。
+        print(f"WARNING: typography defaults at {_DEFAULTS_PATH} unreadable "
+              f"({e}); casing 與異體字修正將被跳過。", file=sys.stderr)
+        return {}
+
+
+_DEFAULTS = _load_defaults()
 
 
 def _fix_variants(text, formal_tai=False):
-    for a, b in _ALWAYS_FIXES.items():
+    for a, b in _DEFAULTS.get('always_fixes', {}).items():
         text = text.replace(a, b)
     if formal_tai:
         # 要官方字形：補強地名（OpenCC 已大致完成，這裡涵蓋 --no-convert 的情況）
-        for a, b in _FORMAL_TAI.items():
+        for a, b in _DEFAULTS.get('formal_tai_map', {}).items():
             text = text.replace(a, b)
     else:
         # 預設：還原 OpenCC s2twp 一律轉出的 臺，回到通用的 台
@@ -253,20 +271,9 @@ def _to_halfwidth(text):
 # ---------------------------------------------------------------------------
 # 中文文案排版指北 rule 10：技術專有名詞用正規大小寫。精選、保守，
 # 只收幾乎一律固定寫法的品牌／縮寫；用詞界線比對，避免誤傷英文內文。
-# 使用者可用個人字典擴充（見 user-dictionary.json，權限最高）。
-_CASING = {
-    'github': 'GitHub', 'gitlab': 'GitLab', 'javascript': 'JavaScript',
-    'typescript': 'TypeScript', 'nodejs': 'Node.js', 'node.js': 'Node.js',
-    'ios': 'iOS', 'ipados': 'iPadOS', 'macos': 'macOS', 'iphone': 'iPhone',
-    'ipad': 'iPad', 'android': 'Android', 'php': 'PHP', 'mysql': 'MySQL',
-    'postgresql': 'PostgreSQL', 'graphql': 'GraphQL', 'html': 'HTML',
-    'css': 'CSS', 'json': 'JSON', 'api': 'API', 'url': 'URL', 'sql': 'SQL',
-    'youtube': 'YouTube', 'wifi': 'Wi-Fi',
-}
-
-
+# 內建表來自 data/defaults.json；使用者可用個人字典覆寫／擴充（權限最高）。
 def _fix_casing(text, extra=None):
-    table = dict(_CASING)
+    table = dict(_DEFAULTS.get('casing', {}))
     if extra:
         table.update({k.lower(): v for k, v in extra.items()})  # 使用者覆寫內建
     for low, canon in table.items():
@@ -287,16 +294,15 @@ def _fix_casing(text, extra=None):
 #     "protect":      ["別動我"],          # 全程不被任何規則更動
 #     "formal_tai":   false                # 覆寫 台/臺 預設
 #   }
-import json
-import os
 
 _DICT_NAME = 'user-dictionary.json'
 
 
 def _find_default_dict():
-    # 個人字典放在「專案根目錄」(使用者的 skills 倉庫根)，不綁這個 skill。
-    # 從腳本所在位置往上層逐級找 user-dictionary.json，找到最近的一份就用。
-    # 這樣字典是整個倉庫共用、也不只給 Claude 用；缺檔則無妨（回傳空）。
+    # 個人字典放在這個 skill 目錄下 (chinese-typography/user-dictionary.json)。
+    # 從腳本所在位置往上層逐級找 user-dictionary.json，找到最近的一份就用——
+    # 因此 skill 目錄那份會先被命中；若倉庫根另有一份，可用 --dict 指定。
+    # 缺檔則無妨（回傳 None，當作沒有個人字典）。
     d = os.path.dirname(os.path.abspath(__file__))
     while True:
         cand = os.path.join(d, _DICT_NAME)
