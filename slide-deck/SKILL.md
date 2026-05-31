@@ -131,6 +131,16 @@ Fix every `ERROR`; weigh each `WARN`. Then open the file in a browser to eyeball
 For PDF, either `Ctrl/Cmd-P → Save as PDF`, or run `scripts/export_pdf.py deck.html`
 (needs Playwright — it renders each slide at 1920×1080).
 
+**Links & QR.** Any URL the audience should reach must be a real
+`<a href="…" target="_blank" rel="noopener">` — plain text isn't clickable, and the
+engine's click-to-advance deliberately ignores `<a>` so links work. But a *projected*
+deck can't be clicked at all, so for a call-to-action add a **QR code**: generate it
+offline (Python `segno` → inline SVG) and embed it so the deck stays self-contained.
+
+**Sharing.** The deck is one self-contained file — drop it on any static host. Fastest
+zero-setup option: **Netlify Drop** (drag the file onto app.netlify.com/drop → instant
+public URL, no account). Others: `surge` CLI, GitHub Pages, Cloudflare Pages, Vercel.
+
 ## On copying vs. originality (why no bundled templates)
 
 Layout conventions, type scales, grid systems, and aesthetic *styles* (Swiss, editorial,
@@ -147,4 +157,5 @@ Envato), explain we can match its *style* but cannot redistribute its *files*.
 - `references/layouts.md` — page-role catalog and the layout decision tree.
 - `references/licensed-sources.md` — commercial-OK external sources + fonts (path C).
 - `references/ingest.md` — converting the user's PowerPoint/template (path D).
+- `references/output-formats.md` — HTML (this skill) vs native .pptx; when to reach for ppt-master instead.
 - `references/attribution.md` — the projects this skill's principles are distilled from.

@@ -116,7 +116,9 @@ def main() -> int:
                          f"nouns/numbers (bold/accent), uniform text reads as a wall")
 
     # 5. Slide count vs hardcoded totals (page numbers should be derived, not typed).
-    hard_total = re.findall(r"/\s*(\d+)\s*<", doc)
+    # Match the rendered "N / M" page-number form (spaces around the slash) so dates
+    # like 7/31 or 8/17 aren't mistaken for a hardcoded page total.
+    hard_total = re.findall(r"\d+\s+/\s+(\d+)\s*<", doc)
     if hard_total and slides:
         bad = {t for t in hard_total if t.isdigit() and int(t) != len(slides)}
         if bad:

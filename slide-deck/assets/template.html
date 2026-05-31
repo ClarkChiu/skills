@@ -79,6 +79,14 @@
   .slide { line-height: 1.5; text-wrap: pretty;
            line-break: strict; text-spacing-trim: normal; hanging-punctuation: allow-end; }
 
+  /* Links stay clickable — the click-to-advance handler ignores <a>. Use
+     <a href="…" target="_blank" rel="noopener"> for any URL you want tappable.
+     For a PROJECTED deck nobody can click, add a QR code instead: generate it
+     offline (e.g. Python `segno`) and embed the SVG/PNG inline so the deck stays
+     self-contained and forwardable. */
+  a { color: var(--accent); text-decoration: none;
+      border-bottom: 3px solid var(--accent); padding-bottom: 2px; }
+
   .eyebrow {
     font-family: var(--font-mono); font-size: var(--t-caption);
     letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
@@ -237,13 +245,30 @@
   }
   function go(n) { i = Math.max(0, Math.min(total - 1, n)); show(i); }
 
-  // scale the fixed stage to fit the viewport, preserving 16:9
+  // scale the fixed stage to fit the viewport, preserving 16:9. Use the document
+  // element's client box — it's the layout viewport and is reliable under mobile
+  // emulation / device toolbars, where window.innerHeight can be momentarily wrong.
   function fit() {
-    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    stage.style.transform = 'translate(-50%,-50%) scale(' + s + ')';
+    var el = document.documentElement;
+    var vw = el.clientWidth || window.innerWidth;
+    var vh = el.clientHeight || window.innerHeight;
+    stage.style.transform = 'translate(-50%,-50%) scale(' + Math.min(vw / 1920, vh / 1080) + ')';
   }
 
+  // ResizeObserver is the deterministic trigger — it fires on every real viewport
+  // size change (emulation reload, device toggle, late settle), no timing guesswork.
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(document.documentElement);
   window.addEventListener('resize', fit);
+  // Mobile first-load: the viewport isn't settled when the script first runs (the
+  // address bar is still collapsing, web fonts loading), so a single fit() scales
+  // to a stale height and the deck doesn't fill the screen until a refresh. Re-fit
+  // once everything has settled: next frame, full load, orientation, and the visual
+  // viewport changing as browser chrome shows/hides.
+  window.addEventListener('load', fit);
+  window.addEventListener('pageshow', fit);
+  window.addEventListener('orientationchange', fit);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   window.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { go(i + 1); e.preventDefault(); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { go(i - 1); }
@@ -254,12 +279,35 @@
       else document.documentElement.requestFullscreen();
     }
   });
+  // Tap zones (touch + desktop): left 30% = previous, the rest = next. Skips nav
+  // dots and links so they stay usable. This gives touch users a way BACK — a
+  // click-only "always next" deck traps them with no way to return.
+  var _swiped = false, _sx = null, _sy = null;
   document.addEventListener('click', function (e) {
-    if (e.target.closest('#dots')) return;
-    go(i + 1);
+    if (_swiped) { _swiped = false; return; }          // swipe already handled it
+    if (e.target.closest('#dots') || e.target.closest('a')) return;
+    if (e.clientX < window.innerWidth * 0.30) go(i - 1); else go(i + 1);
   });
+  // Swipe (touch): left = next, right = previous.
+  document.addEventListener('touchstart', function (e) {
+    var t = e.changedTouches[0]; _sx = t.clientX; _sy = t.clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (_sx === null || e.target.closest('#dots') || e.target.closest('a')) { _sx = null; return; }
+    var t = e.changedTouches[0], dx = t.clientX - _sx, dy = t.clientY - _sy;
+    _sx = null;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      _swiped = true; e.preventDefault();              // cancel the ghost click
+      if (dx < 0) go(i + 1); else go(i - 1);
+    }
+  }, { passive: false });
 
-  fit(); show(0);
+  // Belt-and-suspenders: re-fit at several moments after first paint. On a
+  // non-scrolling mobile page the address bar may not settle for a few hundred ms,
+  // so a single fit() lands on a stale height. One of these always catches the
+  // final viewport.
+  [0, 150, 400, 800].forEach(function (t) { setTimeout(fit, t); });
+  fit(); requestAnimationFrame(fit); show(0);
 })();
 </script>
 </body>
