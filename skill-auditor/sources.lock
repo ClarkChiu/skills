@@ -1,0 +1,18 @@
+{
+  "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
+  "checked_at": "2026-06-01",
+  "sources": {
+    "UseAI-pro/openclaw-skills-security": {
+      "commit": "4645f2d047d6",
+      "date": "2026-03-10"
+    },
+    "sundial-org/awesome-openclaw-skills": {
+      "commit": "b80cde2ef852",
+      "date": "2026-03-07"
+    },
+    "trailofbits/skills": {
+      "commit": "c94841be3dea",
+      "date": "2026-05-27"
+    }
+  }
+}

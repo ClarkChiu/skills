@@ -1,0 +1,38 @@
+{
+  "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
+  "checked_at": "2026-06-01",
+  "sources": {
+    "1weiho/open-slide": {
+      "commit": "4a587232b809",
+      "release": "@open-slide/cli@1.2.6",
+      "date": "2026-05-30"
+    },
+    "GordenSun/GordenPPTSkill": {
+      "commit": "7b4c27593c4a",
+      "date": "2026-06-01"
+    },
+    "ethantw/Han": {
+      "commit": "970d163c6af2",
+      "release": "v3.2.7",
+      "date": "2024-02-13"
+    },
+    "gainubi/note-slides": {
+      "commit": "d46928f343df",
+      "date": "2026-05-08"
+    },
+    "hugohe3/ppt-master": {
+      "commit": "232415dbacc1",
+      "release": "v2.9.0",
+      "date": "2026-05-31"
+    },
+    "sivan/heti": {
+      "commit": "7d5ceb72a6a7",
+      "date": "2025-08-31"
+    },
+    "zarazhangrui/frontend-slides": {
+      "commit": "24e420e4acef",
+      "release": "v2.1.0",
+      "date": "2026-05-26"
+    }
+  }
+}

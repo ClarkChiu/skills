@@ -1,0 +1,10 @@
+{
+  "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
+  "checked_at": "2026-06-01",
+  "sources": {
+    "joway/gardener": {
+      "commit": "dd6fa2dc8c6b",
+      "date": "2026-05-05"
+    }
+  }
+}

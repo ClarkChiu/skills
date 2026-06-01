@@ -12,6 +12,7 @@ dependencies:
   - ./p2pscout/
   - ./chinese-typography/
   - ./slide-deck/
+  - ./skill-evolve/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []
