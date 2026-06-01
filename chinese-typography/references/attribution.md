@@ -69,6 +69,18 @@ against them.
   Noted as a possible future enhancement for rare longest-match disambiguation
   only.
 
+- **zhtw-mcp** — sysprog21 (jserv's org). <https://github.com/sysprog21/zhtw-mcp>
+  (MIT, ~350★, Rust + MCP server / CLI). The closest peer to this skill: a zh-TW
+  linter enforcing **教育部 (MoE) standards** on vocabulary, punctuation, variants
+  and casing (~1100 vocab + 15 casing rules). Used as a **validation benchmark —
+  not a code or rule source.** Comparing this skill's output against it confirmed
+  alignment on the core rules (用詞, 異體字, 標點, 引號, 盤古, casing) and surfaced
+  three OpenCC `s2twp` weaknesses, two now fixed in `user-dictionary.json`
+  (鐳射→雷射, 智慧手機→智慧型手機); the third, 質量/品質, is left alone — genuinely
+  context-dependent (品質 quality vs 質量 mass). Its base/strict strictness-profile
+  design is noted as a possible future enhancement. Tracked in `sources.lock` so
+  `skill-evolve` watches it for updates — it is the MoE-standard reference peer.
+
 ## Reference standards
 
 - **教育部《重訂標點符號手冊》修訂版** (2008 公布) — the binding Taiwan
@@ -79,9 +91,13 @@ against them.
 
 - **教育部《異體字字典》** (正式七版, 2024) — the binding orthography spec.
   <https://dict.variants.moe.edu.tw/> — defines 正字 vs 異體字. Per this
-  dictionary **臺 is the 正字 and 台 its 異體字**; the skill's default 臺→台 is a
-  deliberate *common-usage-over-orthodoxy* choice (the user rarely uses 臺),
-  reversible with `--formal-tai`. See `typography-rules.md §5`.
+  dictionary **臺 is the 正字 and 台 its 異體字**. The skill's *code* default is
+  臺→台 (common usage), but **this user now opts into the MoE 正字 臺** via
+  `formal_tai: true` in `user-dictionary.json` — switched after benchmarking
+  against zhtw-mcp. Brand names that officially keep 台 (台積電, 台塑, 台達電, 台泥…)
+  are preserved through the dictionary's `protect` list so `formal_tai` does not
+  over-convert them. Toggle with `formal_tai` / `--formal-tai`. See
+  `typography-rules.md §5`.
 
 - **W3C 中文排版需求 (clreq)** — *Requirements for Chinese Text Layout*.
   <https://www.w3.org/International/clreq/> — authoritative reference for

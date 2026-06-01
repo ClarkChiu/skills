@@ -2,6 +2,10 @@
   "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
   "checked_at": "2026-06-01",
   "sources": {
+    "sysprog21/zhtw-mcp": {
+      "commit": "defcc020fd76",
+      "date": "2026-05-25"
+    },
     "BYVoid/OpenCC": {
       "commit": "137163d62502",
       "release": "ver.1.3.1",

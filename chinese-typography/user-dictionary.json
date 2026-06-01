@@ -1,23 +1,19 @@
 {
   "_comment": "個人字典：權限最高，凌駕所有規則、OpenCC、以及 data/defaults.json。只放你自己的習慣，改完直接生效；也可用 --dict 指定別份。",
   "_fields": {
-    "replacements": "最後一步逐字替換，最高優先（連 OpenCC 結果都能蓋掉）。無詞界線、無語境，通用詞勿放，只放不會撞車的專屬字串；目前留空。",
+    "replacements": "最後一步逐字替換，最高優先（連 OpenCC 結果都能蓋掉）。無詞界線、無語境，只放不會撞車的字串。",
     "casing": "覆寫／擴充 defaults.json 的專有名詞大小寫表",
-    "protect": "全程不被任何規則更動的字串（含大小寫／符號／數字貼中文的混合詞）",
-    "formal_tai": "台/臺 偏好：false＝通用「台」(你的習慣)，true＝官方「臺」"
+    "protect": "全程不被任何規則更動的字串（含 OpenCC）；用來保住品牌的「台」不被 formal_tai 轉成「臺」",
+    "formal_tai": "台/臺 偏好：true＝官方正字「臺」(教育部標準)，false＝通用「台」"
   },
-  "replacements": {},
-  "casing": {
-    "openai": "OpenAI",
-    "chatgpt": "ChatGPT",
-    "vscode": "VS Code",
-    "postgres": "Postgres",
-    "k8s": "K8s"
+  "replacements": {
+    "鐳射": "雷射",
+    "智慧手機": "智慧型手機"
   },
+  "casing": {},
   "protect": [
-    "p2pscout",
-    "Web3",
-    "C#"
+    "台積電", "台塑化", "台達電", "台企銀", "台新金",
+    "台塑", "台化", "台泥", "台玻", "台肥", "台糖", "台鹽", "台船", "台水"
   ],
-  "formal_tai": false
+  "formal_tai": true
 }
