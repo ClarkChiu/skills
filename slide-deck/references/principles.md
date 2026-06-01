@@ -102,6 +102,13 @@ shrink type (rule 2).
 the rest whitespace; >80% filled reads as cramped). Add a fifth and sixth bullet and you
 approach the limit — that is the signal to split, not to shrink.
 
+The pixel budget answers "does it fit"; it does not answer "is it one idea". A slide can
+clear the budget and still be too dense. So pair this with the **per-role content caps**
+in `layouts.md` (Content ≤5 bullets, Big number = 1 stat + 1 caption, Quote ≤36 Han, …):
+whichever limit you hit first — pixels or the role's cap — is the one that triggers a
+split. The caps make density checkable mechanically, which is why `check_deck.py` enforces
+the bullet cap by role.
+
 ## 5. Layout & grid
 
 - **Content padding 100–160px from every edge.** Never let text touch the canvas edge.
@@ -259,6 +266,15 @@ breaks.
   last line of a block; shorten the text or rebreak.
 - **Keep terms and numbers whole.** Don't break inside `TXOne`, `IEC 62443-4-1`, or
   `3,600+`.
+
+**Size CJK headlines down ~25–30% from the Latin scale.** The type scale in §3 is tuned
+for Latin. Han characters are denser and carry more visual weight per glyph, so a Chinese
+headline at a Latin hero size (176px) reads heavy and overflows width where the equivalent
+English would breathe. For a CJK or CJK-majority headline, step the scale down: **hero
+~120–140px** (not 176), **section ~80–90** (not 104), body unchanged (it's already ≥28 and
+reads fine). The goal is equal *visual* presence, not equal pixels. (The bundled繁中 decks
+already do this — e.g. `--t-hero:132px` for the TxOne deck; this just makes it a rule so
+every CJK deck is consistent instead of hand-tuned each time.)
 
 **One conflict to avoid (盤古之白 belongs to one layer).** Don't insert literal spaces for
 CJK↔Latin spacing in the deck *and* also rely on CSS `text-autospace` — you'd double the

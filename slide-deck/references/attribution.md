@@ -25,6 +25,12 @@ originality" section in `SKILL.md` and `licensed-sources.md`.
 
 ## Other references
 
+- Two refinements surfaced by `skill-evolve` (principles only — no code taken):
+  the **per-role density caps** in `layouts.md` (tie the overflow budget to a typed
+  page-role contract) are sharpened from **proyecto26/slides-ai-plugin** (license
+  unstated — verify before any code reuse); the **CJK-headline downscaling** rule in
+  `principles.md` §13 is informed by **op7418/guizang-ppt-skill** (AGPL-3.0 — learn the
+  idea, never vendor the code).
 - W3C / design conventions for type scale, grid, and contrast (WCAG AA for body text).
 - Public-domain design *movements* that inspired the presets in `style-presets.md` —
   Swiss/International Typographic Style, editorial/magazine layout, brutalism. Styles are

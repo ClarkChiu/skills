@@ -12,7 +12,7 @@
 | [`skill-finder`](./skill-finder/) | 唯讀搜尋開放技能生態（`skills.sh`），抓取候選 `SKILL.md` 供檢視，並在任何安裝決定前轉交 `skill-auditor`。只發唯讀 HTTPS GET 請求，不執行 `npx skills`、不執行第三方程式碼、不傳送遙測。負責「發現與評估」，安裝由使用者自行決定。 |
 | [`p2pscout`](./p2pscout/) | 工具型技能（以 Go 撰寫，非純 Markdown）。跨多個索引來源搜尋 BitTorrent 資源，依實測的節點群健康度（分散式雜湊表加追蹤伺服器，可選握手驗證）排序，挑出現在真的抓得到的那一筆；下載委派 aria2。代理以 `go run ./cmd/p2pscout` 直接呼叫（首次編譯後進快取），無需手動建置。需本機安裝 Go 1.25 以上。 |
 | [`chinese-typography`](./chinese-typography/) | 台灣繁體中文排版與正規化。自動補盤古之白（中英文間空格）、半形標點轉全形、引號改直角引號「」『』、簡轉繁並在地化台灣用語（OpenCC `s2twp`）、修正異體字。核心是**確定性 Python 腳本**（非靠模型逐字猜）＋最高權限的個人字典 `user-dictionary.json`；通用表放 `data/defaults.json`，不動程式碼即可編輯。需本機 OpenCC 才做簡轉繁，缺套件會大聲警告而非默默略過。 |
-| [`slide-deck`](./slide-deck/) | 準則導向的投影片設計引擎（非套模板）。將內容生成**單一自包含 HTML 檔**：固定 1920×1080 畫布、縮放至任何螢幕、可列印成 PDF、手機可滑動導覽。內建原創風格預設與版式準則（一頁一想法、型階、垂直預算、配色／動效紀律、繁中換行），附確定性檢查器 `check_deck.py` 出貨前把關。repo 不放任何第三方模板資產；需可編輯 `.pptx` 時改用 ppt-master（見 `references/output-formats.md`）。 |
+| [`slide-deck`](./slide-deck/) | 準則導向的投影片設計引擎（非套模板）。將內容生成**單一自包含 HTML 檔**：固定 1920×1080 畫布、**跨裝置自動重算大小縮放填滿任何螢幕**（ResizeObserver 監看，手機第一次載入即滿版、不用重新整理）、可列印成 PDF、手機可滑動／點擊分區導覽。內建原創風格預設與版式準則（一頁一想法、型階、垂直預算、配色／動效紀律、繁中換行），附確定性檢查器 `check_deck.py` 出貨前把關。repo 不放任何第三方模板資產；需可編輯 `.pptx` 時改用 ppt-master（見 `references/output-formats.md`）。 |
 | [`skill-evolve`](./skill-evolve/) | 隨叫隨跑的**自我維護偵察**。掃自寫 skill 的 `references/attribution.md` 找出上游參考來源，用 GitHub API 比對各 skill 的 `sources.lock` 基線看有無更新，並擴展搜尋新出現的相關專案，最後**出報告與你討論**——只偵察與建議，**從不自動改 skill**。**僅適用於本專案自寫的 skill**；外部（經 APM 引入）的技能用 `apm install` 隨上游更新即可，不歸它管。採納任何新來源前先過 `skill-auditor`。需本機 Python；建議設 `GITHUB_TOKEN`（公開讀取權限即可）以免 API 限流。 |
 
 ## 外部技能（經 APM 引入第三方）

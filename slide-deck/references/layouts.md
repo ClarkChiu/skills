@@ -18,6 +18,30 @@ ships an archetype for each.
 | **Timeline** | sequence, roadmap | horizontal axis + 3–5 nodes, wide width | medium |
 | **Closing** | last slide | thanks / one line / contact | near-empty |
 
+## Density caps per role (for splitting & linting)
+
+The vertical-budget math (principles §4) checks whether content *fits in pixels*. But
+fitting ≠ one idea — a slide can be under the 1080px budget and still be too dense. So
+each role also carries a hard **content cap**. Exceed it → split (never shrink, rule 2).
+These caps are what make density mechanically checkable, not just eyeballed.
+
+| Role | Hard cap |
+|------|----------|
+| Cover | title + 1 subtitle + optional eyebrow · **0 bullets** |
+| Agenda | **≤6** one-line items |
+| Section divider | section title only (+ number/eyebrow) · **0 bullets** |
+| Content | heading + body **OR ≤5** one-line bullets — not both |
+| Big number | **1** number + **1** caption line |
+| Quote | **≤36 Han / ≤22 EN words**, attribution only — no extra columns |
+| Comparison | **2** columns × **≤3** items each |
+| Timeline | **≤5** nodes |
+| Closing | one line + contact · near-empty |
+
+In *reading-first* density mode (principles §9) the Content/Comparison ceilings may rise
+(≤8 bullets / 4–6 cards) — but the cap still exists, and overflowing it still means split,
+not shrink. `check_deck.py` enforces the Content/Agenda bullet cap when a slide's
+`data-label` names its role.
+
 ## Decision tree — content relationship → layout
 
 - One strong claim or takeaway → **Content** (heading only, big) or **Big number**.

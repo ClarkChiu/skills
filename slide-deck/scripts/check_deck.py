@@ -45,8 +45,12 @@ PLACEHOLDER_RE = re.compile(
 TAG_RE = re.compile(r"<[^>]+>")
 COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 SCRIPT_STYLE_RE = re.compile(r"<(script|style)\b.*?</\1>", re.IGNORECASE | re.DOTALL)
-SLIDE_RE = re.compile(r'<section\b[^>]*class="[^"]*\bslide\b[^"]*"[^>]*>(.*?)</section>',
+SLIDE_RE = re.compile(r'<section\b([^>]*class="[^"]*\bslide\b[^"]*"[^>]*)>(.*?)</section>',
                       re.IGNORECASE | re.DOTALL)
+DATALABEL_RE = re.compile(r'data-label="([^"]*)"', re.IGNORECASE)
+# Roles whose one-line-bullet density is deterministically cappable (layouts.md). A slide
+# tagged with one of these via data-label gets its bullet count checked against the cap.
+ROLE_CAPS = {"content": 5, "agenda": 6}
 FONTSIZE_RE = re.compile(r"font-size\s*:\s*(\d+(?:\.\d+)?)px", re.IGNORECASE)
 CJK_RE = re.compile(r"[㐀-鿿豈-﫿]")
 
@@ -104,13 +108,18 @@ def main() -> int:
     if not slides:
         warns.append("no <section class=\"slide\"> blocks found")
     nav_dots_dynamic = "createElement('button')" in doc or 'createElement("button")' in doc
-    for n, frag in enumerate(slides, 1):
+    for n, (attrs, frag) in enumerate(slides, 1):
         units = count_units(visible_text(frag))
         if units > MAX_VISIBLE_UNITS:
             warns.append(f"slide {n}: ~{units} text units (> {MAX_VISIBLE_UNITS}) — likely more than one idea, consider splitting")
         bullets = len(re.findall(r"<li\b", frag, re.IGNORECASE))
         if bullets > 6:
             warns.append(f"slide {n}: {bullets} bullets (> 6) — split into continuation slides, don't cram")
+        m_lbl = DATALABEL_RE.search(attrs)
+        role = m_lbl.group(1).strip().lower() if m_lbl else ""
+        cap = ROLE_CAPS.get(role)
+        if cap and bullets > cap:
+            warns.append(f"slide {n}: role '{role}' has {bullets} bullets (cap {cap}) — split, don't cram")
         if units > MIN_UNITS_FOR_EMPHASIS and not EMPHASIS_RE.search(frag):
             warns.append(f"slide {n}: ~{units} text units and nothing emphasized — lift the key "
                          f"nouns/numbers (bold/accent), uniform text reads as a wall")
