@@ -50,6 +50,10 @@ CASES = [
      "敝公司很棒", "本團隊很棒", dict(user_dict={"replacements": {"敝公司": "本團隊"}})),
     ("個人字典 formal_tai 覆寫預設→臺",
      "在台北", "在臺北", dict(user_dict={"formal_tai": True})),
+    # s2twp 漏掉的台灣在地用詞修正（defaults.json，OpenCC 之後套用；輸入用已轉繁形）
+    ("賬→帳（撞 Beancount 記帳）", "記賬", "記帳", {}),
+    ("vocab_fixes 攝像頭→攝影機", "攝像頭", "攝影機", {}),
+    ("vocab_fixes 不誤傷 識別證（只收人臉識別）", "員工識別證", "員工識別證", {}),
 ]
 
 

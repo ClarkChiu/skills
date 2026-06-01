@@ -161,6 +161,9 @@ _DEFAULTS = _load_defaults()
 def _fix_variants(text, formal_tai=False):
     for a, b in _DEFAULTS.get('always_fixes', {}).items():
         text = text.replace(a, b)
+    # OpenCC s2twp 漏掉的台灣在地用詞（攝像頭→攝影機 等）。只收無歧義、不撞詞的。
+    for a, b in _DEFAULTS.get('vocab_fixes', {}).items():
+        text = text.replace(a, b)
     if formal_tai:
         # 要官方字形：補強地名（OpenCC 已大致完成，這裡涵蓋 --no-convert 的情況）
         for a, b in _DEFAULTS.get('formal_tai_map', {}).items():
