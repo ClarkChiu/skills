@@ -1,0 +1,10 @@
+# chinese-typography runtime dependency.
+#
+# The 簡轉繁 + Taiwan-vocabulary step (OpenCC s2twp) is provided by this pure-Python
+# package, which bundles its OWN copy of the OpenCC dictionaries. Pinning it freezes the
+# conversion output so results stay reproducible.
+#
+# Validated against 0.1.7. The official C++ BYVoid/OpenCC has since moved to v1.3.x and
+# changed some s2twp mappings — that does NOT reach this skill unless you switch to the
+# `opencc` package or bump this one. After any change here, re-run scripts/test_normalize.py.
+opencc-python-reimplemented==0.1.7

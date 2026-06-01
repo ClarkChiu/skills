@@ -62,6 +62,16 @@ file unless you pass `--in-place`.
    (`pip install opencc-python-reimplemented`) and rerun, or tell the user this
    step was skipped. Failing loud here matters: silently shipping 简体 in a
    繁體 document is exactly the bug this skill exists to prevent.
+
+   > **Validated against `opencc-python-reimplemented==0.1.7`** (pure-Python; it
+   > bundles its own s2twp dictionaries, so the conversion output is *frozen* at
+   > that snapshot and stays stable — see `requirements.txt`). Note: the official
+   > C++ **BYVoid/OpenCC moved to v1.3.x and changed some s2twp mappings**
+   > (程序/程式, 通过/透過, 缺省/預設, plus 33 phrase-segmentation fixes). That does
+   > **not** affect this skill unless you switch to the official `opencc` package or
+   > bump the reimplemented one. If you do either, **re-run
+   > `scripts/test_normalize.py` and spot-check 簡轉繁 output** before trusting it —
+   > the conversion is the one dependency that can silently change results.
 3. **Show the result.** Present the normalized text (or the diff). If anything in
    the diff looks wrong, say so — see *When to override the script* below.
 4. **Apply** with `--in-place` once the user is happy, or just hand back the
