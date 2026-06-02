@@ -182,3 +182,10 @@ apm_modules/
 # Deployed skill/agent artifacts (regenerated from source packages)
 .agents/
 .claude/skills/
+
+### research/ — external-skill evaluation notes (kept LOCAL, not published) ###
+# Detailed SKILL AUDIT REPORTs, daily work journals, and sandboxing notes contain
+# pointed third-party security analysis + reasoning — keep machine-local, NOT in the
+# public repo. Only the neutral decision index (skill-index.md) is committed.
+/research/*
+!/research/skill-index.md
