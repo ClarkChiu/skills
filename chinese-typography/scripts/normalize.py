@@ -52,9 +52,19 @@ ANY_CJK = re.compile(f'[{CJK}]')
 # 注意：字元類別刻意只用 ASCII。Python 的 \w 在 unicode 模式下會 match 到中文，
 # 因此天真地用 \w 寫 URL／路徑 pattern 會貪婪地把 URL 後面的中文一起吃掉。
 # 明確列出 ASCII 字元，能讓比對在遇到第一個中文字時就停下來，這才正確。
-_PROTECT_PATTERNS = [
+# 保護片段分兩類，因為它們對「盤古之白」的期望相反：
+#   CODE  — 圍欄式／行內 code：純逐字，內容絕不可被任何規則動到（含 pangu、casing、
+#           個人字典替換）。在 pangu／casing／cleanup／replacements 全部跑完後才還原，
+#           所以只有「外緣」會因哨符邊界補到空格（執行`code`完成 → 執行 `code` 完成），
+#           內部一字不差。
+#   SPAN  — URL／email／版本號／路徑／西文縮寫：要「邊界可加空格」（版本3.14 → 版本 3.14、
+#           見https://x → 見 https://x）。所以在 pangu 之前就還原，讓 pangu 看到真內容
+#           並在 CJK 邊界補空格；句點等內部字元已不再受標點全形化影響（那步更早跑完）。
+_CODE_PATTERNS = [
     re.compile(r'```.*?```', re.DOTALL),                       # 圍欄式 code block
     re.compile(r'`[^`\n]+`'),                                   # 行內 code
+]
+_SPAN_PATTERNS = [
     re.compile(r"https?://[A-Za-z0-9\-._~:/?#@!$&'()*+;=%]+"),  # URL（不含結尾逗號，那多半是標點）
     re.compile(r'[A-Za-z0-9._+-]+@[A-Za-z0-9-]+\.[A-Za-z0-9.-]+'),  # email
     re.compile(r'\d+(?:\.\d+)+'),                               # 版本號／小數鏈 3.14、8.2.10
@@ -70,26 +80,45 @@ _PROTECT_PATTERNS = [
 _PLACEHOLDER = '{}'
 
 
-def _protect(text, extra_protect=None):
-    store = []
+# 索引用私用區字元編碼（每個十進位數字 → U+E010..E019），讓哨符「內部」不含任何
+# ASCII 數字／字母。這很重要：verbatim（code）的哨符要活著穿過 pangu，而 pangu 會在
+# CJK 與數字之間插空格——若索引是裸數字 "0"，哨符會被咬成 " 0 "，還原就
+# 對不上。改用 PUA 編碼後哨符對 pangu 完全 opaque。
+def _enc(i):
+    return ''.join(chr(0xE010 + int(d)) for d in str(i))
 
-    def stash(m):
-        store.append(m.group(0))
-        return _PLACEHOLDER.format(len(store) - 1)
+
+def _protect(text, extra_protect=None):
+    store = []   # 每筆是 (原文, verbatim)；verbatim=True 者最後才還原（純逐字）
+
+    def stash_factory(verbatim):
+        def stash(m):
+            store.append((m.group(0), verbatim))
+            return _PLACEHOLDER.format(_enc(len(store) - 1))
+        return stash
 
     # 個人字典 protect 詞優先抽出（最長優先，避免子字串先被吃掉）。
+    # 歸 SPAN 類（pangu 前還原）＝沿用原行為：擋住 opencc/quotes/punct/width/fixes，
+    # 但 pangu 的 CJK 邊界空格照常（protect 詞多為中文品牌，CJK↔CJK 本就不加空格）。
     for term in sorted(extra_protect or [], key=len, reverse=True):
         if term:
-            text = re.sub(re.escape(term), stash, text)
-    for pat in _PROTECT_PATTERNS:
-        text = pat.sub(stash, text)
+            text = re.sub(re.escape(term), stash_factory(False), text)
+    # 先抽 code（最先，URL 在 code block 內就不會被重複抽），再抽 span。
+    for pat in _CODE_PATTERNS:
+        text = pat.sub(stash_factory(True), text)
+    for pat in _SPAN_PATTERNS:
+        text = pat.sub(stash_factory(False), text)
     return text, store
 
 
-def _restore(text, store):
+def _restore(text, store, verbatim=None):
     # 反向還原，巢狀的佔位符才能正確解開。
+    # verbatim=None 全部還原；指定 True/False 時只還原該類（雙階段用）。
     for i in range(len(store) - 1, -1, -1):
-        text = text.replace(_PLACEHOLDER.format(i), store[i])
+        content, vb = store[i]
+        if verbatim is not None and vb != verbatim:
+            continue
+        text = text.replace(_PLACEHOLDER.format(_enc(i)), content)
     return text
 
 
@@ -242,6 +271,22 @@ def _pangu(text):
     return text
 
 
+# code（行內／圍欄）在最後才逐字還原。pangu 跑時看不到真正的反引號，無法在
+# 「中文↔code」邊界補空格。所以在「還原 code 之前」對 code 的『哨符』補邊界空格——
+# 此時 SPAN／個人字典 protect 都已還原，殘留的哨符必然只剩 code，配對絕無歧義。
+# （改用還原後的反引號比對會出錯：≥2 段 code 時，close1 與 open2 會被誤配成一段。）
+# 哨符 =  + 索引(PUA -) + 。
+_SENT_RE = '[-]+'
+_CJK_BEFORE_SENT = re.compile(f'([{CJK}])({_SENT_RE})')
+_SENT_BEFORE_CJK = re.compile(f'({_SENT_RE})([{CJK}])')
+
+
+def _space_code_edges(text):
+    text = _CJK_BEFORE_SENT.sub(r'\1 \2', text)
+    text = _SENT_BEFORE_CJK.sub(r'\1 \2', text)
+    return text
+
+
 # ---------------------------------------------------------------------------
 # 第 7 步：空白清理
 # ---------------------------------------------------------------------------
@@ -352,10 +397,10 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
         text = _fix_quotes(text)
     if punct:
         text = _fix_punct(text)
-    # 在「盤古之白」之前先還原：保護的目的是擋住標點與引號改寫，
-    # 不是擋住空格。對還原後的文字補空格，才能讓 "版本3.14" → "版本 3.14"、
-    # "在src/x.py" → "在 src/x.py"。
-    text = _restore(text, store)
+    # 第一階段還原：SPAN（版本號／URL／路徑／email／縮寫）在 pangu「之前」還原。
+    # 保護的目的是擋住標點與引號改寫，不是擋住空格；還原後 pangu 才能讓
+    # "版本3.14" → "版本 3.14"、"在src/x.py" → "在 src/x.py"。
+    text = _restore(text, store, verbatim=False)
     if spacing:
         text = _pangu(text)
     if casing:
@@ -364,6 +409,13 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
     # 個人字典的逐字替換放最後 ── 權限最高，凌駕所有規則與 OpenCC。
     for src_term, dst_term in (user_dict.get('replacements') or {}).items():
         text = text.replace(src_term, dst_term)
+    # 還原 code 前，先對其哨符補 CJK 邊界空格（此時殘留哨符必為 code、無歧義；
+    # 改用還原後的反引號比對會在 ≥2 段時誤配 close1↔open2）。
+    if spacing:
+        text = _space_code_edges(text)
+    # 第二階段還原：CODE 在「所有規則跑完後」才逐字還原 ── 純逐字。pangu／casing／
+    # replacements 都碰不到 code 內容（`會議6月25日` 不被拆、`github` 不變 GitHub）。
+    text = _restore(text, store, verbatim=True)
     return text, opencc_ok
 
 
