@@ -156,6 +156,35 @@ Each stage has a `--no-*` switch (`--no-convert`, `--no-quotes`, `--no-punct`,
 user wants only part of the job — e.g. "just add the spaces, don't convert to
 traditional" → `--no-convert --no-quotes --no-punct`.
 
+## 前處理：日期補星期 (optional)
+
+`scripts/weekday.py` 把日期後面補上台灣慣用的全形星期括號：`06/25` →
+`06/25（四）`。這是**前處理**，刻意不併進 `normalize.py` —— normalize 是冪等的
+排版轉換，算星期幾是日曆運算（需要年份、要算對），混在一起會破壞冪等性。流程
+是：**先跑 `weekday.py` 把文字定稿，再交給 `normalize.py` 做排版**。
+
+```bash
+python3 …/weekday.py FILE.md --year 2026 --diff   # 預覽
+python3 …/weekday.py --text "預計於 06/25 舉行" --year 2026
+```
+
+行為與理由：
+
+- **年份預設今年**，但每個無年份的日期都會在 stderr 印 `NOTE: … 假設 2026 年`。
+  不報錯但攤出假設 —— 12 月寫、日期填 `01/05` 時預設今年可能就錯，讓使用者掃一眼。
+  確定哪一年就傳 `--year`。
+- **已有括號預設保留**：`06/11（下週四）` 的「下週四」是人工語意，工具不蓋掉；
+  要強制改算用 `--overwrite`。
+- **認三種日期**：bare `MM/DD` 限雙位數（躲開分數 `1/2`、`3/4`、`24/7`）；
+  `YYYY/MM/DD` 因年份已消歧放寬月日位數；中文 `[2026年]6月25日`（有 月/日 標記，
+  單位數日也安全）。國字版 `六月二十五日` 刻意不收（罕見、ROI 低）。民國年
+  `115/06/25` 不誤判。
+- **接 normalize**：補完後交給 `normalize.py`，盤古之白會把 `會議6月25日` →
+  `會議 6 月 25 日`、`截止06/11` → `截止 06/11`，斜線日期內部不被拆。
+- **非法日期**（`02/30`、`13/01`）原地不動並印 `NOTE: 略過非法日期`，不靜默吞。
+
+`星期` 對照：`date.weekday()` 週一=0，對到 `一二三四五六日`。
+
 ## On conflicts — ask, don't guess
 
 This skill weights mature, comprehensive projects first: **OpenCC `s2twp` is the
