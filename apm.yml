@@ -13,6 +13,7 @@ dependencies:
   - ./chinese-typography/
   - ./slide-deck/
   - ./skill-evolve/
+  - ./skill-curator/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []
