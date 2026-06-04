@@ -18,7 +18,8 @@
 | [`chinese-typography`](./chinese-typography/) | 台灣繁體中文排版與正規化。自動補盤古之白（中英文間空格）、半形標點轉全形、引號改直角引號「」『』、簡轉繁並在地化台灣用語（OpenCC `s2twp`）、修正異體字。核心是**確定性 Python 腳本**（非靠模型逐字猜）＋最高權限的個人字典 `user-dictionary.json`；通用表放 `data/defaults.json`，不動程式碼即可編輯。需本機 OpenCC 才做簡轉繁，缺套件會大聲警告而非默默略過。 |
 | [`slide-deck`](./slide-deck/) | 準則導向的投影片設計引擎（非套模板）。將內容生成**單一自包含 HTML 檔**：固定 1920×1080 畫布、**跨裝置自動重算大小縮放填滿任何螢幕**（ResizeObserver 監看，手機第一次載入即滿版、不用重新整理）、可列印成 PDF、手機可滑動／點擊分區導覽。內建原創風格預設與版式準則（一頁一想法、型階、垂直預算、配色／動效紀律、繁中換行），附確定性檢查器 `check_deck.py` 出貨前把關。repo 不放任何第三方模板資產；需可編輯 `.pptx` 時改用 ppt-master（見 `references/output-formats.md`）。 |
 | [`skill-evolve`](./skill-evolve/) | 隨叫隨跑的**自我維護偵察**。掃自寫 skill 的 `references/attribution.md` 找出上游參考來源，用 GitHub API 比對各 skill 的 `sources.lock` 基線看有無更新，並擴展搜尋新出現的相關專案，最後**出報告與你討論**——只偵察與建議，**從不自動改 skill**。**僅適用於本專案自寫的 skill**；外部（經 APM 引入）的技能用 `apm install` 隨上游更新即可，不歸它管。採納任何新來源前先過 `skill-auditor`。需本機 Python；建議設 `GITHUB_TOKEN`（公開讀取權限即可）以免 API 限流。 |
-| [`skill-curator`](./skill-curator/) | **研究 Skill 大師**——評估外部 skill「該不該用、怎麼用」的**編排 + 決策 + 記錄**層。丟一個 skill（名稱／URL／一整份推薦清單）→ 跑五步流程（相關性→重複性→資安→來源→裁決）→ 給裁決（🟩 直接裝／🟦 參考自製／🟨 vendor＋客製／🟥 跳過）並寫進 `research/` 決策日誌。**呼叫**而非重做 `skill-finder`（發現）與 `skill-auditor`（資安裁決，不得蓋過）；判準大腦在 `references/criteria.md`。發現與決策，**不安裝**。 |
+| [`skill-curator`](./skill-curator/) | **研究 Skill 大師**——評估外部 skill「該不該用、怎麼用」的**編排 + 決策 + 記錄**層。丟一個 skill（名稱／URL／一整份推薦清單）→ 跑五步流程（相關性→重複性→資安→來源→裁決）→ 給裁決（🟩 直接裝／🟦 參考自製／🟨 收錄＋客製／🟥 跳過）並寫進 `research/` 決策日誌。**呼叫**而非重做 `skill-finder`（發現）與 `skill-auditor`（資安裁決，不得蓋過）；判準大腦在 `references/criteria.md`。發現與決策，**不安裝**。 |
+| [`humanizer`](./humanizer/) | 去除文字的 AI 生成痕跡，讓它讀起來像人寫的（中英雙語）。偵測並改寫內容灌水、宣傳腔、模糊歸因、三段式、AI 詞彙、填充語等模式；另處理臺灣中文特有的痕跡：罐頭開場白（「值得一提的是」）、中國商業術語（賦能、抓手）、翻譯腔（「進行了優化」）、複數濫用「們」（「工具們」）。設計上**文風歸 humanizer、排版歸 `chinese-typography`**：標點／引號／盤古之白／簡轉繁／地區用詞都交給排版層，先 humanizer 後 normalize 兩段管線。英文規則原樣收錄自 `blader/humanizer`（由 `skill-evolve` 追上游），中文規則自寫（淺白臺灣用法）。純 prompt、不執行程式碼；只處理一般文字，不處理程式碼或 markdown 結構檔。 |
 
 ## 外部技能（經 APM 引入第三方）
 
@@ -78,6 +79,7 @@ ln -snf "$REPO/chinese-typography" ~/.claude/skills/chinese-typography
 ln -snf "$REPO/slide-deck" ~/.claude/skills/slide-deck
 ln -snf "$REPO/skill-evolve" ~/.claude/skills/skill-evolve
 ln -snf "$REPO/skill-curator" ~/.claude/skills/skill-curator
+ln -snf "$REPO/humanizer" ~/.claude/skills/humanizer
 
 # OpenCode
 mkdir -p ~/.config/opencode/skills
@@ -88,6 +90,7 @@ ln -snf "$REPO/chinese-typography" ~/.config/opencode/skills/chinese-typography
 ln -snf "$REPO/slide-deck" ~/.config/opencode/skills/slide-deck
 ln -snf "$REPO/skill-evolve" ~/.config/opencode/skills/skill-evolve
 ln -snf "$REPO/skill-curator" ~/.config/opencode/skills/skill-curator
+ln -snf "$REPO/humanizer" ~/.config/opencode/skills/humanizer
 ```
 
 > `skill-finder` 在評估階段會呼叫 `skill-auditor`，兩者請一起安裝。

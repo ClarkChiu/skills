@@ -6,7 +6,7 @@ description: >-
   this runs the full evaluation pipeline and returns a verdict: 相關性 (does it
   help THIS user) → 重複性 (does it duplicate built-ins/existing skills) → 資安
   (delegates to skill-auditor) → 來源 (provenance) → 裁決 (直接裝 / 參考自製 /
-  vendor / 跳過) → 記錄 (writes research/<date>-skill-research-log.md + audits/). USE THIS
+  收錄 / 跳過) → 記錄 (writes research/<date>-skill-research-log.md + audits/). USE THIS
   SKILL whenever the user wants to research, evaluate, vet, or decide on an external
   skill — phrases like 「研究這個 skill」「這個 skill 該不該裝」「評估一下」「值不值得裝」
   「幫我看看這個 skill」「install or build my own」, or pastes a list of recommended
@@ -25,7 +25,7 @@ description: >-
 |---|---|---|
 | `skill-finder` | 發現（skills.sh 唯讀） | 找 canonical 來源、抓 SKILL.md |
 | `skill-auditor` | 資安裁決 | 取得 SAFE/⚠️/❌ 與安全執行計畫 |
-| `skill-evolve` | 追自寫 skill 上游 | 自製/vendor 後把上游記入 attribution |
+| `skill-evolve` | 追自寫 skill 上游 | 自製/收錄 後把上游記入 attribution |
 
 完整判準在 **`references/criteria.md`** —— 動手前先讀它，那是本 skill 的大腦。
 
@@ -45,7 +45,7 @@ skill 解決什麼。
 [1] 重複性  → 重複內建或現有 skill 嗎？是 → 建議用既有/擴充自己的，而非新裝。
 [2] 資安    → 跑 skill-auditor（靜態、不執行）。非 SAFE → 停或限沙箱。
 [3] 來源    → 作者可信？有維護？或個人低星/單一 fork/repo 內兩份不一致/無 frontmatter？
-[4] 裁決    → 用 references/criteria.md 的判準表：直接裝 / 參考自製 / vendor＋客製 / 跳過。
+[4] 裁決    → 用 references/criteria.md 的判準表：直接裝 / 參考自製 / 收錄＋客製 / 跳過。
 [5] 記錄    → 本機詳細（gitignored）：research/audits/<date>-<skill>.md ＋ 當日工作日誌；
               公開：research/skill-index.md 補中性一列（日期/skill/url/作者/重複/裁決）。
 ```
@@ -80,7 +80,7 @@ skill 解決什麼。
 | Skill | 相關 | 重複內建? | 資安 | 來源 | 裁決 | 一句理由 |
 ```
 
-裁決四選一：**🟩 直接裝** / **🟦 參考自製** / **🟨 vendor＋客製** / **🟥 跳過**。
+裁決四選一：**🟩 直接裝** / **🟦 參考自製** / **🟨 收錄＋客製** / **🟥 跳過**。
 每個都要附「為什麼是這個裁決」（扣回 criteria 的訊號）。
 
 ## 落地動作
@@ -93,5 +93,5 @@ skill 解決什麼。
   skill／url／作者／重複內建?／裁決，**不放**資安細節、漏洞揭露、對第三方的評語。理由是公開
   repo 不該點名批評別人的 skill；裁決寫成「對本專案的適配決定」，非品質評斷。
 - 裁決「直接裝」→ 提醒：pin commit、**裝後複審本機版本**（v1.0 安全 ≠ 你抓的那版）。
-- 裁決「參考自製/vendor」→ 可接著用 `skill-creator` 起草，並把上游記入新 skill 的
+- 裁決「參考自製/收錄」→ 可接著用 `skill-creator` 起草，並把上游記入新 skill 的
   `references/attribution.md`（之後 `skill-evolve` 會追）。

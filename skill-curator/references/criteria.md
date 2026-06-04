@@ -36,8 +36,8 @@
 | 來源**弱**（個人低星、無維護、repo 內兩份不一致、無 frontmatter） | **參考自製** | 不把生產流程綁在不穩的 repo |
 | 你有**強烈客製需求**（zh-TW、你的技術棧、你的 PM 風格） | **參考自製** | 自製剛好給你要的那版 |
 | 重複**內建/現有**能力 | **都不要** | 用既有的；頂多擴充自己的 |
-| 介於之間（策展 prose，如譯好的規則集） | **vendor＋客製** | 從現成檔起步、複製進 repo、標 attribution、調口味 |
-| **可信來源＋夾 code，但 code 是 opt-in 周邊、核心價值在 prose** | **偏參考自製** | 別被「有 code＋來源好」誤導成直接裝——先問「那段 code 對**這個使用者**是價值還是用不到的周邊？」周邊 → 自寫 prose；真要那段 code 才 vendor |
+| 介於之間（策展 prose，如譯好的規則集） | **收錄＋客製** | 從現成檔起步、複製進 repo、標 attribution、調口味 |
+| **可信來源＋夾 code，但 code 是 opt-in 周邊、核心價值在 prose** | **偏參考自製** | 別被「有 code＋來源好」誤導成直接裝——先問「那段 code 對**這個使用者**是價值還是用不到的周邊？」周邊 → 自寫 prose；真要那段 code 才收錄 |
 
 ### Tie-breaker：當「直接裝」與「參考自製」同時成立
 
@@ -45,7 +45,7 @@
 別平均、別看到 code 就喊裝。決勝問句：**「那段工程，對這個使用者是不可複製的價值，還是
 他根本用不到的 opt-in 周邊？」**
 - 是核心價值且難複製（如 ui-ux-pro-max 的 161 調色盤策展、deep-research 的 3200 行）→ **直接裝**。
-- 是 opt-in 周邊、這個人多半不開（如 brainstorming 的 Visual Companion 本地 server，對終端為主的全端）→ **參考自製**：擷取 prose、接進自己 pipeline；真要那段周邊才降 **vendor**。
+- 是 opt-in 周邊、這個人多半不開（如 brainstorming 的 Visual Companion 本地 server，對終端為主的全端）→ **參考自製**：擷取 prose、接進自己 pipeline；真要那段周邊才降 **收錄**。
 （實例：brainstorming 來源強、夾 node server，但核心價值是「設計先於寫碼」的 prose 閘門 → 參考自製，非直接裝。）
 
 ### 一句話心法

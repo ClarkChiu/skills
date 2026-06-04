@@ -1,0 +1,11 @@
+{
+  "_comment": "由 skill-evolve 維護：rules-en.md 原樣收錄的上游，用來偵測新規則。檢視報告後才更新（--write-lock）。中文規則的參考來源（文章、術語表）非 GitHub repo，不在此追蹤。",
+  "checked_at": "2026-06-03",
+  "sources": {
+    "blader/humanizer": {
+      "release": "2.7.0",
+      "date": "2026-06-03",
+      "note": "rules-en.md 原樣收錄；30 條規則。commit SHA 因 API 限流未取得，以 release 釘版。"
+    }
+  }
+}

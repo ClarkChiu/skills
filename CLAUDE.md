@@ -30,5 +30,6 @@
 - 提交訊息使用 gitmoji 加上 Conventional Commits 的格式，並且不要加上 `Co-Authored-By` 這個 trailer。
 - 這個專案以 APM（Agent Package Manager）管理，所以建立技能時要跳過 package_skill 這個步驟，打包交給 APM 處理。自己寫的技能要登錄到 `apm.yml` 與 README 的自建技能表；外部技能則經由 APM 引入，並隨著 `apm install` 跟上游更新。
 - 遇到衝突時先問清楚，不要自己猜。正規化或設計上的衝突，先以成熟、完整的專案為權重：簡體轉繁體與臺灣用語以 OpenCC 的 `s2twp` 為準，排版則依循 pangu.js、zhlint 與教育部的慣例。當成熟專案的行為與使用者偏好衝突時，要把衝突攤開來問，並且把使用者的偏好寫進資料檔（例如最高優先的 `user-dictionary.json`），而不是把答案寫死在程式裡，也不要沿用舊的假設。
-- 評估外部技能時，任何安裝之前都要先跑 `skill-auditor` 做安全稽核，再用 `skill-curator` 走完整流程：相關性、重複性、資安、來源、裁決、記錄。每一次評估的決策都寫進當日的工作日誌 `research/<YYYY-MM-DD>-skill-research-log.md`，完整稽核報告寫進 `research/audits/`。要記住研究不等於安裝；對這位使用者而言「直接安裝」是稀有事件，純文字或人格類的技能多半值得自己重寫成貼合他的版本，只有難以複製的策展或工程才值得原樣引入（vendor）。
-- 使用 chinese-typography 的 `normalize.py` 時，只跑真正的中文散文，不要拿去跑英文或 markdown 技能文件。理由是它會把英文的引號改成「」、把括號改成全形，反而破壞英文與 markdown 文件。
+- 評估外部技能時，任何安裝之前都要先跑 `skill-auditor` 做安全稽核，再用 `skill-curator` 走完整流程：相關性、重複性、資安、來源、裁決、記錄。每一次評估的決策都寫進當日的工作日誌 `research/<YYYY-MM-DD>-skill-research-log.md`，完整稽核報告寫進 `research/audits/`。要記住研究不等於安裝；對這位使用者而言「直接安裝」是稀有事件，純文字或人格類的技能多半值得自己重寫成貼合他的版本，只有難以複製的策展或工程才值得原樣收錄（vendor）。
+- 使用 chinese-typography 的 `normalize.py` 時，只處理真正的中文一般文字，不要拿去處理英文或 markdown 技能文件。理由是它會把英文的引號改成「」、把括號改成全形，反而破壞英文與 markdown 文件。
+- 自己寫的技能裡，凡是中文的內容（`SKILL.md`、`references/` 規則檔、評測 `evals.json` 的說明文字等）都用清楚的臺灣中文，不要中英夾雜。能用中文就用中文：進行式寫「進行式」不要寫 `-ing`、技能寫「技能」不要寫 `skill`、基準寫「基準」不要寫 `baseline`、斷言寫「斷定」不要寫 `assert`。例外是程式識別字、專有名詞（產品名、人名）、JSON 欄位名、以及測試用的輸入樣本，這些是資料不是敘述文字，維持原樣。

@@ -1,0 +1,58 @@
+{
+  "skill_name": "humanizer",
+  "_note": "判斷型/改寫型技能：輸出是主觀改寫，沒辦法比對精確字串。多數靠質性評估——比較『用技能跑出來的』和『沒用技能（基準）』兩版的改寫品質；少數可做確定性檢查（下面 deterministic 欄標 true 的那幾條）。樣本 1、2 取自真實線上的 AI 味文章（出處見 source 欄位）。",
+  "evals": [
+    {
+      "id": 1,
+      "name": "en-ai-slop-scottsdale",
+      "lang": "en",
+      "source": "https://www.magictouchsteamclean.com/blog/tracing-the-vibrant-tapestry-a-historical-journey-through-scottsdale-az/",
+      "prompt": "Humanize this: The history of Scottsdale is a testament to the indomitable spirit of its people and the enduring allure of the desert landscape. From humble beginnings as a remote outpost to its emergence as a dynamic modern city, Scottsdale's journey is a testament to resilience, innovation, and the power of community. As we look to the future, let us continue to honor and celebrate the legacy of those who came before us, ensuring that Scottsdale remains a beacon of opportunity and inspiration for generations to come.",
+      "expected_output": "Strips significance inflation, the double 'is a testament', rule of three, false range, and the canned upbeat close. Output is short and factual because the original has almost no concrete content. Should NOT pad fluff to match length.",
+      "assertions": [
+        {"text": "output contains no em dash or en dash (— or –)", "deterministic": true},
+        {"text": "output does not contain 'testament', 'beacon', 'indomitable', or 'let us'", "deterministic": true},
+        {"text": "output is materially shorter than input (it refuses to pad contentless prose)", "deterministic": true},
+        {"text": "the one real fact (Scottsdale grew from a remote outpost to a city) is preserved", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "zhtw-ai-slop-perplexity",
+      "lang": "zh-tw",
+      "source": "https://www.triplew.tw/llm-ai.html (page labels it 'by Perplexity')",
+      "prompt": "幫我去掉這段的 AI 味：在這篇文章中，我們探討了五款當前最受歡迎的AI工具：ChatGPT、Perplexity、Claude、Google Gemini和Notebook LM。每款工具各具特色，從自然對話生成到即時信息檢索，皆展現了人工智慧在提升工作效率和創造力方面的潛力。透過深入了解這些工具的功能與應用場景，您可以更明智地選擇適合自己需求的解決方案。希望這篇文章能成為您日後使用AI工具的重要參考，幫助您在資料處理和內容創作中發揮更大的效能。",
+      "expected_output": "拿掉『在這篇文章中我們探討了』套話開場、『希望這篇文章能成為您…發揮更大的效能』罐頭收尾；把『各具特色／皆展現了潛力／解決方案／更明智地選擇』抽象空話換成具體口語。保留五個工具名。不硬湊字數。改寫後是清楚簡單的中文。",
+      "assertions": [
+        {"text": "輸出不含套話：在這篇文章中、綜上所述、值得一提的是、希望這篇文章", "deterministic": true},
+        {"text": "輸出不含空話：解決方案、發揮更大的效能、各具特色", "deterministic": true},
+        {"text": "五個工具名（ChatGPT、Perplexity、Claude、Gemini、Notebook LM）都保留", "deterministic": true},
+        {"text": "讀起來自然、像人講話、不文謅謅", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "false-positive-technical-doc",
+      "lang": "zh-tw",
+      "prompt": "幫我去掉這段的 AI 味：本模組以非同步佇列處理請求，連線在閒置 30 秒後被回收。設定值從環境變數讀取，預設值寫在 config.py。我們在壓力測試中量到 P99 延遲 18ms，吞吐量約每秒 4000 筆。可擴展性與穩定性是這版的主要目標。",
+      "expected_output": "這是乾淨的技術寫作：具體數字、被動式（被回收）、名詞化（可擴展性/穩定性）在規格語境是正常的，不是 AI 痕跡。humanizer 應該幾乎不動它，最多微調，不該把技術用語砍掉。測『假陽性護欄』有沒有生效。",
+      "assertions": [
+        {"text": "輸出與輸入高度相似（改動極少），具體數字 18ms / 4000 / 30 秒都保留", "deterministic": true},
+        {"text": "技術用語『可擴展性』『穩定性』『非同步佇列』『P99』未被砍除或口語化", "deterministic": true},
+        {"text": "沒有過度改寫成口水話", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "boundary-defer-to-chinese-typography",
+      "lang": "zh-tw",
+      "prompt": "幫我去掉這段的 AI 味：值得一提的是,這款軟件的視頻處理功能很強,用Google Gemini檢索信息也很快。",
+      "expected_output": "humanizer 處理文風（拿掉『值得一提的是』套話）。但『軟件→軟體、視頻→影片、信息→資訊』是地區用詞、半形逗號→全形、Gemini 兩側盤古之白——這些是 chinese-typography 的工作，humanizer **不該碰**。測責任界線。",
+      "assertions": [
+        {"text": "輸出拿掉了『值得一提的是』這類套話（humanizer 該做的）", "deterministic": false},
+        {"text": "輸出仍保留『軟件/視頻/信息』未轉成台灣詞（地區用詞交給 chinese-typography，humanizer 不越界）", "deterministic": true},
+        {"text": "輸出未自行加盤古之白（Google Gemini 兩側不主動補空格）、未把半形逗號改全形（留給 chinese-typography）", "deterministic": true}
+      ]
+    }
+  ]
+}
