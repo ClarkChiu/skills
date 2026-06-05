@@ -1,87 +1,83 @@
-# 外部 Skill 評估判準 (Skill Evaluation Criteria)
+# Skill Evaluation Criteria
 
-> `skill-curator` 的決策大腦。評估「該不該用、怎麼用」一個外部 skill。
-> 由 2026-06-02 的 11-skill 評估流程萃取。安全裁決委由 `skill-auditor`；
-> 發現委由 `skill-finder`；本檔管「**相關性 + 決策 + 記錄**」。
+> `skill-curator`'s decision brain. Evaluate "should we use it, and how" for an external skill.
+> Extracted from the 2026-06-02 11-skill evaluation. Security verdict is delegated to `skill-auditor`;
+> discovery to `skill-finder`; this file owns **relevance + decision + record**.
 
-## 出發點：以使用者定位為錨
+## Start from the user profile
 
-評估**不是**問「這 skill 好不好」，而是「**對這個人的工作/生活有沒有用**」。
-讀 **repo 根 `CLAUDE.md` 的「使用者定位」段**（可攜真相來源；memory `user-profile` 僅本機快取）。摘要：網路/系統軟體工程師（10+ 年），骨幹是
-**測試自動化架構 + DevOps/IaC（Terraform/CI-CD）+ 雲端（GCP）+ Python + 協定/標準研究
-（專利・論文）**，5+ 年 PM/產品，寫**大量 EN + zh-TW 技術文件**。範圍是「技能 + LLM
-幫工作與生活全面」，不只中文處理。
-→ 測試自動化、DevOps/IaC、雲端、網路/協定、**技術寫作**、PM/spec、research、ML 都**高度
-相關**，不是 niche。深度在網路/系統/基建/測試自動化，**別過度看重純前端 web 類**。
+The evaluation is **not** "is this skill good?" but **"is it useful for THIS person's work/life?"**
+Read the **"User Profile" section of the repo-root `CLAUDE.md`** (portable source of truth; the `user-profile` memory is only a local cache). Summary: network/systems software engineer (10+ yrs), backbone is **test-automation architecture + DevOps/IaC (Terraform/CI-CD) + cloud (GCP) + Python + protocol/standards research (patents, papers)**, 5+ yrs PM/product, writes **a lot of EN + zh-TW technical docs**. The scope is "skills + LLM to help work and life broadly", not just Chinese processing.
+→ Test automation, DevOps/IaC, cloud, networking/protocols, **technical writing**, PM/spec, research, ML are all **highly relevant**, not niche. Depth is in networking/systems/infra/test-automation, so **don't over-weight pure front-end web**.
 
-## 五步決策流程
+## Five-step decision pipeline
 
 ```
-[0] 相關性  → 對我的情境（dev/系統/PM/寫作/研究/生活）有用嗎？無 → 停。
-[1] 重複性  → 重複內建或我現有的 skill 嗎？是 → 用既有的，或「擴充我的」而非裝它。
-[2] 資安    → 交給 skill-auditor。裁決非 SAFE → 停（或只在沙箱）。
-[3] 來源    → 作者可信？有維護？還是個人 2★/單一 fork/兩份不一致？
-[4] 裝 or 自製 → 見下方判準表。
-[5] 記錄    → 本機詳細（gitignored）：audits/ + 當日工作日誌；公開：research/skill-index.md 中性一列。
+[0] Relevance   → useful for my context (dev/systems/PM/writing/research/life)? No → stop.
+[1] Duplication → duplicates a built-in or one of my existing skills? Yes → use the existing one, or "extend mine" rather than install it.
+[2] Security    → goes to skill-auditor. Verdict not SAFE → stop (or sandbox only).
+[3] Provenance  → author trustworthy? maintained? or a solo 2★ / single fork / two inconsistent copies?
+[4] Install or build-your-own → see the table below.
+[5] Record      → local detail (gitignored): audits/ + the day's work log; public: one neutral row in research/skill-index.md.
 ```
 
-## 步驟 4 核心：直接裝 vs 參考自製 vs 跳過
+## Step 4 core: install vs build-your-own vs skip
 
-判斷一個 skill 的**價值載體在哪裡**，決定怎麼用：
+Judge **where the skill's value lives**, which decides how to use it:
 
-| 訊號 | 傾向 | 為什麼 |
+| Signal | Leans | Why |
 |---|---|---|
-| 夾**非平凡程式/策展資料**，來源**可信且有維護** | **直接裝** | 重造輪子不值；裝了還跟上游更新 |
-| 純 **prose / persona**（價值是可編輯文字） | **參考自製** | 複製成本趨近零；自製可客製、不背依賴 |
-| 來源**弱**（個人低星、無維護、repo 內兩份不一致、無 frontmatter） | **參考自製** | 不把生產流程綁在不穩的 repo |
-| 你有**強烈客製需求**（zh-TW、你的技術棧、你的 PM 風格） | **參考自製** | 自製剛好給你要的那版 |
-| 重複**內建/現有**能力 | **都不要** | 用既有的；頂多擴充自己的 |
-| 介於之間（策展 prose，如譯好的規則集） | **收錄＋客製** | 從現成檔起步、複製進 repo、標 attribution、調口味 |
-| **可信來源＋夾 code，但 code 是 opt-in 周邊、核心價值在 prose** | **偏參考自製** | 別被「有 code＋來源好」誤導成直接裝——先問「那段 code 對**這個使用者**是價值還是用不到的周邊？」周邊 → 自寫 prose；真要那段 code 才收錄 |
+| Ships **non-trivial code / curated data**, source **trustworthy and maintained** | **install** | reinventing it isn't worth it; installed, it tracks upstream |
+| Pure **prose / persona** (value is editable text) | **build-your-own** | copy cost ≈ zero; your own version is customizable and carries no dependency |
+| **Weak source** (solo low-star, unmaintained, two inconsistent copies in the repo, no frontmatter) | **build-your-own** | don't tie your production flow to a shaky repo |
+| You have a **strong customization need** (zh-TW, your stack, your PM style) | **build-your-own** | your own version gives exactly the variant you want |
+| Duplicates a **built-in / existing** capability | **neither** | use the existing one; at most extend yours |
+| In between (curated prose, e.g. a translated rule set) | **vendor & customize** | start from the existing file, copy into the repo, add attribution, tune the flavor |
+| **Trustworthy source + ships code, but the code is opt-in peripheral and the core value is prose** | **leans build-your-own** | don't be fooled by "has code + good source" into installing — first ask "is that code value for **this user**, or peripheral they won't use?" Peripheral → write the prose yourself; only vendor if you actually need that code |
 
-### Tie-breaker：當「直接裝」與「參考自製」同時成立
+### Tie-breaker: when "install" and "build-your-own" both apply
 
-一個 skill 可能**同時**命中「夾 code＋來源可信」(→裝) 和「價值在 prose」(→自製)。
-別平均、別看到 code 就喊裝。決勝問句：**「那段工程，對這個使用者是不可複製的價值，還是
-他根本用不到的 opt-in 周邊？」**
-- 是核心價值且難複製（如 ui-ux-pro-max 的 161 調色盤策展、deep-research 的 3200 行）→ **直接裝**。
-- 是 opt-in 周邊、這個人多半不開（如 brainstorming 的 Visual Companion 本地 server，對終端為主的全端）→ **參考自製**：擷取 prose、接進自己 pipeline；真要那段周邊才降 **收錄**。
-（實例：brainstorming 來源強、夾 node server，但核心價值是「設計先於寫碼」的 prose 閘門 → 參考自製，非直接裝。）
+A skill can hit **both** "ships code + trustworthy source" (→install) and "value is in prose" (→build-your-own).
+Don't average, don't shout install at the sight of code. Deciding question: **"that engineering — is it value this user can't reproduce, or opt-in peripheral they'll never turn on?"**
+- Core value and hard to reproduce (e.g. ui-ux-pro-max's 161-palette curation, deep-research's 3200 lines) → **install**.
+- Opt-in peripheral this person mostly won't enable (e.g. brainstorming's Visual Companion local server, for a terminal-first full-stack dev) → **build-your-own**: extract the prose, wire it into your own pipeline; only drop to **vendor** if you actually need that peripheral.
+(Example: brainstorming has a strong source and ships a node server, but the core value is the "design before code" prose gate → build-your-own, not install.)
 
-### 一句話心法
-> **能下載的工程就裝，能寫的文字就自己寫成你要的樣子。**
-> prose skill 價值是「文字本身」→ 自製 + 掛進自己 repo（受 skill-evolve 追上游）比 APM 依賴薄 fork 穩。
-> code/data skill 價值是「難複製的工程或策展」→ 直接裝。
+### The mantra
 
-## 風險與安裝面（auditor 的補充重點）
+> **Engineering you can download, install; text you can write, write your own version of.**
+> A prose skill's value is "the text itself" → build-your-own + hang it in your repo (tracked upstream by skill-evolve), steadier than an APM dependency on a thin fork.
+> A code/data skill's value is "hard-to-reproduce engineering or curation" → install.
 
-資安「乾淨」不等於「零成本」。即使 SAFE，仍要看**安裝面**：
+## Risk and install surface (auditor's supplement)
 
-- **特權安裝**：`sudo`、遠端抓 install 腳本執行、改 `~/.bashrc` → 高警戒（例：minimax-docx setup.sh 裝 .NET）。
-- **未釘版自動裝**：`pip install --break-system-packages`、`npm i -g`、`npx playwright install chromium`、import 時自動 bootstrap → 供應鏈面。
-- **安裝器 ≠ 執行期**：腳本本身可能乾淨，地雷在它的 CLI 安裝器（例：ui-ux-pro-max 的 `extract.ts` shell 字串插值）→ **手動複製 skill 夾、避開 CLI**。
-- **自動裝系統依賴**（叫 agent 自己 brew/apt 裝 Python）→ 自己先裝，別讓它自動跑。
-- **純 prose、無 net/shell** = 最低風險級（例：humanizer、product-spec-builder）。
+Security "clean" ≠ "zero cost". Even SAFE, look at the **install surface**:
 
-## 常見陷阱（實戰萃取）
+- **Privileged install**: `sudo`, fetch-and-run a remote install script, edits to `~/.bashrc` → high alert (e.g. minimax-docx's setup.sh installing .NET).
+- **Unpinned auto-install**: `pip install --break-system-packages`, `npm i -g`, `npx playwright install chromium`, bootstrap-on-import → supply-chain surface.
+- **Installer ≠ runtime**: the script itself can be clean while the landmine is in its CLI installer (e.g. ui-ux-pro-max's `extract.ts` shell string interpolation) → **copy the skill dir manually, avoid the CLI**.
+- **Auto-installs system deps** (telling the agent to brew/apt things itself) → install them yourself first, don't let it run automatically.
+- **Pure prose, no net/shell** = lowest risk tier (e.g. humanizer, product-spec-builder).
 
-- **一條列 ≠ 一個 skill**：`minimax-docx、pdf、xlsx` 一行其實 3 個。展開再算。
-- **清單來源信任度低**：第三方中文推薦清單會把不同作者、不同品質的 skill 湊一起。
-- **同名不同物**：`dev-builder` 撞名 `21st-dev-builder-v2`；`ppt-generator` 實為 `pptx-generator`。對 canonical repo，別信 listing。
-- **星數存疑**：無 API auth 的渲染頁星數可能誤讀/灌水（superpowers「215k」極可能誤讀）→ 標未驗證，不當事實。
-- **不同 skill 吃同一檔但格式未必相容**：product-spec-builder／dev-builder／ui-prompt-generator 都吃 `Product-Spec.md` 但不同作者 → 串接前確認欄位。
-- **process.env 不一定是外洩**：`apiKey: process.env.X` 直接進 SDK constructor＝標準用法；要看 key 有沒有被串進 URL/log/第三方請求才算 exfil。
-- **document 不外送 ≠ 安全無虞**：MiniMax 不傳文件內容，但安裝特權才是它的風險。
+## Common traps (from real evaluations)
 
-## 輸出：記錄格式
+- **One bullet ≠ one skill**: `minimax-docx、pdf、xlsx` on one line is actually 3. Expand before counting.
+- **List sources are low-trust**: a third-party recommendation list mixes authors and quality levels.
+- **Same name, different thing**: `dev-builder` collides with `21st-dev-builder-v2`; `ppt-generator` is actually `pptx-generator`. Go to the canonical repo, don't trust the listing.
+- **Doubtful star counts**: rendered-page stars without API auth can misread/inflate (superpowers' "215k" is very likely a misread) → mark unverified, not fact.
+- **Different skills eat the same file but formats may not be compatible**: product-spec-builder / dev-builder / ui-prompt-generator all consume `Product-Spec.md` but from different authors → confirm the fields before chaining them.
+- **process.env isn't necessarily exfil**: `apiKey: process.env.X` straight into an SDK constructor = standard usage; it's exfil only if the key gets woven into a URL/log/third-party request.
+- **"document not sent" ≠ safe**: MiniMax doesn't transmit document content, but its install privileges are the real risk.
 
-每次評估都留軌跡，分**本機**與**公開**兩層（`research/` 除 `skill-index.md` 外皆 gitignored）：
+## Output: recording format
 
-- **本機（不公開）**：
-  - `audits/YYYY-MM-DD-<skill>.md`：完整 SKILL AUDIT REPORT（skill-auditor 格式）。
-  - `<YYYY-MM-DD>-skill-research-log.md`（當日工作日誌）：日期｜名稱｜URL｜作者｜重複?｜
-    **資安重點｜詳細理由**——第三方資安細節、漏洞、措辭都留這層。
-- **公開**：`skill-index.md` 一列**中性**摘要：日期｜名稱｜URL｜作者｜重複內建?｜裁決。
-  **不放**資安細節/漏洞揭露/對第三方評語；裁決定位為「對本專案的適配決定」，非品質評斷。
-  理由：公開 repo 不該點名批評他人 skill，也不該未通知就揭露第三方漏洞。
-- 研究 ≠ 安裝；裝前 v1.0 安全 ≠ 你抓的那版安全，裝後複審本機版本。
+Leave a trail on every evaluation, in **local** and **public** layers (everything under `research/` except `skill-index.md` is gitignored):
+
+- **Local (private)**:
+  - `audits/YYYY-MM-DD-<skill>.md`: full SKILL AUDIT REPORT (skill-auditor format).
+  - `<YYYY-MM-DD>-skill-research-log.md` (the day's work log): date | name | URL | author | duplicate? | **security highlights | detailed reasoning** — third-party security detail, vulnerabilities, and wording all stay in this layer.
+- **Public**: one **neutral** row in `skill-index.md`: date | name | URL | author | duplicates-built-in? | verdict.
+  **No** security detail / vulnerability disclosure / commentary on the third party; the verdict is framed as "fit for this project", not a quality judgment.
+  Reason: a public repo shouldn't name-and-shame someone else's skill, nor disclose a third party's vulnerability without notice.
+  The public index is kept in Chinese (the repo's index language); map the verdicts to its labels: install→直接裝, build-your-own→參考自製, vendor & customize→收錄＋客製, skip→跳過.
+- Research ≠ install; before install, v1.0-safe ≠ the version you fetched is safe — re-review the local copy after install.

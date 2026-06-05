@@ -106,7 +106,7 @@ with the skill (mirrors APM's lock-file philosophy). JSON:
 
 ```json
 {
-  "_comment": "由 skill-evolve 維護：記錄各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新。",
+  "_comment": "Maintained by skill-evolve: records the version last seen for each cited source, to detect updates. Updated only after you review the report.",
   "checked_at": "2026-06-01",
   "sources": {
     "owner/repo": { "commit": "abc123def456", "release": "v1.2.3", "date": "2026-05-30" }
