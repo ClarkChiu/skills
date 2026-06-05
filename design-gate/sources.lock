@@ -1,0 +1,12 @@
+{
+  "_comment": "Maintained by skill-evolve: the upstream that design-gate's design/plan rules were adapted from, used to detect new rules. Update only after reviewing the report (--write-lock). Tracks only the two extracted skills; the upstream orchestration pieces (subagent-driven-development etc.) were deliberately not vendored and are not tracked here.",
+  "checked_at": "2026-06-05",
+  "sources": {
+    "obra/superpowers": {
+      "ref": "main",
+      "date": "2026-06-05",
+      "skills": ["brainstorming", "writing-plans"],
+      "note": "Rules adapted from these two skills (not vendored verbatim). Commit SHA not captured (API rate limit); pinned by ref=main + check date. Upstream updates often, so re-sync by diffing these two skills' content."
+    }
+  }
+}

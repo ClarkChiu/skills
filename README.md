@@ -16,10 +16,13 @@
 | [`skill-finder`](./skill-finder/) | 唯讀搜尋開放技能生態（`skills.sh`），抓取候選 `SKILL.md` 供檢視，並在任何安裝決定前轉交 `skill-auditor`。只發唯讀 HTTPS GET 請求，不執行 `npx skills`、不執行第三方程式碼、不傳送遙測。負責「發現與評估」，安裝由使用者自行決定。 |
 | [`p2pscout`](./p2pscout/) | 工具型技能（以 Go 撰寫，非純 Markdown）。跨多個索引來源搜尋 BitTorrent 資源，依實測的節點群健康度（分散式雜湊表加追蹤伺服器，可選握手驗證）排序，挑出現在真的抓得到的那一筆；下載委派 aria2。代理以 `go run ./cmd/p2pscout` 直接呼叫（首次編譯後進快取），無需手動建置。需本機安裝 Go 1.25 以上。 |
 | [`chinese-typography`](./chinese-typography/) | 台灣繁體中文排版與正規化。自動補盤古之白（中英文間空格）、半形標點轉全形、引號改直角引號「」『』、簡轉繁並在地化台灣用語（OpenCC `s2twp`）、修正異體字。核心是**確定性 Python 腳本**（非靠模型逐字猜）＋最高權限的個人字典 `user-dictionary.json`；通用表放 `data/defaults.json`，不動程式碼即可編輯。需本機 OpenCC 才做簡轉繁，缺套件會大聲警告而非默默略過。 |
-| [`slide-deck`](./slide-deck/) | 準則導向的投影片設計引擎（非套模板）。將內容生成**單一自包含 HTML 檔**：固定 1920×1080 畫布、**跨裝置自動重算大小縮放填滿任何螢幕**（ResizeObserver 監看，手機第一次載入即滿版、不用重新整理）、可列印成 PDF、手機可滑動／點擊分區導覽。內建原創風格預設與版式準則（一頁一想法、型階、垂直預算、配色／動效紀律、繁中換行），附確定性檢查器 `check_deck.py` 出貨前把關。repo 不放任何第三方模板資產；需可編輯 `.pptx` 時改用 ppt-master（見 `references/output-formats.md`）。 |
+| [`slide-deck`](./slide-deck/) | 準則導向的投影片設計引擎（非套模板）。將內容生成**單一自包含 HTML 檔**：固定 1920×1080 畫布、**跨裝置自動重算大小縮放填滿任何螢幕**（ResizeObserver 監看，手機第一次載入即滿版、不用重新整理）、可列印成 PDF、手機可滑動／點擊分區導覽。內建原創風格預設與版式準則（一頁一想法、型階、垂直預算、配色／動效紀律、繁中換行），附確定性檢查器 `check_deck.py` 出貨前把關。儲存庫不放任何第三方模板資產；需可編輯 `.pptx` 時改用 ppt-master（見 `references/output-formats.md`）。 |
 | [`skill-evolve`](./skill-evolve/) | 隨叫隨跑的**自我維護偵察**。掃自寫 skill 的 `references/attribution.md` 找出上游參考來源，用 GitHub API 比對各 skill 的 `sources.lock` 基線看有無更新，並擴展搜尋新出現的相關專案，最後**出報告與你討論**——只偵察與建議，**從不自動改 skill**。**僅適用於本專案自寫的 skill**；外部（經 APM 引入）的技能用 `apm install` 隨上游更新即可，不歸它管。採納任何新來源前先過 `skill-auditor`。需本機 Python；建議設 `GITHUB_TOKEN`（公開讀取權限即可）以免 API 限流。 |
 | [`skill-curator`](./skill-curator/) | **研究 Skill 大師**——評估外部 skill「該不該用、怎麼用」的**編排 + 決策 + 記錄**層。丟一個 skill（名稱／URL／一整份推薦清單）→ 跑五步流程（相關性→重複性→資安→來源→裁決）→ 給裁決（🟩 直接裝／🟦 參考自製／🟨 收錄＋客製／🟥 跳過）並寫進 `research/` 決策日誌。**呼叫**而非重做 `skill-finder`（發現）與 `skill-auditor`（資安裁決，不得蓋過）；判準大腦在 `references/criteria.md`。發現與決策，**不安裝**。 |
 | [`humanizer`](./humanizer/) | 去除文字的 AI 生成痕跡，讓它讀起來像人寫的（中英雙語）。偵測並改寫內容灌水、宣傳腔、模糊歸因、三段式、AI 詞彙、填充語等模式；另處理臺灣中文特有的痕跡：罐頭開場白（「值得一提的是」）、中國商業術語（賦能、抓手）、翻譯腔（「進行了優化」）、複數濫用「們」（「工具們」）。設計上**文風歸 humanizer、排版歸 `chinese-typography`**：標點／引號／盤古之白／簡轉繁／地區用詞都交給排版層，先 humanizer 後 normalize 兩段管線。英文規則原樣收錄自 `blader/humanizer`（由 `skill-evolve` 追上游），中文規則自寫（淺白臺灣用法）。純 prompt、不執行程式碼；只處理一般文字，不處理程式碼或 markdown 結構檔。 |
+| [`design-gate`](./design-gate/) | 設計閘門：寫程式碼前，先把模糊想法逼成設計、再拆成可獨立執行的計畫。兩階段——先**設計**（逐題收斂、提 2–3 方案、寫成設計文件、自我複審），中間一道**硬閘門**（設計沒拍板前不寫程式碼、不建專案雛形、不叫實作），再**計畫**（拆成 2–5 分鐘一個的任務，每個標明確檔案路徑、完整可跑程式碼、驗證指令、提交）。只做前段；實際寫程式碼與測試的紀律交棒給 `CLAUDE.md` 的 Rule 0–12，不重複。規則改寫自 `obra/superpowers` 的 `brainstorming` 與 `writing-plans`（MIT），去品牌路徑、調成 pytest＋git 與這位使用者的本行；上游的多代理工程編排刻意未收錄（裁決見 `research/`）。純 prompt、不執行程式碼、不連網。 |
+| [`verify-before-done`](./verify-before-done/) | 完成閘門：宣稱「測試過了／build 綠了／bug 修好了／搬遷完成」之前，先把該跑的驗證**重新跑一次、讀完整輸出和 exit code**，確認真的成立才能說。把 `CLAUDE.md` Rule 12（fail loud）落成五步閘門。刻意和內建 `verify`（跑 app 看行為）切開、不重複——這個是任何 test／lint／build／修復宣稱的輕量紀律閘門。改寫自 `obra/superpowers` 的 `verification-before-completion`（MIT）。含 Bash（要實際跑驗證指令）。 |
+| [`systematic-debugging`](./systematic-debugging/) | 四階段根因除錯，擋掉「猜一個改一個」的瞎修：先把問題穩定重現、讀完錯誤訊息、查最近改動、回溯資料流找根因 → 比對能跑／壞掉的差異 → 單變數假設逐一測 → 先寫會失敗的重現測試再修。鐵律「沒找到根因不准修」；同一個 bug 修 ≥3 次還不好就停、質疑架構。交棒給 `verify-before-done` 做最終確認。改寫自 `obra/superpowers` 的 `systematic-debugging`（MIT）。含 Bash。 |
 
 ## 外部技能（經 APM 引入第三方）
 
@@ -67,30 +70,12 @@ apm install
 
 純 Markdown 技能載入只是讓指令對主機代理可用，不會執行程式碼，直接建立符號連結到對應目錄即可。部分技能附帶腳本，使用時需對應執行環境：`p2pscout` 需 Go 1.25 以上（`go run`）；`chinese-typography` 需 Python，簡轉繁另需 OpenCC；`slide-deck` 的檢查器 `check_deck.py` 需 Python；`skill-evolve` 需 Python，並建議設 `GITHUB_TOKEN`（公開讀取即可）以免查更新時被 GitHub API 限流。
 
+把每個自建技能（見上方「自建技能」表）的目錄 symlink 進主機代理的 skills 目錄即可——Claude Code 是 `~/.claude/skills/`、OpenCode 是 `~/.config/opencode/skills/`。範本，每個技能各做一次（`<技能名>` 換成 `chinese-typography`、`design-gate`… 等）：
+
 ```bash
-REPO="$(pwd)"  # 本專案根目錄
-
-# Claude Code（全域）
-mkdir -p ~/.claude/skills
-ln -snf "$REPO/skill-auditor" ~/.claude/skills/skill-auditor
-ln -snf "$REPO/skill-finder" ~/.claude/skills/skill-finder
-ln -snf "$REPO/p2pscout" ~/.claude/skills/p2pscout
-ln -snf "$REPO/chinese-typography" ~/.claude/skills/chinese-typography
-ln -snf "$REPO/slide-deck" ~/.claude/skills/slide-deck
-ln -snf "$REPO/skill-evolve" ~/.claude/skills/skill-evolve
-ln -snf "$REPO/skill-curator" ~/.claude/skills/skill-curator
-ln -snf "$REPO/humanizer" ~/.claude/skills/humanizer
-
-# OpenCode
-mkdir -p ~/.config/opencode/skills
-ln -snf "$REPO/skill-auditor" ~/.config/opencode/skills/skill-auditor
-ln -snf "$REPO/skill-finder" ~/.config/opencode/skills/skill-finder
-ln -snf "$REPO/p2pscout" ~/.config/opencode/skills/p2pscout
-ln -snf "$REPO/chinese-typography" ~/.config/opencode/skills/chinese-typography
-ln -snf "$REPO/slide-deck" ~/.config/opencode/skills/slide-deck
-ln -snf "$REPO/skill-evolve" ~/.config/opencode/skills/skill-evolve
-ln -snf "$REPO/skill-curator" ~/.config/opencode/skills/skill-curator
-ln -snf "$REPO/humanizer" ~/.config/opencode/skills/humanizer
+SKILL="<技能名>"
+ln -snf "$(pwd)/$SKILL" ~/.claude/skills/"$SKILL"           # Claude Code
+ln -snf "$(pwd)/$SKILL" ~/.config/opencode/skills/"$SKILL"  # OpenCode
 ```
 
 > `skill-finder` 在評估階段會呼叫 `skill-auditor`，兩者請一起安裝。

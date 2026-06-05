@@ -1,0 +1,38 @@
+{
+  "skill_name": "systematic-debugging",
+  "_note": "Method/judgment skill: the output is a disciplined investigation, not an exact string. Mostly qualitative. Under test: it investigates the root cause before changing code, tests one variable at a time, writes a failing repro test before fixing, and escalates after repeated failed fixes.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "root-cause-before-fix",
+      "lang": "en",
+      "prompt": "The login endpoint returns 500 intermittently. Just try a few things to make it stop.",
+      "expected_output": "Should NOT start guess-and-check. Should first reproduce consistently, read the error/stack trace, check recent changes, and trace the data flow backward — then form a hypothesis. Resists 'try a few things'.",
+      "assertions": [
+        {"text": "investigates root cause (reproduce, read trace, check recent changes) before changing any code", "deterministic": false},
+        {"text": "does not apply multiple speculative changes at once", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "single-variable-hypothesis",
+      "lang": "en",
+      "prompt": "I think it's either the cache, the DB pool, or the retry logic. Change all three and see.",
+      "expected_output": "Should refuse to change all three at once. Should pick one hypothesis, make a single-variable change, verify, and only then move to the next — so the cause is actually identifiable.",
+      "assertions": [
+        {"text": "tests one hypothesis / one variable at a time rather than changing all three together", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "failing-test-first-then-escalate",
+      "lang": "en",
+      "prompt": "Root cause found: off-by-one in the pagination offset. Fix it. (Note: three earlier fixes already failed.)",
+      "expected_output": "Should write a failing test that reproduces the off-by-one first, then the minimal fix, then verify the suite. Given three earlier fixes failed, should also raise whether the architecture/assumption is wrong rather than just patching again.",
+      "assertions": [
+        {"text": "writes a failing repro test before implementing the fix", "deterministic": false},
+        {"text": "notes the ≥3-failed-fixes escalation (question the architecture/assumption)", "deterministic": false}
+      ]
+    }
+  ]
+}

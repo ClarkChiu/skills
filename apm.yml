@@ -15,6 +15,9 @@ dependencies:
   - ./skill-evolve/
   - ./skill-curator/
   - ./humanizer/
+  - ./design-gate/
+  - ./verify-before-done/
+  - ./systematic-debugging/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []

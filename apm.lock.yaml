@@ -1,7 +1,35 @@
 lockfile_version: '1'
-generated_at: '2026-05-27T08:51:37.187223+00:00'
+generated_at: '2026-06-05T07:52:59.512218+00:00'
 apm_version: 0.14.2
 dependencies:
+- repo_url: _local/chinese-typography
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/chinese-typography
+  - .claude/skills/chinese-typography
+  source: local
+  local_path: ./chinese-typography/
+- repo_url: _local/design-gate
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/design-gate
+  - .claude/skills/design-gate
+  source: local
+  local_path: ./design-gate/
+- repo_url: _local/humanizer
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/humanizer
+  - .claude/skills/humanizer
+  source: local
+  local_path: ./humanizer/
+- repo_url: _local/p2pscout
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/p2pscout
+  - .claude/skills/p2pscout
+  source: local
+  local_path: ./p2pscout/
 - repo_url: _local/skill-auditor
   package_type: claude_skill
   deployed_files:
@@ -9,6 +37,20 @@ dependencies:
   - .claude/skills/skill-auditor
   source: local
   local_path: ./skill-auditor/
+- repo_url: _local/skill-curator
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/skill-curator
+  - .claude/skills/skill-curator
+  source: local
+  local_path: ./skill-curator/
+- repo_url: _local/skill-evolve
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/skill-evolve
+  - .claude/skills/skill-evolve
+  source: local
+  local_path: ./skill-evolve/
 - repo_url: _local/skill-finder
   package_type: claude_skill
   deployed_files:
@@ -16,9 +58,30 @@ dependencies:
   - .claude/skills/skill-finder
   source: local
   local_path: ./skill-finder/
+- repo_url: _local/slide-deck
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/slide-deck
+  - .claude/skills/slide-deck
+  source: local
+  local_path: ./slide-deck/
+- repo_url: _local/systematic-debugging
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/systematic-debugging
+  - .claude/skills/systematic-debugging
+  source: local
+  local_path: ./systematic-debugging/
+- repo_url: _local/verify-before-done
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/verify-before-done
+  - .claude/skills/verify-before-done
+  source: local
+  local_path: ./verify-before-done/
 - repo_url: anthropics/skills
   host: github.com
-  resolved_commit: 690f15cac7f7b4c055c5ab109c79ed9259934081
+  resolved_commit: da20c92503b2e8ff1cf28ca81a0df4673debdbf7
   package_type: marketplace_plugin
   deployed_files:
   - .agents/skills/algorithmic-art
@@ -55,12 +118,12 @@ dependencies:
   - .claude/skills/web-artifacts-builder
   - .claude/skills/webapp-testing
   - .claude/skills/xlsx
-  content_hash: sha256:7a4a0e3e4e60d1ead46aa2fed8bedde7bd565e6212b7541ed4aef2d41418b23a
+  content_hash: sha256:5a94c4600dca371e7571be73552f06e11293f558b3d3b295d306b0bfefb4245b
 - repo_url: vercel-labs/agent-browser
   host: github.com
-  resolved_commit: 4ad284890cb59564af603e6de403dd75dd19e832
+  resolved_commit: 90050f2913159875e2c3719e424746396ccb3cbf
   package_type: marketplace_plugin
   deployed_files:
   - .agents/skills/agent-browser
   - .claude/skills/agent-browser
-  content_hash: sha256:81b06d96f0ab78b14146652bbc3fc215a61fcd892b3455d775d4d8fe3d8e8f0a
+  content_hash: sha256:37c39aa1444e7da0de92defa37a8ee225e4c7d8a3e89eef2a720988c96bc11ed

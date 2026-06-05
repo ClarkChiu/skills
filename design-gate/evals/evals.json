@@ -1,0 +1,43 @@
+{
+  "skill_name": "design-gate",
+  "_note": "Workflow/judgment skill: the output is a dialogue flow plus two documents, so there is no exact string to assert against. Most checks are qualitative (did it hold the gate, are the questions right, is the plan concrete enough); a few are deterministic (marked deterministic: true). The three things under test: no code before the design is approved, the design phase converges one question at a time and proposes multiple approaches, and plan tasks are concrete enough to execute independently.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "gate-holds-before-code",
+      "lang": "en",
+      "prompt": "Build me a small tool that monitors NAT-traversal success rate across a few home routers.",
+      "expected_output": "Should NOT jump straight to writing code or scaffolding a project. Should explore context, then converge one question at a time (one per message, prefer multiple-choice), pin down purpose/constraints/success criteria, propose 2–3 approaches with trade-offs, write the design to docs/specs/, and wait for approval before going further. Tests that the hard gate holds.",
+      "assertions": [
+        {"text": "no implementation code or scaffolded project files are produced before the design is approved", "deterministic": true},
+        {"text": "asks one question per message (not a long list of questions at once)", "deterministic": false},
+        {"text": "proposes 2–3 approaches with trade-offs rather than building the first idea", "deterministic": false},
+        {"text": "writes the design doc under docs/specs/ (or first asks the user for the path)", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "skip-trivial-change",
+      "lang": "en",
+      "prompt": "Change the timeout in this file from 30 to 60.",
+      "expected_output": "A one-line change should NOT trigger the full design + plan workflow. The skill should note this is too small for the design gate, or hand it back to the normal flow. Tests the 'when not to use' judgment.",
+      "assertions": [
+        {"text": "does not impose the full design + plan workflow on a one-line change", "deterministic": false},
+        {"text": "does not produce docs/specs/ or docs/plans/ documents for this trivial change", "deterministic": true}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "plan-tasks-are-concrete",
+      "lang": "en",
+      "prompt": "The design is already approved (SQLite for each measurement, cron to run it, a CLI report). Turn it into a plan.",
+      "expected_output": "Each plan task should be 2–5 minutes and one action, with exact file paths, complete runnable code, verification commands and expected output, and a commit. No TBD/TODO, no 'same as Task N' without repeating the code. Tests how concrete the plan is.",
+      "assertions": [
+        {"text": "the plan contains no TBD, TODO, 'implement later', or 'fill in the details' placeholders", "deterministic": true},
+        {"text": "every task has exact file paths (create/modify/test)", "deterministic": false},
+        {"text": "every task has verification commands with expected output (e.g. a pytest command + expected PASS/FAIL)", "deterministic": false},
+        {"text": "the plan is written under docs/plans/", "deterministic": false}
+      ]
+    }
+  ]
+}
