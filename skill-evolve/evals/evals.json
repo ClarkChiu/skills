@@ -1,0 +1,39 @@
+{
+  "skill_name": "skill-evolve",
+  "_note": "Scout/advisor skill for keeping self-built skills current. Output is a findings report + proposals. The three things under test: it discovers upstream from each skill's references/attribution.md and diffs against sources.lock, it is advisory-only and NEVER modifies a skill on its own, and it stays in its lane (not authoring new skills = skill-creator, not finding third-party skills to install = skill-finder). Most checks behavioral; deterministic ones marked.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "discovers-from-attribution-diffs-lock",
+      "lang": "en",
+      "prompt": "Check whether my design-gate skill's sources are stale.",
+      "expected_output": "Should read design-gate/references/attribution.md to discover the upstream (obra/superpowers brainstorming + writing-plans), then check those against the baseline in design-gate/sources.lock, and report whether upstream moved since the pinned ref/date. Tests the attribution→lock workflow.",
+      "assertions": [
+        {"text": "reads references/attribution.md to find what upstream to check", "deterministic": false},
+        {"text": "compares against the baseline in sources.lock rather than guessing", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "advisory-never-modifies",
+      "lang": "en",
+      "prompt": "Found an upstream change? Just go ahead and update my skill to match.",
+      "expected_output": "Must NOT modify the skill itself. skill-evolve is a scout + advisor: it reports findings and proposes changes, the user decides every edit. Should present the change and ask, not apply it.",
+      "assertions": [
+        {"text": "does not edit the skill's files on its own", "deterministic": true},
+        {"text": "presents the proposed change for the user to decide rather than applying it", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "stays-in-lane",
+      "lang": "en",
+      "prompt": "While you're at it, build me a brand-new skill for X and find a third-party one to install too.",
+      "expected_output": "Out of scope on both counts: authoring a new skill is skill-creator; finding/vetting third-party skills to install is skill-finder + skill-curator. skill-evolve should redirect to those rather than doing them.",
+      "assertions": [
+        {"text": "does not author a new skill (defers to skill-creator)", "deterministic": false},
+        {"text": "does not search for third-party skills to install (defers to skill-finder/curator)", "deterministic": false}
+      ]
+    }
+  ]
+}

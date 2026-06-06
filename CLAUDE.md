@@ -29,6 +29,12 @@
 
 - 提交訊息使用 gitmoji 加上 Conventional Commits 的格式，並且不要加上 `Co-Authored-By` 這個 trailer。
 - 這個專案以 APM（Agent Package Manager）管理，所以建立技能時要跳過 package_skill 這個步驟，打包交給 APM 處理。自己寫的技能要登錄到 `apm.yml` 與 README 的自建技能表；外部技能則經由 APM 引入，並隨著 `apm install` 跟上游更新。
+- 建立或檢視一個自建技能時，照這份「必備檔案＋登錄」清單走，別漏：
+  - **每個技能都要有**：`SKILL.md`（frontmatter 含 `name`、描述清楚且帶觸發語的 `description`、`allowed-tools`）；以及 `evals/evals.json`（測「意圖」不只測「行為」，每個案例附斷定，能確定性判斷的標 `deterministic: true`）。
+  - **登錄三處**：`apm.yml` 的 `- ./技能名/`、README 的自建技能表一列、`skill-curator/references/skill-map.md`（歸到對的群組、補邊界，並回頭更新這張地圖，免得日後重工）。
+  - **要全域可用**：把技能 symlink 進 `~/.claude/skills/`（`apm install` 只部署到專案範圍 `.claude/skills`、`.agents/skills`，不會進全域）。
+  - **只有「改寫自／收錄上游」的技能才加**：`references/attribution.md`（來龍去脈：哪個上游、取了什麼、怎麼改、授權、注意事項——這是 `skill-evolve` 發現該追哪些源的入口）＋ `sources.lock`（把每個源釘在某 commit/日期的基準，讓 `skill-evolve` 能比對更新）。純原創的技能不需要這兩個。兩者要**成對**：只有 `sources.lock` 沒有 `attribution.md`，`skill-evolve` 的「發現」那半就空轉。
+  - **撰寫語言**看主題、不看儲存庫（見下一條）。理由是這份清單把我自己稽核時抓到的不一致（有 lock 沒 attribution、governance 技能缺 evals）固化成流程，建新技能時就不會再漏。
 - 遇到衝突時先問清楚，不要自己猜。正規化或設計上的衝突，先以成熟、完整的專案為權重：簡體轉繁體與臺灣用語以 OpenCC 的 `s2twp` 為準，排版則依循 pangu.js、zhlint 與教育部的慣例。當成熟專案的行為與使用者偏好衝突時，要把衝突攤開來問，並且把使用者的偏好寫進資料檔（例如最高優先的 `user-dictionary.json`），而不是把答案寫死在程式裡，也不要沿用舊的假設。（這條是專案特定的衝突處理；通用版見下方「行為準則」的 Rule 1 與 Rule 7。）
 - 評估外部技能時，任何安裝之前都要先跑 `skill-auditor` 做安全稽核，再用 `skill-curator` 走完整流程：相關性、重複性、資安、來源、裁決、記錄。每一次評估的決策都寫進當日的工作日誌 `research/<YYYY-MM-DD>-skill-research-log.md`，完整稽核報告寫進 `research/audits/`。要記住研究不等於安裝；對這位使用者而言「直接安裝」是稀有事件，純文字或人格類的技能多半值得自己重寫成貼合他的版本，只有難以複製的策展或工程才值得原樣收錄（vendor）。
 - 使用 chinese-typography 的 `normalize.py` 時，只處理真正的中文一般文字，不要拿去處理英文或 markdown 技能文件。理由是它會把英文的引號改成「」、把括號改成全形，反而破壞英文與 markdown 文件。

@@ -33,11 +33,23 @@ Full decision criteria live in **`references/criteria.md`** — read it before a
 
 First read the **"使用者定位 (User Profile)" section of the repo-root `CLAUDE.md`** (the portable source of truth, auto-loaded across machines via git/APM; the machine-local `user-profile` memory is just a local cache, don't depend on it when moving machines). Every evaluation starts from "is it useful for **this person's** context", not from generic good/bad. With no profile available, ask the user first: what's the main work, what problem should the skill solve.
 
-## The five-step pipeline
+## Recall first, then the five-step pipeline
 
-Run it once per skill. For several skills (or a list), run each and summarize into one table.
+**[R] Recall — always the first move, before any fetching or auditing.** The user
+forgets what's already been evaluated; that's your job. Scan
+**`research/skill-index.md`** (the committed, portable index — its `來源` column
+holds the original URL, plus name / author / duplicate? / verdict) and match the
+candidate by name OR URL. If present locally, also skim the day logs
+`research/<date>-skill-research-log.md` + `research/audits/` for fuller reasoning —
+but those are gitignored/local-only, so `skill-index.md` is the source of truth that
+survives a fresh `git clone`. If the skill was already evaluated: **surface the prior
+verdict and date, and stop** unless the user wants a re-evaluation (e.g. upstream
+changed, or the prior call was thin). Don't silently re-run a decision already made.
+
+Run the pipeline once per skill. For several skills (or a list), run each and summarize into one table.
 
 ```
+[R] Recall      → already in research/skill-index.md (by name/URL)? Surface prior verdict + date, stop unless re-eval wanted.
 [0] Relevance   → useful for the user's context (dev/systems/PM/writing/research/life)? No → "skip", stop.
 [1] Duplication → duplicates a built-in or existing skill? Check references/skill-map.md first.
                   Yes → suggest using/extending the existing one, not a new install.
@@ -50,6 +62,7 @@ Run it once per skill. For several skills (or a list), run each and summarize in
 
 ### Step detail
 
+- **[R] recall is cheapest of all**: one read of `research/skill-index.md` can end the task ("already evaluated 2026-06-05 → 🟥 skip"). Saves a full fetch+audit. Do it before anything else.
 - **[0]+[1] first, they're cheap**: use existing knowledge + `skill-finder` to fetch the description, judge relevance and duplication. Irrelevant or pure duplicates don't need a full audit — mark them, state the reason (saves tokens).
 - **[2] security goes to skill-auditor**: don't re-implement audit logic here. Drop the auditor's SKILL AUDIT REPORT verbatim into `audits/`. If the auditor says not-SAFE, this skill's verdict must not override it.
 - **[3] provenance signals**: star counts without API auth misread/inflate → mark "unverified", don't treat as fact. High stars + few commits + short history = the SEO-sprint pattern, low trust.

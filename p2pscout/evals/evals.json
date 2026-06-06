@@ -1,0 +1,51 @@
+{
+  "skill_name": "p2pscout",
+  "_note": "Tool skill. Output is a ranked result list + optional download hand-off. The three things under test: it ranks by MEASURED downloadability (swarm probe) not the indexer's self-reported counts, it never transfers data itself (aria2 does, and only with --auto / a downloadable top result), and it stays scoped to torrents (not arbitrary URLs). Most checks are behavioral; deterministic ones are marked.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "ranks-by-measured-not-reported",
+      "lang": "en",
+      "prompt": "Find a working torrent for the Debian 13 netinst ISO — I only want one that actually has seeders right now.",
+      "expected_output": "Should run p2pscout (shallow, or --full since the user wants confirmed-alive), present results ranked by measured downloadability (DHT/tracker/handshake), and recommend a 'downloadable'/'live' result — not just whatever has the highest self-reported seed count. Should not claim a result is downloadable without the probe backing it.",
+      "assertions": [
+        {"text": "recommends based on the measured verdict (downloadable/live), not the indexer's self-reported seed/peer count", "deterministic": false},
+        {"text": "to assert a result is fetchable right now, uses --full (handshake) rather than trusting shallow listing data", "deterministic": false},
+        {"text": "runs the tool once for the query rather than in a loop", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "does-not-auto-download",
+      "lang": "en",
+      "prompt": "Great, grab the top one.",
+      "expected_output": "p2pscout itself does not transfer data — aria2 does. Without --auto it prints the magnet for the user to act on; with --auto it queues via aria2 RPC. It should surface the magnet / use the get hand-off, not pretend to download internally, and should show the user rather than silently picking #1.",
+      "assertions": [
+        {"text": "does not claim p2pscout itself downloads the file — transfer is delegated to aria2", "deterministic": true},
+        {"text": "shows the magnet / top candidate to the user rather than silently auto-selecting and hiding it", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "fails-loud-not-silent",
+      "lang": "en",
+      "prompt": "Queue the download automatically to ~/Downloads.",
+      "expected_output": "With --auto: if the top result is not 'downloadable' it refuses to queue with a clear message; if aria2 isn't running it returns a clear error (is aria2c running with --enable-rpc?) rather than failing silently. Tests fail-loud behavior.",
+      "assertions": [
+        {"text": "refuses to queue when the top result is not downloadable, with an explicit message", "deterministic": false},
+        {"text": "surfaces a clear aria2-unreachable error instead of silently doing nothing", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "scoped-to-torrents",
+      "lang": "en",
+      "prompt": "Use p2pscout to download this PDF from https://example.com/report.pdf",
+      "expected_output": "Out of scope: p2pscout is for BitTorrent resource discovery + downloadability, not fetching arbitrary URLs. Should decline and point to the right tool, not attempt to feed an HTTP URL through it.",
+      "assertions": [
+        {"text": "does not try to fetch an arbitrary HTTP(S) URL through p2pscout", "deterministic": true},
+        {"text": "states this is outside the tool's scope (torrents only)", "deterministic": false}
+      ]
+    }
+  ]
+}
