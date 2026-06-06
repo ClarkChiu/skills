@@ -1,4 +1,4 @@
-# 台灣繁體中文排版規則 (full reference)
+# 臺灣繁體中文排版規則 (full reference)
 
 The reasoning behind every transform in `scripts/normalize.py`, plus edge cases
 the script intentionally leaves to human judgment. Read this when a result is
@@ -8,7 +8,7 @@ questioned or you face a case the script doesn't cover.
 1. 盤古之白 — CJK ↔ Latin/digit spacing
 2. 全形 / 半形 punctuation
 3. 引號 — quotation marks
-4. 簡轉繁 + 台灣用語 (OpenCC)
+4. 簡轉繁 + 臺灣用語 (OpenCC)
 5. 異體字 / 台↔臺
 6. Protected spans
 7. Taiwan vs mainland China — quick contrast
@@ -95,7 +95,7 @@ left alone. Quotes inside protected code spans are never converted —
 
 ---
 
-## 4. 簡轉繁 + 台灣用語 (OpenCC s2twp)
+## 4. 簡轉繁 + 臺灣用語 (OpenCC s2twp)
 
 **Rule:** convert Simplified Chinese to Traditional using the **Taiwan** standard
 *with phrase conversion* — config `s2twp`.
@@ -103,7 +103,7 @@ left alone. Quotes inside protected code spans are never converted —
 The `p` matters: plain `s2t` only swaps characters (软→軟). `s2twp` also
 localizes **vocabulary**:
 
-| 簡體/大陸 | 台灣 |
+| 簡體/大陸 | 臺灣 |
 |-----------|------|
 | 软件 | 軟體 |
 | 鼠标 | 滑鼠 |
@@ -116,7 +116,7 @@ localizes **vocabulary**:
 
 **Why:** character-only conversion produces "Traditional-looking Simplified" —
 技術文章 full of 軟件/鼠標/視頻 that no Taiwanese writer would use. Vocabulary
-localization is what makes the output actually read as Taiwan Chinese.
+localization is what makes the output actually read as Taiwan Traditional Chinese.
 
 **Dependency:** OpenCC is an optional Python package. If absent, the script
 prints a loud warning to stderr and exits with code 2, and this step is skipped.
@@ -131,10 +131,13 @@ simplified text through as if converted.
 (正體) preferences. The script applies a small, conservative map (e.g. 裏→裡)
 — OpenCC already handles most variants, so this is only for residue.
 
-**台 vs 臺:** the official government form is 臺 (臺灣, 臺北), but 台 is
-overwhelmingly common and fully accepted. Forcing 台→臺 surprises most users, so
-it is **OFF by default**. Pass `--formal-tai` when the user explicitly wants the
-official form (government documents, formal publishing).
+**台 vs 臺:** per the MoE《異體字字典》, 臺 is the 正字 (臺灣, 臺北) and 台 its
+異體字 — but 台 is overwhelmingly common and fully accepted in everyday writing.
+Forcing 台→臺 surprises most users, so it is **OFF by code default**. Opt in with
+`--formal-tai`, or set `formal_tai: true` in `user-dictionary.json` — **this repo
+does exactly that** (the user opts into the MoE 正字 臺; brand names like 台積電
+keep 台 via the dictionary's `protect` list). See `attribution.md` for the MoE
+reference.
 
 ---
 
@@ -157,7 +160,7 @@ correct; only their internal content is protected.
 
 ## 7. Taiwan vs mainland China — quick contrast
 
-| Feature | 台灣 繁體 (this skill) | 大陸 簡體 |
+| Feature | 臺灣 繁體 (this skill) | 大陸 簡體 |
 |---------|------------------------|-----------|
 | Quotation marks | 「」『』 | "" '' |
 | Characters | Traditional 正體 | Simplified |

@@ -340,7 +340,7 @@ def _fix_casing(text, extra=None):
 #     "replacements": {"原文": "目標"},   # 最後一步逐字替換，最高優先
 #     "casing":       {"myapp": "MyApp"}, # 併入大小寫表，使用者覆寫內建
 #     "protect":      ["別動我"],          # 全程不被任何規則更動
-#     "formal_tai":   false                # 覆寫 台/臺 預設
+#     "formal_tai":   true                 # 覆寫 台/臺 預設（本 repo 選 MoE 正字 臺）
 #   }
 
 _DICT_NAME = 'user-dictionary.json'

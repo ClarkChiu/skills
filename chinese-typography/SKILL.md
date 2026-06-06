@@ -1,7 +1,7 @@
 ---
 name: chinese-typography
 description: >-
-  台灣繁體中文排版與正規化 (Taiwan Traditional Chinese typography & normalization).
+  臺灣繁體中文排版與正規化 (Taiwan Traditional Chinese typography & normalization).
   Cleans up Chinese text to Taiwan publishing convention: inserts 盤古之白 (a space
   between Han characters and Latin letters / numbers), converts half-width ASCII
   punctuation to full-width 全形 (，。；：？！（）), fixes quotation marks to corner
@@ -9,16 +9,16 @@ description: >-
   (软件→軟體, 鼠标→滑鼠, 视频→影片 via OpenCC s2twp), and corrects common 異體字.
   USE THIS SKILL whenever the user wants to format, clean up, normalize, tidy,
   proofread, or fix the typography/punctuation of Traditional Chinese (繁體中文 /
-  台灣中文) text — whether they paste the text directly or point at a .md/.txt
+  臺灣中文) text — whether they paste the text directly or point at a .md/.txt
   file. Trigger on phrases like 「排版」「正規化」「中文格式」「全形半形」「盤古之白」
-  「簡轉繁」「台灣用語」「中英文加空格」「標點符號修正」, or any request to make
+  「簡轉繁」「臺灣用語」「中英文加空格」「標點符號修正」, or any request to make
   mixed Chinese-English text read correctly. Also use when reviewing a Markdown
   doc, README, or article written in Traditional Chinese for typographic polish.
   Do NOT use for Simplified-Chinese-only output targeting mainland China, or for
   translation between languages.
 ---
 
-# 台灣繁體中文排版正規化
+# 臺灣繁體中文排版正規化
 
 Mixed Chinese-English text is full of small typographic errors that are tedious
 to fix by hand and easy to do inconsistently: missing spaces between 中文 and
@@ -91,12 +91,14 @@ or the user questions a specific change.
   to CJK, so English sentences and code stay half-width.
 - **引號 → 「」『』** — straight/curly quotes become corner brackets, the Taiwan
   standard (mainland uses `""`). Nested quotes use `『』`.
-- **簡轉繁 + 台灣用語** — OpenCC `s2twp`: not just character conversion but
+- **簡轉繁 + 臺灣用語** — OpenCC `s2twp`: not just character conversion but
   vocabulary localization — 软件→軟體, 鼠标→滑鼠, 视频→影片, 内存→記憶體.
 - **異體字** — Taiwan-preferred glyphs (裏→裡). Conservative by default. Place
-  names 台→臺 are OFF by default (both are accepted; 台 is far more common — this
-  user rarely writes 臺); enable with `--formal-tai` only when the official 臺 is
-  wanted. OpenCC's `s2twp` forces 臺, so the default reverts it back to 台.
+  names 台→臺 are OFF by **code default** (both are accepted; 台 is far more
+  common in everyday writing): OpenCC's `s2twp` forces 臺, so the default reverts
+  it back to 台. **This repo opts into the MoE 正字 臺** via `formal_tai: true`
+  in `user-dictionary.json` (brand names like 台積電 keep 台 through `protect`);
+  elsewhere, enable with `--formal-tai`.
 - **省略號／破折號** — Taiwan MOE forms: `...` → `……` (six-dot), `--`/`—` → `——`
   between Han. Runs before the period rule so `...` is never mangled into `。.。`.
 - **全形英數 → 半形** — stray full-width letters/digits from pasted text get
@@ -130,7 +132,7 @@ hard-coding them:
   "replacements": {"原文": "目標"},   // verbatim, applied last — wins over everything
   "casing":       {"myapp": "MyApp"}, // extends/overrides the casing table
   "protect":      ["別動我"],          // never altered by any rule
-  "formal_tai":   false                // override the 台/臺 default
+  "formal_tai":   true                 // override the 台/臺 code default
 }
 ```
 
@@ -145,8 +147,9 @@ the always-on 異體字 fixes (`裏→裡`), and the 台→臺 place-name map us
 `data/defaults.json` (editable data, shipped with the skill), not hard-coded in
 Python. `user-dictionary.json` is the **personal** layer on top and overrides
 them. Edit `defaults.json` to change a general rule for everyone; edit
-`user-dictionary.json` to encode your own habit (the `formal_tai: false` entry
-there is the canonical example — 台 over 臺). If `defaults.json` is missing the
+`user-dictionary.json` to encode your own habit (the `formal_tai: true` entry
+there is the canonical example — this user opts into the MoE 正字 臺, with brand
+台 preserved via `protect`). If `defaults.json` is missing the
 script warns loudly and skips casing/異體字 rather than failing silently.
 
 ## Turning rules off
@@ -158,7 +161,7 @@ traditional" → `--no-convert --no-quotes --no-punct`.
 
 ## 前處理：日期補星期 (optional)
 
-`scripts/weekday.py` 把日期後面補上台灣慣用的全形星期括號：`06/25` →
+`scripts/weekday.py` 把日期後面補上臺灣慣用的全形星期括號：`06/25` →
 `06/25（四）`。這是**前處理**，刻意不併進 `normalize.py` —— normalize 是冪等的
 排版轉換，算星期幾是日曆運算（需要年份、要算對），混在一起會破壞冪等性。流程
 是：**先跑 `weekday.py` 把文字定稿，再交給 `normalize.py` 做排版**。
@@ -190,11 +193,13 @@ python3 …/weekday.py --text "預計於 06/25 舉行" --year 2026
 This skill weights mature, comprehensive projects first: **OpenCC `s2twp` is the
 authority for simplified→traditional + Taiwan vocabulary**; typography rules
 follow established conventions (pangu.js, zhlint, 中文文案排版指北, 教育部標點手冊).
-When a mature project's behavior conflicts with the user's stated preference (the
-台/臺 case is the canonical example — OpenCC says 臺, the user wants 台), **do not
-silently pick one. Surface the conflict and ask the user**, then encode their
-answer (in `user-dictionary.json` or a flag). The user has asked to be consulted
-on conflicts rather than have them guessed.
+When a mature project's behavior conflicts with the user's stated preference, **do
+not silently pick one. Surface the conflict and ask the user**, then encode their
+answer (in `user-dictionary.json` or a flag). The 台/臺 case is the canonical
+example: OpenCC forces 臺, the code default reverts to common-usage 台 — when
+surfaced, this user chose the MoE 正字 臺, now encoded as `formal_tai: true` in
+`user-dictionary.json`. The user has asked to be consulted on conflicts rather
+than have them guessed.
 
 ## When to override the script
 

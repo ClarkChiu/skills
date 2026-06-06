@@ -1,5 +1,5 @@
 {
-  "_comment": "chinese-typography 的通用預設表（台灣／技術慣例，非個人偏好）。隨 skill 出貨、可自由編輯。casing＝專有名詞大小寫；always_fixes＝一律修正的異體字；vocab_fixes＝OpenCC s2twp 漏掉的台灣在地用詞（在 OpenCC 之後套用，只收無歧義、不撞詞的）；formal_tai_map＝啟用 --formal-tai 時補強的 台→臺 地名。個人習慣請放 user-dictionary.json（權限更高，會蓋過這裡）。",
+  "_comment": "chinese-typography 的通用預設表（臺灣／技術慣例，非個人偏好）。隨 skill 出貨、可自由編輯。casing＝專有名詞大小寫；always_fixes＝一律修正的異體字；vocab_fixes＝OpenCC s2twp 漏掉的臺灣在地用詞（在 OpenCC 之後套用，只收無歧義、不撞詞的）；formal_tai_map＝啟用 --formal-tai 時補強的 台→臺 地名。個人習慣請放 user-dictionary.json（權限更高，會蓋過這裡）。",
   "casing": {
     "github": "GitHub", "gitlab": "GitLab", "javascript": "JavaScript",
     "typescript": "TypeScript", "nodejs": "Node.js", "node.js": "Node.js",
