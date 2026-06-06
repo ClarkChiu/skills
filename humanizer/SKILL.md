@@ -2,7 +2,7 @@
 name: humanizer
 description: >-
   去除文字的 AI 生成痕跡，讓它讀起來自然、像人寫的（中英雙語）。偵測並改寫內容灌水、
-  宣傳腔、模糊歸因、三段式、AI 詞彙、填充語、破折號濫用等模式；另處理臺灣中文特有的痕跡：
+  宣傳腔、模糊歸因、三段式、AI 詞彙、填充語、破折號濫用等模式；另處理臺灣繁體中文特有的痕跡：
   罐頭開場白（「值得一提的是」）、中國商業術語（賦能、抓手）、翻譯腔（「進行了優化」、濫用「性」字名詞化）、複數濫用「們」（「工具們」）。
   Remove AI-writing tells to make text read human-written (English + Traditional Chinese).
   USE THIS SKILL whenever the user wants to de-AI / humanize / 潤稿去 AI 腔 / 去 AI 味 /
@@ -28,7 +28,7 @@ allowed-tools:
 
 1. **判斷語言，載入對應規則**：
    - 英文文字 → 讀 `references/rules-en.md`（30 條，原樣收錄）。
-   - 中文文字 → 讀 `references/rules-zh-tw.md`（共用規則 + 臺灣中文特有痕跡）。
+   - 中文文字 → 讀 `references/rules-zh-tw.md`（共用規則 + 臺灣繁體中文特有痕跡）。
    - 中英混排 → 分段，各用對應規則。不確定就問使用者。
 2. **掃描痕跡**：照規則找。**要好幾個痕跡一起出現才算，不要看到一個就咬定**——單一破折號不算，破折號＋三段式＋AI 詞彙＋空泛結論才算。先讀規則裡的「不要亂改」那段，別把正常的句子改掉。
 3. **改寫，不要刪**：用自然寫法替換痕跡，覆蓋原文全部內容（原文有幾段，改完就有幾段），保留原意，配合原本的文體（正式、口語、技術）。
@@ -68,5 +68,5 @@ python3 <skill>/chinese-typography/scripts/normalize.py <檔案> --diff
 ## 參考
 
 - `references/rules-en.md` — 英文 30 條（收錄自 blader/humanizer v2.7.0）。
-- `references/rules-zh-tw.md` — 中文版（臺灣中文特有痕跡 + 共用規則 + 不要亂改）。
+- `references/rules-zh-tw.md` — 中文版（臺灣繁體中文特有痕跡 + 共用規則 + 不要亂改）。
 - `references/attribution.md` — 來源與授權。

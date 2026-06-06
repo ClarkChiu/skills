@@ -12,7 +12,7 @@
 
 ## 中文規則（rules-zh-tw.md）
 
-由本專案自寫（清楚簡單的臺灣中文），不是直接翻譯哪一個現成專案。參考了：
+由本專案自寫（清楚簡單的臺灣繁體中文），不是直接翻譯哪一個現成專案。參考了：
 
 - 維基百科「AI 味」整理（經理人）：https://www.managertoday.com.tw/articles/view/71293
 - 老編輯 AI 味 5 特徵（數位時代）：https://www.bnext.com.tw/article/90761/how-to-fix-ai-writing-style
