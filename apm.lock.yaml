@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-06-05T07:52:59.512218+00:00'
+generated_at: '2026-06-06T01:01:26.300292+00:00'
 apm_version: 0.14.2
 dependencies:
 - repo_url: _local/chinese-typography
@@ -72,6 +72,13 @@ dependencies:
   - .claude/skills/systematic-debugging
   source: local
   local_path: ./systematic-debugging/
+- repo_url: _local/ui-design-advisor
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/ui-design-advisor
+  - .claude/skills/ui-design-advisor
+  source: local
+  local_path: ./ui-design-advisor/
 - repo_url: _local/verify-before-done
   package_type: claude_skill
   deployed_files:
