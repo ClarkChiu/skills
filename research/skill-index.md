@@ -22,5 +22,7 @@
 | 2026-06-06 | LRC（Loong Recall） | github.com/zhibaiYingChuan/LRC | zhibaiYingChuan | 是（內建記憶＋Grep/Agent 找碼） | 🟥 跳過（MCP server 非 skill；重複內建記憶＋搜尋；授權 NOASSERTION／自訂研究授權；1 週單人未驗；語意核心 GraphCodeBERT 對本使用者邊際） |
 | 2026-06-06 | AiToEarn | github.com/yikart/AiToEarn | yikart | 否（內容變現平台，非技能） | 🟥 跳過（創作者內容變現平台，不在使用者守備範圍；需第三方帳號＋社群授權＋機器人式自動互動，封號／信任風險；MIT、18.2k★，但再紅不等於適合） |
 | 2026-06-06 | Opportunity-Mining-Agent | github.com/whitesungun876/Opportunity-Mining-Agent | whitesungun876 | 否（自架研究應用程式，非技能） | 🟥 跳過，歸用時再拉（從 GitHub 議題挖新創機會的自架全端程式；偏創業窄用途、非當前需求；11★單人未驗；方法可取。Apache-2.0、有模擬模式） |
+| 2026-06-06 | Readme.skill (readme-skill) | github.com/study8677/Readme.skill | study8677 | 否 | 🟥 跳過，歸用時再拉（把本機 AI CLI 歷史產成去識別化開發者檔案＋可分享 SVG 海報；虛榮型一次性產生器、非守備範圍；讀全機最敏感 AI 歷史、海報要外流且脫敏屬自我宣告。MIT、132★、v2.5.1 活躍。完整逐檔稽核未做＝裁決跳過） |
+| 2026-06-06 | Heartbeat-Like-A-Man | github.com/loryoncloud/Heartbeat-Like-A-Man | loryoncloud | 否 | 🟦 參考自製 → 已建 `solo-think`（OpenClaw 心跳 cron 包：離線時 agent「沒事找事」。對外那半=自主探索/社群巡邏=無監督對外貼文，高形象風險；對內那半=做夢思考/思考佇列/寫 memory，有用。取對內、砍全部對外、OpenClaw→Hermes、簡→臺灣繁體；純頻率＋時段控制、兩層只對內強制（toolsets file＋allowed-tools）。MIT、75★。未在 Hermes 實測） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_

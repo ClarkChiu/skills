@@ -19,6 +19,7 @@ dependencies:
   - ./verify-before-done/
   - ./systematic-debugging/
   - ./ui-design-advisor/
+  - ./solo-think/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []

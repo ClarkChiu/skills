@@ -29,6 +29,7 @@ Order: `design-gate (before) → execution (CLAUDE discipline) → verify-before
 - `slide-deck`: produces a single-file HTML slide deck.
 - `p2pscout`: BitTorrent resource search + downloadability ranking (Go tool).
 - `ui-design-advisor`: the UI **decision** layer — picks style / palette / fonts / charts / a11y for a screen from a vendored design-data library, outputs a design brief, then hands to `frontend-design` to build. Data vendored (data only, MIT) from ui-ux-pro-max + dictionary-of-colour-combinations + ux-ui-agent-skills (a11y) + SteveBarnett/Checklists. Pipeline: `ui-design-advisor (decide look) → frontend-design (implement)`.
+- `solo-think`: autonomous **inward** reflection for a Hermes Agent — a heartbeat-triggered loop (dream reflection + thinking queue) that writes thoughts to memory and **never acts outward**. Inward-only is structurally enforced (heartbeat `--toolsets file` + skill `allowed-tools` Read/Write/Edit); reflection is grounded by a user-set `focus`, bounded by `active_hours`, and paced by heartbeat frequency (no agent-side token tally). Rewritten in Taiwan Traditional Chinese from `loryoncloud/Heartbeat-Like-A-Man` (MIT) with all outward actions (autonomous exploration, community patrol) stripped and ported OpenClaw→Hermes. Standalone — does NOT collect intelligence or notify (that outward/inbound-collection track lives in the separate `tg-intelligence-hub` project, not here).
 
 ## Boundaries vs built-in skills (the easiest collisions when evaluating externals)
 
