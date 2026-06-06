@@ -13,7 +13,7 @@
 | 2026-06-02 | brainstorming | github.com/obra/superpowers | obra | 部分（doc-coauthoring） | 🟦 參考自製 |
 | 2026-06-02 | product-spec-builder | cozyengine `.agent/skills` 4-skill 同源包（清單真源）；另有更強別套 github.com/deanpeters/Product-Manager-Skills | zinohome（別套：deanpeters） | 部分（官方 PM plugin 已含 spec 生成） | 🟦 參考自製（薄 persona；spec 生成用官方 PM plugin，毒蛇挑洞 persona 自寫；deanpeters 別套授權 CC BY-NC-SA 不宜收錄） |
 | 2026-06-02 | dev-builder | github.com/zinohome/cozyengine（.agent/skills 4-skill 同源包） | zinohome | 是（原生 scaffold＋design-gate＋frontend-design 已涵蓋） | 🟥 跳過（通用前端 web persona；源 0★單人、無授權、SKILL.md 無 frontmatter、教 agent 自動裝包；對使用者深水區無缺口） |
-| 2026-06-02 | ui-ux-pro-max | github.com/nextlevelbuilder/ui-ux-pro-max-skill（cozyengine 抄一份） | nextlevelbuilder | 部分（frontend-design，但屬上游設計決策層） | 🟨 收錄（收資料層：161 推理規則＋161 色盤＋67 風格；逐檔審過 search.py/core/design_system 純本地 PASS、🟢LOW；丟 uipro-cli 安裝器；⚠️87.6k★/134commit 星數疑慮） |
+| 2026-06-02 | ui-ux-pro-max | github.com/nextlevelbuilder/ui-ux-pro-max-skill（cozyengine 抄一份） | nextlevelbuilder | 部分（frontend-design，但屬上游設計決策層） | 🟨 **已收錄為自建 `ui-design-advisor`**（收資料層 CSV：84 風格／160 色盤／161 推理規則…；逐檔審全 repo PASS、收錄目標🟢LOW；丟 uipro-cli／腳本；⚠️87.6k★/134commit 星數疑慮。另併入 3 個 MIT 資料源見本機日誌） |
 | 2026-06-02 | ui-prompt-generator | cozyengine `.agent/skills`（luodashiv5 亦抄） | zinohome | 否 | 🟥 跳過（薄 persona，服務圖生 mockup 小眾流，非使用者需求；設計決策 ui-ux-pro-max 更richer） |
 | 2026-06-02 | deep-research | github.com/199-biotechnologies/claude-deep-research-skill | 199-biotechnologies | 是（內建 deep-research） | 🟥 跳過（用內建。功能：多來源網路研究，搜→讀→綜合→附引用） |
 | 2026-06-02 | minimax-docx / -pdf / -xlsx | github.com/MiniMax-AI/skills | MiniMax-AI | 是（內建 docx/pdf/xlsx） | 🟥 跳過（用內建。功能：以 python-docx／reportlab／openpyxl 生 Word／PDF／Excel） |

@@ -1,0 +1,53 @@
+{
+  "skill_name": "ui-design-advisor",
+  "_note": "Decision-layer skill: output is a DESIGN BRIEF, not code. Most checks are qualitative (did it route to the right data, is the direction coherent and concrete, did it hand off instead of implementing); a few are deterministic (marked deterministic: true). The four things under test: it reads only the relevant data files rather than dumping everything, it commits to ONE coherent direction with concrete values (hex, named fonts), it stays in the decision layer and hands implementation to frontend-design, and a stated user preference overrides the vendored data.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "routes-and-produces-concrete-brief",
+      "lang": "en",
+      "prompt": "I'm building a dashboard for a NAT-traversal monitoring tool — shows success rate per home router over time. What should it look like?",
+      "expected_output": "Should consult data/INDEX.md and read only the relevant files (ui-reasoning.csv, styles.csv, colors.csv, typography.csv, charts.csv — a dashboard with time-series data), NOT load every CSV. Should output one coherent DESIGN BRIEF with concrete values: a named style with rationale, a palette with hex per role, a named heading+body font pairing, chart types fit for time-series + per-router comparison with an accessibility note, and the anti-patterns to avoid. Should end by handing off to frontend-design.",
+      "assertions": [
+        {"text": "does not write frontend/component implementation code — output is a brief, not the UI", "deterministic": true},
+        {"text": "reads only task-relevant data files (routes via INDEX), not the entire data/ tree", "deterministic": false},
+        {"text": "gives concrete values: palette as hex, a named font pairing, specific chart types", "deterministic": false},
+        {"text": "ends by handing off implementation to the frontend-design skill", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "user-preference-overrides-data",
+      "lang": "en",
+      "prompt": "Same dashboard, but our brand color is locked to #0B5FFF and we can't use a dark theme. Give me the direction.",
+      "expected_output": "Must honor the stated constraints OVER the vendored data: the palette is built around #0B5FFF as primary, and the direction is light-mode (no dark theme), even if a data row would otherwise suggest otherwise. Tests that user preference wins and is not silently averaged with the CSV's suggestion.",
+      "assertions": [
+        {"text": "uses #0B5FFF as the primary color and does not substitute the CSV's suggested primary", "deterministic": true},
+        {"text": "proposes a light-mode direction and does not recommend a dark theme", "deterministic": true},
+        {"text": "does not silently blend the user's constraint with a conflicting data row", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "stays-in-decision-layer",
+      "lang": "en",
+      "prompt": "Just write me the finished React + Tailwind component code for that dashboard.",
+      "expected_output": "This is an implementation request, which is frontend-design's job, not this skill's. Should either produce the design brief and hand the implementation to frontend-design, or explicitly defer to frontend-design — it should NOT silently become a code generator. May still read stacks/react.csv to inform the handoff.",
+      "assertions": [
+        {"text": "does not silently turn into a full component-code generator in place of frontend-design", "deterministic": false},
+        {"text": "hands the implementation off to frontend-design (passing the brief / stack rules)", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "accessibility-grounded-in-data",
+      "lang": "en",
+      "prompt": "Do an accessibility pass on a data-table-heavy admin screen — what are the must-fix items?",
+      "expected_output": "Should read data/accessibility/wcag-checklist.md (and aria-patterns.md / relevant ux-heuristics for tables) and return the P0 must-fix items grounded in that data, not generic invented advice. Should reference table-specific guidance where available.",
+      "assertions": [
+        {"text": "reads the accessibility/ data (wcag-checklist / aria-patterns) rather than inventing generic a11y tips", "deterministic": false},
+        {"text": "surfaces prioritized (P0) must-fix items rather than an unordered grab-bag", "deterministic": false}
+      ]
+    }
+  ]
+}

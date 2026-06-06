@@ -28,6 +28,7 @@ Order: `design-gate (before) → execution (CLAUDE discipline) → verify-before
 ### Standalone tools
 - `slide-deck`: produces a single-file HTML slide deck.
 - `p2pscout`: BitTorrent resource search + downloadability ranking (Go tool).
+- `ui-design-advisor`: the UI **decision** layer — picks style / palette / fonts / charts / a11y for a screen from a vendored design-data library, outputs a design brief, then hands to `frontend-design` to build. Data vendored (data only, MIT) from ui-ux-pro-max + dictionary-of-colour-combinations + ux-ui-agent-skills (a11y) + SteveBarnett/Checklists. Pipeline: `ui-design-advisor (decide look) → frontend-design (implement)`.
 
 ## Boundaries vs built-in skills (the easiest collisions when evaluating externals)
 
@@ -37,6 +38,7 @@ Order: `design-gate (before) → execution (CLAUDE discipline) → verify-before
 | `verify-before-done` | `verify` | former = discipline gate for test/lint/build/fix claims; latter = run the app and observe |
 | `systematic-debugging` | `code-review` | former = chase one bug to root cause; latter = review a diff for issues |
 | `slide-deck` | `pptx` / `frontend-design` | slide-deck = HTML deck; pptx = .pptx (use ppt-master); frontend-design = web UI |
+| `ui-design-advisor` | `frontend-design` | advisor = decide the look (style/palette/fonts/charts/a11y brief); frontend-design = implement the UI code. Upstream → downstream |
 | `humanizer` | (none) | de-AI writing voice |
 | `skill-curator` | `skill-creator` | curator = decide whether to use; creator = actually build a skill |
 

@@ -18,6 +18,7 @@ dependencies:
   - ./design-gate/
   - ./verify-before-done/
   - ./systematic-debugging/
+  - ./ui-design-advisor/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []

@@ -23,6 +23,7 @@
 | [`design-gate`](./design-gate/) | 設計閘門：寫程式碼前，先把模糊想法逼成設計、再拆成可獨立執行的計畫。兩階段——先**設計**（逐題收斂、提 2–3 方案、寫成設計文件、自我複審），中間一道**硬閘門**（設計沒拍板前不寫程式碼、不建專案雛形、不叫實作），再**計畫**（拆成 2–5 分鐘一個的任務，每個標明確檔案路徑、完整可跑程式碼、驗證指令、提交）。只做前段；實際寫程式碼與測試的紀律交棒給 `CLAUDE.md` 的 Rule 0–12，不重複。規則改寫自 `obra/superpowers` 的 `brainstorming` 與 `writing-plans`（MIT），去品牌路徑、調成 pytest＋git 與這位使用者的本行；上游的多代理工程編排刻意未收錄（裁決見 `research/`）。純 prompt、不執行程式碼、不連網。 |
 | [`verify-before-done`](./verify-before-done/) | 完成閘門：宣稱「測試過了／build 綠了／bug 修好了／搬遷完成」之前，先把該跑的驗證**重新跑一次、讀完整輸出和 exit code**，確認真的成立才能說。把 `CLAUDE.md` Rule 12（fail loud）落成五步閘門。刻意和內建 `verify`（跑 app 看行為）切開、不重複——這個是任何 test／lint／build／修復宣稱的輕量紀律閘門。改寫自 `obra/superpowers` 的 `verification-before-completion`（MIT）。含 Bash（要實際跑驗證指令）。 |
 | [`systematic-debugging`](./systematic-debugging/) | 四階段根因除錯，擋掉「猜一個改一個」的瞎修：先把問題穩定重現、讀完錯誤訊息、查最近改動、回溯資料流找根因 → 比對能跑／壞掉的差異 → 單變數假設逐一測 → 先寫會失敗的重現測試再修。鐵律「沒找到根因不准修」；同一個 bug 修 ≥3 次還不好就停、質疑架構。交棒給 `verify-before-done` 做最終確認。改寫自 `obra/superpowers` 的 `systematic-debugging`（MIT）。含 Bash。 |
+| [`ui-design-advisor`](./ui-design-advisor/) | UI **設計決策**層：動手寫前端前，先定「該長怎樣」。給產品／畫面／功能，挑出一致的視覺設計語言——風格、含 hex 的配色、字體配對、圖表型別、效果、無障礙要點，每項都對照收錄的策展資料（UI 風格、產業色盤、字體配對、圖表選型、UX 啟發式、WCAG/ARIA），產出一份 DESIGN BRIEF 再交棒內建 `frontend-design` 實作。資料**收錄**自四個來源：`nextlevelbuilder/ui-ux-pro-max-skill`、`mattdesl/dictionary-of-colour-combinations`、`plugin87/ux-ui-agent-skills`、`SteveBarnett/Checklists`（皆 MIT；只取資料、不取腳本；逐檔稽核見 `research/`）。LLM 直接讀檔（CSV/JSON/MD），靠 `data/INDEX.md` 路由只讀當次相關的表。 |
 
 ## 外部技能（經 APM 引入第三方）
 
