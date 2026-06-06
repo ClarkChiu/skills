@@ -21,5 +21,6 @@
 | 2026-06-05 | book-to-skill | github.com/virgiliojr94/book-to-skill | virgiliojr94 | 否 | 🟥 跳過（一次性 generator，用時再拉） |
 | 2026-06-06 | LRC（Loong Recall） | github.com/zhibaiYingChuan/LRC | zhibaiYingChuan | 是（內建記憶＋Grep/Agent 找碼） | 🟥 跳過（MCP server 非 skill；重複內建記憶＋搜尋；授權 NOASSERTION／自訂研究授權；1 週單人未驗；語意核心 GraphCodeBERT 對本使用者邊際） |
 | 2026-06-06 | AiToEarn | github.com/yikart/AiToEarn | yikart | 否（內容變現平台，非技能） | 🟥 跳過（創作者內容變現平台，不在使用者守備範圍；需第三方帳號＋社群授權＋機器人式自動互動，封號／信任風險；MIT、18.2k★，但再紅不等於適合） |
+| 2026-06-06 | Opportunity-Mining-Agent | github.com/whitesungun876/Opportunity-Mining-Agent | whitesungun876 | 否（自架研究應用程式，非技能） | 🟥 跳過，歸用時再拉（從 GitHub 議題挖新創機會的自架全端程式；偏創業窄用途、非當前需求；11★單人未驗；方法可取。Apache-2.0、有模擬模式） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
