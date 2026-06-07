@@ -40,6 +40,13 @@ inside a Latin word.
   `3.5公斤` → `3.5 公斤` (digit↔Han). Both are acceptable Taiwan style; some
   style guides also write `5 GB`. The script does not force a space *inside*
   number-unit pairs.
+- Markdown emphasis markers (`**bold**`, `__bold__`, `~~strike~~`) are
+  **transparent** to spacing: the space goes *outside* the whole marker group,
+  never between the marker and its content. `中文**bold**中文` →
+  `中文 **bold** 中文`; `**來源**：` stays intact (a space inside — `** 來源 **`
+  — would break the markup). This matches pangu.js behavior. `*` is deliberately
+  not a spacing-trigger symbol on its own; math like `3*4` still gets its CJK
+  boundary spaces from the digit rule.
 
 ---
 
@@ -122,6 +129,22 @@ localization is what makes the output actually read as Taiwan Traditional Chines
 prints a loud warning to stderr and exits with code 2, and this step is skipped.
 Install with `pip install opencc-python-reimplemented`. Never silently pass
 simplified text through as if converted.
+
+**Already-Traditional input is skipped, per line.** Vocabulary localization only
+makes sense when the source really is Simplified — OpenCC's phrase dictionary
+assumes mainland semantics (mainland 文件 = file), so running s2twp over text a
+Taiwanese author already wrote rewrites their word choices wrongly: 文件→檔案,
+登錄→登入, 聲明→宣告, and even segmentation disasters (英文「本體」 read as
+英「文本」體 → 英文「字體」). The script therefore uses a char-only `s2t` pass as
+a detector: a line that round-trips unchanged is already Traditional and is left
+alone (a loud `NOTE` on stderr says how many lines were skipped); only lines
+containing Simplified-specific characters are converted. Per-line granularity
+keeps mixed documents correct — a Traditional article quoting a Simplified
+passage converts just the quote. `--force-convert` restores whole-text
+conversion. Known limit: characters where one Simplified form maps to several
+Traditional ones (e.g. the 干 of 干擾, which `s2t` rewrites to 幹) make that line
+look Simplified and it gets converted — identical to the old whole-text
+behavior, so the detector never makes things worse.
 
 ---
 

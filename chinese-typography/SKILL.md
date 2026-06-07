@@ -85,7 +85,9 @@ or the user questions a specific change.
 
 - **盤古之白** — one half-width space between Han and Latin/digits: `Python3` in
   `使用Python3` → `使用 Python3`. Improves legibility; it is the single most
-  common omission in Chinese tech writing.
+  common omission in Chinese tech writing. Markdown emphasis markers are
+  transparent: `中文**bold**中文` → `中文 **bold** 中文`, and the space never
+  lands inside the markers (`**來源**` stays intact).
 - **全形標點** — ASCII punctuation *in Chinese context* becomes full-width:
   `中文,` → `中文，`, `對吧?` → `對吧？`. The script only converts marks adjacent
   to CJK, so English sentences and code stay half-width.
@@ -93,6 +95,10 @@ or the user questions a specific change.
   standard (mainland uses `""`). Nested quotes use `『』`.
 - **簡轉繁 + 臺灣用語** — OpenCC `s2twp`: not just character conversion but
   vocabulary localization — 软件→軟體, 鼠标→滑鼠, 视频→影片, 内存→記憶體.
+  Applied **per line, only to lines that actually contain Simplified characters**
+  — already-Traditional lines are skipped (with a stderr `NOTE`), because
+  re-converting Traditional text rewrites the author's word choices wrongly
+  (文件→檔案, 登錄→登入). `--force-convert` restores whole-text conversion.
 - **異體字** — Taiwan-preferred glyphs (裏→裡). Conservative by default. Place
   names 台→臺 are OFF by **code default** (both are accepted; 台 is far more
   common in everyday writing): OpenCC's `s2twp` forces 臺, so the default reverts
@@ -213,9 +219,11 @@ judgment — the script can't know intent:
 - **Quotes that aren't quotes**: a straight `"` used as an inch mark or an
   unpaired apostrophe. The script only converts *paired* straight quotes on one
   line, so this is rare, but scan the diff.
-- **Deliberate Simplified content** (a quotation, a mainland product name). If
-  the user wants part of the text left simplified, run with `--no-convert` and
-  convert the rest manually, or restore that span afterward.
+- **Deliberate Simplified content** (a quotation, a mainland product name).
+  Per-line detection already leaves Traditional lines alone, so a Simplified
+  quote on its own line converts while the rest is untouched — but if the user
+  wants a Simplified span *kept* Simplified, run with `--no-convert` and convert
+  the rest manually, or restore that span afterward.
 
 When you override, **say what and why** in one line. Don't silently diverge from
 the script's output — the user should be able to trust that what the script

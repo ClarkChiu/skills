@@ -61,12 +61,39 @@ CASES = [
     ("賬→帳（撞 Beancount 記帳）", "記賬", "記帳", {}),
     ("vocab_fixes 攝像頭→攝影機", "攝像頭", "攝影機", {}),
     ("vocab_fixes 不誤傷 識別證（只收人臉識別）", "員工識別證", "員工識別證", {}),
+    # markdown 強調符號：空格補在標記外側，絕不插進標記與內容之間
+    ("Markdown 粗體不被撐破（曾經的 bug：**來源** → ** 來源 **）",
+     "**來源**：後面的內容", "**來源**：後面的內容", {}),
+    ("粗體外側補空格、內側不插：中文**bold**中文",
+     "中文**bold**中文", "中文 **bold** 中文", {}),
+    ("底線強調同理：中文__bold__中文",
+     "中文__bold__中文", "中文 __bold__ 中文", {}),
+    ("星號數學式仍有 CJK 邊界空格", "答案是3*4啦", "答案是 3*4 啦", {}),
+]
+
+# 需要 OpenCC 才能跑的案例（s2twp 逐行偵測）。缺套件時整段跳過並大聲說，
+# 不假裝通過 —— 與 normalize.py 對 OpenCC 缺席的 fail-loud 立場一致。
+OPENCC_CASES = [
+    # (說明, 輸入, 期望輸出, kwargs)  —— 這裡 convert 預設「開」
+    ("簡體輸入照轉（软件→軟體）", "这个软件很好用", "這個軟體很好用", {}),
+    ("已是繁體：文件 不被二次轉成 檔案", "請看這份文件", "請看這份文件", {}),
+    ("已是繁體：登錄／聲明 不被改成 登入／宣告",
+     "登錄資訊與授權聲明", "登錄資訊與授權聲明", {}),
+    ("已是繁體：英文本體 不被切成 英文字體（曾經的切詞災難）",
+     "英文本體很重要", "英文本體很重要", {}),
+    ("混排：簡體行照轉、繁體行不動",
+     "繁體的文件\n简体的软件", "繁體的文件\n簡體的軟體", {}),
+    ("--force-convert 回到整篇轉換（文件→檔案）",
+     "請看這份文件", "請看這份檔案", dict(force_convert=True)),
 ]
 
 
 def main():
-    fails = 0
-    for desc, src, want, kw in CASES:
+    fails = total = 0
+
+    def run(desc, src, want, kw):
+        nonlocal fails, total
+        total += 1
         got = n(src, **kw)
         ok = got == want
         if not ok:
@@ -76,7 +103,18 @@ def main():
             print(f"      input:  {src!r}")
             print(f"      want:   {want!r}")
             print(f"      got:    {got!r}")
-    print(f"\n{len(CASES)-fails}/{len(CASES)} passed")
+
+    for desc, src, want, kw in CASES:
+        run(desc, src, want, kw)
+
+    try:
+        import opencc  # noqa: F401
+        for desc, src, want, kw in OPENCC_CASES:
+            run(desc, src, want, {**kw, 'convert': True})
+    except ImportError:
+        print(f"SKIP  OpenCC not installed — {len(OPENCC_CASES)} 條 s2twp 逐行偵測案例未跑")
+
+    print(f"\n{total-fails}/{total} passed")
     raise SystemExit(1 if fails else 0)
 
 

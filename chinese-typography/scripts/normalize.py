@@ -7,7 +7,8 @@
 
 處理流程（順序有意義，每一步的理由見下方註解）：
   1. 保護 code / URL / 路徑 / 版本號 / email（這些絕不更動）
-  2. OpenCC s2twp           簡體→繁體 ＋ 台灣慣用詞（選用相依套件，缺少時大聲警告）
+  2. OpenCC s2twp           簡體→繁體 ＋ 台灣慣用詞（逐行偵測：已是繁體的行跳過，
+                            --force-convert 強制整篇轉；選用相依套件，缺少時大聲警告）
   3. 異體字 / 常見錯字 修正  （小型精選對照表）
   4. 引號正規化              直引號／彎引號 → 「」『』
   5. 標點全形化              中文語境的半形標點 → ，。；：？！（）
@@ -129,6 +130,15 @@ def _restore(text, store, verbatim=None):
 # （软件→軟體、鼠标→滑鼠、视频→影片）。這是一份很大的辭典，
 # 不要嘗試自己手刻。若 OpenCC 缺席，我們大聲失敗（Rule 12），
 # 讓呼叫端知道這段文字「沒有」被轉換，而不是默默讓簡體字溜過去。
+#
+# 逐行偵測（2026-06-07）：詞彙在地化只該套在「真正的簡體來源」上。OpenCC 的詞庫
+# 以「來源語意是大陸用法」為前提（大陸的「文件」= file），對已是繁體的文字二次
+# 轉換會把作者選好的詞改錯：文件→檔案、登錄→登入、聲明→宣告，甚至切詞失敗
+# （英文「本體」→ 英「文本」體 → 英文「字體」）。因此先用 s2t（純字轉）當偵測器：
+# 一行轉完等於原樣，就是繁體行，跳過 s2twp；含簡體專屬字的行才轉。逐行粒度讓
+# 「繁體文章引用簡體段落」的混排也正確。--force-convert 可回到整篇轉換的舊行為。
+# 已知侷限：一簡對多繁的字（如「干擾」的 干，s2t 也會改成 幹）會讓該行被誤判為
+# 簡體而照轉——這與舊的整篇模式行為相同，逐行偵測沒有讓它更糟。
 _OPENCC_HINT = (
     "WARNING: OpenCC not installed — 簡轉繁/台灣用語 step SKIPPED. "
     "Text was NOT converted simplified→traditional. "
@@ -136,23 +146,44 @@ _OPENCC_HINT = (
 )
 
 
-def _opencc_convert(text):
+def _opencc_convert(text, force=False):
     try:
         from opencc import OpenCC
     except ImportError:
         print(_OPENCC_HINT, file=sys.stderr)
         return text, False
-    try:
-        return OpenCC('s2twp').convert(text), True
-    except Exception as e:  # 不同移植版的設定檔名稱不一
-        for cfg in ('s2twp.json', 's2t'):
+
+    def _make(cfgs):  # 不同移植版的設定檔名稱不一
+        for cfg in cfgs:
             try:
-                return OpenCC(cfg).convert(text), True
+                return OpenCC(cfg)
             except Exception:
                 continue
-        print(f"WARNING: OpenCC present but conversion failed ({e}); text unchanged.",
+        return None
+
+    cc = _make(('s2twp', 's2twp.json', 's2t'))
+    if cc is None:
+        print("WARNING: OpenCC present but conversion failed; text unchanged.",
               file=sys.stderr)
         return text, False
+    if force:
+        return cc.convert(text), True
+    det = _make(('s2t', 's2t.json'))
+    if det is None:           # 偵測器建不起來 → 退回整篇轉換（舊行為）
+        return cc.convert(text), True
+    out, skipped = [], 0
+    for line in text.split('\n'):
+        if not ANY_CJK.search(line):
+            out.append(line)               # 無中文的行不關 s2twp 的事
+        elif det.convert(line) != line:
+            out.append(cc.convert(line))   # 含簡體專屬字 → 轉
+        else:
+            skipped += 1
+            out.append(line)               # 已是繁體 → 不准二次轉換
+    if skipped:
+        print(f"NOTE: {skipped} 行已是繁體，略過 s2twp 簡轉繁／詞彙在地化"
+              f"（--force-convert 可強制整篇轉換）。", file=sys.stderr)
+    return '\n'.join(out), True
 
 
 # ---------------------------------------------------------------------------
@@ -260,14 +291,25 @@ def _fix_punct(text):
 # （, . ; : ! ? ~）刻意排除 ── 那是標點階段的工作。
 # 若呼叫端傳 --no-punct，半形逗號就該原地不動，不該多出一個結尾空格。
 _ANS = r'A-Za-z0-9'
-_SYM = r'@$%^&*\-+=|/`'   # 反引號納入，讓行內 code 與中文之間也有盤古之白
+# 星號刻意「不」收進 _SYM：中文文本裡的 * 幾乎都是 markdown 強調符號（**粗體**），
+# 收進去會把空格插進標記和內容之間（**來源** → ** 來源 **），直接撐破粗體。
+# 數學式 3*4 沒有 CJK 邊界，不受影響；中文緊鄰星號的情況由下方透明化規則處理。
+_SYM = r'@$%^&\-+=|/`'   # 反引號納入，讓行內 code 與中文之間也有盤古之白
 _CJK_ANS = re.compile(f'([{CJK}])([{_ANS}{_SYM}])')
 _ANS_CJK = re.compile(f'([{_ANS}{_SYM}])([{CJK}])')
+# markdown 強調符號（**粗體**、__底線__、~~刪除~~）透明化：補不補空格看符號
+# 「包住的內容」對外面的字元，空格永遠補在整組標記的「外側」，絕不插進標記與
+# 內容之間（同 pangu.js 行為）：中文**bold**中文 → 中文 **bold** 中文。
+_MARK = r'\*_~'
+_CJK_MARK_ANS = re.compile(f'([{CJK}])([{_MARK}]+)([{_ANS}])')
+_ANS_MARK_CJK = re.compile(f'([{_ANS}])([{_MARK}]+)([{CJK}])')
 
 
 def _pangu(text):
     text = _CJK_ANS.sub(r'\1 \2', text)
     text = _ANS_CJK.sub(r'\1 \2', text)
+    text = _CJK_MARK_ANS.sub(r'\1 \2\3', text)   # 空格補在標記外側（左）
+    text = _ANS_MARK_CJK.sub(r'\1\2 \3', text)   # 空格補在標記外側（右）
     return text
 
 
@@ -380,7 +422,7 @@ def _load_user_dict(path=None):
 # ---------------------------------------------------------------------------
 def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
               spacing=True, width=True, casing=True, formal_tai=False,
-              user_dict=None):
+              force_convert=False, user_dict=None):
     user_dict = user_dict or {}
     if 'formal_tai' in user_dict:           # 個人字典可覆寫 台/臺 預設
         formal_tai = user_dict['formal_tai']
@@ -388,7 +430,7 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
     text, store = _protect(text, extra_protect=user_dict.get('protect'))
     opencc_ok = None
     if convert:
-        text, opencc_ok = _opencc_convert(text)
+        text, opencc_ok = _opencc_convert(text, force=force_convert)
     if width:
         text = _to_halfwidth(text)
     if fixes:
@@ -434,6 +476,8 @@ def main():
     ap.add_argument('--diff', action='store_true', help='print unified diff only')
     ap.add_argument('--formal-tai', action='store_true', help='convert 台→臺 in place names')
     ap.add_argument('--no-convert', action='store_true', help='skip OpenCC simp→trad')
+    ap.add_argument('--force-convert', action='store_true',
+                    help='run s2twp on every line, even lines already Traditional')
     ap.add_argument('--no-fixes', action='store_true', help='skip 異體字 fixes')
     ap.add_argument('--no-quotes', action='store_true', help='skip quote normalization')
     ap.add_argument('--no-punct', action='store_true', help='skip punctuation full-width')
@@ -466,6 +510,7 @@ def main():
         width=not args.no_width,
         casing=not args.no_casing,
         formal_tai=args.formal_tai,
+        force_convert=args.force_convert,
         user_dict=user_dict,
     )
 
