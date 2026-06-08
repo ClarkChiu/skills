@@ -24,6 +24,10 @@ dependencies:
   - ./roleplay-coach/
   - ./social-card/
   - ./decision-lens/
+  - ./tdd/
+  - ./git-guardrails/
+  - ./terse/
+  - ./to-issues/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []
