@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-06-08T08:42:39.986262+00:00'
+generated_at: '2026-06-08T13:30:11.920150+00:00'
 apm_version: 0.14.2
 dependencies:
 - repo_url: _local/chinese-typography
@@ -23,6 +23,13 @@ dependencies:
   - .claude/skills/design-gate
   source: local
   local_path: ./design-gate/
+- repo_url: _local/git-guardrails
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/git-guardrails
+  - .claude/skills/git-guardrails
+  source: local
+  local_path: ./git-guardrails/
 - repo_url: _local/humanizer
   package_type: claude_skill
   deployed_files:
@@ -100,6 +107,27 @@ dependencies:
   - .claude/skills/systematic-debugging
   source: local
   local_path: ./systematic-debugging/
+- repo_url: _local/tdd
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/tdd
+  - .claude/skills/tdd
+  source: local
+  local_path: ./tdd/
+- repo_url: _local/terse
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/terse
+  - .claude/skills/terse
+  source: local
+  local_path: ./terse/
+- repo_url: _local/to-issues
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/to-issues
+  - .claude/skills/to-issues
+  source: local
+  local_path: ./to-issues/
 - repo_url: _local/tutor
   package_type: claude_skill
   deployed_files:
