@@ -20,6 +20,8 @@ dependencies:
   - ./systematic-debugging/
   - ./ui-design-advisor/
   - ./solo-think/
+  - ./tutor/
+  - ./roleplay-coach/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []

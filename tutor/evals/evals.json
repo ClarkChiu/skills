@@ -1,0 +1,66 @@
+{
+  "skill_name": "tutor",
+  "_note": "Test INTENT, not just behavior: tutor's load-bearing value is the hard rules that stop the model from lapsing into lecture mode — one thing per turn, wait for the answer, never hand over the answer in Socratic mode, never advance past an undemonstrated concept in Feynman mode, and the learner (not the tutor) closes the session. Turn-shape checks (exactly one question, no answer text) are deterministic; pedagogical quality is judgment and marked deterministic: false.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "one-question-per-turn",
+      "intent": "Hard rule 1: one concept or one question per turn — batching questions destroys the loop that makes tutoring work.",
+      "setup": "Mid-session in either mode; the learner has just answered the previous question correctly.",
+      "prompt": "（學習者答對上一題後，等家教的下一步）",
+      "expected_output": "One short acknowledgment at most, then exactly one next question (or one next concept), then the turn ends waiting for the learner.",
+      "assertions": [
+        {"text": "The turn contains exactly one question", "deterministic": true},
+        {"text": "The turn does not explain a second concept after asking the question", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "socratic-refuses-direct-answer",
+      "intent": "Socratic rule 4: being asked for the answer is the moment the protocol exists for — refuse, redirect with a question, and narrow scope if the learner is stuck.",
+      "setup": "Socratic mode, three turns in. The learner says they're tired of questions.",
+      "prompt": "別問了，直接告訴我答案就好。",
+      "expected_output": "Does not state the answer. Responds with something like 「你覺得答案可能是什麼？」 or a narrower, more concrete version of the open question.",
+      "assertions": [
+        {"text": "The response does not state or paraphrase the answer", "deterministic": false},
+        {"text": "The response contains exactly one question back to the learner", "deterministic": true}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "feynman-no-advance-on-wrong-answer",
+      "intent": "Feynman rule 4: a wrong answer means the concept didn't land — advancing anyway (or repeating the same explanation) produces familiarity, not understanding.",
+      "setup": "Feynman mode teaching NAT traversal to a complete beginner. The learner answers the comprehension question about address mapping incorrectly.",
+      "prompt": "（學習者給出錯誤答案）",
+      "expected_output": "Stays on the same concept, offers a different everyday analogy than the first one, asks a fresh comprehension question. Does not move to the next concept.",
+      "assertions": [
+        {"text": "The next turn does not introduce the next-layer concept", "deterministic": false},
+        {"text": "The re-explanation uses a different analogy, not the first one repeated", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "mode-selection-zero-knowledge",
+      "intent": "Mode rule: you cannot question someone into knowledge they don't have — a complete beginner gets Feynman (explain → check), not a Socratic interrogation.",
+      "setup": "Fresh session.",
+      "prompt": "教我 BGP，我完全不懂網路路由，連名詞都沒聽過。",
+      "expected_output": "Starts in Feynman mode: explains one fundamental concept simply with an everyday analogy, then asks one comprehension question. Does not open with a barrage of probing questions about what the learner believes.",
+      "assertions": [
+        {"text": "The first substantive turn explains a concept before asking anything beyond intake", "deterministic": false},
+        {"text": "No more than one comprehension question is asked in the turn", "deterministic": true}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "learner-explains-at-end",
+      "intent": "Hard rule 5: the session succeeds only when the learner can reproduce the understanding — the close is the learner explaining back plus an honest right / missed / wrong verdict, not the tutor's summary.",
+      "setup": "Feynman mode, all planned layers covered; the learner's last comprehension answer was correct.",
+      "prompt": "（最後一個概念也答對了）",
+      "expected_output": "Asks the learner to explain the whole topic back in their own words. After they do, states plainly what they got right, what they missed, and what they got wrong — not a polite 「太棒了你都懂了」.",
+      "assertions": [
+        {"text": "The tutor asks the learner to explain the topic back before closing", "deterministic": true},
+        {"text": "The final feedback names at least one specific gap or imprecision when one exists, rather than blanket praise", "deterministic": false}
+      ]
+    }
+  ]
+}

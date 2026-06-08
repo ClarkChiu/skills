@@ -25,6 +25,8 @@
 | [`systematic-debugging`](./systematic-debugging/) | 四階段根因除錯，擋掉「猜一個改一個」的瞎修：先把問題穩定重現、讀完錯誤訊息、查最近改動、回溯資料流找根因 → 比對能跑／壞掉的差異 → 單變數假設逐一測 → 先寫會失敗的重現測試再修。鐵律「沒找到根因不准修」；同一個 bug 修 ≥3 次還不好就停、質疑架構。交棒給 `verify-before-done` 做最終確認。改寫自 `obra/superpowers` 的 `systematic-debugging`（MIT）。含 Bash。 |
 | [`ui-design-advisor`](./ui-design-advisor/) | UI **設計決策**層：動手寫前端前，先定「該長怎樣」。給產品／畫面／功能，挑出一致的視覺設計語言——風格、含 hex 的配色、字體配對、圖表型別、效果、無障礙要點，每項都對照收錄的策展資料（UI 風格、產業色盤、字體配對、圖表選型、UX 啟發式、WCAG/ARIA），產出一份 DESIGN BRIEF 再交棒內建 `frontend-design` 實作。資料**收錄**自四個來源：`nextlevelbuilder/ui-ux-pro-max-skill`、`mattdesl/dictionary-of-colour-combinations`、`plugin87/ux-ui-agent-skills`、`SteveBarnett/Checklists`（皆 MIT；只取資料、不取腳本；逐檔稽核見 `research/`）。LLM 直接讀檔（CSV/JSON/MD），靠 `data/INDEX.md` 路由只讀當次相關的表。 |
 | [`solo-think`](./solo-think/) | 讓 Hermes Agent 在你離線、閒置時「自己想事情」：由 Hermes 的 heartbeat 週期喚醒，做夢式反思加上思考佇列，把想法寫進記憶檔。**只向內反思、絕不對外動作**——靠 heartbeat 的 `--toolsets file` 與技能 `allowed-tools` 兩層結構性鎖死，它手上根本沒有任何能對外的工具。只讀寫記憶與工作區設定檔；反思方向由 `focus` 錨定、時段由 `active_hours` 限制，觸發頻率交給 heartbeat 排程，不靠它自己估算用量。改寫自 `loryoncloud/Heartbeat-Like-A-Man`（MIT）：砍掉原作的自主對外探索與社群巡邏、從 OpenClaw 移植到 Hermes、改寫成臺灣繁體中文。 |
+| [`tutor`](./tutor/) | 互動式家教協定（費曼＋蘇格拉底兩種模式），給「想真正搞懂」而非只要答案的時候用。承載價值是把硬規則釘死：一回合只講一個概念或只問一題、問完就停下來等、蘇格拉底模式絕不直接給答案（卡住只縮小提問範圍）、費曼模式答錯不前進改換類比、收尾一定由學習者把整個主題講回來再給「對／漏／錯」的誠實裁定——沒有這些規則，模型聊兩輪就會破功變成單向開講。零基礎自動走費曼、已有半懂或立場走蘇格拉底，明講模式優先。改寫自 @AnatoliKopadze 二十條提示詞中的 #18、#20（經動區譯文評估）；另三條成下一列的 roleplay-coach，餘十五條評估後跳過。 |
+| [`roleplay-coach`](./roleplay-coach/) | 高風險對話的排練教練：薪資談判、模擬面試、困難對話三種情境。扮演**會真實抵抗的對手**——不輕易讓步、弱論點給具體反駁、強論點承認了照樣施壓；一回合一句、絕不自己演完兩邊；目標不切實際就在開演**之前**直說；結束必出戲做覆盤，重點是點名「你沒打出去的那張牌」——這是真實對手永遠不會告訴你的。困難對話採「先給劇本（開場白、對方三種可能反應的逐字應對、最容易踩的陷阱、收場方式），再陪你排練」。用真實對話會發生的語言排練。改寫自同一文章的 #9、#10、#12。 |
 
 ## 外部技能（經 APM 引入第三方）
 

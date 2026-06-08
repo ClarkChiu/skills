@@ -1,0 +1,66 @@
+{
+  "skill_name": "roleplay-coach",
+  "_note": "Test INTENT, not just behavior: roleplay-coach's load-bearing value is realistic resistance (a pushover counterpart makes rehearsal worse than useless), one-turn-at-a-time (never simulating both sides), the pre-roleplay honesty gate on unrealistic goals, and the mandatory break-character debrief that names what the user left on the table. Turn-shape checks are deterministic; resistance quality and debrief honesty are judgment and marked deterministic: false.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "negotiation-realistic-resistance",
+      "intent": "Hard rule 2: the counterpart must resist like a real hiring manager — caving on the first ask teaches the user nothing and builds false confidence.",
+      "setup": "Salary negotiation roleplay, intake complete: offer 1.4M TWD, target 1.7M, leverage is a competing offer. The user makes their first counter-ask.",
+      "prompt": "我認為以我的經驗，1,700,000 比較合理。",
+      "expected_output": "The hiring manager does not immediately accept. Pushes back with a specific, realistic objection (fixed budget for the level / fairness to the team / market data / revisit later) and asks the user to justify the number.",
+      "assertions": [
+        {"text": "The first counter-ask is not granted in full within the same turn", "deterministic": true},
+        {"text": "The pushback uses a realistic, specific objection rather than a generic refusal", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "one-turn-at-a-time",
+      "intent": "Hard rule 1: rehearsal value comes from the user producing their own lines under pressure — simulating the whole exchange robs them of exactly that.",
+      "setup": "Mock interview just started; intake complete.",
+      "prompt": "開始吧。",
+      "expected_output": "The interviewer asks exactly one question, then the turn ends waiting for the user's answer. No scripted user replies, no multi-round simulated dialogue.",
+      "assertions": [
+        {"text": "The turn contains exactly one interview question", "deterministic": true},
+        {"text": "The turn does not contain any line written on the user's behalf", "deterministic": true}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "mandatory-debrief-with-left-on-table",
+      "intent": "Hard rule 4: a rehearsal without feedback is just stress — and the most valuable feedback is the argument the user never made, which no real counterpart would ever point out.",
+      "setup": "Negotiation roleplay ran five rounds. The user had a competing offer (stated at intake) but never mentioned it during the roleplay. The user now ends the session.",
+      "prompt": "好，今天先練到這裡。",
+      "expected_output": "Breaks character and delivers the debrief: most effective move, weakest moment, and explicitly names that the competing offer — their strongest leverage — was never used. Ends with one thing to do differently.",
+      "assertions": [
+        {"text": "The response breaks character and delivers a debrief instead of staying in roleplay", "deterministic": true},
+        {"text": "The debrief names the unused competing offer as the argument left on the table", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "difficult-conversation-playbook-first",
+      "intent": "The difficult-conversation scenario is playbook first: the user needs the opening line, likely responses with word-for-word handling, the trap, and the exit — before any rehearsal.",
+      "setup": "Fresh session. Intake provided: telling a long-time client their scope request won't be honored without a contract change; goal is keeping the relationship; fear is the client threatening to leave.",
+      "prompt": "幫我準備這場對話。",
+      "expected_output": "Delivers the four-part playbook (opening line / three likely responses each with word-for-word handling / the trap / the exit) in plain, sayable language, then offers a rehearsal where the coach plays a non-reasonable client.",
+      "assertions": [
+        {"text": "The playbook contains all four parts: opening line, likely responses with handling, the trap, the exit", "deterministic": true},
+        {"text": "Suggested lines are words a person would actually say, not corporate boilerplate", "deterministic": false}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "unrealistic-goal-flagged-before-roleplay",
+      "intent": "Hard rule 3: practicing a fantasy is worse than not practicing — an unrealistic target given the stated leverage must be flagged before the roleplay starts, not enabled.",
+      "setup": "Negotiation intake: offer is 1.0M TWD, target is 3.0M, the user states they have no competing offer, the role is mid-level, and they list no scarce skill.",
+      "prompt": "開始角色扮演吧，目標 3,000,000。",
+      "expected_output": "Before starting (or as the very first beat), says plainly that tripling a mid-level offer with zero leverage is not a realistic target, proposes a defensible range, and asks whether to rehearse for that instead.",
+      "assertions": [
+        {"text": "The unrealistic target is flagged before the roleplay proceeds", "deterministic": false},
+        {"text": "A more defensible target or range is proposed rather than simply refusing", "deterministic": false}
+      ]
+    }
+  ]
+}

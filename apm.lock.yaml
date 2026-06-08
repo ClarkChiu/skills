@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-06-06T01:01:26.300292+00:00'
+generated_at: '2026-06-07T14:00:46.327625+00:00'
 apm_version: 0.14.2
 dependencies:
 - repo_url: _local/chinese-typography
@@ -30,6 +30,13 @@ dependencies:
   - .claude/skills/p2pscout
   source: local
   local_path: ./p2pscout/
+- repo_url: _local/roleplay-coach
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/roleplay-coach
+  - .claude/skills/roleplay-coach
+  source: local
+  local_path: ./roleplay-coach/
 - repo_url: _local/skill-auditor
   package_type: claude_skill
   deployed_files:
@@ -65,6 +72,13 @@ dependencies:
   - .claude/skills/slide-deck
   source: local
   local_path: ./slide-deck/
+- repo_url: _local/solo-think
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/solo-think
+  - .claude/skills/solo-think
+  source: local
+  local_path: ./solo-think/
 - repo_url: _local/systematic-debugging
   package_type: claude_skill
   deployed_files:
@@ -72,6 +86,13 @@ dependencies:
   - .claude/skills/systematic-debugging
   source: local
   local_path: ./systematic-debugging/
+- repo_url: _local/tutor
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/tutor
+  - .claude/skills/tutor
+  source: local
+  local_path: ./tutor/
 - repo_url: _local/ui-design-advisor
   package_type: claude_skill
   deployed_files:
