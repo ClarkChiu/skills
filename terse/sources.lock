@@ -1,0 +1,14 @@
+{
+  "_comment": "Maintained by skill-evolve. terse adapts the METHOD (a toggled token-economy mode) of mattpocock/skills caveman; original rewrite, no files copied. The key change: cut content not grammar, and stay language-aware (Chinese must read as natural Taiwan Traditional). Full audit: research/audits/2026-06-08-mattpocock-skills.md.",
+  "checked_at": "2026-06-08",
+  "sources": {
+    "mattpocock/skills :: productivity/caveman": {
+      "ref": "main",
+      "commit": "62f43a18177b",
+      "date": "2026-04-28",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Toggled brevity mode reimplemented in SKILL.md, redesigned to compress by cutting content (not mangling grammar) and to stay language-aware (Chinese stays natural Taiwan Traditional, not telegraphic).",
+      "note": "2026-06-08 baseline. Keep the cut-content-not-grammar + language-aware rule on any re-sync; that is the fix for the Chinese 怪腔怪調 problem the upstream caused."
+    }
+  }
+}
