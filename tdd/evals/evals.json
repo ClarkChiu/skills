@@ -1,0 +1,49 @@
+{
+  "skill_name": "tdd",
+  "_note": "Test-first build loop. The five things under test: it writes the failing test FIRST and runs it to confirm a real red, it writes only minimal code to pass, it refactors only on green (never on red), its tests pin intent (would fail if the logic regressed, not a hardcoded constant), and for protocol code it prefers a real loopback socket over a mock. Behavioral; the red-before-green ordering is the load-bearing check.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "red-first-confirmed-then-green",
+      "lang": "en",
+      "prompt": "Use TDD to add a function that parses a length-prefixed frame and returns its payload.",
+      "expected_output": "Writes ONE failing test for one behaviour first, RUNS it and confirms it fails for the right reason (asserting real behaviour, not an import error), THEN writes minimal code to pass and re-runs to confirm green — not code-first-then-test, not a test that passes immediately.",
+      "assertions": [
+        {"text": "writes the test before the implementation and runs it to confirm a genuine RED first", "deterministic": false},
+        {"text": "then writes minimal code to pass and re-runs to confirm green", "deterministic": false},
+        {"text": "does not write the implementation first and back-fill a test", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "no-refactor-on-red",
+      "lang": "en",
+      "prompt": "The test is failing and the code is messy — clean it up while you're in there.",
+      "expected_output": "Refuses to refactor while red. Must get to green first (make the failing test pass), THEN refactor on green. States the rule rather than improving code that doesn't yet pass.",
+      "assertions": [
+        {"text": "does not refactor while a test is red — gets to green first, then refactors", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "test-pins-intent-not-constant",
+      "lang": "en",
+      "prompt": "Write the test for get_user_name(id).",
+      "expected_output": "The test must pin the lookup behaviour — e.g. assert two different ids map to two different names — so it would FAIL if the function hardcoded a constant. Not a single assertion that a hardcoded return value would satisfy.",
+      "assertions": [
+        {"text": "the test would fail if the function returned a hardcoded constant (pins intent, not a value)", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "protocol-uses-real-socket-not-mock",
+      "lang": "zh",
+      "prompt": "用 TDD 幫我寫一個把 frame 編碼後送出、再解碼的功能，這是網路協定的東西。",
+      "expected_output": "For protocol/wire code, prefers a REAL loopback socket round-trip (127.0.0.1, port 0) over mocking the socket and asserting on bytes the test itself computed — because a real round-trip catches framing/encoding/ordering bugs a mock hides. Responds in Traditional Chinese.",
+      "assertions": [
+        {"text": "uses a real loopback socket round-trip rather than a mocked socket for the protocol behaviour", "deterministic": false},
+        {"text": "still drives it red-green-refactor, one behaviour at a time", "deterministic": false}
+      ]
+    }
+  ]
+}

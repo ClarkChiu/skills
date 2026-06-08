@@ -1,0 +1,14 @@
+{
+  "_comment": "Maintained by skill-evolve. tdd adapts the METHOD (red-green-refactor) of mattpocock/skills engineering/tdd; the discipline is universal (Beck), this is an original rewrite re-aimed at pytest/protocol testing, no files copied. Full audit: research/audits/2026-06-08-mattpocock-skills.md.",
+  "checked_at": "2026-06-08",
+  "sources": {
+    "mattpocock/skills :: engineering/tdd": {
+      "ref": "main",
+      "commit": "7afa86d3a5dd",
+      "date": "2026-04-28",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Red-green-refactor loop reimplemented in SKILL.md + references/{test-design,mocking}.md, re-aimed at pytest + network-protocol integration examples, wired into design-gate → tdd → verify-before-done.",
+      "note": "2026-06-08 baseline. On re-sync mine rule phrasings / test-design ideas; keep the pytest/protocol re-aiming and pipeline wiring."
+    }
+  }
+}
