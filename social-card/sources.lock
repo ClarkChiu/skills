@@ -1,0 +1,13 @@
+{
+  "_comment": "供 skill-evolve 追蹤上游：social-card 取 op7418/guizang-social-card-skill 的設計系統『原則』（一卡一想法、先砍字不縮字、object-fit、Swiss/Editorial 雙系統、QA 規則構想），未收任何檔（授權 AGPL/ISC 不一致）。平台改 IG/LinkedIn、render 由 playwright 改用 agent-browser。上游若改動設計系統或新增版式，由 skill-evolve 提醒回看。",
+  "checked_at": "2026-06-08",
+  "sources": {
+    "op7418/guizang-social-card-skill": {
+      "commit": "032782ff67e0",
+      "release": null,
+      "date": "2026-05-27",
+      "license": "AGPL-3.0 (repo) / ISC (package.json) — 不一致，故不收檔",
+      "note": "只取設計原則非檔；render 改 agent-browser；平台改 IG/LinkedIn。比對重點：上游若新增版式/主題或調整 QA 規則。"
+    }
+  }
+}
