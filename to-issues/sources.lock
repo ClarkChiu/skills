@@ -1,0 +1,14 @@
+{
+  "_comment": "Maintained by skill-evolve. to-issues adapts the METHOD (plan → vertical tracer-bullet GitHub issues) of mattpocock/skills engineering/to-issues; original rewrite, no files copied, positioned as the design-gate downstream with a confirm-before-publish gate. Full audit: research/audits/2026-06-08-mattpocock-skills.md.",
+  "checked_at": "2026-06-08",
+  "sources": {
+    "mattpocock/skills :: engineering/to-issues": {
+      "ref": "main",
+      "commit": "ff3ee1dda50d",
+      "date": "2026-05-06",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Vertical-slice issue breakdown reimplemented in SKILL.md, positioned as design-gate downstream, added a confirm-before-publish gate, dropped the upstream tracker-config coupling (just uses existing gh/glab).",
+      "note": "2026-06-08 baseline. On re-sync mine slicing/ordering ideas; keep the confirm-before-publish gate and design-gate-downstream framing."
+    }
+  }
+}
