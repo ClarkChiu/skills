@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>social-card example — TXOne OT security (IG 4:5)</title>
+<style>
+  /* Swiss family, TXOne dark theme. Original skeleton — see assets/template-swiss.html. */
+  :root{ --grid:96px; --h-hero:128px; --h-xl:88px; --lead:48px; --body:36px; --caption:28px; }
+  .theme-txone{ --paper:#0d1015; --ink:#eef1f5; --muted:#8a93a3; --accent:#e4002b; }
+
+  html,body{margin:0;padding:0;background:#222;
+    font-family:"Helvetica Neue",Arial,"PingFang TC","Noto Sans TC",system-ui,sans-serif;}
+  .sheet{display:flex;flex-wrap:wrap;gap:32px;padding:32px;}
+
+  .card{box-sizing:border-box;overflow:hidden;position:relative;
+    background:var(--paper);color:var(--ink);padding:var(--grid);display:flex;flex-direction:column;}
+  .ig-45{width:1080px;height:1350px;}
+
+  .kicker{font-size:var(--caption);letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:24px;}
+  .kicker b{color:var(--accent);font-weight:800;}
+  .h-hero{font-size:var(--h-hero);line-height:1.1;font-weight:800;margin:0;}
+  .title{font-size:var(--h-xl);line-height:1.14;font-weight:800;margin:0;}
+  .accent{color:var(--accent);}
+  .lead{font-size:var(--lead);line-height:1.4;font-weight:500;color:var(--muted);margin:28px 0 0;}
+  .body{font-size:var(--body);line-height:1.5;margin:0;}
+  .rule{height:3px;background:var(--accent);border:0;width:120px;margin:0 0 32px;}
+  .spacer{flex:1;}
+  .strip{display:flex;gap:40px;font-size:var(--caption);color:var(--muted);}
+  .strip b{color:var(--ink);font-weight:700;}
+  .num-mega{font-size:200px;line-height:1;font-weight:800;color:var(--accent);margin:0;}
+  .list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:30px;}
+  .list li{display:flex;gap:24px;align-items:baseline;font-size:var(--body);line-height:1.4;
+    border-top:2px solid var(--accent);padding-top:24px;}
+  .list .n{font-weight:800;color:var(--accent);min-width:1.4em;}
+  .foot{font-size:var(--caption);color:var(--muted);}
+  .foot b{color:var(--accent);}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <!-- COVER -->
+  <section class="card ig-45 theme-txone" id="ig45-01-cover">
+    <div class="kicker"><b>TXOne Networks</b> · OT ZERO TRUST</div>
+    <h1 class="h-hero">產線<span class="accent">不能停</span>，<br>資安也不能等</h1>
+    <div class="spacer"></div>
+    <hr class="rule">
+    <div class="strip"><span><b>OT</b> 而非 IT</span><span><b>零信任</b></span><span><b>不停機</b>防護</span></div>
+  </section>
+
+  <!-- POINT (stat) -->
+  <section class="card ig-45 theme-txone" id="ig45-02-stat">
+    <div class="kicker">01 · 為什麼 OT 不能照搬 IT</div>
+    <p class="num-mega">72%</p>
+    <h2 class="title" style="margin-top:24px">的 OT 環境<br>無法隨時停機修補</h2>
+    <div class="spacer"></div>
+    <p class="body">傳統 IT 的「先更新、再重開」在產線行不通——停機就是停產。OT 資安要在<span class="accent">不中斷運轉</span>的前提下做防護。</p>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="card ig-45 theme-txone" id="ig45-03-checklist">
+    <div class="kicker">02 · OT 零信任四件事</div>
+    <h2 class="title">上線前先盤點</h2>
+    <div class="spacer" style="flex:0 0 32px"></div>
+    <ul class="list">
+      <li><span class="n">1</span><span>資產可視：先看見每一台裝置</span></li>
+      <li><span class="n">2</span><span>網段微分割，橫向移動止血</span></li>
+      <li><span class="n">3</span><span>白名單信任，未知一律擋下</span></li>
+      <li><span class="n">4</span><span>不停機檢測，邊運轉邊防護</span></li>
+    </ul>
+    <div class="spacer"></div>
+    <p class="foot">Keep the Operation Running — <b>TXOne Networks</b></p>
+  </section>
+
+</main>
+</body>
+</html>
