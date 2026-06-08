@@ -18,7 +18,15 @@ INPUT="$(cat)"
 COMMAND="$(printf '%s' "$INPUT" | jq -r '.tool_input.command // empty' 2>/dev/null || true)"
 [ -z "$COMMAND" ] && exit 0
 
-# command boundary: line start, or just after a shell separator
+# command boundary: line start, or just after a shell separator. Anchoring (not a loose
+# substring match) is what keeps a git command quoted inside an echo / commit message /
+# JSON payload from being falsely blocked.
+#
+# On coexisting with RTK: install this hook BEFORE `rtk hook claude` in the PreToolUse
+# Bash matcher. Both hooks receive the ORIGINAL tool_input.command (verified live —
+# hooks do not see each other's rewrites), so the guardrail catches `git reset --hard`
+# directly. Do NOT add an `rtk `-prefix tolerance here: it un-anchors the pattern and
+# false-blocks any text that merely contains `rtk git …` (e.g. this script's own tests).
 B='(^|[;&|(]|&&|\|\|)[[:space:]]*'
 
 block() {

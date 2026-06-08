@@ -47,11 +47,38 @@
 | [`git-guardrails`](./git-guardrails/) | 可攜的危險 git 攔截：裝一個 **PreToolUse hook**，在執行前擋掉 `push --force`/`-f`、`reset --hard`、`clean -f`、`branch -D`、丟棄全部變更、刪遠端分支。**強化**勝過上游字串 grep——樣式錨定到指令邊界（commit message/echo 裡提到不會誤殺）、**放行 `--force-with-lease`**（安全的 force）、**不擋 push 到 master**（你的日常）。安裝步驟**合併**進 settings.json（不覆蓋 RTK hook）、專案層或全域可選。腳本隨 APM/git 走、可攜；17 案測試。改寫自 `mattpocock/skills` 的 git-guardrails（方法非檔、MIT）。 |
 | [`terse`](./terse/) | 手動開關的**省 token 精簡模式**：砍開場白、避險、複述、客套、重複，答案先講——但**砍內容不砍文法**。語言感知:英文可電報式,**中文維持自然臺灣繁體**(修正了 caveman 讓中文怪腔怪調的毛病)。跨回合持續到你喊停;資安警告與破壞性操作確認自動退出精簡。與 `humanizer` 互補(tone vs length)。改寫自 `mattpocock/skills` 的 caveman（修正中文、MIT）。 |
 | [`to-issues`](./to-issues/) | 把計畫／規格／PRD 拆成可獨立認領的 **GitHub issue**：垂直曳光彈切片、依相依排序，**發布前一律先把整份清單給你確認**才用 `gh` 建立(用你既有登入、不碰 token,未登入交回你)。是 `design-gate` 的天然下游(出計畫 → 發成 issue),不重新規劃。改寫自 `mattpocock/skills` 的 to-issues（方法非檔、加確認閘門、MIT）。 |
-| [`rtk`](./rtk/) | **RTK（Rust Token Killer）的可攜設定與參考**：把原本機器本機的 `~/.claude/RTK.md` 搬進 repo 隨 APM 走，換機器時跑一次就把 `rtk hook claude` 的 PreToolUse hook 合併進 settings.json（和 `git-guardrails` 並存、不覆蓋）。RTK 是 token 優化代理，把 `git status` 之類透明改寫成 `rtk git status`，省 60–90% token。**可攜的是設定與參考、不是二進位檔**——`rtk` 二進位仍每機自行安裝（技能誠實標明這點）。含安裝驗證與 `reachingforthejack/rtk` 名稱衝突提醒。 |
 
 ## 外部技能（經 APM 引入第三方）
 
 由 `apm.yml` 宣告、`apm.lock.yaml` 鎖定版本後安裝，部署到 `.claude/skills/`、`.agents/skills/`（這些目錄已列入 `.gitignore`，不進版控；靠鎖定檔記錄的版本（commit／hash）重現）。這些外部技能隨 `apm install` 跟上游更新即可；自寫技能的上游來源追蹤則交給 `skill-evolve`，兩者分工。
+
+### 外部 CLI 二進位（APM 不安裝，需每機自裝）
+
+有些工具的「技能／參考」由 APM 帶著走，但**真正的執行檔是 APM 不負責安裝的外部二進位**——換機器時要自己裝一次。兩個主要的：
+
+**`agent-browser`（瀏覽器自動化 CLI，npm 套件）**——`social-card` 與探索式網頁測試都靠它。
+
+```bash
+npm install -g agent-browser     # 任意平台（或 macOS：brew install agent-browser）
+agent-browser install            # 下載 Chrome（首次必跑）
+# 免裝試用：npx agent-browser open example.com
+```
+
+**`rtk`（Rust Token Killer，token 優化 CLI 代理，[github.com/rtk-ai/rtk](https://github.com/rtk-ai/rtk)）**——透過 PreToolUse hook 把 `git status` 之類透明改寫成 `rtk git status`，省 60–90% 輸出 token。**它自帶安裝器,不要手刻 hook**：
+
+```bash
+brew install rtk                                                             # macOS（建議）
+curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh   # 任意平台
+cargo install --git https://github.com/rtk-ai/rtk                            # 從原始碼
+rtk --version                    # 驗證（若 rtk gain 失敗，可能裝錯成 reachingforthejack/rtk）
+
+rtk init -g                      # 官方安裝器：自動 patch ~/.claude/settings.json 的 hook + 寫 RTK.md
+rtk init -g --opencode           # 連 OpenCode 外掛一起裝（本專案 targets 含 opencode）
+rtk init --show                  # 檢視已安裝
+rtk init -g --uninstall          # 移除
+```
+
+> RTK 的 hook 會和 `git-guardrails` 的 hook 並存於同一個 Bash matcher；`git-guardrails` 的腳本已處理「rtk 改寫後的指令」（容忍 `rtk ` 前綴），所以兩者同時開也擋得到危險 git。
 
 ### [`vercel-labs/agent-browser`](https://github.com/vercel-labs/agent-browser)
 

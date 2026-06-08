@@ -29,6 +29,12 @@ check block 'git restore .'
 check block 'git push origin --delete feature'
 check block 'cd /tmp && git reset --hard'
 
+# NOTE: an `rtk `-prefixed form (e.g. `rtk git reset --hard`) is intentionally NOT blocked.
+# The agent types plain `git reset --hard` (rtk rewrites transparently), and both hooks see
+# that original command — so it is caught directly. Anchoring is kept so quoted text like
+# the line below is NOT a false positive:
+check allow 'printf "%s" "rtk git push --force"'
+
 # must ALLOW
 check allow 'git push'
 check allow 'git push --force-with-lease'
