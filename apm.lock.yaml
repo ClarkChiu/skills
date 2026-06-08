@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-06-08T03:45:48.257776+00:00'
+generated_at: '2026-06-08T08:42:39.986262+00:00'
 apm_version: 0.14.2
 dependencies:
 - repo_url: _local/chinese-typography
@@ -9,6 +9,13 @@ dependencies:
   - .claude/skills/chinese-typography
   source: local
   local_path: ./chinese-typography/
+- repo_url: _local/decision-lens
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/decision-lens
+  - .claude/skills/decision-lens
+  source: local
+  local_path: ./decision-lens/
 - repo_url: _local/design-gate
   package_type: claude_skill
   deployed_files:
