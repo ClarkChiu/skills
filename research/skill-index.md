@@ -35,5 +35,11 @@
 | 2026-06-08 | security-test-hskills（codereview／knowledge／techselect 三個） | github.com/yaojingang/yao-open-skills | yaojingang | — | 🟥 不可當技能裝（作者自宣告的故意注入樣本）／🟨 收作 skill-auditor 紅隊測試集（已知答案、標好注入行號，最高價值再利用） |
 | 2026-06-08 | yao-gametheory／business／expert／learning-builder／tutorial-skill | github.com/yaojingang/yao-open-skills | yaojingang | 是（重疊 tutor／doc-coauthoring／slide-deck） | 🟥 跳過（gametheory 不解 Nash 均衡；其餘深度多在提示、與既有教學／文件技能重疊） |
 | 2026-06-08 | yao-weread／copyright／open-skills-sync | github.com/yaojingang/yao-open-skills | yaojingang | — | 🟥 跳過（weread＝微信讀書付費閘道＋金鑰、CN 平台低相關；copyright＝戳作者版權自肥；sync＝他們 repo 自綁治理工具） |
+| 2026-06-08 | mattpocock/skills（整包合集） | github.com/mattpocock/skills | mattpocock（Matt Pocock） | 部分（engineering 簇重疊既有） | 🟥 整包不裝＋逐項挖（120k★、MIT、可信作者、資安 SAFE；走 skills.sh 非 APM。engineering 規劃/除錯簇多重疊 design-gate／systematic-debugging／內建 skill-creator。個別裁決見下列。完整稽核見當日本機紀錄） |
+| 2026-06-08 | tdd（mattpocock） | github.com/mattpocock/skills | mattpocock | 否（verify-before-done 只是完成閘門非建構迴圈） | 🟦 參考自製（正向 red-green-refactor 建構法；使用者為測試自動化架構師＝高相關。自製貼 pytest／協定測試） |
+| 2026-06-08 | git-guardrails-claude-code（mattpocock） | github.com/mattpocock/skills | mattpocock | 否（無內建對應） | 🟨 收錄＋客製（PreToolUse hook 擋危險 git；使用者直 commit master＝真缺口，但字串 grep 易繞，收錄後錨定強化） |
+| 2026-06-08 | caveman（mattpocock） | github.com/mattpocock/skills | mattpocock | 否 | 🟦 參考自製（~75% token 壓縮溝通，正中 RTK／token 預算紀律；純風格低成本） |
+| 2026-06-08 | to-prd／to-issues／triage（mattpocock） | github.com/mattpocock/skills | mattpocock | 否 | 🟦 參考自製（前 PM 向 issue 工作流；to-issues 是 design-gate 天然下游。用 GitHub issue 才有意義，否則跳過） |
+| 2026-06-08 | diagnose／grill-me／write-a-skill 等重疊與 stack 專屬技能（mattpocock） | github.com/mattpocock/skills | mattpocock | 是 | 🟥 跳過（diagnose≈systematic-debugging、grill-me≈design-gate、write-a-skill≈內建 skill-creator；shoehorn/Husky/scaffold＝TS/JS 專屬；zoom-out 瑣碎、安裝器、deprecated／in-progress／personal） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
