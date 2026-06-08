@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>social-card — Swiss template</title>
+<style>
+  /* ---- original Swiss skeleton; no third-party assets ---- */
+  :root{
+    --grid: 96px;            /* base safe margin */
+    --h-hero: 140px; --h-xl: 96px; --lead: 50px; --body: 36px; --caption: 28px;
+  }
+  /* palette (swap the theme- class on a card to retheme) */
+  .theme-paper-ink   { --paper:#f5f2ea; --ink:#1a1a1a; --muted:#6b6862; --accent:#c4452f; }
+  .theme-mono-signal { --paper:#ffffff; --ink:#111418; --muted:#5b6470; --accent:#1f6feb; }
+
+  html,body{margin:0;padding:0;background:#ddd;
+    font-family:"Helvetica Neue",Arial,"PingFang TC","Noto Sans TC",system-ui,sans-serif;}
+  .sheet{display:flex;flex-wrap:wrap;gap:32px;padding:32px;}
+
+  /* fixed-dimension frames (canonical — see references/platform-specs.md) */
+  .card{box-sizing:border-box;overflow:hidden;position:relative;
+    background:var(--paper);color:var(--ink);}
+  .ig-45 {width:1080px;height:1350px;}
+  .ig-11 {width:1080px;height:1080px;}
+  .ig-916{width:1080px;height:1920px;}
+  .li-11 {width:1080px;height:1080px;}
+  .li-191{width:1200px;height:627px;}
+  .fb-191{width:1200px;height:630px;}
+
+  /* Swiss base: strict grid, hairlines, weight hierarchy, no shadow, straight corners */
+  .card{padding:var(--grid);display:flex;flex-direction:column;}
+  .rule{height:2px;background:var(--ink);border:0;margin:0 0 28px;}
+  .kicker{font-size:var(--caption);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:24px;}
+  .h-hero{font-size:var(--h-hero);line-height:1.1;font-weight:800;margin:0;}
+  .title{font-size:var(--h-xl);line-height:1.14;font-weight:800;margin:0;}
+  .lead{font-size:var(--lead);line-height:1.4;font-weight:500;color:var(--muted);margin:24px 0 0;}
+  .body{font-size:var(--body);line-height:1.5;font-weight:400;margin:0;}
+  .spacer{flex:1;}
+  .accent{color:var(--accent);}
+  /* list role */
+  .list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:28px;}
+  .list li{display:flex;gap:24px;align-items:baseline;font-size:var(--body);line-height:1.4;
+    border-top:2px solid var(--ink);padding-top:24px;}
+  .list .n{font-weight:800;color:var(--accent);min-width:1.4em;}
+  /* point strip on cover */
+  .strip{display:flex;gap:40px;font-size:var(--caption);color:var(--muted);}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <!-- COVER (role: cover) -->
+  <section class="card ig-45 theme-paper-ink" id="ig45-01">
+    <div class="kicker">Issue · 技術筆記</div>
+    <h1 class="h-hero">標題寫一句<br><span class="accent">夠利</span>的鉤子</h1>
+    <div class="spacer"></div>
+    <div class="strip"><span>重點一</span><span>重點二</span><span>重點三</span></div>
+  </section>
+
+  <!-- POINT (role: point) -->
+  <section class="card ig-45 theme-paper-ink" id="ig45-02">
+    <div class="kicker">01</div>
+    <h2 class="title">一張卡只講<br>一個想法</h2>
+    <p class="lead">貪多想不深；拆成兩張，讀者反而記得住。</p>
+    <div class="spacer"></div>
+    <hr class="rule">
+    <p class="body">先砍字、不縮字——版面固定，字級有地板。</p>
+  </section>
+
+  <!-- LIST (role: list/checklist) -->
+  <section class="card ig-45 theme-mono-signal" id="ig45-03">
+    <div class="kicker">Checklist</div>
+    <h2 class="title">出圖前自檢</h2>
+    <div class="spacer" style="flex:0 0 24px"></div>
+    <ul class="list">
+      <li><span class="n">1</span><span>每張卡只有一個重點</span></li>
+      <li><span class="n">2</span><span>標題不超過四行</span></li>
+      <li><span class="n">3</span><span>內文字級不低於 28px</span></li>
+      <li><span class="n">4</span><span>限動正文落在安全帶內</span></li>
+    </ul>
+    <div class="spacer"></div>
+  </section>
+
+</main>
+</body>
+</html>
