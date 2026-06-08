@@ -26,27 +26,36 @@ social-card-<slug>/
 
 ## Render — one exact-size PNG per frame
 
+Use the bundled helper; it renders every `.card` in the HTML to an exact-size PNG:
+
 ```bash
-cd social-card-<slug>
-agent-browser open "file://$(pwd)/index.html"
-agent-browser wait --load networkidle          # let fonts/images settle
-# one screenshot per frame, by element id → exact pixel size:
-agent-browser screenshot "#ig45-01" output/ig45-01-cover.png
-agent-browser screenshot "#ig45-02" output/ig45-02-point.png
-agent-browser screenshot "#li191-cover" output/li191-cover.png
-agent-browser close
+bash <skill>/scripts/render-frames.sh social-card-<slug>/index.html social-card-<slug>/output
+# → output/ig45-01.png (1080x1350), output/ig45-02.png (1080x1350), …
 ```
 
-- The **selector** form `screenshot "#<id>" <path>` is what guarantees exact dimensions —
-  do not rely on viewport sizing.
-- If a card uses a WebGL/canvas background, add `agent-browser wait 700` before its
-  screenshot so the canvas has painted.
-- Verify dimensions after export (a frame must match its spec in `platform-specs.md`):
+**Why a helper, not a plain `screenshot "#id"`** (verified the hard way, 2026-06-08):
+agent-browser's headless viewport is ~1280×577 and the `viewport` command does **not**
+resize the capture surface in this build. A plain `screenshot "#id"` returns the
+element's exact box *dimensions* but does **not** paint content below the viewport fold —
+a tall card (e.g. 1080×1350) comes out cream on top and blank/grey below. `screenshot
+--full` paints the whole document but at viewport width. So the helper does, per frame:
+
+1. **isolate** the card at the origin — hide siblings (`display:none`), zero the
+   `.sheet` padding/gap, `body { margin:0 }` — via `agent-browser eval`;
+2. **`screenshot --full`** so the whole card is painted (full document height);
+3. **`convert _raw.png -crop {w}x{h}+0+0 +repage out/<id>.png`** to the card's exact
+   width×height (read live from `getBoundingClientRect`).
+
+Requires `convert` (ImageMagick). If a card uses a WebGL/canvas background, add a short
+wait before its screenshot so the canvas has painted (edit the helper, or render that
+card separately with `agent-browser wait 700`).
+
+Verify dimensions after export (each must match its spec in `platform-specs.md`):
 
 ```bash
 python3 - <<'PY'
 import struct, glob
-for p in sorted(glob.glob("output/*.png")):
+for p in sorted(glob.glob("social-card-*/output/*.png")):
     with open(p,'rb') as f:
         f.read(16); w,h=struct.unpack('>II', f.read(8))
     print(f"{p}: {w}x{h}")

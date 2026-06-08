@@ -15,7 +15,7 @@ allowed-tools:
   - Read
   - Write
   - Edit
-  - Bash(agent-browser:*)
+  - Bash
 ---
 
 # social-card — a principle-driven design engine for IG / LinkedIn cards
@@ -55,10 +55,13 @@ images, you publish them.
    `<section class="card ig-45" id="ig-01">…</section>`. Start from
    `assets/template-swiss.html` or `assets/template-editorial.html`. Screenshots follow
    `references/screenshot-treatment.md` (object-fit by content type).
-4. **Render + QA** per `references/render-qa.md`: agent-browser screenshots each frame
-   to an exact-size PNG, then `agent-browser eval --stdin < scripts/qa-rules.js` checks
-   overflow / font floor / title caps / safe area. Findings → fix by splitting or
-   cutting copy, **never** by shrinking. Re-render until QA returns empty.
+4. **Render + QA** per `references/render-qa.md`. Render with the helper
+   `bash scripts/render-frames.sh <task>/index.html <task>/output` — it isolates each
+   card, screenshots `--full`, and crops to the exact frame size (a plain element
+   screenshot leaves tall cards half-blank; the helper explains why). Then
+   `agent-browser eval --stdin < scripts/qa-rules.js` checks overflow / font floor /
+   title caps / safe area. Findings → fix by splitting or cutting copy, **never** by
+   shrinking. Re-render until QA returns empty. Requires `convert` (ImageMagick).
 
 ## References
 
