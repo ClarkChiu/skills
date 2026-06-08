@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>social-card — Editorial template</title>
+<style>
+  /* ---- original Editorial skeleton; no third-party assets ---- */
+  :root{
+    --grid: 100px;
+    --h-hero: 132px; --h-xl: 92px; --lead: 50px; --body: 36px; --caption: 28px;
+  }
+  .theme-dusk        { --paper:#1d1a26; --ink:#f3ece2; --muted:#a99fb3; --accent:#e0a458; }
+  .theme-paper-ink   { --paper:#f5f2ea; --ink:#1a1a1a; --muted:#6b6862; --accent:#c4452f; }
+
+  html,body{margin:0;padding:0;background:#ddd;
+    font-family:Georgia,"Songti TC","Noto Serif TC",serif;}
+  .sheet{display:flex;flex-wrap:wrap;gap:32px;padding:32px;}
+
+  .card{box-sizing:border-box;overflow:hidden;position:relative;
+    background:var(--paper);color:var(--ink);}
+  .ig-45 {width:1080px;height:1350px;}
+  .ig-11 {width:1080px;height:1080px;}
+  .ig-916{width:1080px;height:1920px;}
+  .li-11 {width:1080px;height:1080px;}
+  .li-191{width:1200px;height:627px;}
+  .fb-191{width:1200px;height:630px;}
+
+  /* Editorial base: asymmetry, paper grain, accent rule, drop-issue number */
+  .card{padding:var(--grid);display:flex;flex-direction:column;}
+  /* subtle paper grain via a low-opacity radial texture (original, generated in CSS) */
+  .card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;
+    background:radial-gradient(circle at 20% 10%, var(--ink) 0 1px, transparent 1.5px) 0 0/22px 22px;}
+  .content{position:relative;z-index:1;display:flex;flex-direction:column;flex:1;}
+  .issue{font-size:160px;line-height:1;font-weight:700;color:var(--accent);opacity:.5;margin:0 0 -16px;}
+  .kicker{font-family:Arial,"PingFang TC",sans-serif;font-size:var(--caption);
+    letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+  .h-hero{font-size:var(--h-hero);line-height:1.12;font-weight:700;margin:0;max-width:14ch;}
+  .title{font-size:var(--h-xl);line-height:1.16;font-weight:700;margin:0;max-width:15ch;}
+  .lead{font-family:Arial,"PingFang TC",sans-serif;font-size:var(--lead);line-height:1.45;
+    color:var(--muted);margin:28px 0 0;font-weight:400;}
+  .body{font-family:Arial,"PingFang TC",sans-serif;font-size:var(--body);line-height:1.5;margin:0;}
+  .accent-rule{width:120px;height:4px;background:var(--accent);border:0;margin:0 0 32px;}
+  .spacer{flex:1;}
+  .quote{font-size:var(--h-xl);line-height:1.3;font-weight:700;margin:0;}
+  .attrib{font-family:Arial,sans-serif;font-size:var(--caption);color:var(--muted);margin-top:32px;}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <!-- COVER (role: cover, Editorial) -->
+  <section class="card ig-45 theme-dusk" id="ig45-01">
+    <div class="content">
+      <div class="issue">01</div>
+      <div class="kicker">隨筆 · Field Notes</div>
+      <hr class="accent-rule">
+      <h1 class="h-hero">一個關於慢下來的<span class="accent">短想法</span></h1>
+      <div class="spacer"></div>
+      <p class="lead">把一週的雜訊，收斂成一張卡。</p>
+    </div>
+  </section>
+
+  <!-- QUOTE (role: quote/pull, Editorial) -->
+  <section class="card ig-45 theme-dusk" id="ig45-02">
+    <div class="content">
+      <hr class="accent-rule">
+      <div class="spacer"></div>
+      <p class="quote">「能簡單說清楚，<br>才是真的懂了。」</p>
+      <p class="attrib">— 費曼技巧</p>
+      <div class="spacer"></div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
