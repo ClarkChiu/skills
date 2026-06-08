@@ -1,0 +1,79 @@
+{
+  "skill_name": "social-card",
+  "_note": "測『意圖』不只測『行為』：social-card 的承載價值是『先砍字不縮字』鐵則、精確平台尺寸、Stories 安全區、截圖 object-fit 依內容、FB 只出單張、以及不越界去做發文/排程。能用檔案狀態或像素尺寸確定性判斷的標 deterministic:true；版面美感與『切頁而非縮字』的修法品質屬主觀，標 false。渲染/QA 由 agent-browser 執行，不在技能內，故測的是技能的決策與產出規格。",
+  "evals": [
+    {
+      "id": 1,
+      "name": "ig45-carousel-exact-dimensions",
+      "intent": "給一篇文章，產出 IG 4:5 輪播卡，且每張截圖是精確 1080×1350。",
+      "setup": "使用者給一段技術短文，要 IG 輪播圖；未指定風格。",
+      "prompt": "幫我把這篇做成 IG 輪播圖：（一段約 300 字的技術筆記）",
+      "expected_output": "建一個 social-card-<slug>/ 任務夾，index.html 內每張卡是 .ig-45（固定 1080×1350），預設走 Swiss；用 agent-browser 逐 frame 截圖，output/ 的 PNG 經量測正好 1080×1350。",
+      "assertions": [
+        {"text": "卡片用 .ig-45 class 且 CSS 固定 width:1080px height:1350px", "deterministic": true},
+        {"text": "匯出的 PNG 尺寸正好 1080×1350", "deterministic": true},
+        {"text": "封面承擔鉤子、內容卡各只一個重點（一卡一想法）", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "overflow-shorten-not-shrink",
+      "intent": "鐵則：內容過長時切頁或砍字，絕不把字級壓到地板以下。",
+      "setup": "某張卡塞了過多文字，QA 會回 R1-overflow 或 R3-font-floor。",
+      "prompt": "（內容過長的一張卡，跑 render-qa 流程）",
+      "expected_output": "agent-browser eval 回傳含 R1/R3 的 finding；技能據此『切成兩張』或『刪字』修正後重渲染，QA 回空陣列。修正不靠把 font-size 調到 28px 以下。",
+      "assertions": [
+        {"text": "QA 回傳的 finding 被處理到最終 QA 為空陣列", "deterministic": true},
+        {"text": "最終 HTML 的內文字級未低於 28px 地板", "deterministic": true},
+        {"text": "修法是切頁/砍字而非縮字或壓行高", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "stories-safe-area",
+      "intent": "IG 9:16 限動的正文須落在中央安全帶，避開上/下 UI 區。",
+      "setup": "要做 IG Stories 9:16 卡（1080×1920）。",
+      "prompt": "幫我做一張 IG 限動圖宣傳這篇",
+      "expected_output": "卡用 .ig-916（1080×1920）；標題/正文/CTA 落在安全帶內（離頂 ≥250px、離底 ≥340px）；QA 的 safe-area 規則回空。",
+      "assertions": [
+        {"text": "卡片用 .ig-916 且尺寸 1080×1920", "deterministic": true},
+        {"text": "qa-rules 的 safe-area 檢查對該卡回空（正文未進 UI 帶）", "deterministic": true}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "screenshot-object-fit-by-content",
+      "intent": "UI/密集文字截圖用 contain 不裁切；物件照片才用 cover。",
+      "setup": "使用者提供一張 UI 截圖要放進卡。",
+      "prompt": "把這張後台截圖放進一張卡",
+      "expected_output": "截圖卡用 object-fit:contain（UI 不被裁切），給截圖 55–70% 版面，周邊文字精簡；不加透視/傾斜。",
+      "assertions": [
+        {"text": "UI 截圖以 object-fit:contain 呈現、未裁切控制項", "deterministic": true},
+        {"text": "截圖約佔 55–70% 版面、未被縮太小", "deterministic": false}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "fb-single-not-a-set",
+      "intent": "FB 只出單張 1.91:1，不做整套輪播。",
+      "setup": "使用者說也要發 FB。",
+      "prompt": "這篇我也想發 FB",
+      "expected_output": "FB 只產一張 .fb-191（1200×630）連結圖，沿用 LinkedIn 橫式幾何；不為 FB 建整套卡。",
+      "assertions": [
+        {"text": "FB 只輸出一張 fb191 PNG（1200×630），無 fb191-02… 等整套", "deterministic": true}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "scope-no-posting",
+      "intent": "範圍：只生成圖，不發文/排程/管理帳號。",
+      "setup": "使用者要求自動發到 IG。",
+      "prompt": "做好之後直接幫我發到 IG",
+      "expected_output": "技能產出圖檔並明說『發布/排程不在範圍』，把發文留給使用者或另一條 Meta API 管線，不嘗試呼叫任何發文動作。",
+      "assertions": [
+        {"text": "未嘗試任何發文/排程/登入社群帳號的動作", "deterministic": true},
+        {"text": "明確告知發布超出範圍、產出圖檔交還使用者", "deterministic": false}
+      ]
+    }
+  ]
+}
