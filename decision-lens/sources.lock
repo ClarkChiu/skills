@@ -1,0 +1,30 @@
+{
+  "_comment": "Maintained by skill-evolve. decision-lens adapts the METHODS (not files) of the yao-open-skills decision cluster; the math is public-domain. Pins each upstream skill at the commit reviewed on 2026-06-08, to detect a better protocol formulation worth folding in. Full audit: research/audits/2026-06-08-yao-open-skills.md.",
+  "checked_at": "2026-06-08",
+  "sources": {
+    "yaojingang/yao-open-skills :: yao-bayesian-skill": {
+      "ref": "main",
+      "commit": "6494b76a8683",
+      "date": "2026-04-26",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Workflow (prior → likelihood-ratio → odds update → posterior → threshold → sensitivity) reimplemented in scripts/bayes_update.py + references/bayesian.md. Math is public-domain.",
+      "note": "2026-06-08 baseline. Re-check the prompt/protocol for a sharper formulation; the odds + Beta-Binomial math is stable and won't change."
+    },
+    "yaojingang/yao-open-skills :: yao-crux-skill": {
+      "ref": "main",
+      "commit": "c7ea76004ed8",
+      "date": "2026-05-27",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Primary/secondary problem diagnosis (decisiveness/leverage/stage) reimplemented in scripts/crux_score.py + references/crux.md, DE-POLITICIZED (Mao '矛盾論' branding dropped, analytical method kept).",
+      "note": "2026-06-08 baseline. If re-syncing, keep the de-politicized framing — do not re-import the ideological branding."
+    },
+    "yaojingang/yao-open-skills :: yao-kelly-skill": {
+      "ref": "main",
+      "commit": "ccd18bc82423",
+      "date": "2026-05-04",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Kelly sizing (binary f*, multi-scenario log-growth, fractional Kelly, caps, no-edge refusal) reimplemented in scripts/kelly_size.py + references/kelly.md.",
+      "note": "2026-06-08 baseline. Kelly formula is public-domain and fixed; watch only for protocol/guardrail improvements."
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "skill_name": "decision-lens",
+  "_note": "Router-over-three-lenses decision skill. Output is a lean Markdown decision brief grounded in script-computed numbers. The five things under test: it routes to the RIGHT lens by problem type, it computes with the scripts and reports correct math (a known prior+LR yields the known posterior — deterministic), it refuses to fabricate inputs (asks or labels assumptions), it returns fractional Kelly / 'no edge' rather than reckless sizing, and it stays a lean Markdown brief (no CN HTML, no export pipeline). Routing/refusal checks are behavioral; the math check is deterministic.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "routes-uncertainty-to-bayesian-correct-posterior",
+      "lang": "en",
+      "prompt": "My prior that this intermittent NAT-traversal failure is a router-firmware bug (not our code) is 0.3. Then I learn two things, each more likely if it's the firmware: a likelihood ratio of 4 and another of 2. Should I believe it's the firmware?",
+      "expected_output": "Routes to the Bayesian lens (a belief-under-evidence decision). Calls bayes_update.py in odds mode with prior_p 0.3 and likelihood_ratios [4,2]: prior odds 0.3/0.7 ≈ 0.4286, ×4×2 = 3.4286, posterior p ≈ 0.7742. Reports that posterior (~0.77), ties it to an action threshold, and notes sensitivity. Does not invent the numbers; uses the ones given. Output is a Markdown brief.",
+      "assertions": [
+        {"text": "routes to the Bayesian lens (not Crux/Kelly)", "deterministic": false},
+        {"text": "computes the posterior with bayes_update.py and reports ~0.77 (0.30 prior, LR 4 and 2)", "deterministic": true},
+        {"text": "ties the posterior to an action threshold and mentions sensitivity rather than asserting certainty", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "routes-tangled-priorities-to-crux",
+      "lang": "en",
+      "prompt": "I'm drowning: flaky CI blocks every merge, the test suite is slow, docs are stale, and we have tech debt in the auth module. Limited time this sprint. Where do I start?",
+      "expected_output": "Routes to the Crux lens (a prioritization decision among interlocking problems). Elicits or estimates decisiveness/leverage/stage for each candidate (labeling estimates as assumptions), calls crux_score.py to rank, names a single primary problem and a breakthrough action, and states when to re-evaluate. Does not just list all four as equally urgent.",
+      "assertions": [
+        {"text": "routes to the Crux lens and identifies a single primary problem to start with", "deterministic": false},
+        {"text": "uses crux_score.py (or its three tests) to rank rather than asserting a gut order", "deterministic": false},
+        {"text": "labels any decisiveness/leverage/stage values it had to assume rather than presenting them as facts", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "kelly-returns-fractional-and-refuses-no-edge",
+      "lang": "en",
+      "prompt": "I think a side project has a 60% chance to 2x my time investment and 40% chance to lose it. How much of my free time should I pour in? And separately, what if it were a coin flip at even odds?",
+      "expected_output": "Routes to Kelly. For p=0.6, b=2: full Kelly f* = (2*0.6 - 0.4)/2 = 0.4, and it should recommend FRACTIONAL Kelly (e.g. half → 0.2) with a cap, not the full 0.4, while flagging estimate sensitivity. For the even-odds coin flip (b=1, p=0.5): full Kelly = 0 → it must say 'no edge, do not allocate', not invent a positive size.",
+      "assertions": [
+        {"text": "computes full Kelly 0.4 for p=0.6,b=2 and recommends a fractional size (e.g. 0.2), not the full 0.4", "deterministic": true},
+        {"text": "for the even-odds case returns no-edge / do-not-allocate rather than a positive allocation", "deterministic": true},
+        {"text": "treats the 60% / 2x as user estimates and notes the result's sensitivity to them", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "refuses-to-fabricate-the-prior",
+      "lang": "en",
+      "prompt": "Should I believe our new caching layer actually fixed the latency spikes? Just give me a probability.",
+      "expected_output": "A belief decision, but the prior and the evidence's likelihood ratios are not provided. The skill must NOT invent a prior and emit a false-precision number. It should either ask one targeted question (what's your starting belief / what evidence do you have and how diagnostic is it) or proceed with an explicitly-labeled assumed prior plus a sensitivity check — never a bare fabricated probability presented as fact.",
+      "assertions": [
+        {"text": "does not fabricate a prior/likelihoods and hand back a false-precision probability as if it were grounded", "deterministic": false},
+        {"text": "either asks one targeted question for the missing input, or labels the assumed prior and runs sensitivity", "deterministic": false}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "lean-markdown-no-export-no-cn-default",
+      "lang": "zh",
+      "prompt": "幫我決策：這個假設有 0.4 的先驗，一條概似比 3 的證據，該不該相信？",
+      "expected_output": "Routes to Bayesian, computes posterior with bayes_update.py (prior 0.4, LR 3 → odds 0.6667×3 = 2.0 → p ≈ 0.667), and returns a lean Markdown brief IN TRADITIONAL CHINESE (matching the user's query), not Simplified, and not an HTML/PDF report. No subprocess/export pipeline is invoked.",
+      "assertions": [
+        {"text": "computes posterior ~0.67 (prior 0.4, LR 3) via bayes_update.py", "deterministic": true},
+        {"text": "responds with a Markdown brief in Traditional Chinese, not Simplified and not an HTML/PDF export", "deterministic": false},
+        {"text": "invokes no document-export/subprocess pipeline — only the calculator script", "deterministic": false}
+      ]
+    }
+  ]
+}
