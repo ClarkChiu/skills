@@ -23,6 +23,7 @@ dependencies:
   - ./tutor/
   - ./roleplay-coach/
   - ./social-card/
+  - ./decision-lens/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []
