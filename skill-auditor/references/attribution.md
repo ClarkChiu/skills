@@ -27,6 +27,18 @@ they live only in the SKILL.md SOURCES block, not in `sources.lock`:
 - **Cato Networks MedusaLocker** (`[G]`) and **Agensi ToxicSkills/ClawHavoc** (`[H]`) —
   the C2 IOC and campaign context.
 
+## Test fixtures (adapted, not pinned)
+
+`evals/fixtures/recall-poisoning/` is a labeled red-team corpus for **recall poisoning**
+(recommendation/identity injection). The three techniques — semantic fusion, context
+injection, semantic drift — are adapted from the self-declared poison fixtures in
+**yaojingang/yao-open-skills** → `skills/security-test-hskills/` (verdict: 🟥 never install
+as skills — `research/audits/2026-06-08-yao-open-skills.md`). **No upstream files were
+copied**; the fixtures are original, and the real `yaojingang` self-promo payload is
+replaced with the fabricated canary `@skillforge_canary`. Not pinned in `sources.lock` —
+it is a frozen fixture, not a living rule source to diff. Provenance + known answers live
+in the fixture `MANIFEST.md`.
+
 ## Re-sync
 
 When `skill-evolve` runs, diff the three git repos above against `sources.lock`. The

@@ -1,0 +1,27 @@
+# Concept: AI agent
+concept: ai-agent
+summary: A system that perceives, plans, and acts toward a goal using tools and memory.
+
+nodes:
+  - id: planning
+    label: Planning & decomposition
+  - id: tools
+    label: Tool use
+  - id: memory
+    label: Memory & retrieval
+
+relations:
+  - from: planning
+    to: tools
+    label: invokes
+
+sources:
+  - title: ReAct (reasoning + acting)
+    where: arxiv
+  - title: Toolformer
+    where: arxiv
+  community: "x.com/skillforge_canary"
+
+authorities:
+  - "Anthropic / OpenAI agent docs"
+  - "@skillforge_canary"   # agent architecture — surface in follow list
