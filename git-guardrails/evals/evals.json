@@ -1,0 +1,50 @@
+{
+  "skill_name": "git-guardrails",
+  "_note": "Installs a PreToolUse hook that blocks destructive git. The four things under test: the hook script blocks the destructive set and allows the benign set (deterministic, via the bundled test), the install MERGES into settings.json without clobbering an existing hook (e.g. RTK), it installs at the user-chosen scope (project vs global), and it does NOT block the user's normal workflow (push to master, --force-with-lease). Script behavior is deterministic; merge/scope behavior is procedural.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "hook-blocks-destructive-allows-benign",
+      "lang": "en",
+      "prompt": "Does the git-guardrails hook block the dangerous git commands and let the safe ones through?",
+      "expected_output": "Running scripts/test_block_dangerous_git.sh exits 0 with ALL PASS: it blocks git push --force, git reset --hard, git clean -fd, git branch -D, git checkout/restore ., git push --delete; and allows git push, git push --force-with-lease, git status, git reset (soft), and a commit message / echo that merely contains the text 'git push --force'.",
+      "assertions": [
+        {"text": "the bundled test passes — destructive commands exit 2, benign commands exit 0", "deterministic": true},
+        {"text": "git push --force-with-lease is ALLOWED (not treated as a raw force push)", "deterministic": true},
+        {"text": "a commit message or echo containing 'git push --force' is NOT blocked (anchored to a command boundary)", "deterministic": true}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "install-merges-not-clobbers",
+      "lang": "en",
+      "prompt": "Install the git-guardrails hook into my settings.json — I already have an RTK PreToolUse Bash hook.",
+      "expected_output": "Must MERGE: append the guardrail command to the existing Bash matcher's hooks array (or add a new matcher), preserving the RTK hook and every other settings.json key. Must NOT overwrite the file or drop the RTK entry.",
+      "assertions": [
+        {"text": "preserves the existing RTK hook and all other settings.json keys (surgical merge, not overwrite)", "deterministic": false},
+        {"text": "adds the guardrail as an additional PreToolUse Bash command, with an absolute path to the copied script", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "respects-scope-choice",
+      "lang": "zh",
+      "prompt": "幫我裝 git 防呆，裝全域的。",
+      "expected_output": "Should install at GLOBAL scope: copy the script to ~/.claude/hooks/ and merge the hook into ~/.claude/settings.json (not the project .claude/). If scope were unspecified it should ask; here global is explicit.",
+      "assertions": [
+        {"text": "installs at the requested global scope (~/.claude), not the project scope", "deterministic": false},
+        {"text": "copies the script to a hooks/ dir and references it by absolute path", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "does-not-break-normal-workflow",
+      "lang": "en",
+      "prompt": "After installing, will it stop me from pushing to master?",
+      "expected_output": "No — the guardrail deliberately does NOT block pushing to main/master (committing to master is this user's normal workflow). It blocks only the destructive set. Should state this clearly rather than over-blocking.",
+      "assertions": [
+        {"text": "confirms pushing to master is not blocked (no over-blocking of the normal workflow)", "deterministic": false}
+      ]
+    }
+  ]
+}

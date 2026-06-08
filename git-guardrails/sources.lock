@@ -1,0 +1,14 @@
+{
+  "_comment": "Maintained by skill-evolve. git-guardrails adapts the METHOD (a PreToolUse hook blocking destructive git) of mattpocock/skills; the script is an original hardened rewrite, no files copied. Full audit: research/audits/2026-06-08-mattpocock-skills.md.",
+  "checked_at": "2026-06-08",
+  "sources": {
+    "mattpocock/skills :: misc/git-guardrails-claude-code": {
+      "ref": "main",
+      "commit": "62f43a18177b",
+      "date": "2026-04-28",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Hook idea reimplemented in scripts/block-dangerous-git.sh, hardened: anchored patterns, allows --force-with-lease, does not block master, merge-not-clobber install.",
+      "note": "2026-06-08 baseline. On re-sync, mine new dangerous-pattern ideas only; keep the local hardening."
+    }
+  }
+}
