@@ -30,8 +30,12 @@ Use the bundled helper; it renders every `.card` in the HTML to an exact-size PN
 
 ```bash
 bash <skill>/scripts/render-frames.sh social-card-<slug>/index.html social-card-<slug>/output
-# → output/ig45-01.png (1080x1350), output/ig45-02.png (1080x1350), …
+# → output/ig45-01-cover.png (1080x1350), output/ig45-02-point.png (1080x1350), …
 ```
+
+**The frame's `id` becomes the output filename**, so give each `.card` a descriptive id
+by role: `id="ig45-01-cover"`, `id="ig45-02-point"`, `id="li191-cover"`. The helper
+reads every `.card`, so the ids you choose are exactly the PNG names you get.
 
 **Why a helper, not a plain `screenshot "#id"`** (verified the hard way, 2026-06-08):
 agent-browser's headless viewport is ~1280×577 and the `viewport` command does **not**
