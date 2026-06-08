@@ -22,6 +22,7 @@ dependencies:
   - ./solo-think/
   - ./tutor/
   - ./roleplay-coach/
+  - ./social-card/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []
