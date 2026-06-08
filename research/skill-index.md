@@ -25,5 +25,6 @@
 | 2026-06-06 | Readme.skill (readme-skill) | github.com/study8677/Readme.skill | study8677 | 否 | 🟥 跳過，歸用時再拉（把本機 AI CLI 歷史產成去識別化開發者檔案＋可分享 SVG 海報；虛榮型一次性產生器、非守備範圍；讀全機最敏感 AI 歷史、海報要外流且脫敏屬自我宣告。MIT、132★、v2.5.1 活躍。完整逐檔稽核未做＝裁決跳過） |
 | 2026-06-06 | Heartbeat-Like-A-Man | github.com/loryoncloud/Heartbeat-Like-A-Man | loryoncloud | 否 | 🟦 參考自製 → 已建 `solo-think`（OpenClaw 心跳 cron 包：離線時 agent「沒事找事」。對外那半=自主探索/社群巡邏=無監督對外貼文，高形象風險；對內那半=做夢思考/思考佇列/寫 memory，有用。取對內、砍全部對外、OpenClaw→Hermes、簡→臺灣繁體；純頻率＋時段控制、兩層只對內強制（toolsets file＋allowed-tools）。MIT、75★。未在 Hermes 實測） |
 | 2026-06-07 | 「20 個 Claude 提示詞」文章 | blocktempo.com/20-claude-prompts-productivity（譯自 @AnatoliKopadze X 討論串） | AnatoliKopadze | 部分（多條被模型原生能力、CLAUDE.md 反對協議、humanizer 涵蓋） | 🟦 參考自製 → 已建 `tutor`（取 #18 費曼＋#20 蘇格拉底：價值在硬規則協定，不釘住模型必破功回開講）與 `roleplay-coach`（取 #9 談判＋#10 面試＋#12 困難對話：真實抵抗＋一回合一句＋開演前誠實閘門＋必做覆盤）。其餘 15 條 🟥 跳過（模型原生能力或低頻一次性，用時臨場下指令）。純文字無程式碼、零資安面；來源無授權聲明（NOASSERTION），未逐字收錄，技能為原創重述掛 MIT。逐條裁定見當日本機日誌 |
+| 2026-06-08 | guizang-social-card-skill | github.com/op7418/guizang-social-card-skill | op7418（歸藏） | 與 slide-deck 相鄰不重複（簡報 PDF vs 社群卡 PNG） | 🟦 參考自製（社群卡片圖生成器，HTML→PNG，28 版式/10 主題；原鎖小紅書 3:4＋公眾號 21:9、不發文不管理＝與使用者「管理 IG/FB」雙重落差。資安 SAFE；授權不一致 AGPL/ISC＝不宜 vendor；3077★ 但建立 12 天。取設計系統原則自製：改鎖 IG 4:5 輪播＋LinkedIn、render 改用 agent-browser 取代 playwright。待 design-gate 設計） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
