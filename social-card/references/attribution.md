@@ -22,9 +22,10 @@
 - **平台改寫**：從小紅書 3:4 / 微信公眾號 21:9+1:1，改成 **IG 4:5 / 1:1 / 9:16 與
   LinkedIn 1:1 / 1.91:1**（FB 降級為單張）。長寬比、安全區、命名全部重定。
 - **渲染管線改寫**：原作用 **playwright**（`validate-social-deck.mjs`）渲染與 QA；
-  本技能改用 **agent-browser**——`screenshot "#<id>" <path>` 取精確尺寸 PNG（已實測：
-  1080×1350 元素截圖正好 1080×1350），QA 規則重寫成餵 `agent-browser eval --stdin` 的
-  `scripts/qa-rules.js`。不引入 playwright/chromium。
+  本技能改用 **agent-browser**。實測發現單元素截圖 `screenshot "#<id>"` 給對尺寸但不繪製
+  摺線以下（高卡半空白），故最終採**隔離單卡 → `screenshot --full` 繪製全高 → `convert`
+  裁切到精確尺寸**，封裝成 `scripts/render-frames.sh`（詳見 `references/render-qa.md`）。
+  QA 規則重寫成餵 `agent-browser eval --stdin` 的 `scripts/qa-rules.js`。不引入 playwright/chromium。
 - **撰寫語言**：英文（工程／工具技能，照本專案「語言看主題」慣例）；description 帶中文觸發語。
 
 ## 反預設清單（principles.md §7）

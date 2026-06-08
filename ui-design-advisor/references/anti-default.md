@@ -21,7 +21,8 @@ Examples:
   toward an authoritative Swiss system + the brand red as a single accent."*
 
 The audience picks the aesthetic, not your taste. If the read genuinely diverges and you
-cannot infer it, ask **one** question (not a dump) — otherwise declare the read and proceed.
+cannot infer it, ask a clarifying question (sparingly, never a multi-question dump — same
+budget as step 1) — otherwise declare the read and proceed.
 
 ## 2. Anti-default discipline — the LLM clichés to reach past
 
