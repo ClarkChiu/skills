@@ -27,5 +27,13 @@
 | 2026-06-07 | 「20 個 Claude 提示詞」文章 | blocktempo.com/20-claude-prompts-productivity（譯自 @AnatoliKopadze X 討論串） | AnatoliKopadze | 部分（多條被模型原生能力、CLAUDE.md 反對協議、humanizer 涵蓋） | 🟦 參考自製 → 已建 `tutor`（取 #18 費曼＋#20 蘇格拉底：價值在硬規則協定，不釘住模型必破功回開講）與 `roleplay-coach`（取 #9 談判＋#10 面試＋#12 困難對話：真實抵抗＋一回合一句＋開演前誠實閘門＋必做覆盤）。其餘 15 條 🟥 跳過（模型原生能力或低頻一次性，用時臨場下指令）。純文字無程式碼、零資安面；來源無授權聲明（NOASSERTION），未逐字收錄，技能為原創重述掛 MIT。逐條裁定見當日本機日誌 |
 | 2026-06-08 | guizang-social-card-skill | github.com/op7418/guizang-social-card-skill | op7418（歸藏） | 與 slide-deck 相鄰不重複（簡報 PDF vs 社群卡 PNG） | 🟦 參考自製（社群卡片圖生成器，HTML→PNG，28 版式/10 主題；原鎖小紅書 3:4＋公眾號 21:9、不發文不管理＝與使用者「管理 IG/FB」雙重落差。資安 SAFE；授權不一致 AGPL/ISC＝不宜 vendor；3077★ 但建立 12 天。取設計系統原則自製：改鎖 IG 4:5 輪播＋LinkedIn、render 改用 agent-browser 取代 playwright。待 design-gate 設計） |
 | 2026-06-08 | taste-skill | github.com/Leonxlnx/taste-skill | Leonxlnx | 是（重複 ui-design-advisor → frontend-design 管線） | 🟦 參考自製（純前端登陸頁／作品集的有品味產生器，帶三段刻度〔變化／動態／密度〕；純前端網頁偏離使用者守備、又與既有介面管線同生態位。資安無虞（已查主技能＋skill.sh＝純提示／純查表；12 個變體未逐一開，裁決非安裝故不必）。MIT、37.2k★ 但 4 個月病毒級熱度、單人。整包不裝不收錄；可選擇性把「情境判讀宣告／反預設清單／三段刻度」挑進 ui-design-advisor，低優先） |
+| 2026-06-08 | yao-open-skills（整包合集） | github.com/yaojingang/yao-open-skills | yaojingang（姚金剛） | 部分 | 🟥 整包不可裝（內含作者自宣告的故意提示注入樣本＋自肥版權戳記；MIT、3 個月帳號衝 1097★。個別技能裁決見下列。完整稽核見當日本機紀錄） |
+| 2026-06-08 | yao-bayesian-skill | github.com/yaojingang/yao-open-skills | yaojingang | 否 | 🟦 參考自製（紮實：1160 行真做 prior odds × 概似比更新＋Beta-Binomial 共軛；本地計算無網路。決策簇首選素材） |
+| 2026-06-08 | yao-crux-skill | github.com/yaojingang/yao-open-skills | yaojingang | 否 | 🟦 參考自製（紮實方法：《矛盾論》主／次矛盾診斷＋程式化清晰度評分；本地、無網路） |
+| 2026-06-08 | yao-kelly-skill | github.com/yaojingang/yao-open-skills | yaojingang | 否 | 🟦 參考自製（低優先；真 Kelly 公式＋對數成長極大化，需資本配置場景才用） |
+| 2026-06-08 | yao-websecurity-skill | github.com/yaojingang/yao-open-skills | yaojingang | 部分（內建資安審查） | 🟦 參考自製（挖 V001–V275 弱點本體 CSV；非主動掃描＝人工逐條＋報告引擎，腳本謹慎） |
+| 2026-06-08 | security-test-hskills（codereview／knowledge／techselect 三個） | github.com/yaojingang/yao-open-skills | yaojingang | — | 🟥 不可當技能裝（作者自宣告的故意注入樣本）／🟨 收作 skill-auditor 紅隊測試集（已知答案、標好注入行號，最高價值再利用） |
+| 2026-06-08 | yao-gametheory／business／expert／learning-builder／tutorial-skill | github.com/yaojingang/yao-open-skills | yaojingang | 是（重疊 tutor／doc-coauthoring／slide-deck） | 🟥 跳過（gametheory 不解 Nash 均衡；其餘深度多在提示、與既有教學／文件技能重疊） |
+| 2026-06-08 | yao-weread／copyright／open-skills-sync | github.com/yaojingang/yao-open-skills | yaojingang | — | 🟥 跳過（weread＝微信讀書付費閘道＋金鑰、CN 平台低相關；copyright＝戳作者版權自肥；sync＝他們 repo 自綁治理工具） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
