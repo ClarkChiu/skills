@@ -47,6 +47,19 @@ or executed. Each source's full security review is in
   (Nielsen's 10, Norman's principles, WCAG POUR, inclusive web design, cognitive
   load, defensive design, etc.). Skipped `README.md`.
 
+## Principle adaptation (not vendored data)
+
+`references/anti-default.md` adapts three **principles** from
+**Leonxlnx/taste-skill** (MIT) — the "Design Read" one-line declaration, the
+anti-default cliché list, and the three calibration dials (variance / motion /
+density). **No files were copied**; the text is rewritten for this skill's
+decision-brief workflow. taste-skill is a prompt-only frontend generator (37k★,
+viral but solo, 4 months old as of 2026-06-08) we chose **not** to install or
+vendor (overlaps this skill + `frontend-design`, off the user's core work — full
+verdict in `research/audits/2026-06-08-taste-skill.md`); these three directives
+were the parts worth keeping. Pinned in `sources.lock` so `skill-evolve` tracks
+the upstream for better wording later.
+
 ## Re-sync
 
 `sources.lock` pins each source at the commit vendored. When `skill-evolve` runs,

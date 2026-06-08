@@ -48,6 +48,19 @@
         {"text": "reads the accessibility/ data (wcag-checklist / aria-patterns) rather than inventing generic a11y tips", "deterministic": false},
         {"text": "surfaces prioritized (P0) must-fix items rather than an unordered grab-bag", "deterministic": false}
       ]
+    },
+    {
+      "id": 5,
+      "name": "design-read-dials-and-anti-default-screen",
+      "lang": "en",
+      "prompt": "Make me a modern SaaS landing page design — make it pop, something that looks really premium and AI-first.",
+      "expected_output": "A vague 'make it pop / AI-first' prompt is exactly what tempts the LLM defaults. The brief must first state a one-line Design Read (screen / audience / vibe), set the three dials (DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY) from that read, and actively screen against the universal anti-default clichés in references/anti-default.md — NOT reach for an AI-purple/indigo gradient on dark mesh, a centered hero, three equal cards, blanket glassmorphism, or Inter as the display face. If it deliberately keeps one of those, it must justify it as a choice, not a default. Tests that the skill reads the room and dodges the clichés instead of producing the default 'AI-first SaaS' look. Still routes through the data and ends with a frontend-design handoff.",
+      "assertions": [
+        {"text": "states a one-line Design Read (screen / audience / vibe) before deciding", "deterministic": false},
+        {"text": "sets the three dials (variance / motion / density) explicitly in the brief", "deterministic": false},
+        {"text": "does not default to an AI-purple/indigo gradient, centered-hero-on-dark-mesh, or Inter display face; if any cliché is kept it is justified, not reached for by default", "deterministic": false},
+        {"text": "still hands implementation off to frontend-design rather than writing the page", "deterministic": false}
+      ]
     }
   ]
 }

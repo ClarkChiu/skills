@@ -52,7 +52,10 @@ aesthetic-palette JSON, and accessibility + UX-heuristic markdown.
    the specific screen (landing, dashboard, form, marketing site), audience, and
    any brand or stack constraints. If two or more of these are unknown and they
    change the answer, ask **one or two** clarifying questions (AskUserQuestion) —
-   do not guess silently.
+   do not guess silently. Then **state a one-line Design Read** before deciding
+   anything (`references/anti-default.md` §1): *"Reading this as: \<screen> for
+   \<audience>, with a \<vibe> language, leaning toward \<style>."* The audience
+   picks the aesthetic, not your taste.
 
 2. **Route, then read.** Open `data/INDEX.md`. Start from
    `ui-ux-pro-max/ui-reasoning.csv` (the per-category decision rules), then pull
@@ -66,10 +69,18 @@ aesthetic-palette JSON, and accessibility + UX-heuristic markdown.
 3. **Decide a coherent language.** Choose ONE direction (not a menu) where the
    pieces reinforce each other. Resolve concrete values: palette as hex,
    named font pairing, specific chart types, named effects. Check it against the
-   chosen rows' `Do Not Use For` / `Anti_Patterns` / severity columns. Note light
-   vs dark and the accessibility grade.
+   chosen rows' `Do Not Use For` / `Anti_Patterns` / severity columns, **and**
+   against the universal LLM clichés in `references/anti-default.md` §2 (AI-purple
+   gradients, centered hero on dark mesh, three equal cards, blanket
+   glassmorphism, Inter/Roboto display, slate-on-white) — the row anti-patterns
+   are style-specific; the anti-default list fires regardless of style. Set the
+   three dials (`anti-default.md` §3) — **DESIGN_VARIANCE / MOTION_INTENSITY /
+   VISUAL_DENSITY** — from the Design Read. Note light vs dark and the
+   accessibility grade.
 
 4. **Write the DESIGN BRIEF** (concise, structured):
+   - **Design Read** — the one-line read from step 1 (screen / audience / vibe).
+   - **Calibration** — the three dials (`variance / motion / density`, e.g. `6 / 4 / 4`).
    - **Product & screen** — one line of what this is for.
    - **Style** — name + why (cite the style row's reasoning), light/dark stance.
    - **Palette** — roles with hex (primary / accent / background / surface /
@@ -79,7 +90,8 @@ aesthetic-palette JSON, and accessibility + UX-heuristic markdown.
    - **Charts** (if any) — type per data shape, with accessibility note.
    - **Key effects & motion** — restrained, from the style row.
    - **Accessibility** — the P0 items from `wcag-checklist.md` that apply.
-   - **Anti-patterns to avoid** — from the rows you used.
+   - **Anti-patterns to avoid** — from the rows you used, plus any universal
+     default you deliberately kept and why (`references/anti-default.md`).
    Optionally `Write` the brief to `docs/design/<screen>-brief.md` if the user
    wants it persisted.
 

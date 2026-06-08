@@ -34,6 +34,14 @@
       "license": "MIT",
       "vendored": "UX-heuristic markdown files (skipped README.md)",
       "note": "2026-06-08: SHA widened from short '5e8b249' to full (same commit). Canonical, timeless heuristics; rarely changes."
+    },
+    "Leonxlnx/taste-skill": {
+      "ref": "main",
+      "commit": "3c7017d636c3",
+      "date": "2026-05-26",
+      "license": "MIT",
+      "vendored": "PRINCIPLES ONLY — no files. references/anti-default.md rewrites 3 directives: the Design Read declaration, the anti-default cliché list, the 3 dials (variance/motion/density).",
+      "note": "2026-06-08: adapted, not vendored. Prompt-only frontend generator, 37k★ but viral/solo/4-months-old; verdict build-your-own (not install/vendor) — research/audits/2026-06-08-taste-skill.md. Tracked so skill-evolve can surface upstream wording tweaks; refinement would live in upstream skills/taste-skill/SKILL.md — re-read it on a bump."
     }
   }
 }

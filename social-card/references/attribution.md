@@ -27,6 +27,13 @@
   `scripts/qa-rules.js`。不引入 playwright/chromium。
 - **撰寫語言**：英文（工程／工具技能，照本專案「語言看主題」慣例）；description 帶中文觸發語。
 
+## 反預設清單（principles.md §7）
+
+`principles.md` 的「避開 LLM 預設」一節屬通用設計常識（與 `slide-deck` 既有的 anti-slop 同類），
+撰寫時受 **Leonxlnx/taste-skill**（MIT）的 anti-default 紀律啟發。該技能的完整裁決與三點吸收的
+**權威來源追蹤**放在 `ui-design-advisor`（`references/anti-default.md` ＋ `sources.lock`），
+此處不重複釘鎖，只註明出處。評估紀錄：`research/audits/2026-06-08-taste-skill.md`。
+
 ## 授權
 
 原作授權不一致，故不收錄其檔案；本技能為原則的原創重述，掛 MIT。

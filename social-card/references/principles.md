@@ -61,3 +61,21 @@ The cover card carries the hook (a sharp title + one strong visual + an optional
 point strip). Content cards each pay off one promise from the cover. A hollow center on
 the cover (empty middle) is a fail — enlarge the title, the image, or add a bottom
 strip.
+
+## 7. Avoid the LLM defaults
+
+What makes a card read as auto-generated — reach past all of it deliberately:
+
+- **AI-purple / indigo gradients** (`#6366f1`, violet mesh) as the palette. Use one of the
+  original themes in `style-system.md`; let the accent be a single deliberate color.
+- **Centered title over a dark aurora/mesh gradient** as every cover. Vary composition;
+  the Swiss family aligns to a grid, Editorial goes asymmetric.
+- **Generic glassmorphism, soft blur blobs, huge border-radius, drop shadows for
+  decoration.** Swiss is flat by design; Editorial earns texture with intent (§5).
+- **Inter / Roboto / system stack as the display face.** Set a distinctive display pairing;
+  hierarchy comes from size and weight, not from a default font.
+- **The same template on every card** — identical title-plus-three-bullets, same fixed
+  content width. Vary the page role (`layouts.md`) and the width.
+
+None is banned outright; reaching for them *by default* is the tell. If a theme legitimately
+uses one (e.g. a deliberately glassy Editorial cover), keep it — but as a choice, not a default.
