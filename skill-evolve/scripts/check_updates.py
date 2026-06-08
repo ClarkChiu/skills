@@ -41,6 +41,19 @@ def _api(path):
         return json.load(r)
 
 
+def _same_commit(a, b):
+    """True if two commit SHAs refer to the same commit, tolerating short vs full.
+
+    A lock may store an abbreviated SHA (e.g. '5e8b249') while the API returns a
+    longer one ('5e8b2491651e'). A plain `!=` then false-flags an unchanged repo
+    as UPDATED on every run. Compare by prefix on the shorter of the two instead.
+    """
+    if not a or not b:
+        return a == b
+    n = min(len(a), len(b))
+    return a[:n].lower() == b[:n].lower()
+
+
 def latest(repo):
     """Return {commit, commit_date, release} for a repo, or {error: ...} loudly."""
     out = {}
@@ -90,10 +103,10 @@ def main():
             status = "error"
         elif not base:
             status = "new-source"            # cited but never baselined
-        elif cur.get("commit") != base.get("commit"):
-            status = "updated"
-        else:
+        elif _same_commit(cur.get("commit"), base.get("commit")):
             status = "unchanged"
+        else:
+            status = "updated"
         rows.append({"repo": repo, "status": status,
                      "baseline": base.get("commit"), "latest": cur.get("commit"),
                      "latest_date": cur.get("commit_date"), "release": cur.get("release"),

@@ -1,38 +1,39 @@
 {
   "_comment": "Maintained by skill-evolve: upstream data sources vendored into data/. Pins the commit each was copied at, to detect new/updated design data. Update only after reviewing the report (--write-lock). Only DATA was vendored — no scripts/CLI. Full audit: research/audits/2026-06-05-ui-ux-pro-max.md.",
-  "checked_at": "2026-06-06",
+  "checked_at": "2026-06-08",
   "sources": {
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "ref": "main",
-      "commit": "b7e3af8",
+      "commit": "b7e3af80f6e3",
+      "release": "v2.5.0",
       "date": "2026-04-03",
       "license": "MIT",
       "vendored": "src/ui-ux-pro-max/data/*.csv (12 domain + stacks/16); dropped draft.csv, design.csv, all scripts",
-      "note": "Main thing to re-check — CSVs update most often. Take data only; never vendor the CLI or the image-gen scripts that read ~/.claude/.env."
+      "note": "2026-06-08: SHA widened from short 'b7e3af8' to full (same commit — the short form was false-flagging as UPDATED every run). Unchanged since vendoring. Main thing to re-check — CSVs update most often. Take data only; never vendor the CLI or the image-gen scripts that read ~/.claude/.env."
     },
     "mattdesl/dictionary-of-colour-combinations": {
       "ref": "master",
-      "commit": "c142bd0",
+      "commit": "c142bd0bc804",
       "date": "2020-05-27",
       "license": "MIT",
       "vendored": "colors.json",
-      "note": "Stable/old, changes rarely. Aesthetic palette layer (Sanzo Wada); colour values are facts."
+      "note": "2026-06-08: SHA widened from short 'c142bd0' to full (same commit). Stable/old, changes rarely. Aesthetic palette layer (Sanzo Wada); colour values are facts."
     },
     "plugin87/ux-ui-agent-skills": {
       "ref": "main",
-      "commit": "f0a75dd",
-      "date": "2026-03-16",
+      "commit": "3f288fac0a62",
+      "date": "2026-06-06",
       "license": "MIT (declared in README; NO LICENSE file — weaker grant)",
       "vendored": "accessibility/wcag-checklist.md, accessibility/aria-patterns.md",
-      "note": "One-shot repo, unlikely to update. Did not take token/atomic-design/framework layers."
+      "note": "2026-06-08 bump (was f0a75dd, 2026-03-16). New commits are npm packaging + 138 design-systems + motion tokens; the vendored a11y/WCAG/ARIA files did NOT change, and the design-systems layer is already covered by ui-ux-pro-max. No re-vendor. Did not take token/atomic-design/framework layers."
     },
     "SteveBarnett/Checklists": {
       "ref": "main",
-      "commit": "5e8b249",
-      "date": "2021-09-15",
+      "commit": "5e8b2491651e",
+      "date": "2021-09-14",
       "license": "MIT",
       "vendored": "UX-heuristic markdown files (skipped README.md)",
-      "note": "Canonical, timeless heuristics; rarely changes."
+      "note": "2026-06-08: SHA widened from short '5e8b249' to full (same commit). Canonical, timeless heuristics; rarely changes."
     }
   }
 }

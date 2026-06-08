@@ -1,11 +1,12 @@
 {
   "_comment": "供 skill-evolve 追蹤上游：solo-think 改寫自 loryoncloud/Heartbeat-Like-A-Man 的對內構想（已砍對外動作、移植到 Hermes、改寫成臺灣繁體中文）。上游若改動心跳/思考佇列的設計，由 skill-evolve 提醒回看。",
-  "checked_at": "2026-06-06",
+  "checked_at": "2026-06-08",
   "sources": {
     "loryoncloud/Heartbeat-Like-A-Man": {
+      "commit": "d644d727acc0",
       "release": null,
-      "date": "2026-06-06",
-      "note": "未見版本標籤；以查閱日期釘版（README 範例提及 2026-03-03）。commit SHA 未取得。只取對內構想（做夢思考、思考佇列、寫進記憶），對外動作（自主探索、社群巡邏）刻意不收。"
+      "date": "2026-03-03",
+      "note": "未見版本標籤。SHA 於 2026-06-08 補上（先前未取得）。最新 commit 2026-03-03 早於 solo-think 2026-06-06 建置，無新變動可採。只取對內構想（做夢思考、思考佇列、寫進記憶），對外動作（自主探索、社群巡邏）刻意不收。"
     }
   }
 }

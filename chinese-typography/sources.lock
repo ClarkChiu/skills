@@ -1,20 +1,22 @@
 {
   "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
-  "checked_at": "2026-06-01",
+  "checked_at": "2026-06-08",
   "sources": {
     "sysprog21/zhtw-mcp": {
       "commit": "defcc020fd76",
       "date": "2026-05-25"
     },
     "BYVoid/OpenCC": {
-      "commit": "137163d62502",
+      "commit": "47cccca4f826",
       "release": "ver.1.3.1",
-      "date": "2026-06-01"
+      "date": "2026-06-08",
+      "note": "2026-06-08 bump (was 137163d62502). C++ OpenCC moves; this skill uses the frozen python opencc-python-reimplemented==0.1.7, so 1.3.x mapping changes do NOT affect output unless the package is switched — already documented in SKILL.md. No action."
     },
     "FuDesign2008/open-skills": {
-      "commit": "5ce9640b61c2",
-      "release": "v1.46.1",
-      "date": "2026-05-29"
+      "commit": "aaa405d3774c",
+      "release": "v1.46.2",
+      "date": "2026-06-02",
+      "note": "2026-06-08 bump (was 5ce9640b61c2 / v1.46.1). New commits touch Git/Jira/strategic-thinking skills, NOT the cited chinese-format skill — no action."
     },
     "StarCC0/starcc-py": {
       "commit": "5ec1b1d9ef03",
@@ -37,8 +39,9 @@
       "date": "2023-08-09"
     },
     "vinta/pangu.js": {
-      "commit": "cb1e387ea2d3",
-      "date": "2026-04-21"
+      "commit": "1c30f32d2638",
+      "date": "2026-06-03",
+      "note": "2026-06-08 bump (was cb1e387ea2d3). Only postcss/vitest dependency bumps since baseline — spacing algorithm unchanged. No action."
     },
     "zhlint-project/zhlint": {
       "commit": "c8678fe71ce3",

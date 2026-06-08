@@ -1,12 +1,14 @@
 {
   "_comment": "Maintained by skill-evolve: the upstream this debugging method was adapted from, used to detect new rules. Update only after reviewing the report (--write-lock).",
-  "checked_at": "2026-06-05",
+  "checked_at": "2026-06-08",
   "sources": {
     "obra/superpowers": {
       "ref": "main",
-      "date": "2026-06-05",
+      "commit": "6fd450765978",
+      "release": "v5.1.0",
+      "date": "2026-05-29",
       "skills": ["systematic-debugging"],
-      "note": "Rules adapted, not vendored verbatim. Commit SHA not captured (API rate limit); pinned by ref=main + check date. Re-sync by diffing this skill's content."
+      "note": "Rules adapted, not vendored verbatim. SHA captured 2026-06-08 (was unset due to earlier rate limit). v5.1.0 latest commit (2026-05-29) predates this skill's 2026-06-05 build; reviewed, no debugging-method changes to adopt. Re-sync by diffing this skill's content."
     }
   }
 }

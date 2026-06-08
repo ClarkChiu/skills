@@ -1,15 +1,17 @@
 {
   "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
-  "checked_at": "2026-06-01",
+  "checked_at": "2026-06-08",
   "sources": {
     "1weiho/open-slide": {
-      "commit": "4a587232b809",
-      "release": "@open-slide/cli@1.2.6",
-      "date": "2026-05-30"
+      "commit": "d0c2912c984b",
+      "release": "@open-slide/cli@1.3.1",
+      "date": "2026-06-07",
+      "note": "2026-06-08 bump (was 4a587232b809 / cli@1.2.6). Recent releases are interaction/tooling (stepped reveals, transition API, image export) — no type-scale / vertical-budget / layout methodology change. No principle to adopt."
     },
     "GordenSun/GordenPPTSkill": {
-      "commit": "7b4c27593c4a",
-      "date": "2026-06-01"
+      "commit": "d889470ddaa9",
+      "date": "2026-06-03",
+      "note": "2026-06-08 bump (was 7b4c27593c4a). June commits are README/QR/naming; methodology refinements predate baseline. No action."
     },
     "ethantw/Han": {
       "commit": "970d163c6af2",
@@ -21,9 +23,10 @@
       "date": "2026-05-08"
     },
     "hugohe3/ppt-master": {
-      "commit": "232415dbacc1",
+      "commit": "9d763c528b74",
       "release": "v2.9.0",
-      "date": "2026-05-31"
+      "date": "2026-06-08",
+      "note": "2026-06-08 bump (was 232415dbacc1). v2.5–2.9 are engine/tooling (Live Preview, LaTeX, template refactor); the v2.8.0 rubric self-check is already distilled into slide-deck's visual self-review. No new design principle to adopt."
     },
     "sivan/heti": {
       "commit": "7d5ceb72a6a7",

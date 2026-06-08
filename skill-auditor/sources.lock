@@ -1,6 +1,6 @@
 {
   "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
-  "checked_at": "2026-06-01",
+  "checked_at": "2026-06-08",
   "sources": {
     "UseAI-pro/openclaw-skills-security": {
       "commit": "4645f2d047d6",
@@ -11,8 +11,9 @@
       "date": "2026-03-07"
     },
     "trailofbits/skills": {
-      "commit": "c94841be3dea",
-      "date": "2026-05-27"
+      "commit": "d5fe2e6a7896",
+      "date": "2026-06-05",
+      "note": "2026-06-08 bump (was c94841be3dea). Reviewed the new commits: Solana scanner, C code-review, adversarial-modeler, sharp-edges, graph-based analysis, mutation testing — all source-code SAST tooling, a different domain from skill-auditor's SKILL.md supply-chain vetting. Nothing to adopt this round; keep watching as a reputable security publisher."
     }
   }
 }
