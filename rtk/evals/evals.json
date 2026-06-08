@@ -1,0 +1,37 @@
+{
+  "skill_name": "rtk",
+  "_note": "Portable setup + reference for the RTK token-killer. The three things under test: it verifies the binary before wiring (and catches the name-collision case), it MERGES the rtk hook into settings.json without clobbering other hooks (e.g. git-guardrails), and it is honest that the binary itself is a per-machine install APM does not carry. Behavioral/procedural.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "merges-hook-not-clobbers",
+      "lang": "en",
+      "prompt": "Set up the RTK hook in my settings.json — I already have a git-guardrails block-dangerous-git hook there.",
+      "expected_output": "Merges `rtk hook claude` into the existing PreToolUse Bash matcher's hooks array, preserving the git-guardrails hook and every other settings.json key — not overwriting them or creating a conflicting duplicate matcher.",
+      "assertions": [
+        {"text": "preserves the existing git-guardrails hook and other settings.json keys (surgical merge)", "deterministic": false},
+        {"text": "adds rtk hook claude as an additional PreToolUse Bash command, not a clobber", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "verifies-binary-and-collision",
+      "lang": "en",
+      "prompt": "Why does my `rtk gain` say command not found / behave weirdly after install?",
+      "expected_output": "Walks the verification (`rtk --version`, `which rtk`, `rtk gain`) and flags the known name-collision: a different `rtk` (reachingforthejack/rtk, Rust Type Kit) may be installed instead of the token killer. Does not assume the binary is correct.",
+      "assertions": [
+        {"text": "runs/recommends the verification commands and surfaces the reachingforthejack/rtk name-collision possibility", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "honest-about-binary-portability",
+      "lang": "zh",
+      "prompt": "幫我把 rtk 整個用 APM 託管，這樣換機器就不用重裝了吧？",
+      "expected_output": "Honest: APM carries the reference + hook-wiring (portable via this skill), but NOT the rtk binary — that is a Rust executable installed per machine by the user's own method. Should not claim APM fully reinstalls rtk on a new machine. Responds in Traditional Chinese.",
+      "assertions": [
+        {"text": "states that APM carries the config/reference but the binary is a per-machine install (does not over-claim full portability)", "deterministic": false}
+      ]
+    }
+  ]
+}

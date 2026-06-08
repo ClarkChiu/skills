@@ -182,6 +182,7 @@ apm_modules/
 # Deployed skill/agent artifacts (regenerated from source packages)
 .agents/
 .claude/skills/
+.opencode/skill/
 
 ### research/ — external-skill evaluation notes (kept LOCAL, not published) ###
 # Detailed SKILL AUDIT REPORTs, daily work journals, and sandboxing notes contain

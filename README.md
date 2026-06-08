@@ -8,6 +8,20 @@
 
 這個專案是我用 **技能（skills）＋ LLM 協助工作與生活** 的中樞——範圍涵蓋前後端與系統程式開發、產品管理（PRD／需求／優先級）、研究與寫作，**不只限於中文處理**。中文排版（`chinese-typography`）只是其中一個面向。評估與引入任何外部技能時，都以「能否實際幫到這些工作／生活情境」為出發點，並一律先過 `skill-auditor` 安全稽核、把研究與裁決記錄下來，再決定是否安裝。
 
+## 儲存庫結構
+
+頂層**不是只有技能目錄**，刻意還有兩個產物目錄。版控的東西就這幾類，沒有重複：
+
+| 頂層項目 | 是什麼 | 版控？ |
+|---|---|---|
+| `chinese-typography/`、`design-gate/`、`tdd/`… 等**單一技能目錄** | 每個是一個自建技能（`SKILL.md` + `references/` + 視需要 `scripts/`／`evals/`／`attribution.md`＋`sources.lock`） | ✅ 進版控（真相來源） |
+| `docs/` | `design-gate` 的產物：`specs/`（設計文件）、`plans/`（實作計畫） | ✅ |
+| `research/` | `skill-curator` 的產物：`skill-index.md`（外部技能評估索引）進版控；`audits/`（完整稽核）與當日工作日誌 gitignored（本機私有） | 部分 |
+| `CLAUDE.md`、`README.md`、`apm.yml`、`apm.lock.yaml`、`.gitignore` | 專案說明與 APM 設定／鎖定檔 | ✅ |
+| `.claude/`、`.agents/`、`.opencode/`、`apm_modules/` | **APM 的部署目標與模組快取**（`apm install` 產生，部署副本與源技能重複） | ❌ gitignored，靠 `apm.lock.yaml` 重現 |
+
+所以「子目錄看起來不只技能」是正常的：技能目錄是源碼，`docs/`／`research/` 是流程技能的輸出；部署副本一律不進版控。
+
 ## 自建技能（本專案維護）
 
 | 技能 | 說明 |
@@ -33,6 +47,7 @@
 | [`git-guardrails`](./git-guardrails/) | 可攜的危險 git 攔截：裝一個 **PreToolUse hook**，在執行前擋掉 `push --force`/`-f`、`reset --hard`、`clean -f`、`branch -D`、丟棄全部變更、刪遠端分支。**強化**勝過上游字串 grep——樣式錨定到指令邊界（commit message/echo 裡提到不會誤殺）、**放行 `--force-with-lease`**（安全的 force）、**不擋 push 到 master**（你的日常）。安裝步驟**合併**進 settings.json（不覆蓋 RTK hook）、專案層或全域可選。腳本隨 APM/git 走、可攜；17 案測試。改寫自 `mattpocock/skills` 的 git-guardrails（方法非檔、MIT）。 |
 | [`terse`](./terse/) | 手動開關的**省 token 精簡模式**：砍開場白、避險、複述、客套、重複，答案先講——但**砍內容不砍文法**。語言感知:英文可電報式,**中文維持自然臺灣繁體**(修正了 caveman 讓中文怪腔怪調的毛病)。跨回合持續到你喊停;資安警告與破壞性操作確認自動退出精簡。與 `humanizer` 互補(tone vs length)。改寫自 `mattpocock/skills` 的 caveman（修正中文、MIT）。 |
 | [`to-issues`](./to-issues/) | 把計畫／規格／PRD 拆成可獨立認領的 **GitHub issue**：垂直曳光彈切片、依相依排序，**發布前一律先把整份清單給你確認**才用 `gh` 建立(用你既有登入、不碰 token,未登入交回你)。是 `design-gate` 的天然下游(出計畫 → 發成 issue),不重新規劃。改寫自 `mattpocock/skills` 的 to-issues（方法非檔、加確認閘門、MIT）。 |
+| [`rtk`](./rtk/) | **RTK（Rust Token Killer）的可攜設定與參考**：把原本機器本機的 `~/.claude/RTK.md` 搬進 repo 隨 APM 走，換機器時跑一次就把 `rtk hook claude` 的 PreToolUse hook 合併進 settings.json（和 `git-guardrails` 並存、不覆蓋）。RTK 是 token 優化代理，把 `git status` 之類透明改寫成 `rtk git status`，省 60–90% token。**可攜的是設定與參考、不是二進位檔**——`rtk` 二進位仍每機自行安裝（技能誠實標明這點）。含安裝驗證與 `reachingforthejack/rtk` 名稱衝突提醒。 |
 
 ## 外部技能（經 APM 引入第三方）
 
