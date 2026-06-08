@@ -9,6 +9,14 @@
       "date": "2026-05-29",
       "skills": ["brainstorming", "writing-plans"],
       "note": "Rules adapted from these two skills (not vendored verbatim). SHA captured 2026-06-08 (was unset due to earlier rate limit). v5.1.0's latest commit (2026-05-29) predates this skill's 2026-06-05 build, and its 'self-review checklist instead of subagent loops' change is the direction design-gate already took — reviewed, nothing new to adopt. Re-sync by diffing these two skills' content."
+    },
+    "mattpocock/skills :: engineering/grill-with-docs": {
+      "ref": "main",
+      "commit": "e3b90b5238f3",
+      "date": "2026-05-28",
+      "license": "MIT",
+      "vendored": "PRINCIPLE ONLY — no files. Inspired the Phase-1 'sharpen terms + capture ADRs inline' step and references/adr.md (ubiquitous language + living ADR/CONTEXT capture). ADR format is the public Michael Nygard structure.",
+      "note": "2026-06-08: added when ADR/ubiquitous-language capture was folded into design-gate. On re-sync, mine glossary/ADR-capture refinements; the ADR format itself is standard and stable."
     }
   }
 }

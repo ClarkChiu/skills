@@ -43,13 +43,14 @@ Rules adapted from obra/superpowers' `brainstorming` and `writing-plans` (MIT), 
 
 ### Phase 1 — Design (details in `references/brainstorming.md`)
 
-1. **Explore context**: read the relevant code, docs, and existing design first, so questions build on the current state instead of asking what's already written.
+1. **Explore context**: read the relevant code, docs, and existing design first — including any project **glossary / `CONTEXT.md`** and existing **ADRs** (`docs/adr/`) — so questions build on the current state and the project's own vocabulary instead of asking what's already written.
 2. **Converge, one question at a time**: *only one question per message.* Prefer multiple-choice over open-ended. Focus on purpose, constraints, and success criteria.
 3. **Propose 2–3 approaches** with trade-offs — don't just build the first idea.
 4. **Present the design in sections** (architecture, components, data flow, error handling, testing) and get approval after each section before moving on.
 5. **Flag oversized scope on the spot**: if one request really spans several independent subsystems, say so and split it into sub-projects.
-6. **Write the design doc** to `docs/specs/YYYY-MM-DD-<topic>-design.md`.
-7. **Self-review** before handing off (placeholder scan, internal consistency, scope, ambiguity — see the reference).
+6. **Sharpen terms and capture decisions as you go.** Use the project's words; when a term is fuzzy, pin it down and record it (a glossary line / `CONTEXT.md`). When a *significant* architectural choice is settled, write a short **ADR** to `docs/adr/NNNN-<topic>.md` right then — don't batch them. Format and "what counts as ADR-worthy" in `references/adr.md`.
+7. **Write the design doc** to `docs/specs/YYYY-MM-DD-<topic>-design.md`.
+8. **Self-review** before handing off (placeholder scan, internal consistency, scope, ambiguity — see the reference).
 
 ### The hard gate
 
@@ -75,6 +76,7 @@ Once the plan is written and saved, hand back to execution. Default: **execute t
 | Phase | Artifact | Path |
 |---|---|---|
 | Design | design doc | `docs/specs/YYYY-MM-DD-<topic>-design.md` |
+| Design | ADR (per significant decision) | `docs/adr/NNNN-<topic>.md` (see `references/adr.md`) |
 | Plan | task plan | `docs/plans/YYYY-MM-DD-<topic>.md` |
 
 (Paths are configurable; the defaults carry no upstream branding.)
