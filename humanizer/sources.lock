@@ -1,11 +1,18 @@
 {
-  "_comment": "由 skill-evolve 維護：rules-en.md 原樣收錄的上游，用來偵測新規則。檢視報告後才更新（--write-lock）。中文規則的參考來源（文章、術語表）非 GitHub repo，不在此追蹤。",
-  "checked_at": "2026-06-03",
+  "_comment": "由 skill-evolve 維護：rules-en.md 原樣收錄的上游，用來偵測新規則。檢視報告後才更新。中文規則的文章類參考非 GitHub repo、不在此追蹤；ali-words 雖是 repo 但僅為靜態術語表參考（非逐字收錄），列在此處只為避免每次掃描都誤報為 NEW。",
+  "checked_at": "2026-06-08",
   "sources": {
     "blader/humanizer": {
-      "release": "2.7.0",
-      "date": "2026-06-03",
-      "note": "rules-en.md 原樣收錄；30 條規則。commit SHA 因 API 限流未取得，以 release 釘版。"
+      "commit": "9600f2b7241c",
+      "release": "2.8.0",
+      "date": "2026-06-07",
+      "note": "rules-en.md 原樣收錄；33 條規則。2026-06-08 自 v2.7.0 同步到 v2.8.0（新增 #31–#33、擴充 #20）。"
+    },
+    "justjavac/ali-words": {
+      "commit": "f358597dbafa",
+      "release": null,
+      "date": "2022-08-24",
+      "note": "中國網路術語表，僅供中文規則參考的靜態來源（非逐字收錄）；2022 後即無更動。"
     }
   }
 }

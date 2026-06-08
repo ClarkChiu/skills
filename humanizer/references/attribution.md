@@ -2,10 +2,13 @@
 
 ## 英文規則（rules-en.md）
 
-原樣收錄自 **blader/humanizer**（MIT 授權，v2.7.0）。
+原樣收錄自 **blader/humanizer**（MIT 授權，v2.8.0）。
 - 儲存庫：https://github.com/blader/humanizer
 - 它本身整理自維基百科 **「Signs of AI writing」**（WikiProject AI Cleanup 維護）：
   https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
+- v2.8.0 再同步（2026-06-08，由 `skill-evolve` 偵測）：新增 #31 製造戲劇感的短句連發、
+  #32 格言公式、#33 對話式修辭開場三條痕跡，並擴充 #20 收進「Want me to…?／Should I
+  continue?」這類「要不要我繼續」結尾。
 
 `sources.lock` 追蹤 blader/humanizer 的版本；上游出新規則時由 `skill-evolve` 提醒重新同步。
 **rules-en.md 的規則內容請保持原樣、不要修改**，這樣才能讓 `skill-evolve` 比對上游更新。

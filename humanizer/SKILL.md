@@ -27,7 +27,7 @@ allowed-tools:
 ## 你的任務
 
 1. **判斷語言，載入對應規則**：
-   - 英文文字 → 讀 `references/rules-en.md`（30 條，原樣收錄）。
+   - 英文文字 → 讀 `references/rules-en.md`（33 條，原樣收錄）。
    - 中文文字 → 讀 `references/rules-zh-tw.md`（共用規則 + 臺灣繁體中文特有痕跡）。
    - 中英混排 → 分段，各用對應規則。不確定就問使用者。
 2. **掃描痕跡**：照規則找。**要好幾個痕跡一起出現才算，不要看到一個就咬定**——單一破折號不算，破折號＋三段式＋AI 詞彙＋空泛結論才算。先讀規則裡的「不要亂改」那段，別把正常的句子改掉。
@@ -67,6 +67,6 @@ python3 <skill>/chinese-typography/scripts/normalize.py <檔案> --diff
 
 ## 參考
 
-- `references/rules-en.md` — 英文 30 條（收錄自 blader/humanizer v2.7.0）。
+- `references/rules-en.md` — 英文 33 條（收錄自 blader/humanizer v2.8.0）。
 - `references/rules-zh-tw.md` — 中文版（臺灣繁體中文特有痕跡 + 共用規則 + 不要亂改）。
 - `references/attribution.md` — 來源與授權。
