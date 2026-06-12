@@ -41,5 +41,6 @@
 | 2026-06-08 | caveman（mattpocock） | github.com/mattpocock/skills | mattpocock | 否 | 🟦 參考自製 → **已建 `terse`**（砍內容不砍文法、語言感知，修正 caveman 中文怪腔怪調） |
 | 2026-06-08 | to-prd／to-issues／triage（mattpocock） | github.com/mattpocock/skills | mattpocock | 否 | 🟦 參考自製 → **已建 `to-issues`**（計畫→垂直切片 GitHub issue、發布前確認、design-gate 下游；to-prd/triage 暫緩）。grill-with-docs 的 ADR/統一語彙已併進 `design-gate` |
 | 2026-06-08 | diagnose／grill-me／write-a-skill 等重疊與 stack 專屬技能（mattpocock） | github.com/mattpocock/skills | mattpocock | 是 | 🟥 跳過（diagnose≈systematic-debugging、grill-me≈design-gate、write-a-skill≈內建 skill-creator；shoehorn/Husky/scaffold＝TS/JS 專屬；zoom-out 瑣碎、安裝器、deprecated／in-progress／personal） |
+| 2026-06-11 | chubbyskills（整包合集，11 技能） | github.com/chubbyguan/chubbyskills | chubbyguan（chubby） | 否（無「媒體→轉錄→知識庫」簇） | 🟥 跳過（媒體轉錄→Obsidian 知識庫工具組；多數綁中國平臺與簡體輸出，與本專案 zh-TW＋Claude 棧對位有限；工程為 yt-dlp＋whisper 薄包裝可自製。日後若建 Muse 入庫技能可參考其管線形狀。完整稽核見當日本機紀錄） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
