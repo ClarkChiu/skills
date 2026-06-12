@@ -43,5 +43,10 @@
 | 2026-06-08 | diagnose／grill-me／write-a-skill 等重疊與 stack 專屬技能（mattpocock） | github.com/mattpocock/skills | mattpocock | 是 | 🟥 跳過（diagnose≈systematic-debugging、grill-me≈design-gate、write-a-skill≈內建 skill-creator；shoehorn/Husky/scaffold＝TS/JS 專屬；zoom-out 瑣碎、安裝器、deprecated／in-progress／personal） |
 | 2026-06-11 | chubbyskills（整包合集，11 技能） | github.com/chubbyguan/chubbyskills | chubbyguan（chubby） | 否（無「媒體→轉錄→知識庫」簇） | 🟥 跳過（媒體轉錄→Obsidian 知識庫工具組；多數綁中國平臺與簡體輸出，與本專案 zh-TW＋Claude 棧對位有限；工程為 yt-dlp＋whisper 薄包裝可自製。日後若建 Muse 入庫技能可參考其管線形狀。完整稽核見當日本機紀錄） |
 | 2026-06-11 | SkillSpector（技能安全掃描 CLI，非技能） | github.com/NVIDIA/SkillSpector | NVIDIA | 否（與 `skill-auditor` 互補：它是確定性工具層，auditor 是 LLM 判斷層） | 🟩 直接裝（比照 rtk 前例作外部 CLI 工具：記 README 外部 CLI 說明、不進 apm.yml；釘 commit、uv 隔離安裝。已接進 skill-auditor 當選用靜態前置） |
+| 2026-06-12 | UZI-Skill（股票深度分析） | github.com/wbh604/UZI-Skill | wbh604 | 否（無投資分析簇） | 🟦 參考自製（同日重評：使用者補充有被動指數投資並考慮自製台股／美股版。不裝——A股／簡體／主動選股面向不對位；但人格資料化、適配閘門、分布式輸出、按維度抓取的管線是可參考的架構。詳見當日本機日誌） |
+| 2026-06-12 | orange-line-illustration（紐約客風插畫） | github.com/orange2ai/orange-line-illustration | orange2ai | 否（slide-deck／social-card 風格家族未含插畫軸） | 🟦 參考自製（純 prose 風格系統；自訂商用授權不宜收錄檔案，原則可作日後 social-card／slide-deck 的自寫風格預設；非急件） |
+| 2026-06-12 | hermes-graphiti-plugin（Hermes 記憶外掛） | github.com/p1s4/hermes-graphiti-plugin | p1s4 | 否（本專案無記憶簇） | 🟦 參考自製（屆時）（graphiti 接 Hermes 的薄包裝，出處單人短史；Muse 記憶層動工時自寫並參考其介面形狀，詳見當日本機稽核） |
+| 2026-06-12 | graphiti（時間性知識圖譜框架，非技能） | github.com/getzep/graphiti | getzep（Zep） | 否（框架非技能） | 🟥 跳過（現階段）（成熟活躍、出處強；是 Muse 第二大腦記憶層的首選候選引擎，屆時再正式評估安裝） |
+| 2026-06-12 | hermes-skill-registry（技能市集平臺） | github.com/Debarpan08/hermes-skill-registry | Debarpan08 | 部分（skill-finder 的發現角色） | 🟥 跳過（社群市集＋評分安裝的姿態與本專案安全策展流程相反；無授權條款；出處極早期） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
