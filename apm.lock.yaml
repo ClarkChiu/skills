@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-06-08T13:51:53.530070+00:00'
+generated_at: '2026-06-12T11:55:38.742499+00:00'
 apm_version: 0.14.2
 dependencies:
 - repo_url: _local/chinese-typography
@@ -151,7 +151,7 @@ dependencies:
   local_path: ./verify-before-done/
 - repo_url: anthropics/skills
   host: github.com
-  resolved_commit: da20c92503b2e8ff1cf28ca81a0df4673debdbf7
+  resolved_commit: 57546260929473d4e0d1c1bb75297be2fdfa1949
   package_type: marketplace_plugin
   deployed_files:
   - .agents/skills/algorithmic-art
@@ -188,12 +188,12 @@ dependencies:
   - .claude/skills/web-artifacts-builder
   - .claude/skills/webapp-testing
   - .claude/skills/xlsx
-  content_hash: sha256:5a94c4600dca371e7571be73552f06e11293f558b3d3b295d306b0bfefb4245b
+  content_hash: sha256:4f6d306e750b5b4f3b0dfc0f50418fa8403b3fc99867d5c2f7c170eccf94203b
 - repo_url: vercel-labs/agent-browser
   host: github.com
-  resolved_commit: 90050f2913159875e2c3719e424746396ccb3cbf
+  resolved_commit: 5185339ca3fdab9848e11b8ec676eecfdec3733f
   package_type: marketplace_plugin
   deployed_files:
   - .agents/skills/agent-browser
   - .claude/skills/agent-browser
-  content_hash: sha256:37c39aa1444e7da0de92defa37a8ee225e4c7d8a3e89eef2a720988c96bc11ed
+  content_hash: sha256:f95bd93841bcc9493deb28a3d58a82ecbd0f57c466b1fc32c8b378d6119072e9
