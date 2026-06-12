@@ -6,7 +6,7 @@ When evaluating the **duplication** of an external skill, check this map first â
 
 ### A. External-skill governance (lifecycle pipeline)
 - `skill-finder`: read-only search of skills.sh, fetch a candidate's SKILL.md. **Discovery only, never installs.**
-- `skill-auditor`: security audit, produces a SKILL AUDIT REPORT. **Must run before installing any external skill.**
+- `skill-auditor`: security audit, produces a SKILL AUDIT REPORT. **Must run before installing any external skill.** Optional deterministic pre-pass via the external `skillspector` CLI (NVIDIA, see README external-CLI section) when installed â€” a clean scan never skips the manual protocol.
 - `skill-curator`: orchestrates the two above + relevance + verdict + record. **Research/decision, never installs.**
 - `skill-evolve`: tracks the upstream of self-built skills (reads each skill's `attribution.md` + `sources.lock`).
 

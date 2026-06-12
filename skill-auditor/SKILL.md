@@ -10,7 +10,7 @@ description: |
   (GitHub, ClawHub, skills.sh, Anthropic Skills, community repos, files shared
   by humans or other agents). Produces a SKILL AUDIT REPORT with verdict
   and safe-run plan.
-version: 1.0.0
+version: 1.1.0
 permissions:
   file-read: true
   file-write: false
@@ -37,6 +37,9 @@ permissions:
         https://www.catonetworks.com/blog/cato-ctrl-weaponizing-claude-skills-with-medusalocker/
     [H] Agensi — ToxicSkills and ClawHavoc summary (Mar 2026)
         https://www.agensi.io/learn/toxicskills-clawhavoc-agent-skills-security-crisis-2026
+    [I] NVIDIA/SkillSpector — deterministic skill scanner CLI, invoked as an
+        optional pre-pass (tool integration, not merged prose)
+        https://github.com/NVIDIA/SkillSpector
     [L] Local additions / refinements during merge
 -->
 
@@ -95,6 +98,34 @@ Any of:
 <!-- Structure from [C]; Step 0 from [A] + [L] for listing-site cross-check -->
 
 Walk every step in order. Do not skip.
+
+### Optional pre-pass — deterministic baseline with SkillSpector 🤖
+
+<!-- [I] tool integration — local addition -->
+
+If the `skillspector` CLI (NVIDIA's skill security scanner) is installed and
+shell is available out-of-band, run it FIRST for a deterministic baseline:
+
+```bash
+skillspector scan <skill-dir-or-url> --no-llm --format json
+```
+
+- Covers 64 static patterns in 16 categories (prompt injection, exfiltration,
+  MCP tool poisoning, YARA signatures, taint tracking) plus live OSV.dev CVE
+  lookups — feed its findings into Steps 3–6 as machine-generated leads.
+- **A clean SkillSpector result never skips this protocol.** It is
+  pattern-based static analysis: it can miss non-English content (much of
+  this repo is zh-TW), image-based attacks, and syntactically-clean-but-
+  malicious logic.
+- **Its risk score is a lead-generator, not a verdict — in either direction.**
+  Calibration (2026-06-12): it scored this repo's own `git-guardrails` 100 /
+  CRITICAL / DO_NOT_INSTALL, entirely false positives — a security-tooling
+  skill's *data strings* (the commands it blocks, its test fixtures) look like
+  attacks to a pattern matcher. Expect the same on any guardrail/scanner-type
+  skill; judge each finding on context, not on the score.
+- Default to `--no-llm` for unknown third-party skills — the LLM stage sends
+  the scanned content to the configured provider.
+- Record its risk score and verdict in the report NOTES.
 
 ### Step 0 — Source check 🔍
 

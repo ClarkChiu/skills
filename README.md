@@ -54,7 +54,7 @@
 
 ### 外部 CLI 二進位（APM 不安裝，需每機自裝）
 
-有些工具的「技能／參考」由 APM 帶著走，但**真正的執行檔是 APM 不負責安裝的外部二進位**——換機器時要自己裝一次。兩個主要的：
+有些工具的「技能／參考」由 APM 帶著走，但**真正的執行檔是 APM 不負責安裝的外部二進位**——換機器時要自己裝一次。三個主要的：
 
 **`agent-browser`（瀏覽器自動化 CLI，npm 套件）**——`social-card` 與探索式網頁測試都靠它。
 
@@ -79,6 +79,17 @@ rtk init -g --uninstall          # 移除
 ```
 
 > RTK 的 hook 會和 `git-guardrails` 的 hook 並存於同一個 Bash matcher；`git-guardrails` 的腳本已處理「rtk 改寫後的指令」（容忍 `rtk ` 前綴），所以兩者同時開也擋得到危險 git。
+
+**`skillspector`（NVIDIA 技能安全掃描器，[github.com/NVIDIA/SkillSpector](https://github.com/NVIDIA/SkillSpector)）**——`skill-auditor` 偵測到它已安裝時，會先跑確定性靜態掃描當稽核基準（16 類 64 模式＋YARA＋污染追蹤＋OSV.dev CVE 查詢）。需 Python 3.12 或 3.13（上游釘 `>=3.12,<3.14`，交給 uv 自動解決）：
+
+```bash
+git clone https://github.com/NVIDIA/SkillSpector ~/tools/skillspector   # 先釘住 commit、人工瀏覽再裝
+uv tool install --python 3.12 ~/tools/skillspector                      # 隔離環境，CLI 上 PATH
+skillspector --version           # 驗證
+skillspector scan <dir> --no-llm --format json   # skill-auditor 的用法（純靜態，被掃內容不外送 LLM）
+```
+
+> 注意：它的靜態模式對非英文內容涵蓋有限（本專案多支技能是 zh-TW），所以它是 `skill-auditor` 的前置基準，**不取代**人工協定；掃出 0 發現也照走完整稽核。
 
 ### [`vercel-labs/agent-browser`](https://github.com/vercel-labs/agent-browser)
 

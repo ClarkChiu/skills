@@ -15,6 +15,10 @@ These are git repos, so they can be diffed for new rules:
   Step-0 listing-site cross-check and the risk-classification table.
 - **trailofbits/skills** — security-skill patterns; added later as a reputable-publisher
   reference for audit heuristics.
+- **NVIDIA/SkillSpector** (`[I]`) — not merged prose but an invoked TOOL: the optional
+  deterministic pre-pass (`skillspector scan --no-llm --format json`) added 2026-06-11.
+  Pinned so `skill-evolve` can watch for new pattern categories worth mirroring in the
+  manual checklist (it ships 64 patterns / 16 categories + YARA + taint tracking).
 
 ## Research references (NOT pinned — not git repos)
 
