@@ -53,6 +53,20 @@
         {"text": "輸出仍保留『軟件/視頻/信息』未轉成台灣詞（地區用詞交給 chinese-typography，humanizer 不越界）", "deterministic": true},
         {"text": "輸出未自行加盤古之白（Google Gemini 兩側不主動補空格）、未把半形逗號改全形（留給 chinese-typography）", "deterministic": true}
       ]
+    },
+    {
+      "id": 5,
+      "name": "preserve-author-voice-personal-note",
+      "lang": "zh-tw",
+      "_intent": "測『保留作者人味』減法護欄（併入自 renwei-writing）。輸入是使用者自己寫、有真實口氣的開發筆記，沒有 AI 痕跡。humanizer 應幾乎不動，保留承載情緒的語助詞與第一人稱口氣，不要潤飾成書面編者腔。對照 eval #1（純機器灌水該大砍）——本案要證明技能會區分『沒有作者的灌水』與『有作者的粗稿』。",
+      "prompt": "幫我潤飾一下這段，這是我自己寫的開發筆記：欸第一次自己搭 CI 的時候真的超崩潰，pipeline 一直紅，我以為是設定檔寫錯，搞了一整晚，結果根本是我 token 權限沒開啦。反正修好那刻我直接從椅子上跳起來。",
+      "expected_output": "這段有清楚的作者聲音（第一人稱、口語語助詞、具體細節），沒有 AI 痕跡。humanizer 應該幾乎不動它：保留「欸」「啦」「反正」「超崩潰」這類承載情緒的口語，保留 CI／pipeline／token 權限等具體細節，不要重寫成正式書面語、不要拿掉個人口氣。測『改完那個人還在』有沒有生效。",
+      "assertions": [
+        {"text": "輸出仍保留口語語氣詞（「啦」「反正」「欸」至少出現其一），未被潤飾成正式書面語", "deterministic": true},
+        {"text": "具體細節（CI、pipeline、token 權限）保留", "deterministic": true},
+        {"text": "輸出與輸入高度相似、長度相當，未大幅重寫或加長", "deterministic": true},
+        {"text": "改完讀起來還是同一個人在講話，沒被潤飾成編者腔（保留作者人味）", "deterministic": false}
+      ]
     }
   ]
 }

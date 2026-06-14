@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE / STUN / TURN — NAT traversal</title>
+<script>
+  (function () {
+    const saved = localStorage.getItem('theme');
+    const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<style>
+  :root {
+    --bg: #FAF9F5; --surface: #FFFFFF; --surface2: #F0EEE6;
+    --ink: #141413; --body: #3D3D3A; --muted: #87867F;
+    --line: #D1CFC5; --line-soft: #E6E3DA;
+    --clay: #D97757; --clay-soft: rgba(217,119,87,0.10);
+    --olive: #788C5D; --olive-soft: rgba(120,140,93,0.12);
+    --gold: #C9A45C; --blue: #5B7E96; --blue-soft: rgba(91,126,150,0.12);
+    --zone: rgba(20,20,19,0.025); --zone-line: #D1CFC5;
+    --serif: ui-serif, Georgia, "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  html.dark {
+    --bg: #141413; --surface: #1F1F1D; --surface2: #2A2A28;
+    --ink: #FAF9F5; --body: #D1CFC5; --muted: #87867F;
+    --line: #3D3D3A; --line-soft: #2A2A28;
+    --clay: #E48A6E; --clay-soft: rgba(228,138,110,0.14);
+    --olive: #9DB07C; --olive-soft: rgba(157,176,124,0.16);
+    --gold: #D4B36F; --blue: #7FA3BC; --blue-soft: rgba(127,163,188,0.16);
+    --zone: rgba(250,249,245,0.03); --zone-line: #3D3D3A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--body); font-family: var(--sans);
+    -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; overflow: hidden;
+  }
+
+  .bar {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 12px 20px; border-bottom: 1px solid var(--line-soft); flex: none;
+  }
+  .bar h1 { font-family: var(--serif); font-weight: 500; font-size: 19px; color: var(--ink); letter-spacing: -0.01em; }
+  .bar .sub { font-family: var(--mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+  .spacer { flex: 1; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
+    padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px;
+    background: transparent; color: var(--muted); cursor: pointer; transition: all .15s ease;
+  }
+  .chip:hover { color: var(--ink); border-color: var(--muted); }
+  .chip.on { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  #themeToggle {
+    font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 5px 10px; border: 1px solid var(--line); border-radius: 6px;
+    background: transparent; color: var(--muted); cursor: pointer;
+  }
+  #themeToggle:hover { color: var(--ink); border-color: var(--muted); }
+
+  .stage { flex: 1; position: relative; min-height: 0; }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  .zone rect { fill: var(--zone); stroke: var(--zone-line); stroke-width: 1; stroke-dasharray: 5 5; }
+  .zone .ztitle { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--muted); }
+  .zone .zsub { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); opacity: 0.75; }
+
+  .node { cursor: pointer; }
+  .node rect { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; rx: 10; transition: stroke .15s ease, filter .15s ease; }
+  .node:hover rect { stroke: var(--muted); }
+  .node.sel rect { stroke: var(--clay) !important; stroke-width: 2; }
+  .node .t  { font-family: var(--sans); font-size: 14.5px; font-weight: 600; fill: var(--ink); pointer-events: none; }
+  .node .m  { font-family: var(--mono); font-size: 11px; fill: var(--muted); pointer-events: none; }
+  .node .k  { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--clay); pointer-events: none; }
+  .node.peer rect { fill: var(--blue-soft); stroke: var(--blue); }
+  .node.nat rect { fill: var(--clay-soft); stroke: var(--clay); }
+  .node.relay rect { fill: var(--olive-soft); stroke: var(--olive); }
+
+  .edge { stroke: var(--muted); stroke-width: 1.6; fill: none; marker-end: url(#a-mut); transition: opacity .2s ease, stroke .2s ease; }
+  .edge.two { marker-start: url(#a-mut-s); }
+  .edge.dash { stroke-dasharray: 5 4; }
+  .elbl { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); transition: opacity .2s ease; }
+
+  .stage.flowing .edge { opacity: 0.12; }
+  .stage.flowing .elbl { opacity: 0.12; }
+  .stage.flowing .node { opacity: 0.28; }
+  .stage.flowing .zone { opacity: 0.45; }
+  .stage.flowing .edge.lit {
+    opacity: 1; stroke: var(--clay); marker-end: url(#a-clay);
+    stroke-dasharray: 7 5; animation: march 0.9s linear infinite;
+  }
+  .stage.flowing .edge.lit.two { marker-start: url(#a-clay-s); }
+  .stage.flowing .elbl.lit { opacity: 1; fill: var(--clay); }
+  .stage.flowing .node.lit { opacity: 1; }
+  .stage.flowing .node.lit rect { stroke: var(--clay); }
+  @keyframes march { to { stroke-dashoffset: -12; } }
+  @media (prefers-reduced-motion: reduce) { .stage.flowing .edge.lit { animation: none; } }
+
+  .card {
+    position: absolute; max-width: 360px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 16px; box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  }
+  #detail { right: 16px; bottom: 16px; width: 340px; }
+  #detail h3 { font-family: var(--serif); font-weight: 500; font-size: 17px; color: var(--ink); margin-bottom: 2px; }
+  #detail .meta { font-family: var(--mono); font-size: 10.5px; color: var(--muted); margin-bottom: 8px; }
+  #detail p { font-size: 12.5px; line-height: 1.55; }
+  #detail p code, #flowcap code { font-family: var(--mono); font-size: 11px; color: var(--clay); }
+  #detail p i, #flowcap i { color: var(--blue); font-style: normal; }
+  #flowcap { left: 16px; bottom: 16px; max-width: 470px; display: none; }
+  #flowcap.show { display: block; }
+  #flowcap .fname { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--clay); margin-bottom: 6px; }
+  #flowcap ol { margin-left: 18px; }
+  #flowcap li { font-size: 12.5px; line-height: 1.55; }
+  .src { position: absolute; top: 10px; right: 16px; font-family: var(--mono); font-size: 10px; color: var(--muted); opacity: 0.8; }
+  @media (max-width: 880px) {
+    body { overflow: auto; }
+    .stage { min-height: 72vh; }
+    #detail { position: static; width: auto; margin: 10px 16px; }
+    #flowcap { position: static; margin: 0 16px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div>
+    <h1>ICE / STUN / TURN — NAT traversal</h1>
+    <div class="sub">two peers · three server roles · one connection</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="chips" id="chips">
+    <button class="chip on" data-flow="all">Everything</button>
+    <button class="chip" data-flow="signal">Signaling</button>
+    <button class="chip" data-flow="gather">Gather</button>
+    <button class="chip" data-flow="check">Checks</button>
+    <button class="chip" data-flow="direct">Direct P2P</button>
+    <button class="chip" data-flow="relay">TURN relay</button>
+  </div>
+  <button id="themeToggle">Theme</button>
+</div>
+
+<div class="stage" id="stage">
+<svg viewBox="0 0 1520 900" preserveAspectRatio="xMidYMid meet" role="img" aria-label="ICE STUN TURN NAT traversal diagram">
+  <defs>
+    <marker id="a-mut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--muted)"/>
+    </marker>
+    <marker id="a-mut-s" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M10,0 L0,5 L10,10 z" style="fill: var(--muted)"/>
+    </marker>
+    <marker id="a-clay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--clay)"/>
+    </marker>
+    <marker id="a-clay-s" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M10,0 L0,5 L10,10 z" style="fill: var(--clay)"/>
+    </marker>
+  </defs>
+
+  <!-- zones -->
+  <g class="zone" id="z-a">
+    <rect x="30" y="110" width="320" height="680" rx="16"/>
+    <text class="ztitle" x="52" y="140">Behind NAT A</text>
+    <text class="zsub" x="52" y="158">private 10.0.0.0/24</text>
+  </g>
+  <g class="zone" id="z-net">
+    <rect x="560" y="110" width="400" height="680" rx="16"/>
+    <text class="ztitle" x="582" y="140">Public Internet</text>
+    <text class="zsub" x="582" y="158">servers on routable addresses</text>
+  </g>
+  <g class="zone" id="z-b">
+    <rect x="1170" y="110" width="320" height="680" rx="16"/>
+    <text class="ztitle" x="1192" y="140">Behind NAT B</text>
+    <text class="zsub" x="1192" y="158">private 192.168.1.0/24</text>
+  </g>
+
+  <!-- edges -->
+  <path class="edge two" id="e-a-nat"     d="M300,450 L378,450"/>
+  <path class="edge" id="e-nat-sig"       d="M452,418 C 500,330 560,250 583,222"/>
+  <path class="edge two" id="e-nat-stun"  d="M528,450 L583,450"/>
+  <path class="edge" id="e-nat-turn"      d="M452,482 C 480,600 560,652 583,658"/>
+  <path class="edge" id="e-sig-natb"      d="M937,222 C 1010,250 1060,340 1068,418"/>
+  <path class="edge two" id="e-stun-natb" d="M937,450 L992,450"/>
+  <path class="edge" id="e-turn-natb"     d="M937,658 C 1020,652 1058,560 1068,482"/>
+  <path class="edge two" id="e-natb-b"    d="M1142,450 L1220,450"/>
+  <path class="edge two dash" id="e-direct" d="M408,484 C 408,815 1112,815 1112,484"/>
+
+  <!-- edge labels -->
+  <text class="elbl" data-e="e-a-nat" x="312" y="440">host</text>
+  <text class="elbl" data-e="e-nat-sig" x="470" y="312">WebSocket · SDP+ICE</text>
+  <text class="elbl" data-e="e-nat-stun" x="540" y="440">Binding</text>
+  <text class="elbl" data-e="e-nat-turn" x="468" y="600">Allocate</text>
+  <text class="elbl" data-e="e-sig-natb" x="1050" y="312" text-anchor="end">WebSocket · SDP+ICE</text>
+  <text class="elbl" data-e="e-stun-natb" x="980" y="440" text-anchor="end">Binding</text>
+  <text class="elbl" data-e="e-turn-natb" x="1052" y="600" text-anchor="end">relay ↔ peer</text>
+  <text class="elbl" data-e="e-natb-b" x="1208" y="440" text-anchor="end">host</text>
+  <text class="elbl" data-e="e-direct" x="760" y="808" text-anchor="middle">hole-punched media · DTLS + SRTP, peer-to-peer</text>
+
+  <!-- nodes: peer A side -->
+  <g class="node peer" data-k="peerA">
+    <rect x="60" y="392" width="240" height="116"/>
+    <text class="t" x="84" y="424">Peer A</text>
+    <text class="m" x="84" y="446">WebRTC agent · caller</text>
+    <text class="m" x="84" y="464">10.0.0.7:51000 (host)</text>
+    <text class="m" x="84" y="482">ICE · DTLS · SRTP</text>
+  </g>
+  <g class="node nat" data-k="natA">
+    <rect x="378" y="410" width="150" height="80"/>
+    <text class="t" x="398" y="440">NAT A</text>
+    <text class="m" x="398" y="462">router · mapping</text>
+    <text class="m" x="398" y="479">type decides all</text>
+  </g>
+
+  <!-- nodes: servers -->
+  <g class="node" data-k="signal">
+    <rect x="583" y="178" width="354" height="88"/>
+    <text class="t" x="605" y="208">Signaling server</text>
+    <text class="m" x="605" y="230">your app · out-of-band (WebSocket)</text>
+    <text class="m" x="605" y="248">carries SDP + trickled ICE · never media</text>
+  </g>
+  <g class="node" data-k="stun">
+    <rect x="583" y="410" width="354" height="80"/>
+    <text class="t" x="605" y="440">STUN server</text>
+    <text class="m" x="605" y="462">RFC 5389 · stateless</text>
+    <text class="k" x="605" y="481">returns your server-reflexive address</text>
+  </g>
+  <g class="node relay" data-k="turn">
+    <rect x="583" y="608" width="354" height="100"/>
+    <text class="t" x="605" y="640">TURN server</text>
+    <text class="m" x="605" y="662">RFC 8656 · media relay</text>
+    <text class="m" x="605" y="680">fallback path when direct fails</text>
+    <text class="m" x="605" y="698">every byte flows through it</text>
+  </g>
+
+  <!-- nodes: peer B side -->
+  <g class="node nat" data-k="natB">
+    <rect x="992" y="410" width="150" height="80"/>
+    <text class="t" x="1012" y="440">NAT B</text>
+    <text class="m" x="1012" y="462">router · mapping</text>
+    <text class="m" x="1012" y="479">symmetric? → relay</text>
+  </g>
+  <g class="node peer" data-k="peerB">
+    <rect x="1220" y="392" width="240" height="116"/>
+    <text class="t" x="1244" y="424">Peer B</text>
+    <text class="m" x="1244" y="446">WebRTC agent · answerer</text>
+    <text class="m" x="1244" y="464">192.168.1.4:60000 (host)</text>
+    <text class="m" x="1244" y="482">ICE · DTLS · SRTP</text>
+  </g>
+</svg>
+
+  <div class="src">WebRTC ICE · RFC 8445 / 5389 / 8656 · html-diagram demo</div>
+
+  <div class="card" id="flowcap">
+    <div class="fname" id="f-name"></div>
+    <ol id="f-steps"></ol>
+  </div>
+
+  <div class="card" id="detail">
+    <h3 id="d-title">Click anything</h3>
+    <div class="meta" id="d-meta">node detail</div>
+    <p id="d-body">Every box is clickable. The chips up top light up each phase of an ICE connection — Signaling, Gather, Checks, Direct P2P, and the TURN relay fallback.</p>
+  </div>
+</div>
+
+<script>
+const DETAIL = {
+  peerA: { t:"Peer A", m:"WebRTC agent · caller", b:"Gathers <b>host</b>, <b>srflx</b> and <b>relay</b> candidates, sends the SDP offer, then probes candidate pairs. Encrypts media end-to-end with DTLS-SRTP. Its role is identical to Peer B — ICE is symmetric." },
+  natA:  { t:"NAT A", m:"router · address+port mapping", b:"Maps <code>10.0.0.7:51000</code> → a <i>public</i> <code>ip:port</code>. The mapping <b>type</b> decides everything: full-cone / address-restricted reuse one external port, so hole punching works; a <b>symmetric</b> NAT picks a new port per destination — punching fails and ICE must relay." },
+  signal:{ t:"Signaling server", m:"your app · out-of-band", b:"Relays the SDP <code>offer</code>/<code>answer</code> and trickled ICE candidates between the two agents (here over WebSocket). <b>Not defined by WebRTC</b> and never sees media — it only gets the peers talking to each other." },
+  stun:  { t:"STUN server", m:"RFC 5389 · stateless", b:"Answers a <code>Binding</code> request with the source address it observed — the peer's <b>server-reflexive</b> (public) address as seen from outside its NAT. Tiny, cheap, stateless. This single fact is what makes most P2P connections possible." },
+  turn:  { t:"TURN server", m:"RFC 8656 · media relay", b:"Allocates a relayed transport address and forwards media for peers that can't connect directly. The reliable fallback — but every packet flows through it, so ICE only nominates a relay pair when all host and srflx pairs have failed." },
+  natB:  { t:"NAT B", m:"router · address+port mapping", b:"Same job as NAT A. A direct connection needs <b>at most one</b> of the two NATs to be non-symmetric. Two symmetric NATs (or strict firewalls) leave only the TURN relay." },
+  peerB: { t:"Peer B", m:"WebRTC agent · answerer", b:"Receives the offer, replies with an <code>answer</code>, gathers its own candidates and probes the same pairs from its side. Simultaneous two-way probing is exactly what opens a hole in both NATs at once." },
+};
+
+const FLOWS = {
+  signal: {
+    name: "Signaling — get the two agents talking",
+    edges: ["e-a-nat","e-nat-sig","e-sig-natb","e-natb-b"],
+    nodes: ["peerA","natA","signal","natB","peerB"],
+    steps: [
+      "Caller builds an SDP <code>offer</code> and sends it over the app's own channel (here a WebSocket)",
+      "The signaling server forwards it to the callee, who replies with an <code>answer</code>",
+      "ICE candidates are <b>trickled</b> the same way as they're discovered — signaling carries setup, <b>never media</b>"
+    ]
+  },
+  gather: {
+    name: "Gather candidates — three kinds of address",
+    edges: ["e-a-nat","e-nat-stun","e-nat-turn"],
+    nodes: ["peerA","natA","stun","turn"],
+    steps: [
+      "<b>host</b>: the peer's own LAN address, e.g. <code>10.0.0.7:51000</code>",
+      "<b>srflx</b>: a STUN <code>Binding</code> reveals the peer's <i>public mapped</i> address as seen past the NAT",
+      "<b>relay</b>: a TURN <code>Allocate</code> reserves a relayed address — kept as the last-resort fallback"
+    ]
+  },
+  check: {
+    name: "Connectivity checks — punch the hole",
+    edges: ["e-direct"],
+    nodes: ["natA","natB"],
+    steps: [
+      "ICE forms candidate <b>pairs</b> (every local × every remote), ordered by priority",
+      "Each pair is probed with a <b>STUN Binding request</b> — both sides send at once, opening a mapping through both NATs",
+      "The highest-priority pair that gets a valid response is <b>nominated</b> (RFC 8445)"
+    ]
+  },
+  direct: {
+    name: "Direct P2P — the happy path",
+    edges: ["e-direct"],
+    nodes: ["peerA","natA","natB","peerB"],
+    steps: [
+      "Both NATs now hold a mapping for the other side's srflx address",
+      "A DTLS handshake keys the session, then <b>SRTP media flows peer-to-peer</b> — no server in the path",
+      "Lowest latency, zero relay cost. Works whenever at least one NAT isn't symmetric"
+    ]
+  },
+  relay: {
+    name: "TURN relay — last resort",
+    edges: ["e-nat-turn","e-turn-natb"],
+    nodes: ["peerA","natA","turn","natB","peerB"],
+    steps: [
+      "Two <b>symmetric</b> NATs: each picks a new port per destination, so srflx ↔ srflx punching can't line up",
+      "ICE falls back to the relay pair: media goes <code>Peer A → TURN → Peer B</code>",
+      "Always connects, but adds a hop and bandwidth cost — which is why ICE ranks it last"
+    ]
+  }
+};
+
+const stage = document.getElementById('stage');
+const nodes = document.querySelectorAll('.node');
+const edges = document.querySelectorAll('.edge');
+const elbls = document.querySelectorAll('.elbl');
+const chips = document.querySelectorAll('.chip');
+const fcap = document.getElementById('flowcap');
+
+function setFlow(key) {
+  chips.forEach(c => c.classList.toggle('on', c.dataset.flow === key));
+  edges.forEach(e => e.classList.remove('lit'));
+  elbls.forEach(l => l.classList.remove('lit'));
+  nodes.forEach(n => n.classList.remove('lit'));
+  if (key === 'all') { stage.classList.remove('flowing'); fcap.classList.remove('show'); return; }
+  const f = FLOWS[key];
+  stage.classList.add('flowing');
+  f.edges.forEach(id => document.getElementById(id)?.classList.add('lit'));
+  elbls.forEach(l => { if (f.edges.includes(l.dataset.e)) l.classList.add('lit'); });
+  f.nodes.forEach(k => document.querySelector(`.node[data-k="${k}"]`)?.classList.add('lit'));
+  document.getElementById('f-name').textContent = f.name;
+  document.getElementById('f-steps').innerHTML = f.steps.map(s => `<li>${s}</li>`).join('');
+  fcap.classList.add('show');
+}
+chips.forEach(c => c.addEventListener('click', () => setFlow(c.dataset.flow)));
+
+nodes.forEach(n => n.addEventListener('click', () => {
+  nodes.forEach(x => x.classList.remove('sel'));
+  n.classList.add('sel');
+  const d = DETAIL[n.dataset.k];
+  if (!d) return;
+  document.getElementById('d-title').textContent = d.t;
+  document.getElementById('d-meta').textContent = d.m;
+  document.getElementById('d-body').innerHTML = d.b;
+}));
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const dark = !document.documentElement.classList.contains('dark');
+  document.documentElement.classList.toggle('dark', dark);
+  localStorage.setItem('theme', dark ? 'dark' : 'light');
+});
+</script>
+</body>
+</html>

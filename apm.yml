@@ -28,6 +28,7 @@ dependencies:
   - ./git-guardrails/
   - ./terse/
   - ./to-issues/
+  - ./html-diagram/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []

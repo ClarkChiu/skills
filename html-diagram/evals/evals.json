@@ -1,0 +1,60 @@
+{
+  "skill_name": "html-diagram",
+  "_note": "生成型技能：輸出是一份自足 HTML 檔。多數斷定可對產出檔做確定性檢查（外部資源、深色模式、viewBox、SVG 主體、邊標籤）；少數質性斷定（是否圖優先、是否亂編拓樸）標 deterministic:false。邊界案測『該不該用這個技能』。",
+  "evals": [
+    {
+      "id": 1,
+      "name": "arch-diagram-happy-path",
+      "lang": "zh-tw",
+      "_intent": "核心路徑：給定清楚拓樸，產出單一自足 HTML、單一全螢幕 SVG 架構圖、邊有標籤、深色模式、零外連。",
+      "prompt": "幫我把這個畫成架構圖（自足 HTML）：瀏覽器 → Cloudflare Worker（同時服務 SPA 與 API）→ Durable Object（每份文件一個，Yjs + SQLite）；瀏覽器走 WebSocket 即時同步，agent 走 HTTP RPC；授權由單一 resolveAccess() 把關。",
+      "expected_output": "一份 .html 檔，主體是單一全螢幕 SVG 架構圖，畫出四個節點（瀏覽器、Worker、Durable Object、resolveAccess 閘）與其連線，邊上標出協定（WebSocket、HTTP RPC）。含手刻深色模式切換。完全自足、無任何外部資源。文字極少、以圖為主。",
+      "assertions": [
+        {"text": "輸出是單一 HTML 檔，內含至少一個 inline <svg> 作為主體", "deterministic": true},
+        {"text": "無任何外部資源：不含 <script src=、不含 <link ... href=\"http、無 CDN、無執行中的 fetch(/XMLHttpRequest/WebSocket( 連線", "deterministic": true},
+        {"text": "有手刻深色模式：localStorage 持久化 + :root 與 html.dark 的 CSS 變數 + <head> 內 paint 前套用腳本", "deterministic": true},
+        {"text": "SVG 用 viewBox 縮放，且 fill/stroke 走 CSS class／變數，<svg> 內無寫死的 #hex 顏色", "deterministic": true},
+        {"text": "連線有協定標籤（SVG <text> 出現 WebSocket 與 HTTP RPC）", "deterministic": true},
+        {"text": "頁面以圖為主、文字極少（不是塞滿段落的報告）", "deterministic": false},
+        {"text": "拓樸正確：四個節點與其呼叫關係如輸入所述，授權閘確實被三條路徑共用", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "boundary-defer-to-slide-deck",
+      "lang": "zh-tw",
+      "_intent": "邊界案：要的是多頁簡報，不是單一圖。應改用 slide-deck，不該用 html-diagram。",
+      "prompt": "幫我做一份 10 頁的產品介紹簡報，每頁一個重點。",
+      "expected_output": "辨認出這是多頁 16:9 簡報需求，超出本技能範圍，轉介 slide-deck，而不是硬產一張圖或一份多頁 HTML。",
+      "assertions": [
+        {"text": "不產出 html-diagram 的單圖 HTML；明確指出這屬 slide-deck 的範圍", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "ambiguous-topology-ask-dont-invent",
+      "lang": "zh-tw",
+      "_intent": "克制案：拓樸不明時要問，不要憑空編一張通用架構圖。",
+      "prompt": "畫一下我們系統的架構圖。",
+      "expected_output": "因為沒有給任何元件或連線資訊，應先問清楚（有哪些元件、誰呼叫誰、信任邊界在哪），而不是直接生出一張捏造的通用架構圖。",
+      "assertions": [
+        {"text": "輸出是釐清問題（詢問元件／連線／邊界），而非一張內容捏造的 SVG 圖", "deterministic": false},
+        {"text": "沒有憑空產出帶有虛構節點與連線的最終 HTML 檔", "deterministic": true}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "sequence-flow-animation",
+      "lang": "en",
+      "_intent": "互動／動畫只在值得時才用：請求流程序列適合用可點節點＋動畫呈現。",
+      "prompt": "Draw a self-contained HTML sequence diagram of an OAuth2 authorization-code flow: user agent, client app, authorization server, resource server. Make the request path animate step by step.",
+      "expected_output": "A single self-contained HTML file with one SVG sequence diagram of the four OAuth2 actors, the messages labeled, and a step-through animation of the request path (e.g. flow chips that light up). Dark mode, no external resources.",
+      "assertions": [
+        {"text": "Single HTML file, one inline <svg>, no external resources (<script src>, CDN, fetch execution all absent)", "deterministic": true},
+        {"text": "The four actors and labeled messages of the auth-code flow are present as SVG text", "deterministic": true},
+        {"text": "Includes a step/animation mechanism for the request path (CSS/JS animation driven locally)", "deterministic": true},
+        {"text": "Animation aids comprehension of the sequence rather than being decorative", "deterministic": false}
+      ]
+    }
+  ]
+}

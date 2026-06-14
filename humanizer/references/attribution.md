@@ -29,3 +29,12 @@
 - 既有繁中 fork 參考結構：kevintsai1202/Humanizer-zh-TW、op7418/Humanizer-zh
 
 註：簡轉繁與地區用詞替換（視頻→影片等）交給 chinese-typography 的 OpenCC s2twp，本 skill 不重複。
+
+## 「保留作者人味」減法紀律（SKILL.md）
+
+SKILL.md 的「改的是 AI 痕跡，不是作者本人」一段，原則參考 **orange2ai/renwei-writing**（人味寫作）：
+- 儲存庫：https://github.com/orange2ai/renwei-writing
+- 取其核心姿態——「改完之後，那個人還在」：減法優先、把粗糙當風格簽名、保留承載情緒的語助詞、編輯隱形、作者保有最終裁量權。
+- 它本身的收尾檢查清單也整理自維基百科「Signs of AI writing」（與 rules-en.md 同源）。
+- **原創重述，未逐字收錄**。原因：renwei 為自訂雙授權（閉源商用須付費），不宜把原檔收進本公開儲存庫；且原則用清楚臺灣繁體中文重寫、接進既有 humanizer 管線，貼合本專案。
+- 由 `sources.lock` 追蹤其 commit，上游若新增編輯原則由 `skill-evolve` 提醒評估是否併入。

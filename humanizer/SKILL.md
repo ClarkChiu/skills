@@ -8,7 +8,7 @@ description: >-
   USE THIS SKILL whenever the user wants to de-AI / humanize / 潤稿去 AI 腔 / 去 AI 味 /
   讓文字像人寫 / remove AI writing tells — and especially as a POST-PROCESS right after
   drafting or generating a document, blog post, README, or report. Trigger on 「去 AI 味」
-  「humanize」「潤稿」「這段太像 AI」「讓它自然一點」or English「make this sound human」
+  「humanize」「潤稿」「潤飾」「這段太像 AI」「讓它自然一點」or English「make this sound human」
   「remove AI tone」. Operates on prose only — not code or English/markdown structural files.
 license: MIT
 allowed-tools:
@@ -37,6 +37,21 @@ allowed-tools:
 ## 重要：技術文件保持平實，不要硬加個性
 
 預設**不要**注入觀點、第一人稱、情緒。對技術文件、規格、參考資料來說，**中性平實就是正確的人類語氣**。rules-en.md 有「PERSONALITY AND SOUL」一段，那是給部落格、評論、個人文章用的——除非使用者明講要那種語氣，否則跳過。（使用者多寫技術文件。）
+
+## 重要：改的是 AI 痕跡，不是作者本人
+
+純機器生成的灌水文沒有作者聲音可言，照常清掃（見 eval #1）。**但使用者常拿這個技能修自己寫的稿**——這時要記得：目標是拿掉 AI 痕跡，不是把人潤飾成編者腔。一句話：**改完之後，那個人還在。**
+
+判斷：這段文字有沒有真實作者的聲音（第一人稱、口氣、立場、生活細節）？有，就套這套減法紀律：
+
+- **減法優先，不是加上潤飾**：移除 AI 贅物，而不是疊上更漂亮但屬於你（編者）的措辭。每個更動都要能說出理由；**說不出為什麼要改，就別改。**
+- **粗糙可能是風格簽名**：贅字、語助詞（啦、嘛、欸、其實、反正）、長短句的呼吸變化、輕微重複——這些常是人味，不是缺陷。除非確定是 AI 痕跡（要好幾個一起出現才算），否則留著。**承載情緒的語助詞尤其不要砍。**
+- **編輯要隱形**：改完讀起來還是作者本人，不是你。避免那種一看就知道「被編輯過」的精緻句。
+- **不確定就留原樣**，並在「改了什麼」清單裡點出來，讓使用者自己定奪——最終裁量權是作者的。
+
+這和上一段「技術文件保持平實」方向一致：兩者都是叫你**少動手**。差別是上一段講「別硬加個性」，這一段講「別抹掉本來就有的個性」。
+
+（原則參考 orange2ai/renwei-writing，見 attribution.md；原創重述，未逐字收錄。）
 
 ## 中文：跑完後交給 chinese-typography 做排版
 
@@ -69,4 +84,4 @@ python3 <skill>/chinese-typography/scripts/normalize.py <檔案> --diff
 
 - `references/rules-en.md` — 英文 33 條（收錄自 blader/humanizer v2.8.0）。
 - `references/rules-zh-tw.md` — 中文版（臺灣繁體中文特有痕跡 + 共用規則 + 不要亂改）。
-- `references/attribution.md` — 來源與授權。
+- `references/attribution.md` — 來源與授權（含「保留作者人味」減法紀律的原則來源 renwei-writing）。

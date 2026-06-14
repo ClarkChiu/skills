@@ -48,5 +48,7 @@
 | 2026-06-12 | hermes-graphiti-plugin（Hermes 記憶外掛） | github.com/p1s4/hermes-graphiti-plugin | p1s4 | 否（本專案無記憶簇） | 🟦 參考自製（屆時）（graphiti 接 Hermes 的薄包裝，出處單人短史；Muse 記憶層動工時自寫並參考其介面形狀，詳見當日本機稽核） |
 | 2026-06-12 | graphiti（時間性知識圖譜框架，非技能） | github.com/getzep/graphiti | getzep（Zep） | 否（框架非技能） | 🟥 跳過（現階段）（成熟活躍、出處強；是 Muse 第二大腦記憶層的首選候選引擎，屆時再正式評估安裝） |
 | 2026-06-12 | hermes-skill-registry（技能市集平臺） | github.com/Debarpan08/hermes-skill-registry | Debarpan08 | 部分（skill-finder 的發現角色） | 🟥 跳過（社群市集＋評分安裝的姿態與本專案安全策展流程相反；無授權條款；出處極早期） |
+| 2026-06-14 | renwei-writing（人味寫作） | github.com/orange2ai/renwei-writing | orange2ai（橘子 & Cola） | 部分（重複 humanizer 語氣層） | 🟦 參考自製（編輯時保留作者人味的減法紀律；純 prose＋自訂商用限制授權不宜收錄＝萃取原則併入 `humanizer` 當「保留作者」護欄，不新建技能。資安純 prose SAFE；435★/6commit 極新。詳見當日本機日誌） |
+| 2026-06-14 | effective-html（html／html-diagram／html-plan 三技能） | github.com/plannotator/effective-html | plannotator | 部分（html≈web-artifacts-builder/slide-deck；html-plan≈design-gate；html-diagram 為缺口） | 🟨 收錄＋客製（選擇性 vendor html-effectiveness 參考庫＋架構圖能力；MIT＋內嵌 Apache-2.0 可收錄。聚焦真缺口〔架構圖／有效技術 HTML 交付物〕，跳過純重複部分；收錄要補 attribution〔指向 plannotator 與原始 thariqs/html-effectiveness〕＋sources.lock。資安純 prose 無腳本 SAFE；755★。先 design-gate 設計再動工） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_

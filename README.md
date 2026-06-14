@@ -47,6 +47,7 @@
 | [`git-guardrails`](./git-guardrails/) | 可攜的危險 git 攔截：裝一個 **PreToolUse hook**，在執行前擋掉 `push --force`/`-f`、`reset --hard`、`clean -f`、`branch -D`、丟棄全部變更、刪遠端分支。**強化**勝過上游字串 grep——樣式錨定到指令邊界（commit message/echo 裡提到不會誤殺）、**放行 `--force-with-lease`**（安全的 force）、**不擋 push 到 master**（你的日常）。安裝步驟**合併**進 settings.json（不覆蓋 RTK hook）、專案層或全域可選。腳本隨 APM/git 走、可攜；17 案測試。改寫自 `mattpocock/skills` 的 git-guardrails（方法非檔、MIT）。 |
 | [`terse`](./terse/) | 手動開關的**省 token 精簡模式**：砍開場白、避險、複述、客套、重複，答案先講——但**砍內容不砍文法**。語言感知:英文可電報式,**中文維持自然臺灣繁體**(修正了 caveman 讓中文怪腔怪調的毛病)。跨回合持續到你喊停;資安警告與破壞性操作確認自動退出精簡。與 `humanizer` 互補(tone vs length)。改寫自 `mattpocock/skills` 的 caveman（修正中文、MIT）。 |
 | [`to-issues`](./to-issues/) | 把計畫／規格／PRD 拆成可獨立認領的 **GitHub issue**：垂直曳光彈切片、依相依排序，**發布前一律先把整份清單給你確認**才用 `gh` 建立(用你既有登入、不碰 token,未登入交回你)。是 `design-gate` 的天然下游(出計畫 → 發成 issue),不重新規劃。改寫自 `mattpocock/skills` 的 to-issues（方法非檔、加確認閘門、MIT）。 |
+| [`html-diagram`](./html-diagram/) | 把系統畫成**單一自足 HTML／SVG 圖**：架構圖、堆疊圖、時序與請求流程圖、流程圖——全螢幕、以圖為主、文字極少、零相依、含手刻深色模式（CSS 變數＋localStorage＋paint 前套用）；節點可點、序列可動畫。鐵則：先把拓樸搞對（不明就問、不憑空編邊）、SVG 走 CSS class 不寫死 hex、用 viewBox 縮放、互動只在值得時才加。**收錄＋客製**：vendored `ThariqS/html-effectiveness`（Apache-2.0，作者 Thariq Shihipar）圖相關參考子集＋`plannotator/effective-html`（MIT）的完成範例，SKILL.md 自寫並收窄到「圖」；report/explainer 類交給內建 `web-artifacts-builder`。邊界：vs `slide-deck`（16:9 多頁簡報）、`social-card`（固定比例社群圖）、`frontend-design`（產品 UI）。 |
 
 ## 外部技能（經 APM 引入第三方）
 

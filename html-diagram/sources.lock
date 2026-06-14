@@ -1,0 +1,18 @@
+{
+  "_comment": "由 skill-evolve 維護：references/ 下 vendored HTML 的上游，用來偵測上游更新。檢視報告後才重新同步。html-diagram 的 SKILL.md/evals 為本專案自寫，不在此追蹤。",
+  "checked_at": "2026-06-14",
+  "sources": {
+    "plannotator/effective-html": {
+      "commit": "36220e286bcc",
+      "release": null,
+      "date": "2026-06-13",
+      "note": "MIT 轉散布包；architecture-example.html 出處於此（skills/html-diagram）。2026-06-14 自此 commit vendored。"
+    },
+    "ThariqS/html-effectiveness": {
+      "commit": "0e8d447494c8",
+      "release": null,
+      "date": "2026-05-18",
+      "note": "原始參考庫（Apache-2.0，作者 Thariq Shihipar）。只 vendored 圖相關子集：05/07/08/10/13 + LICENSE + README。整庫 20 檔，其餘刻意不收（重複 web-artifacts-builder/slide-deck）。"
+    }
+  }
+}
