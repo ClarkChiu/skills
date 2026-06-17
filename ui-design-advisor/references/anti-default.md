@@ -63,3 +63,19 @@ Infer from the read:
 
 Sensible default when nothing overrides: **6 / 4 / 4**. Overrides happen conversationally,
 not by asking the user to edit a config.
+
+## 4. Measurement over opinion — two checks you can't eyeball
+
+A design read is a judgment; these two are not — they are measurable, and "looks fine"
+is the wrong test. State both in the brief as checks, not assertions.
+
+- **State coverage.** Every interactive element needs a *defined* `hover`, `focus`, and
+  `disabled` state, not just its resting look — and each verified in both light and dark.
+  The default failure is specifying only the resting state and letting the browser improvise
+  the rest. Name the states; a control with no focus style is an accessibility defect, not a
+  stylistic choice.
+- **Computed contrast.** Check text and graphical-control contrast against the WCAG ratio
+  (4.5:1 body, 3:1 large text / UI boundaries) by computing it, not by judging it by eye —
+  the most common failure is the very low-contrast slate-on-white from §2, which reads
+  "clean" and fails the math. If a chosen pair fails, it's a defect to flag, not taste to
+  defend.

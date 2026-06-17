@@ -4,6 +4,15 @@ Adapted from obra/superpowers' `writing-plans`, rewritten to fit this project. T
 
 > Assume the executor is a good engineer but knows almost nothing about our toolset or problem domain. So every step must hand them what they need directly.
 
+## Global constraints (plan header)
+
+Open the plan with a short **Global Constraints** block that holds for every task — so an
+executor picking up Task 7 in isolation doesn't re-derive or contradict project-wide
+decisions. Keep it to what actually constrains the work: target runtime/versions, the
+non-negotiable conventions (naming, error model, logging), the public boundary that must
+not change, and anything explicitly out of scope. One screen, not an essay; if a constraint
+only affects one task, put it in that task, not here.
+
 ## Task granularity
 
 - Each task is **one action, 2–5 minutes**. Don't pack several things into one task.
@@ -19,6 +28,7 @@ Adapted from obra/superpowers' `writing-plans`, rewritten to fit this project. T
 ## What every task must contain
 
 - **Files section**: exact paths — which to create, which to modify (with line numbers), where the test is.
+- **Interfaces**: when a later task consumes what this one produces, state the contract explicitly — the exact function/type signature, endpoint shape, or data schema other tasks will call. This is what lets independently-executed tasks compose without each one re-inventing the boundary. A task with no downstream consumer needs none.
 - **Complete code**: real runnable code — not pseudocode, not "same as above", no `TODO`. Define every type, function name, and signature before it's used.
 - **Verification steps**: exact commands + expected output (e.g. `pytest …::test_x -v` → expect PASS).
 - **Commit**: what to stage, what the commit message looks like.

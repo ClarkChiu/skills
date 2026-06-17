@@ -1,22 +1,23 @@
 {
   "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
-  "checked_at": "2026-06-08",
+  "checked_at": "2026-06-17",
   "sources": {
     "sysprog21/zhtw-mcp": {
-      "commit": "defcc020fd76",
-      "date": "2026-05-25"
+      "commit": "409132225db1",
+      "date": "2026-06-15",
+      "note": "2026-06-17 bump (was defcc020fd76). Recent work: Codex CLI registration (packaging) + a detector layer (函式 vs 函數 disambiguation, EN→ZH calque/translationese detection, ambiguity gating). That detector work is context-judgment, not mechanical s2twp normalization — it belongs to the humanizer domain, not chinese-typography. No action here."
     },
     "BYVoid/OpenCC": {
-      "commit": "47cccca4f826",
+      "commit": "c208e2780e5b",
       "release": "ver.1.3.1",
-      "date": "2026-06-08",
-      "note": "2026-06-08 bump (was 137163d62502). C++ OpenCC moves; this skill uses the frozen python opencc-python-reimplemented==0.1.7, so 1.3.x mapping changes do NOT affect output unless the package is switched — already documented in SKILL.md. No action."
+      "date": "2026-06-17",
+      "note": "2026-06-17 bump (was 47cccca4f826). C++ OpenCC 1.3.x shipped real s2twp gains — segmentation fixes (云计算→雲端計算 etc.) and Taiwan IT terms / 巨集. BUT this skill uses the frozen python opencc-python-reimplemented==0.1.7, whose bundled dicts lag the C++ engine, so these do NOT reach output unless the package is switched — documented in SKILL.md. Standing decision: stay on the easy-to-pip-install frozen port; revisit only if accuracy demands a maintained binding (C++ OpenCC / StarCC) at the cost of build complexity. No action."
     },
     "FuDesign2008/open-skills": {
-      "commit": "aaa405d3774c",
-      "release": "v1.46.2",
-      "date": "2026-06-02",
-      "note": "2026-06-08 bump (was 5ce9640b61c2 / v1.46.1). New commits touch Git/Jira/strategic-thinking skills, NOT the cited chinese-format skill — no action."
+      "commit": "49ee024727a7",
+      "release": "v1.52.0",
+      "date": "2026-06-15",
+      "note": "2026-06-17 bump (was aaa405d3774c / v1.46.2). New releases (multi-agent-debate, workspace multi-project, test-guide, go-deploy) touch none of the cited chinese-format skill — no action."
     },
     "StarCC0/starcc-py": {
       "commit": "5ec1b1d9ef03",
@@ -39,9 +40,9 @@
       "date": "2023-08-09"
     },
     "vinta/pangu.js": {
-      "commit": "1c30f32d2638",
-      "date": "2026-06-03",
-      "note": "2026-06-08 bump (was cb1e387ea2d3). Only postcss/vitest dependency bumps since baseline — spacing algorithm unchanged. No action."
+      "commit": "3d67d8a611aa",
+      "date": "2026-06-15",
+      "note": "2026-06-17 bump (was 1c30f32d2638). Recent commits are Vite v8 build/tooling + test additions (CJK-period patterns, ignored tags, nested containers) and a canIgnoreNode refactor — the 盤古之白 spacing algorithm is unchanged. No action."
     },
     "zhlint-project/zhlint": {
       "commit": "c8678fe71ce3",

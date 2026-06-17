@@ -1,6 +1,6 @@
 {
   "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
-  "checked_at": "2026-06-08",
+  "checked_at": "2026-06-17",
   "sources": {
     "UseAI-pro/openclaw-skills-security": {
       "commit": "4645f2d047d6",
@@ -11,14 +11,14 @@
       "date": "2026-03-07"
     },
     "NVIDIA/SkillSpector": {
-      "commit": "1a7bf026a3cf",
-      "date": "2026-06-10",
-      "note": "v2.1.3, added 2026-06-11 as tool integration (optional deterministic pre-pass in SKILL.md). Local clone pinned at /root/tools/skillspector; install via uv tool (isolated env, managed Python 3.12). Watch for new pattern categories worth mirroring in the manual checklist."
+      "commit": "a5092dd9b952",
+      "date": "2026-06-16",
+      "note": "v2.1.3 (64 patterns / 16 categories), added 2026-06-11 as tool integration (optional deterministic pre-pass in SKILL.md). Local clone pinned at /root/tools/skillspector; install via uv tool (isolated env, managed Python 3.12). 2026-06-17 bump (was 1a7bf026a3cf): recent changes are maintenance (Docker, path-validation) plus a fix making MCP tool-poisoning TP3 parameter-injection reachable on real scans — re-run the pre-pass may now flag cases it missed. Mirrored three skill-native categories into the manual checklist: trigger abuse (Step 1), bidi/RTL + mixed-script deception (Step 4), declared-vs-used allowed-tools both directions (Step 1). AST/YARA stays SkillSpector's job, not re-implemented in prose."
     },
     "trailofbits/skills": {
-      "commit": "d5fe2e6a7896",
-      "date": "2026-06-05",
-      "note": "2026-06-08 bump (was c94841be3dea). Reviewed the new commits: Solana scanner, C code-review, adversarial-modeler, sharp-edges, graph-based analysis, mutation testing — all source-code SAST tooling, a different domain from skill-auditor's SKILL.md supply-chain vetting. Nothing to adopt this round; keep watching as a reputable security publisher."
+      "commit": "c070b9b58811",
+      "date": "2026-06-10",
+      "note": "2026-06-17 bump (was d5fe2e6a7896). Recent commits are bug fixes (hook JSON format, model bumps, doc links). The agentic-actions-auditor / supply-chain-risk-auditor concept (audit bundled CI/automation, not just the skill body) was folded into Step 6 'bundled automation' red flag. The core C/C++/Rust/crypto SAST toolkit remains a different domain from SKILL.md supply-chain vetting; nothing else to adopt. Keep watching as a reputable security publisher."
     }
   }
 }

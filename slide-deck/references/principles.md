@@ -72,6 +72,11 @@ true and predictable. No `rem` / `vw` / `%` for type.
 - Max 3 sizes per slide. One display font (titles/quotes) + one body font (scanning).
 - Line-height: 1.1–1.2 for headings, 1.5–1.7 for body. For mixed CJK+Latin, lean toward
   the higher end and apply Pangu spacing (see the `chinese-typography` skill).
+- **Webfont discipline (esp. CJK):** if the deck pulls a webfont, declare it once in
+  `<head>`, list only the weights actually used, and subset CJK with Google Fonts' `&text=`
+  (request just the glyphs on the slides). A full CJK family is megabytes; an unsubsetted,
+  force-loaded one also hangs or crashes PDF export. Restrict-and-subset keeps the
+  self-contained file light and printable.
 
 ## 4. The vertical-budget method (the anti-overflow technique)
 
@@ -85,7 +90,10 @@ element_height ≈ font_size × line_height × number_of_lines
 ```
 
 Sum every element. If the total exceeds `usable_height`, split — do not raise padding or
-shrink type (rule 2).
+shrink type (rule 2). And **never truncate with an ellipsis** to fake a fit: a `…` clip
+hides content the slide was supposed to carry. Treat any length limit as advisory and the
+box geometry as the real test — if the text doesn't fit, reflow, resize the block, or split
+the slide; don't clip.
 
 **Worked example** — a content slide, 120px padding top & bottom:
 

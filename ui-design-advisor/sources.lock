@@ -1,6 +1,6 @@
 {
   "_comment": "Maintained by skill-evolve: upstream data sources vendored into data/. Pins the commit each was copied at, to detect new/updated design data. Update only after reviewing the report (--write-lock). Only DATA was vendored — no scripts/CLI. Full audit: research/audits/2026-06-05-ui-ux-pro-max.md.",
-  "checked_at": "2026-06-08",
+  "checked_at": "2026-06-17",
   "sources": {
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "ref": "main",
@@ -21,11 +21,12 @@
     },
     "plugin87/ux-ui-agent-skills": {
       "ref": "main",
-      "commit": "3f288fac0a62",
-      "date": "2026-06-06",
+      "commit": "55c9347ce2a1",
+      "release": "v2.3.1",
+      "date": "2026-06-11",
       "license": "MIT (declared in README; NO LICENSE file — weaker grant)",
       "vendored": "accessibility/wcag-checklist.md, accessibility/aria-patterns.md",
-      "note": "2026-06-08 bump (was f0a75dd, 2026-03-16). New commits are npm packaging + 138 design-systems + motion tokens; the vendored a11y/WCAG/ARIA files did NOT change, and the design-systems layer is already covered by ui-ux-pro-max. No re-vendor. Did not take token/atomic-design/framework layers."
+      "note": "2026-06-17 bump (was 3f288fac0a62). v2.3.x adds 22 component-state harnesses, a lucide sprite system, 280–414px responsive checks, and focus/contrast a11y gates. Adopted only the 'measurement over opinion' philosophy as two checks in references/anti-default.md §4: state coverage (hover/focus/disabled in light+dark) and computed WCAG contrast (not eyeballed). The harness/sprite/axe machinery and the no-emoji house rule are a build/verification toolchain, not design-decision advice — not adopted. Vendored a11y files unchanged; no re-vendor."
     },
     "SteveBarnett/Checklists": {
       "ref": "main",

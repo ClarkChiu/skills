@@ -1,14 +1,14 @@
 {
   "_comment": "Maintained by skill-evolve: the upstream this completion gate was adapted from, used to detect new rules. Update only after reviewing the report (--write-lock).",
-  "checked_at": "2026-06-08",
+  "checked_at": "2026-06-17",
   "sources": {
     "obra/superpowers": {
       "ref": "main",
-      "commit": "6fd450765978",
-      "release": "v5.1.0",
-      "date": "2026-05-29",
+      "commit": "a21956e48c13",
+      "release": "v6.0.0",
+      "date": "2026-06-17",
       "skills": ["verification-before-completion"],
-      "note": "Rule adapted, not vendored verbatim. SHA captured 2026-06-08 (was unset due to earlier rate limit). v5.1.0 latest commit (2026-05-29) predates this skill's 2026-06-05 build; reviewed, nothing new to adopt. Re-sync by diffing this skill's content."
+      "note": "Rule adapted, not vendored verbatim. 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — the verification energy in v6 went into reviewer discipline (read-only reviewers, can't-suppress-findings, cite file+line), a second-agent-review mechanism distinct from this skill's 'run the check yourself and read the full output before claiming done' gate. The skill itself wasn't restructured. Nothing to adopt. Re-sync by diffing this skill's content."
     }
   }
 }

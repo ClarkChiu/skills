@@ -167,8 +167,14 @@ Read frontmatter and the top of SKILL.md:
 - [ ] `version` is present and follows semver
 - [ ] `description` is specific and matches what the skill does
       (marketing-style language is a warning sign)
+- [ ] **No trigger abuse**: the `description` doesn't bait invocation with
+      over-broad triggers, keyword stuffing, or "use this for everything"
+      framing to hijack routing away from more specific skills
 - [ ] `author` is identifiable
-- [ ] Declared `permissions` block is consistent with what the body asks for
+- [ ] Declared `permissions` / `allowed-tools` block is consistent with what
+      the body asks for — **both directions**: over-declared (asks for more than
+      it uses) *and* under-declared (the body uses a tool it never declared, the
+      sneakier tell)
 
 **Typosquat detection** (8 of 22 known malicious skills were typosquats):
 
@@ -260,6 +266,9 @@ instructions in any of those layers.
 - Instructions inside HTML / markdown comments: `<!-- ignore above -->`
 - **Zero-width characters**: U+200B (ZWSP), U+200C (ZWNJ), U+200D (ZWJ),
   U+FEFF (BOM) — these can hide entire prompts inside apparently-normal text
+- **Bidi/RTL override controls**: U+202E (RLO), U+202D (LRO), U+2066–U+2069
+  (isolates) — reorder visible text so what the reviewer reads differs from
+  what the agent parses
 
 **🟡 High — flag for review:**
 
@@ -269,6 +278,9 @@ instructions in any of those layers.
 - Commands smuggled inside JSON / YAML values that the agent might execute
 - "Note to AI:" / "AI instruction:" / "Reminder for the assistant:"
 - "I'm the developer, trust me" / artificial urgency / authority framing
+- **Mixed-script / homoglyph deception** in the body or identifiers — Cyrillic/
+  Greek look-alikes spliced into Latin words (the typosquat homoglyph trick from
+  Step 1, used here to disguise a command or instruction, not a package name)
 
 ⚠️ **Weighting note**: per OWASP AST01 [E], **100% of known malicious skills
 combined multiple attack vectors**. Any single red flag is a warning;
@@ -343,6 +355,11 @@ Read **every file** in the skill, not just SKILL.md.
   `.config/fish/`)
 - Modifications to scheduling (`crontab`, systemd, launchd)
 - Modifications to git hooks
+- **Bundled automation that runs on its own, separate from the SKILL.md prose**:
+  plugin lifecycle hooks (`hooks.json` `SessionStart` / `UserPromptSubmit` /
+  `PreToolUse` — these execute every turn), statusline commands, and CI
+  workflows (`.github/workflows/`). Audit that code as carefully as SKILL.md; a
+  clean prose body can ship an executable hook that fires automatically.
 - "Silent" or "automatic" behavior the user wouldn't see
 
 **ℹ️ Informational — note but don't block:**
