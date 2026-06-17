@@ -51,4 +51,6 @@
 | 2026-06-14 | renwei-writing（人味寫作） | github.com/orange2ai/renwei-writing | orange2ai（橘子 & Cola） | 部分（重複 humanizer 語氣層） | 🟦 參考自製（編輯時保留作者人味的減法紀律；純 prose＋自訂商用限制授權不宜收錄＝萃取原則併入 `humanizer` 當「保留作者」護欄，不新建技能。資安純 prose SAFE；435★/6commit 極新。詳見當日本機日誌） |
 | 2026-06-14 | effective-html（html／html-diagram／html-plan 三技能） | github.com/plannotator/effective-html | plannotator | 部分（html≈web-artifacts-builder/slide-deck；html-plan≈design-gate；html-diagram 為缺口） | 🟨 收錄＋客製（選擇性 vendor html-effectiveness 參考庫＋架構圖能力；MIT＋內嵌 Apache-2.0 可收錄。聚焦真缺口〔架構圖／有效技術 HTML 交付物〕，跳過純重複部分；收錄要補 attribution〔指向 plannotator 與原始 thariqs/html-effectiveness〕＋sources.lock。資安純 prose 無腳本 SAFE；755★。先 design-gate 設計再動工） |
 
+| 2026-06-17 | ponytail | github.com/DietrichGebert/ponytail | DietrichGebert | 部分（重複 CLAUDE.md §2 Simplicity First＋§3 Surgical Changes 之常駐規則；為 caveman→`terse` 的程式碼極簡手足） | 🟦 參考自製（「懶惰資深工程師」程式碼極簡階梯：YAGNI→stdlib→原生→已裝相依→一行→最小可行；純 persona prose，兩個每回合 Node hook 僅旗標檔＋statusline 屬邊陲。資安 SAFE、MIT、v4.7.0 活躍。核心規則已被使用者全域 CLAUDE.md 每階段常駐涵蓋＝觸發式技能反而更弱；取三點加值〔明確階梯／`ponytail:` 捷徑註解慣例／非平凡邏輯留一個可跑檢查〕併進 CLAUDE.md §2/§3，或仿 terse 之於 caveman 建小技能。優先度低，不裝外掛） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_

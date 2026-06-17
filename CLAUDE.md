@@ -39,8 +39,9 @@
 - 評估外部技能時，任何安裝之前都要先跑 `skill-auditor` 做安全稽核，再用 `skill-curator` 走完整流程：相關性、重複性、資安、來源、裁決、記錄。每一次評估的決策都寫進當日的工作日誌 `research/<YYYY-MM-DD>-skill-research-log.md`，完整稽核報告寫進 `research/audits/`。要記住研究不等於安裝；對這位使用者而言「直接安裝」是稀有事件，純文字或人格類的技能多半值得自己重寫成貼合他的版本，只有難以複製的策展或工程才值得原樣收錄（vendor）。
 - 使用 chinese-typography 的 `normalize.py` 時，只處理真正的中文一般文字，不要拿去處理英文或 markdown 技能文件。理由是它會把英文的引號改成「」、把括號改成全形，反而破壞英文與 markdown 文件。
 - 暫存或拋棄式的產物（測試用的丟棄式物件、臨時輸出、scratch 檔）寫到系統暫存區 `/tmp`，不要散落在工作磁碟的根目錄或儲存庫以外的地方（這臺機器就是 `/mnt/d/`）。正式產物才留在儲存庫內對應位置。理由是別把一次性的東西混進版控範圍或弄髒磁碟根目錄。
-- 技能用哪種語言撰寫，看它的「主題」，不是看這個儲存庫：主題綁定某種語言的（中文排版、中文文風），就用那種語言寫；和語言無關的工程或流程技能（設計流程、計畫、安全稽核），用英文寫。理由是這類內容活在程式碼／git／英文為主的世界，硬翻成中文會一路中英夾雜、逆著材料的紋理走，而且上游若是英文，英文版讓 `skill-evolve` 比對更新更省事。例：`chinese-typography`、`humanizer` 的中文規則用中文；`design-gate`、`skill-auditor`、`skill-finder`、`skill-curator`、`skill-evolve`、`verify-before-done`、`systematic-debugging` 用英文。（下面那條「中文內容不要中英夾雜」是條件句：只有當內容是中文時才適用。）
-- 自己寫的技能裡，凡是中文的內容（`SKILL.md`、`references/` 規則檔、評測 `evals.json` 的說明文字等）都用清楚的臺灣繁體中文，不要中英夾雜。能用中文就用中文；具體用詞對照見下方〈用詞與術語對照〉表。例外是程式識別字、專有名詞（產品名、人名）、JSON 欄位名、以及測試用的輸入樣本，這些是資料不是敘述文字，維持原樣。
+- **撰寫語言看主題、不看儲存庫，分兩層：**
+  1. **一個技能用哪種語言寫，看它的主題。** 主題綁定某語言的（中文排版、中文文風）就用那種語言；與語言無關的工程／流程技能（設計流程、計畫、安全稽核）用英文。理由是這類內容活在程式碼／git／英文為主的世界，硬翻中文會一路中英夾雜、逆著材料的紋理，上游若是英文也讓 `skill-evolve` 比對更新更省事。例：`chinese-typography`、`humanizer` 的中文規則用中文；`design-gate`、`skill-auditor`、`skill-finder`、`skill-curator`、`skill-evolve`、`verify-before-done`、`systematic-debugging` 用英文。
+  2. **當內容確實是中文時**（`SKILL.md`、`references/` 規則檔、`evals.json` 說明文字，以及**對話回覆本身**），一律用清楚的臺灣繁體中文，不中英夾雜、不簡稱縮寫；能用中文就用中文（伺服器不寫 server、提交不寫 commit、技能不寫 skill、快取不寫 cache……），具體用詞見下方〈用詞與術語對照〉表。這條凌駕 `terse` 那種英文短句風格。例外是程式識別字、專有名詞（產品名、人名）、JSON 欄位名、測試輸入樣本，這些是資料不是敘述，維持原樣。
 
 ## 用詞與術語對照 (Glossary)
 
@@ -61,6 +62,8 @@
 ## 行為準則 (Behavioral Guidelines)
 
 下面這段是跨所有專案通用的行為準則（語氣、反對協議、Rule 0–12）。為了讓這個 skills 儲存庫換機器後也能自帶這套準則，原樣（英文）收錄進來。
+
+> **這是鏡像，不是源頭。** 全域 CLAUDE.md（所有專案共用的準則）才是這套行為準則的唯一真相來源；這裡只是為了可攜而複製一份，**以全域那份為準、隨它更新**；兩份衝突時以全域為準，並回頭把這份補齊。刻意不寫絕對路徑——路徑綁機器，寫進可攜檔案反而失準。上次同步：2026-06-17。
 
 <!-- Source: https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md -->
 
@@ -110,11 +113,21 @@ Before implementing:
 
 **Minimum code that solves the problem. Nothing speculative.**
 
+Before writing code, stop at the first rung that holds:
+1. Does this need to exist at all? → no: skip it, say so in one line (YAGNI).
+2. Stdlib does it? → use it.
+3. Native platform feature covers it? → use it.
+4. Already-installed dependency solves it? → use it; don't add a new one for what a few lines do.
+5. One line? → one line.
+6. Only then: the minimum that works.
+
 - No features beyond what was asked.
 - No abstractions for single-use code.
 - No "flexibility" or "configurability" that wasn't requested.
 - No error handling for impossible scenarios.
 - If you write 200 lines and it could be 50, rewrite it.
+- Mark a deliberate shortcut with a comment naming its ceiling and upgrade path (e.g. `# global lock; per-account locks if throughput matters`) — so a simplification reads as intent, not ignorance.
+- Even lazy code leaves one check: non-trivial logic (a branch, loop, parser, money/security path) keeps ONE runnable check that fails if the logic breaks — an assert-based self-check or one small test, no frameworks. Trivial one-liners need none.
 
 Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
@@ -160,12 +173,9 @@ Use Claude for: classification, drafting, summarization, extraction from unstruc
 Do NOT use Claude for: routing, retries, status-code handling, deterministic transforms.
 If a status code already answers the question, plain code answers the question.
 
-### Rule 6 — Token budgets are not advisory
+### Rule 6 — Manage context; surface limits, don't silently overrun
 
-Per-task budget: 4,000 tokens.
-Per-session budget: 30,000 tokens.
-If a task is approaching budget, summarize and start fresh. Do not push through.
-Surfacing the breach > silently overrunning.
+No per-task token meter is readable mid-task, so a fixed numeric budget can't be self-enforced — don't pretend otherwise. Instead keep each task tightly scoped, and when the context window is visibly filling (the status indicator, `/context`), say so and suggest `/compact` or a fresh session rather than pushing through a degraded window. Surfacing the limit > silently overrunning.
 
 ### Rule 7 — Surface conflicts, don't average them
 
