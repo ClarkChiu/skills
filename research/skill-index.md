@@ -55,4 +55,10 @@
 | 2026-06-21 | jianying-editor-skill（剪映自動剪輯） | github.com/luoluoluo22/jianying-editor-skill | luoluoluo22 | 否（無內建影片編輯） | 🟥 跳過（以 UI 自動化驅動中國版剪映 Pro 做端到端剪輯〔配音／字幕／特效／螢幕錄製／自動匯出〕，需 Windows＋舊版剪映 5.9＋中國版專屬 App，離使用者網路／系統守備；2k★／MIT／結構完整／單人。完整稽核見當日本機紀錄） |
 | 2026-06-21 | daed（dae eBPF 路由引擎 Web 儀表板，非技能） | github.com/daeuniverse/daed | daeuniverse | 否（應用程式非技能；本專案無對應簇） | 🟥 跳過（現階段）（dae 的 eBPF 核心層分流技術對位使用者網路專長，但 daed 是 TS Web 儀表板、無可萃取技能素材；要用直接裝即可、不需技能中介。前端 MIT／後端 AGPL-3.0。日後若需 dae 設定／分流規則撰寫助手再評估自製，比照 graphiti 前例） |
 
+| 2026-06-28 | 每日待辦日報提示（AI Chief of Staff／CEO brief／艾森豪矩陣類） | promptmagic.dev／tomsguide.com／github.com/0x2e-Tech/awesome-ai-prompts | 多方（廣傳 prose 提示，無單一正典） | 內容為缺口；送達層重疊內建 schedule/loop，優先級與 decision-lens Crux 相鄰但不同 cadence | 🟦 參考自製（最有名者皆純文字提示、無可維護正典；價值在優先級框架〔艾森豪為主＋Eat-the-Frog 排序〕＋日報輸出結構，複製成本≈0。強客製需求〔多語／PM 風格／與 schedule＋decision-lens 整合〕＝自製。送達用內建 schedule 不重造。語言：英文引擎＋輸出跟隨輸入語言，比照 decision-lens） |
+| 2026-06-28 | OpenPaw（daxaur/openpaw） | github.com/daxaur/openpaw | daxaur | 部分（個人助理套件含 daily briefing；送達層重疊內建 schedule） | 🟥 跳過（38 技能個人助理套件，daily briefing 僅其一；含 Telegram／排程／kanban 整合，價值在整合非提示。為單一日報提示裝整套不划算；~107★ 未驗證、單人。取其日報觀念自製即可） |
+| 2026-06-28 | geoffrey morning-briefing（krishagel/geoffrey） | github.com/krishagel/geoffrey | krishagel | 部分（morning briefing 整合行事曆/Email） | 🟥 跳過（訊號不一致：第三方市集頁稱已上線，原 repo 自稱「尚未實作、Phase 2 roadmap」；Bun CLI＋AppleScript/JXA 綁 macOS，與使用者 Linux/GCP 不合。~5★、MIT、單人。安裝前須核實程式） |
+| 2026-06-28 | DailyBrief（leiting-eric/DailyBrief） | github.com/leiting-eric/DailyBrief | leiting-eric | 否（不同需求） | 🟥 跳過（AI 每日「新聞」簡報：GitHub 熱門＋行情技術分析，非個人待辦日報＝離題。~266★ 未驗證、TS／MIT、活躍，但需求不符） |
+| 2026-06-28 | morning-digest（mshadmanrahman/morning-digest） | github.com/mshadmanrahman/morning-digest | mshadmanrahman | 部分（行事曆/Email/Slack/待辦合成晨報；送達層重疊 schedule） | 🟥 跳過（最貼近「個人晨間整合」，但價值在程式整合〔需串接各服務授權〕、~5★ 單人 Python。提示觀念自製、整合用內建 schedule） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
