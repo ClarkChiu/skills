@@ -1,199 +1,1177 @@
 lockfile_version: '1'
-generated_at: '2026-06-12T11:55:38.742499+00:00'
-apm_version: 0.14.2
+generated_at: '2026-06-27T21:16:20.462055+00:00'
+apm_version: 0.20.0
 dependencies:
 - repo_url: _local/chinese-typography
   package_type: claude_skill
   deployed_files:
   - .agents/skills/chinese-typography
+  - .agents/skills/chinese-typography/SKILL.md
+  - .agents/skills/chinese-typography/data/defaults.json
+  - .agents/skills/chinese-typography/evals/evals.json
+  - .agents/skills/chinese-typography/evals/files/blog-draft.md
+  - .agents/skills/chinese-typography/references/attribution.md
+  - .agents/skills/chinese-typography/references/typography-rules.md
+  - .agents/skills/chinese-typography/requirements.txt
+  - .agents/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc
+  - .agents/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc
+  - .agents/skills/chinese-typography/scripts/normalize.py
+  - .agents/skills/chinese-typography/scripts/test_normalize.py
+  - .agents/skills/chinese-typography/scripts/test_weekday.py
+  - .agents/skills/chinese-typography/scripts/weekday.py
+  - .agents/skills/chinese-typography/sources.lock
+  - .agents/skills/chinese-typography/user-dictionary.json
   - .claude/skills/chinese-typography
+  - .claude/skills/chinese-typography/SKILL.md
+  - .claude/skills/chinese-typography/data/defaults.json
+  - .claude/skills/chinese-typography/evals/evals.json
+  - .claude/skills/chinese-typography/evals/files/blog-draft.md
+  - .claude/skills/chinese-typography/references/attribution.md
+  - .claude/skills/chinese-typography/references/typography-rules.md
+  - .claude/skills/chinese-typography/requirements.txt
+  - .claude/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc
+  - .claude/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc
+  - .claude/skills/chinese-typography/scripts/normalize.py
+  - .claude/skills/chinese-typography/scripts/test_normalize.py
+  - .claude/skills/chinese-typography/scripts/test_weekday.py
+  - .claude/skills/chinese-typography/scripts/weekday.py
+  - .claude/skills/chinese-typography/sources.lock
+  - .claude/skills/chinese-typography/user-dictionary.json
+  deployed_file_hashes:
+    .agents/skills/chinese-typography/SKILL.md: sha256:a6baef4f705144ac8171dcf2b1c797b399490d3dab8fd0e8ba2ac85db59ac536
+    .agents/skills/chinese-typography/data/defaults.json: sha256:ffc1ed2c23e754d607338036d31b48a13ed6b2510695d894078f8be78b7c2f83
+    .agents/skills/chinese-typography/evals/evals.json: sha256:2fe0821ce27ab5699e3640ac4553a3b6221b5438b850f056819289e171919514
+    .agents/skills/chinese-typography/evals/files/blog-draft.md: sha256:b089399b160d20f08071282366a5cf833e056d6a54666cccc2759bfea63efe65
+    .agents/skills/chinese-typography/references/attribution.md: sha256:22db8ff36a95f7765b1d3f3e354ea67e31396b2005fe61738154dc100d152848
+    .agents/skills/chinese-typography/references/typography-rules.md: sha256:bae02c8fbc154393f7cbaff3361ec4f4f77d032d1886723dc3030ec64dbc2be0
+    .agents/skills/chinese-typography/requirements.txt: sha256:a4c71cce210180653326067439c048a73b439d1360588876743425e5c6c36f73
+    .agents/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc: sha256:537cc5bab8c48f15f664b9ea8e15b0e6dfab976524adc53fe01042bb5c465600
+    .agents/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc: sha256:1e9ecd76655dd355531870f854a863ebb55335f2a1de1448860b2d5902e56f09
+    .agents/skills/chinese-typography/scripts/normalize.py: sha256:bd28c279d60e9866b0c825e89d8bce9d798839ca5837a1e474824edadb577a74
+    .agents/skills/chinese-typography/scripts/test_normalize.py: sha256:08dbaf1db1fd6c995f196e7ae2cddd944f50d145a5be731e7fff8c4f608c25ce
+    .agents/skills/chinese-typography/scripts/test_weekday.py: sha256:52905510bf1a385d0f9999dc2cf1273516ff987f6626fc23f87999988a9e1a92
+    .agents/skills/chinese-typography/scripts/weekday.py: sha256:8ae2ea384ba816245b4dfdbaebd34e99783698c6eccca1dd8c66ebafbdf5bb9a
+    .agents/skills/chinese-typography/sources.lock: sha256:c6a4e73ecc2794e15c049952f1643d4adaf5992e594c1057c24657fe71ea97d8
+    .agents/skills/chinese-typography/user-dictionary.json: sha256:c2229fc37a985be6ebe33a082e289c3502df9f634aea3c7ae6f530e7ccc940e6
+    .claude/skills/chinese-typography/SKILL.md: sha256:a6baef4f705144ac8171dcf2b1c797b399490d3dab8fd0e8ba2ac85db59ac536
+    .claude/skills/chinese-typography/data/defaults.json: sha256:ffc1ed2c23e754d607338036d31b48a13ed6b2510695d894078f8be78b7c2f83
+    .claude/skills/chinese-typography/evals/evals.json: sha256:2fe0821ce27ab5699e3640ac4553a3b6221b5438b850f056819289e171919514
+    .claude/skills/chinese-typography/evals/files/blog-draft.md: sha256:b089399b160d20f08071282366a5cf833e056d6a54666cccc2759bfea63efe65
+    .claude/skills/chinese-typography/references/attribution.md: sha256:22db8ff36a95f7765b1d3f3e354ea67e31396b2005fe61738154dc100d152848
+    .claude/skills/chinese-typography/references/typography-rules.md: sha256:bae02c8fbc154393f7cbaff3361ec4f4f77d032d1886723dc3030ec64dbc2be0
+    .claude/skills/chinese-typography/requirements.txt: sha256:a4c71cce210180653326067439c048a73b439d1360588876743425e5c6c36f73
+    .claude/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc: sha256:537cc5bab8c48f15f664b9ea8e15b0e6dfab976524adc53fe01042bb5c465600
+    .claude/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc: sha256:1e9ecd76655dd355531870f854a863ebb55335f2a1de1448860b2d5902e56f09
+    .claude/skills/chinese-typography/scripts/normalize.py: sha256:bd28c279d60e9866b0c825e89d8bce9d798839ca5837a1e474824edadb577a74
+    .claude/skills/chinese-typography/scripts/test_normalize.py: sha256:08dbaf1db1fd6c995f196e7ae2cddd944f50d145a5be731e7fff8c4f608c25ce
+    .claude/skills/chinese-typography/scripts/test_weekday.py: sha256:52905510bf1a385d0f9999dc2cf1273516ff987f6626fc23f87999988a9e1a92
+    .claude/skills/chinese-typography/scripts/weekday.py: sha256:8ae2ea384ba816245b4dfdbaebd34e99783698c6eccca1dd8c66ebafbdf5bb9a
+    .claude/skills/chinese-typography/sources.lock: sha256:c6a4e73ecc2794e15c049952f1643d4adaf5992e594c1057c24657fe71ea97d8
+    .claude/skills/chinese-typography/user-dictionary.json: sha256:c2229fc37a985be6ebe33a082e289c3502df9f634aea3c7ae6f530e7ccc940e6
   source: local
   local_path: ./chinese-typography/
 - repo_url: _local/decision-lens
   package_type: claude_skill
   deployed_files:
   - .agents/skills/decision-lens
+  - .agents/skills/decision-lens/SKILL.md
+  - .agents/skills/decision-lens/evals/evals.json
+  - .agents/skills/decision-lens/references/attribution.md
+  - .agents/skills/decision-lens/references/bayesian.md
+  - .agents/skills/decision-lens/references/crux.md
+  - .agents/skills/decision-lens/references/kelly.md
+  - .agents/skills/decision-lens/references/routing.md
+  - .agents/skills/decision-lens/scripts/.pytest_cache/.gitignore
+  - .agents/skills/decision-lens/scripts/.pytest_cache/CACHEDIR.TAG
+  - .agents/skills/decision-lens/scripts/.pytest_cache/README.md
+  - .agents/skills/decision-lens/scripts/.pytest_cache/v/cache/lastfailed
+  - .agents/skills/decision-lens/scripts/.pytest_cache/v/cache/nodeids
+  - .agents/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc
+  - .agents/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc
+  - .agents/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc
+  - .agents/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc
+  - .agents/skills/decision-lens/scripts/bayes_update.py
+  - .agents/skills/decision-lens/scripts/crux_score.py
+  - .agents/skills/decision-lens/scripts/kelly_size.py
+  - .agents/skills/decision-lens/scripts/test_decision_lens.py
+  - .agents/skills/decision-lens/sources.lock
   - .claude/skills/decision-lens
+  - .claude/skills/decision-lens/SKILL.md
+  - .claude/skills/decision-lens/evals/evals.json
+  - .claude/skills/decision-lens/references/attribution.md
+  - .claude/skills/decision-lens/references/bayesian.md
+  - .claude/skills/decision-lens/references/crux.md
+  - .claude/skills/decision-lens/references/kelly.md
+  - .claude/skills/decision-lens/references/routing.md
+  - .claude/skills/decision-lens/scripts/.pytest_cache/.gitignore
+  - .claude/skills/decision-lens/scripts/.pytest_cache/CACHEDIR.TAG
+  - .claude/skills/decision-lens/scripts/.pytest_cache/README.md
+  - .claude/skills/decision-lens/scripts/.pytest_cache/v/cache/lastfailed
+  - .claude/skills/decision-lens/scripts/.pytest_cache/v/cache/nodeids
+  - .claude/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc
+  - .claude/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc
+  - .claude/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc
+  - .claude/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc
+  - .claude/skills/decision-lens/scripts/bayes_update.py
+  - .claude/skills/decision-lens/scripts/crux_score.py
+  - .claude/skills/decision-lens/scripts/kelly_size.py
+  - .claude/skills/decision-lens/scripts/test_decision_lens.py
+  - .claude/skills/decision-lens/sources.lock
+  deployed_file_hashes:
+    .agents/skills/decision-lens/SKILL.md: sha256:d280839d413837b2b36afa134d721379348023fe167f9477ac13f31bdcdad52b
+    .agents/skills/decision-lens/evals/evals.json: sha256:48ed49d60f7f9cdb51ecc836cdd976505472e348fafc49019c6ab3cea519b723
+    .agents/skills/decision-lens/references/attribution.md: sha256:919d91460d1bc11bc24dc4c459a1c3c29c1fc1b970a585094598fa6057d530b0
+    .agents/skills/decision-lens/references/bayesian.md: sha256:8e461c798870e64a528ab364d4af94e07a9a305bd5c3fd1ff03b3abb1d903ae3
+    .agents/skills/decision-lens/references/crux.md: sha256:0571f9df316c897013c1cc42f6f31b88f9394c561fdb0bdf775fa2bd824c177c
+    .agents/skills/decision-lens/references/kelly.md: sha256:56e5d6960af748c2dbbfa1bece8b9a885cbba9979cb889aab16ed8bc55297e4e
+    .agents/skills/decision-lens/references/routing.md: sha256:53ff69de0aa17bb1661fa41b7336290f3a113e788d1e496be96bc5a9c37f9dda
+    .agents/skills/decision-lens/scripts/.pytest_cache/.gitignore: sha256:3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd
+    .agents/skills/decision-lens/scripts/.pytest_cache/CACHEDIR.TAG: sha256:37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4
+    .agents/skills/decision-lens/scripts/.pytest_cache/README.md: sha256:73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad
+    .agents/skills/decision-lens/scripts/.pytest_cache/v/cache/lastfailed: sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+    .agents/skills/decision-lens/scripts/.pytest_cache/v/cache/nodeids: sha256:2be203b26fb606abe3d239c671f7d5f11fd049f87a789874dfed8ff8f90bc637
+    .agents/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc: sha256:169e22687248cfc9aeda1dc516c7071fbd0ca1548780163731c9668968befc68
+    .agents/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc: sha256:22213aa6d2d344d0a445755989a52cfa97a8f7c96602b7248e551f52902137c5
+    .agents/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc: sha256:f7771cc28e97b0b794e4f1950bfb9c7c76cc320c47dc9a59b6650416e848938a
+    .agents/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc: sha256:9d28755a1714326b04d1e6effc94d84cbf83d1bc062e92d4f83693986e3210cc
+    .agents/skills/decision-lens/scripts/bayes_update.py: sha256:ec3959448ed17512413f82593667c6840f2d4e3f904a49253919bfca3d6fd2fb
+    .agents/skills/decision-lens/scripts/crux_score.py: sha256:2d75168f9b6f225953b342b6a0251e9b1739190f82fa51ec258297d7722c0630
+    .agents/skills/decision-lens/scripts/kelly_size.py: sha256:e74440285081892a9af550443a2185af2d8f0f4410d6786652e10544e4d42701
+    .agents/skills/decision-lens/scripts/test_decision_lens.py: sha256:481373408c9af79277514ec81eb52442fc70ff4c9f56e12c4399b00f055f1a5d
+    .agents/skills/decision-lens/sources.lock: sha256:8768b3b05e1e7653fb73570a876d7677c31a329d330bcf582e35e5438c813888
+    .claude/skills/decision-lens/SKILL.md: sha256:d280839d413837b2b36afa134d721379348023fe167f9477ac13f31bdcdad52b
+    .claude/skills/decision-lens/evals/evals.json: sha256:48ed49d60f7f9cdb51ecc836cdd976505472e348fafc49019c6ab3cea519b723
+    .claude/skills/decision-lens/references/attribution.md: sha256:919d91460d1bc11bc24dc4c459a1c3c29c1fc1b970a585094598fa6057d530b0
+    .claude/skills/decision-lens/references/bayesian.md: sha256:8e461c798870e64a528ab364d4af94e07a9a305bd5c3fd1ff03b3abb1d903ae3
+    .claude/skills/decision-lens/references/crux.md: sha256:0571f9df316c897013c1cc42f6f31b88f9394c561fdb0bdf775fa2bd824c177c
+    .claude/skills/decision-lens/references/kelly.md: sha256:56e5d6960af748c2dbbfa1bece8b9a885cbba9979cb889aab16ed8bc55297e4e
+    .claude/skills/decision-lens/references/routing.md: sha256:53ff69de0aa17bb1661fa41b7336290f3a113e788d1e496be96bc5a9c37f9dda
+    .claude/skills/decision-lens/scripts/.pytest_cache/.gitignore: sha256:3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd
+    .claude/skills/decision-lens/scripts/.pytest_cache/CACHEDIR.TAG: sha256:37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4
+    .claude/skills/decision-lens/scripts/.pytest_cache/README.md: sha256:73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad
+    .claude/skills/decision-lens/scripts/.pytest_cache/v/cache/lastfailed: sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+    .claude/skills/decision-lens/scripts/.pytest_cache/v/cache/nodeids: sha256:2be203b26fb606abe3d239c671f7d5f11fd049f87a789874dfed8ff8f90bc637
+    .claude/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc: sha256:169e22687248cfc9aeda1dc516c7071fbd0ca1548780163731c9668968befc68
+    .claude/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc: sha256:22213aa6d2d344d0a445755989a52cfa97a8f7c96602b7248e551f52902137c5
+    .claude/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc: sha256:f7771cc28e97b0b794e4f1950bfb9c7c76cc320c47dc9a59b6650416e848938a
+    .claude/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc: sha256:9d28755a1714326b04d1e6effc94d84cbf83d1bc062e92d4f83693986e3210cc
+    .claude/skills/decision-lens/scripts/bayes_update.py: sha256:ec3959448ed17512413f82593667c6840f2d4e3f904a49253919bfca3d6fd2fb
+    .claude/skills/decision-lens/scripts/crux_score.py: sha256:2d75168f9b6f225953b342b6a0251e9b1739190f82fa51ec258297d7722c0630
+    .claude/skills/decision-lens/scripts/kelly_size.py: sha256:e74440285081892a9af550443a2185af2d8f0f4410d6786652e10544e4d42701
+    .claude/skills/decision-lens/scripts/test_decision_lens.py: sha256:481373408c9af79277514ec81eb52442fc70ff4c9f56e12c4399b00f055f1a5d
+    .claude/skills/decision-lens/sources.lock: sha256:8768b3b05e1e7653fb73570a876d7677c31a329d330bcf582e35e5438c813888
   source: local
   local_path: ./decision-lens/
 - repo_url: _local/design-gate
   package_type: claude_skill
   deployed_files:
   - .agents/skills/design-gate
+  - .agents/skills/design-gate/SKILL.md
+  - .agents/skills/design-gate/evals/evals.json
+  - .agents/skills/design-gate/references/adr.md
+  - .agents/skills/design-gate/references/attribution.md
+  - .agents/skills/design-gate/references/brainstorming.md
+  - .agents/skills/design-gate/references/writing-plans.md
+  - .agents/skills/design-gate/sources.lock
   - .claude/skills/design-gate
+  - .claude/skills/design-gate/SKILL.md
+  - .claude/skills/design-gate/evals/evals.json
+  - .claude/skills/design-gate/references/adr.md
+  - .claude/skills/design-gate/references/attribution.md
+  - .claude/skills/design-gate/references/brainstorming.md
+  - .claude/skills/design-gate/references/writing-plans.md
+  - .claude/skills/design-gate/sources.lock
+  deployed_file_hashes:
+    .agents/skills/design-gate/SKILL.md: sha256:ab9c279e1f0a2d9c41537ad211708e3e35e43d59fca22388b1255f6781a5fd0b
+    .agents/skills/design-gate/evals/evals.json: sha256:7bb85859cfce03742bcf2079e95618635485c7c9fcaa278205e75bf63927385a
+    .agents/skills/design-gate/references/adr.md: sha256:6f45445e60efea6f0ccec3d66e079b8fe51357c66dc0fea16bb97f50e9900d65
+    .agents/skills/design-gate/references/attribution.md: sha256:bdbda288f461f0dad32e4e58f973d5d9052105ad30661acc42aa890e1c6db282
+    .agents/skills/design-gate/references/brainstorming.md: sha256:eb53112ed74fdcc33e3826ec70ad6e95d4bba614c3b6ac6c6516f5e7f1f78ff0
+    .agents/skills/design-gate/references/writing-plans.md: sha256:5172534b37e158677f5669f03f97ab287fcdd7fb06c00a80050554ea543b13f7
+    .agents/skills/design-gate/sources.lock: sha256:184553355badb4cf59bc2348fe7025aac5979139afbc322a5436adb528a31cfc
+    .claude/skills/design-gate/SKILL.md: sha256:ab9c279e1f0a2d9c41537ad211708e3e35e43d59fca22388b1255f6781a5fd0b
+    .claude/skills/design-gate/evals/evals.json: sha256:7bb85859cfce03742bcf2079e95618635485c7c9fcaa278205e75bf63927385a
+    .claude/skills/design-gate/references/adr.md: sha256:6f45445e60efea6f0ccec3d66e079b8fe51357c66dc0fea16bb97f50e9900d65
+    .claude/skills/design-gate/references/attribution.md: sha256:bdbda288f461f0dad32e4e58f973d5d9052105ad30661acc42aa890e1c6db282
+    .claude/skills/design-gate/references/brainstorming.md: sha256:eb53112ed74fdcc33e3826ec70ad6e95d4bba614c3b6ac6c6516f5e7f1f78ff0
+    .claude/skills/design-gate/references/writing-plans.md: sha256:5172534b37e158677f5669f03f97ab287fcdd7fb06c00a80050554ea543b13f7
+    .claude/skills/design-gate/sources.lock: sha256:184553355badb4cf59bc2348fe7025aac5979139afbc322a5436adb528a31cfc
   source: local
   local_path: ./design-gate/
 - repo_url: _local/git-guardrails
   package_type: claude_skill
   deployed_files:
   - .agents/skills/git-guardrails
+  - .agents/skills/git-guardrails/SKILL.md
+  - .agents/skills/git-guardrails/evals/evals.json
+  - .agents/skills/git-guardrails/references/attribution.md
+  - .agents/skills/git-guardrails/scripts/block-dangerous-git.sh
+  - .agents/skills/git-guardrails/scripts/test_block_dangerous_git.sh
+  - .agents/skills/git-guardrails/sources.lock
   - .claude/skills/git-guardrails
+  - .claude/skills/git-guardrails/SKILL.md
+  - .claude/skills/git-guardrails/evals/evals.json
+  - .claude/skills/git-guardrails/references/attribution.md
+  - .claude/skills/git-guardrails/scripts/block-dangerous-git.sh
+  - .claude/skills/git-guardrails/scripts/test_block_dangerous_git.sh
+  - .claude/skills/git-guardrails/sources.lock
+  deployed_file_hashes:
+    .agents/skills/git-guardrails/SKILL.md: sha256:4db000e4a1dc34004ab2d3680ff811e810c448af4cf975845c0955382afd5ddb
+    .agents/skills/git-guardrails/evals/evals.json: sha256:a8b9f63b36de10a7d3d1a166fe5563e96be978d1dd8a81c6432f762f1d913638
+    .agents/skills/git-guardrails/references/attribution.md: sha256:fa5f7b1cbd50d91b8cc79f198924d6726c3057fc746a44ca766afe6d31592d25
+    .agents/skills/git-guardrails/scripts/block-dangerous-git.sh: sha256:cfb7831c56d89d8be4d79a86ada22836a6ea29dca5ca037482e389a79aea0670
+    .agents/skills/git-guardrails/scripts/test_block_dangerous_git.sh: sha256:48e0f06d4152d4319bd51a5624dd13863deefef8925370a973a34464c19f9e4b
+    .agents/skills/git-guardrails/sources.lock: sha256:8a1136e04dd340e7a76b9ffbf94a78a4b01d08fd5873be998c7267d36e921d6e
+    .claude/skills/git-guardrails/SKILL.md: sha256:4db000e4a1dc34004ab2d3680ff811e810c448af4cf975845c0955382afd5ddb
+    .claude/skills/git-guardrails/evals/evals.json: sha256:a8b9f63b36de10a7d3d1a166fe5563e96be978d1dd8a81c6432f762f1d913638
+    .claude/skills/git-guardrails/references/attribution.md: sha256:fa5f7b1cbd50d91b8cc79f198924d6726c3057fc746a44ca766afe6d31592d25
+    .claude/skills/git-guardrails/scripts/block-dangerous-git.sh: sha256:cfb7831c56d89d8be4d79a86ada22836a6ea29dca5ca037482e389a79aea0670
+    .claude/skills/git-guardrails/scripts/test_block_dangerous_git.sh: sha256:48e0f06d4152d4319bd51a5624dd13863deefef8925370a973a34464c19f9e4b
+    .claude/skills/git-guardrails/sources.lock: sha256:8a1136e04dd340e7a76b9ffbf94a78a4b01d08fd5873be998c7267d36e921d6e
   source: local
   local_path: ./git-guardrails/
+- repo_url: _local/html-diagram
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/html-diagram
+  - .agents/skills/html-diagram/SKILL.md
+  - .agents/skills/html-diagram/evals/evals.json
+  - .agents/skills/html-diagram/example/ice-nat-traversal.html
+  - .agents/skills/html-diagram/references/architecture-example.html
+  - .agents/skills/html-diagram/references/attribution.md
+  - .agents/skills/html-diagram/references/html-effectiveness/05-design-system.html
+  - .agents/skills/html-diagram/references/html-effectiveness/07-prototype-animation.html
+  - .agents/skills/html-diagram/references/html-effectiveness/08-prototype-interaction.html
+  - .agents/skills/html-diagram/references/html-effectiveness/10-svg-illustrations.html
+  - .agents/skills/html-diagram/references/html-effectiveness/13-flowchart-diagram.html
+  - .agents/skills/html-diagram/references/html-effectiveness/LICENSE
+  - .agents/skills/html-diagram/references/html-effectiveness/README.md
+  - .agents/skills/html-diagram/sources.lock
+  - .claude/skills/html-diagram
+  - .claude/skills/html-diagram/SKILL.md
+  - .claude/skills/html-diagram/evals/evals.json
+  - .claude/skills/html-diagram/example/ice-nat-traversal.html
+  - .claude/skills/html-diagram/references/architecture-example.html
+  - .claude/skills/html-diagram/references/attribution.md
+  - .claude/skills/html-diagram/references/html-effectiveness/05-design-system.html
+  - .claude/skills/html-diagram/references/html-effectiveness/07-prototype-animation.html
+  - .claude/skills/html-diagram/references/html-effectiveness/08-prototype-interaction.html
+  - .claude/skills/html-diagram/references/html-effectiveness/10-svg-illustrations.html
+  - .claude/skills/html-diagram/references/html-effectiveness/13-flowchart-diagram.html
+  - .claude/skills/html-diagram/references/html-effectiveness/LICENSE
+  - .claude/skills/html-diagram/references/html-effectiveness/README.md
+  - .claude/skills/html-diagram/sources.lock
+  deployed_file_hashes:
+    .agents/skills/html-diagram/SKILL.md: sha256:1d538e0beca67f268a0371848f439825df4184f4c994f56108fdea223eba7ed1
+    .agents/skills/html-diagram/evals/evals.json: sha256:a349dcbb5a3ef80be92f1c5be3f186b78f934e1cd06d09c0aae32dfef8267b5d
+    .agents/skills/html-diagram/example/ice-nat-traversal.html: sha256:328ad460bc496f86e2bc4ab473bbc31041422d4f04840eb560bddd1ec6471eac
+    .agents/skills/html-diagram/references/architecture-example.html: sha256:b72dfce07af04a7df124f8f7fe5fba92f035eababd82ca66318960d4e50c33d1
+    .agents/skills/html-diagram/references/attribution.md: sha256:8fcd79fa5c97522ffc0e5f427a8c5bbc417712c8e474093739b0e07b949d2013
+    .agents/skills/html-diagram/references/html-effectiveness/05-design-system.html: sha256:5f497b1667ddad12822a60906c3d57db98439b0540278431b3cc54201bb07903
+    .agents/skills/html-diagram/references/html-effectiveness/07-prototype-animation.html: sha256:07e908d47a14297e0feb8fb589d9102c5d8231792c95c08af3211c029fb904e1
+    .agents/skills/html-diagram/references/html-effectiveness/08-prototype-interaction.html: sha256:5e13db1460f9258a971b60339c2994140ece350c419b73d81d1fe83b591db51f
+    .agents/skills/html-diagram/references/html-effectiveness/10-svg-illustrations.html: sha256:33de35f9d5a6d1c4a412fbfafaef88595771aad03bb2f69d90ee4834239dde4a
+    .agents/skills/html-diagram/references/html-effectiveness/13-flowchart-diagram.html: sha256:86f9ff01431897849ae6fe12693864fbdf6c43eb271977eca416e071dc324ccf
+    .agents/skills/html-diagram/references/html-effectiveness/LICENSE: sha256:30deeaa611125310673e7c14b4892fb102fb56697ecfab3b49b77ca0190de7e1
+    .agents/skills/html-diagram/references/html-effectiveness/README.md: sha256:2875d5eea955b125bd73f0d6120c53458c2797b5a3513de52a21f16930f24cb0
+    .agents/skills/html-diagram/sources.lock: sha256:82842a87f50917502e4a8af2b6adaf763b3effb58b7e00369570ebc7eb78fd99
+    .claude/skills/html-diagram/SKILL.md: sha256:1d538e0beca67f268a0371848f439825df4184f4c994f56108fdea223eba7ed1
+    .claude/skills/html-diagram/evals/evals.json: sha256:a349dcbb5a3ef80be92f1c5be3f186b78f934e1cd06d09c0aae32dfef8267b5d
+    .claude/skills/html-diagram/example/ice-nat-traversal.html: sha256:328ad460bc496f86e2bc4ab473bbc31041422d4f04840eb560bddd1ec6471eac
+    .claude/skills/html-diagram/references/architecture-example.html: sha256:b72dfce07af04a7df124f8f7fe5fba92f035eababd82ca66318960d4e50c33d1
+    .claude/skills/html-diagram/references/attribution.md: sha256:8fcd79fa5c97522ffc0e5f427a8c5bbc417712c8e474093739b0e07b949d2013
+    .claude/skills/html-diagram/references/html-effectiveness/05-design-system.html: sha256:5f497b1667ddad12822a60906c3d57db98439b0540278431b3cc54201bb07903
+    .claude/skills/html-diagram/references/html-effectiveness/07-prototype-animation.html: sha256:07e908d47a14297e0feb8fb589d9102c5d8231792c95c08af3211c029fb904e1
+    .claude/skills/html-diagram/references/html-effectiveness/08-prototype-interaction.html: sha256:5e13db1460f9258a971b60339c2994140ece350c419b73d81d1fe83b591db51f
+    .claude/skills/html-diagram/references/html-effectiveness/10-svg-illustrations.html: sha256:33de35f9d5a6d1c4a412fbfafaef88595771aad03bb2f69d90ee4834239dde4a
+    .claude/skills/html-diagram/references/html-effectiveness/13-flowchart-diagram.html: sha256:86f9ff01431897849ae6fe12693864fbdf6c43eb271977eca416e071dc324ccf
+    .claude/skills/html-diagram/references/html-effectiveness/LICENSE: sha256:30deeaa611125310673e7c14b4892fb102fb56697ecfab3b49b77ca0190de7e1
+    .claude/skills/html-diagram/references/html-effectiveness/README.md: sha256:2875d5eea955b125bd73f0d6120c53458c2797b5a3513de52a21f16930f24cb0
+    .claude/skills/html-diagram/sources.lock: sha256:82842a87f50917502e4a8af2b6adaf763b3effb58b7e00369570ebc7eb78fd99
+  source: local
+  local_path: ./html-diagram/
 - repo_url: _local/humanizer
   package_type: claude_skill
   deployed_files:
   - .agents/skills/humanizer
+  - .agents/skills/humanizer/SKILL.md
+  - .agents/skills/humanizer/evals/evals.json
+  - .agents/skills/humanizer/references/attribution.md
+  - .agents/skills/humanizer/references/rules-en.md
+  - .agents/skills/humanizer/references/rules-zh-tw.md
+  - .agents/skills/humanizer/sources.lock
   - .claude/skills/humanizer
+  - .claude/skills/humanizer/SKILL.md
+  - .claude/skills/humanizer/evals/evals.json
+  - .claude/skills/humanizer/references/attribution.md
+  - .claude/skills/humanizer/references/rules-en.md
+  - .claude/skills/humanizer/references/rules-zh-tw.md
+  - .claude/skills/humanizer/sources.lock
+  deployed_file_hashes:
+    .agents/skills/humanizer/SKILL.md: sha256:b694057e0f8e39937d5a2449cee1b975fe913a71203c70dd6a833f8ad23cb172
+    .agents/skills/humanizer/evals/evals.json: sha256:2adc020fb879c6bce22472c135f6218264bf4d46ce9e7a78e9d253737187836d
+    .agents/skills/humanizer/references/attribution.md: sha256:684a21a0e946b31573f4e0791fda8a923df5356297f8b1cbfd4cded1bdc9cf69
+    .agents/skills/humanizer/references/rules-en.md: sha256:4f5ae4273bd80b95eb80712f9ce083033842a1d2012e8c0296638f051dccde07
+    .agents/skills/humanizer/references/rules-zh-tw.md: sha256:4b974ca0e2b49e1411b3a987fde7ae720a6eb60c9b66a177efea9d5455d9103c
+    .agents/skills/humanizer/sources.lock: sha256:57b4b2e608a0c4d8d26bd4ace66ca37786ffc2c98f6a199e151918c3f79d76db
+    .claude/skills/humanizer/SKILL.md: sha256:b694057e0f8e39937d5a2449cee1b975fe913a71203c70dd6a833f8ad23cb172
+    .claude/skills/humanizer/evals/evals.json: sha256:2adc020fb879c6bce22472c135f6218264bf4d46ce9e7a78e9d253737187836d
+    .claude/skills/humanizer/references/attribution.md: sha256:684a21a0e946b31573f4e0791fda8a923df5356297f8b1cbfd4cded1bdc9cf69
+    .claude/skills/humanizer/references/rules-en.md: sha256:4f5ae4273bd80b95eb80712f9ce083033842a1d2012e8c0296638f051dccde07
+    .claude/skills/humanizer/references/rules-zh-tw.md: sha256:4b974ca0e2b49e1411b3a987fde7ae720a6eb60c9b66a177efea9d5455d9103c
+    .claude/skills/humanizer/sources.lock: sha256:57b4b2e608a0c4d8d26bd4ace66ca37786ffc2c98f6a199e151918c3f79d76db
   source: local
   local_path: ./humanizer/
 - repo_url: _local/p2pscout
   package_type: claude_skill
   deployed_files:
   - .agents/skills/p2pscout
+  - .agents/skills/p2pscout/README.md
+  - .agents/skills/p2pscout/SKILL.md
+  - .agents/skills/p2pscout/cmd/p2pscout/main.go
+  - .agents/skills/p2pscout/evals/evals.json
+  - .agents/skills/p2pscout/go.mod
+  - .agents/skills/p2pscout/go.sum
+  - .agents/skills/p2pscout/internal/download/aria2.go
+  - .agents/skills/p2pscout/internal/output/format.go
+  - .agents/skills/p2pscout/internal/search/aggregate.go
+  - .agents/skills/p2pscout/internal/search/aggregate_test.go
+  - .agents/skills/p2pscout/internal/search/apibay.go
+  - .agents/skills/p2pscout/internal/search/magnet.go
+  - .agents/skills/p2pscout/internal/search/magnet_test.go
+  - .agents/skills/p2pscout/internal/search/provider.go
+  - .agents/skills/p2pscout/internal/search/registry.go
+  - .agents/skills/p2pscout/internal/search/torrentz2.go
+  - .agents/skills/p2pscout/internal/swarm/dht.go
+  - .agents/skills/p2pscout/internal/swarm/inspect.go
+  - .agents/skills/p2pscout/internal/swarm/report.go
+  - .agents/skills/p2pscout/internal/swarm/report_test.go
+  - .agents/skills/p2pscout/internal/swarm/scout.go
+  - .agents/skills/p2pscout/internal/swarm/tracker.go
+  - .agents/skills/p2pscout/references/attribution.md
+  - .agents/skills/p2pscout/sources.lock
   - .claude/skills/p2pscout
+  - .claude/skills/p2pscout/README.md
+  - .claude/skills/p2pscout/SKILL.md
+  - .claude/skills/p2pscout/cmd/p2pscout/main.go
+  - .claude/skills/p2pscout/evals/evals.json
+  - .claude/skills/p2pscout/go.mod
+  - .claude/skills/p2pscout/go.sum
+  - .claude/skills/p2pscout/internal/download/aria2.go
+  - .claude/skills/p2pscout/internal/output/format.go
+  - .claude/skills/p2pscout/internal/search/aggregate.go
+  - .claude/skills/p2pscout/internal/search/aggregate_test.go
+  - .claude/skills/p2pscout/internal/search/apibay.go
+  - .claude/skills/p2pscout/internal/search/magnet.go
+  - .claude/skills/p2pscout/internal/search/magnet_test.go
+  - .claude/skills/p2pscout/internal/search/provider.go
+  - .claude/skills/p2pscout/internal/search/registry.go
+  - .claude/skills/p2pscout/internal/search/torrentz2.go
+  - .claude/skills/p2pscout/internal/swarm/dht.go
+  - .claude/skills/p2pscout/internal/swarm/inspect.go
+  - .claude/skills/p2pscout/internal/swarm/report.go
+  - .claude/skills/p2pscout/internal/swarm/report_test.go
+  - .claude/skills/p2pscout/internal/swarm/scout.go
+  - .claude/skills/p2pscout/internal/swarm/tracker.go
+  - .claude/skills/p2pscout/references/attribution.md
+  - .claude/skills/p2pscout/sources.lock
+  deployed_file_hashes:
+    .agents/skills/p2pscout/README.md: sha256:c00624d58e940fa18aa0f41e745b0e052c40c510326bb6cbbc93d9ba808ef447
+    .agents/skills/p2pscout/SKILL.md: sha256:9ef3c1983c062016ded6eff94bfb95fe6fd0b5d80a533bf4310aa5b3c47cff9d
+    .agents/skills/p2pscout/cmd/p2pscout/main.go: sha256:66b18a833e32027af429adfc49f1d21b119a5b23fbeb9aff5bc9e7bcedf7cf1b
+    .agents/skills/p2pscout/evals/evals.json: sha256:47106bcb302533dd1d03f84e0f2958952ab9578698ba52715071a04df34ecba6
+    .agents/skills/p2pscout/go.mod: sha256:cd80e1d3ed7e7cdafc90c33b78145d518b6373a89e5910b2102402cf728913d6
+    .agents/skills/p2pscout/go.sum: sha256:28d1a284bb7e7d01ca29c39ad2664514d19e2fb0df0a2e6273f445f262917523
+    .agents/skills/p2pscout/internal/download/aria2.go: sha256:c8952afceec574ec7e1f21de7a0c8bbe53edc8d9bca1058b938d37c47922b250
+    .agents/skills/p2pscout/internal/output/format.go: sha256:0cc2998248483dce454dc9da22f644d5831553fe5150d8aceb7783ba3f14ca06
+    .agents/skills/p2pscout/internal/search/aggregate.go: sha256:52a0b6ea2d8d5642bf4d892ca94dcb10bf0eb476ad8c3ef449fb426fe39c3447
+    .agents/skills/p2pscout/internal/search/aggregate_test.go: sha256:ca7ccb2ccf47060ef16e18bdcc1d18df2cad40f5fb18dbae9fe1cbe302cf451b
+    .agents/skills/p2pscout/internal/search/apibay.go: sha256:1d6d157b8d01e5026c4e7faf99ec6b9fa415c99bf916336057464111b68a3062
+    .agents/skills/p2pscout/internal/search/magnet.go: sha256:0d639d31cb2e25b049f75382d4ce0ac194675113f5d6cb4eae0b835086c14dbd
+    .agents/skills/p2pscout/internal/search/magnet_test.go: sha256:bbe8586ea10139e0ecd35a834ceb180f1864bf7664e176893f8f0d42572de2dc
+    .agents/skills/p2pscout/internal/search/provider.go: sha256:be30ab13e743d357868aa9291bf249ea781b540f4d03df76e8a1847104625c0d
+    .agents/skills/p2pscout/internal/search/registry.go: sha256:f230126e1bfb16c1d5ae918cf76502747dd561561d7b318acd7048f01c9050f3
+    .agents/skills/p2pscout/internal/search/torrentz2.go: sha256:b3295b7f6ea16851440b0cf3acb13350d7f846786528481e94ae5df6b5cee78f
+    .agents/skills/p2pscout/internal/swarm/dht.go: sha256:f142940cdaeb4da5b2fffe34b14c2e4fe5601c1a75700c1b5d0c445594305fba
+    .agents/skills/p2pscout/internal/swarm/inspect.go: sha256:e675f6f70bfaafca2d74e0c55a93ad3067aefaa16eac3a61eb054914f5cdcb3a
+    .agents/skills/p2pscout/internal/swarm/report.go: sha256:a27d8615b211ebc126edb34ecc63788e169e5c6dc9878d26c1829eade82153c6
+    .agents/skills/p2pscout/internal/swarm/report_test.go: sha256:9da3f8532550c978a42f5ed614aff2a5652eb6bf3cf0439d5387d589ea337617
+    .agents/skills/p2pscout/internal/swarm/scout.go: sha256:cf98ddc3a6235f80238915406356eb267eb21f5a5eb60f2017cb8540ce53cf12
+    .agents/skills/p2pscout/internal/swarm/tracker.go: sha256:28a8a774c431116072b4dacec3a6a209c0139453bf5e9dc9e02bdb6cef8b6263
+    .agents/skills/p2pscout/references/attribution.md: sha256:4da028b201832f031fc95f4d819a7aab0f3daa97ada922516f3bb599a7084f31
+    .agents/skills/p2pscout/sources.lock: sha256:c0bbd875aaaaaa7a43686e7eab1427d9b46f588fdc2032440ecd85ef714cd00d
+    .claude/skills/p2pscout/README.md: sha256:c00624d58e940fa18aa0f41e745b0e052c40c510326bb6cbbc93d9ba808ef447
+    .claude/skills/p2pscout/SKILL.md: sha256:9ef3c1983c062016ded6eff94bfb95fe6fd0b5d80a533bf4310aa5b3c47cff9d
+    .claude/skills/p2pscout/cmd/p2pscout/main.go: sha256:66b18a833e32027af429adfc49f1d21b119a5b23fbeb9aff5bc9e7bcedf7cf1b
+    .claude/skills/p2pscout/evals/evals.json: sha256:47106bcb302533dd1d03f84e0f2958952ab9578698ba52715071a04df34ecba6
+    .claude/skills/p2pscout/go.mod: sha256:cd80e1d3ed7e7cdafc90c33b78145d518b6373a89e5910b2102402cf728913d6
+    .claude/skills/p2pscout/go.sum: sha256:28d1a284bb7e7d01ca29c39ad2664514d19e2fb0df0a2e6273f445f262917523
+    .claude/skills/p2pscout/internal/download/aria2.go: sha256:c8952afceec574ec7e1f21de7a0c8bbe53edc8d9bca1058b938d37c47922b250
+    .claude/skills/p2pscout/internal/output/format.go: sha256:0cc2998248483dce454dc9da22f644d5831553fe5150d8aceb7783ba3f14ca06
+    .claude/skills/p2pscout/internal/search/aggregate.go: sha256:52a0b6ea2d8d5642bf4d892ca94dcb10bf0eb476ad8c3ef449fb426fe39c3447
+    .claude/skills/p2pscout/internal/search/aggregate_test.go: sha256:ca7ccb2ccf47060ef16e18bdcc1d18df2cad40f5fb18dbae9fe1cbe302cf451b
+    .claude/skills/p2pscout/internal/search/apibay.go: sha256:1d6d157b8d01e5026c4e7faf99ec6b9fa415c99bf916336057464111b68a3062
+    .claude/skills/p2pscout/internal/search/magnet.go: sha256:0d639d31cb2e25b049f75382d4ce0ac194675113f5d6cb4eae0b835086c14dbd
+    .claude/skills/p2pscout/internal/search/magnet_test.go: sha256:bbe8586ea10139e0ecd35a834ceb180f1864bf7664e176893f8f0d42572de2dc
+    .claude/skills/p2pscout/internal/search/provider.go: sha256:be30ab13e743d357868aa9291bf249ea781b540f4d03df76e8a1847104625c0d
+    .claude/skills/p2pscout/internal/search/registry.go: sha256:f230126e1bfb16c1d5ae918cf76502747dd561561d7b318acd7048f01c9050f3
+    .claude/skills/p2pscout/internal/search/torrentz2.go: sha256:b3295b7f6ea16851440b0cf3acb13350d7f846786528481e94ae5df6b5cee78f
+    .claude/skills/p2pscout/internal/swarm/dht.go: sha256:f142940cdaeb4da5b2fffe34b14c2e4fe5601c1a75700c1b5d0c445594305fba
+    .claude/skills/p2pscout/internal/swarm/inspect.go: sha256:e675f6f70bfaafca2d74e0c55a93ad3067aefaa16eac3a61eb054914f5cdcb3a
+    .claude/skills/p2pscout/internal/swarm/report.go: sha256:a27d8615b211ebc126edb34ecc63788e169e5c6dc9878d26c1829eade82153c6
+    .claude/skills/p2pscout/internal/swarm/report_test.go: sha256:9da3f8532550c978a42f5ed614aff2a5652eb6bf3cf0439d5387d589ea337617
+    .claude/skills/p2pscout/internal/swarm/scout.go: sha256:cf98ddc3a6235f80238915406356eb267eb21f5a5eb60f2017cb8540ce53cf12
+    .claude/skills/p2pscout/internal/swarm/tracker.go: sha256:28a8a774c431116072b4dacec3a6a209c0139453bf5e9dc9e02bdb6cef8b6263
+    .claude/skills/p2pscout/references/attribution.md: sha256:4da028b201832f031fc95f4d819a7aab0f3daa97ada922516f3bb599a7084f31
+    .claude/skills/p2pscout/sources.lock: sha256:c0bbd875aaaaaa7a43686e7eab1427d9b46f588fdc2032440ecd85ef714cd00d
   source: local
   local_path: ./p2pscout/
 - repo_url: _local/roleplay-coach
   package_type: claude_skill
   deployed_files:
   - .agents/skills/roleplay-coach
+  - .agents/skills/roleplay-coach/SKILL.md
+  - .agents/skills/roleplay-coach/evals/evals.json
+  - .agents/skills/roleplay-coach/references/attribution.md
+  - .agents/skills/roleplay-coach/sources.lock
   - .claude/skills/roleplay-coach
+  - .claude/skills/roleplay-coach/SKILL.md
+  - .claude/skills/roleplay-coach/evals/evals.json
+  - .claude/skills/roleplay-coach/references/attribution.md
+  - .claude/skills/roleplay-coach/sources.lock
+  deployed_file_hashes:
+    .agents/skills/roleplay-coach/SKILL.md: sha256:42239a060da6cbd4d6282ba19a5ab2f1920e91239eded5af05326dfc3fcdd509
+    .agents/skills/roleplay-coach/evals/evals.json: sha256:78d08a08477d7825359b853e614a2d6e5c8a4963d8668b3ee8b68d16afdbe4a0
+    .agents/skills/roleplay-coach/references/attribution.md: sha256:302a3a0bcff1ee443dd317ceb3e8828309689072a4297c749fd29778c155ff30
+    .agents/skills/roleplay-coach/sources.lock: sha256:f897b8f3590a666e5e55e9dd6a2722973469f114a1bdc277151d73d6d507516b
+    .claude/skills/roleplay-coach/SKILL.md: sha256:42239a060da6cbd4d6282ba19a5ab2f1920e91239eded5af05326dfc3fcdd509
+    .claude/skills/roleplay-coach/evals/evals.json: sha256:78d08a08477d7825359b853e614a2d6e5c8a4963d8668b3ee8b68d16afdbe4a0
+    .claude/skills/roleplay-coach/references/attribution.md: sha256:302a3a0bcff1ee443dd317ceb3e8828309689072a4297c749fd29778c155ff30
+    .claude/skills/roleplay-coach/sources.lock: sha256:f897b8f3590a666e5e55e9dd6a2722973469f114a1bdc277151d73d6d507516b
   source: local
   local_path: ./roleplay-coach/
 - repo_url: _local/skill-auditor
   package_type: claude_skill
   deployed_files:
   - .agents/skills/skill-auditor
+  - .agents/skills/skill-auditor/README.md
+  - .agents/skills/skill-auditor/SKILL.md
+  - .agents/skills/skill-auditor/evals/evals.json
+  - .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/MANIFEST.md
+  - .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/SKILL.md
+  - .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/templates/code-standards.md
+  - .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-knowledge/SKILL.md
+  - .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-knowledge/concepts/ai-agent.yaml
+  - .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-techselect/SKILL.md
+  - .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-techselect/references/expert-sources.md
+  - .agents/skills/skill-auditor/references/attribution.md
+  - .agents/skills/skill-auditor/sources.lock
   - .claude/skills/skill-auditor
+  - .claude/skills/skill-auditor/README.md
+  - .claude/skills/skill-auditor/SKILL.md
+  - .claude/skills/skill-auditor/evals/evals.json
+  - .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/MANIFEST.md
+  - .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/SKILL.md
+  - .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/templates/code-standards.md
+  - .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-knowledge/SKILL.md
+  - .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-knowledge/concepts/ai-agent.yaml
+  - .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-techselect/SKILL.md
+  - .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-techselect/references/expert-sources.md
+  - .claude/skills/skill-auditor/references/attribution.md
+  - .claude/skills/skill-auditor/sources.lock
+  deployed_file_hashes:
+    .agents/skills/skill-auditor/README.md: sha256:fdcd6417c668341451b30d1d22441b1f3f0cf68addd6c52ff757dbcf8788d77d
+    .agents/skills/skill-auditor/SKILL.md: sha256:8d0448d8cb2b5697b93b3205c96e61c8990a826b426a16d3ff339f7496341dd8
+    .agents/skills/skill-auditor/evals/evals.json: sha256:c7edb2b9b536336eedbc05a996cf750a7424ab4e0938ee6d30b032ce8da33aff
+    .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/MANIFEST.md: sha256:6107d0159e90f3cc113b974874dc9b41b568f729a48fa507dc87af343efd1579
+    .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/SKILL.md: sha256:4969178019f71f15e9247ca1bfa20f13f12b219d5fbdbcdc608dfc7c715c68ab
+    .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/templates/code-standards.md: sha256:74e9b9525399c7c47eb8e144b5c75489acb97557b8f239cf2b20fec12ddf3700
+    .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-knowledge/SKILL.md: sha256:1a81c1618a420e02e7fc13f3fe842ee567872adc11192d4c36deaec7665cf0fb
+    .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-knowledge/concepts/ai-agent.yaml: sha256:cc7643ff62dc1194b740ab899ad51186c6d859047764f2100d09f07c1a9d2e8b
+    .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-techselect/SKILL.md: sha256:47e9300f5469847ede697805ff02bca2a41fcb052ae009338a94cbc656418b2d
+    .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-techselect/references/expert-sources.md: sha256:417199d3926b38814b27b2de67f42044ca1f81f1141fd46eae8a64a24706839e
+    .agents/skills/skill-auditor/references/attribution.md: sha256:424eec54366ec7127d5939fe05280332f16b21dd52339d1338e366e2c8c8bb68
+    .agents/skills/skill-auditor/sources.lock: sha256:9fdcf21ac31c599d669eb878588a5aad7d79f3607beb4425dab2ce19f121ef6c
+    .claude/skills/skill-auditor/README.md: sha256:fdcd6417c668341451b30d1d22441b1f3f0cf68addd6c52ff757dbcf8788d77d
+    .claude/skills/skill-auditor/SKILL.md: sha256:8d0448d8cb2b5697b93b3205c96e61c8990a826b426a16d3ff339f7496341dd8
+    .claude/skills/skill-auditor/evals/evals.json: sha256:c7edb2b9b536336eedbc05a996cf750a7424ab4e0938ee6d30b032ce8da33aff
+    .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/MANIFEST.md: sha256:6107d0159e90f3cc113b974874dc9b41b568f729a48fa507dc87af343efd1579
+    .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/SKILL.md: sha256:4969178019f71f15e9247ca1bfa20f13f12b219d5fbdbcdc608dfc7c715c68ab
+    .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/templates/code-standards.md: sha256:74e9b9525399c7c47eb8e144b5c75489acb97557b8f239cf2b20fec12ddf3700
+    .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-knowledge/SKILL.md: sha256:1a81c1618a420e02e7fc13f3fe842ee567872adc11192d4c36deaec7665cf0fb
+    .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-knowledge/concepts/ai-agent.yaml: sha256:cc7643ff62dc1194b740ab899ad51186c6d859047764f2100d09f07c1a9d2e8b
+    .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-techselect/SKILL.md: sha256:47e9300f5469847ede697805ff02bca2a41fcb052ae009338a94cbc656418b2d
+    .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-techselect/references/expert-sources.md: sha256:417199d3926b38814b27b2de67f42044ca1f81f1141fd46eae8a64a24706839e
+    .claude/skills/skill-auditor/references/attribution.md: sha256:424eec54366ec7127d5939fe05280332f16b21dd52339d1338e366e2c8c8bb68
+    .claude/skills/skill-auditor/sources.lock: sha256:9fdcf21ac31c599d669eb878588a5aad7d79f3607beb4425dab2ce19f121ef6c
   source: local
   local_path: ./skill-auditor/
 - repo_url: _local/skill-curator
   package_type: claude_skill
   deployed_files:
   - .agents/skills/skill-curator
+  - .agents/skills/skill-curator/README.md
+  - .agents/skills/skill-curator/SKILL.md
+  - .agents/skills/skill-curator/evals/evals.json
+  - .agents/skills/skill-curator/references/criteria.md
+  - .agents/skills/skill-curator/references/skill-map.md
   - .claude/skills/skill-curator
+  - .claude/skills/skill-curator/README.md
+  - .claude/skills/skill-curator/SKILL.md
+  - .claude/skills/skill-curator/evals/evals.json
+  - .claude/skills/skill-curator/references/criteria.md
+  - .claude/skills/skill-curator/references/skill-map.md
+  deployed_file_hashes:
+    .agents/skills/skill-curator/README.md: sha256:2ae101d92e4b312a35f16bd40a2a22787bf515e2752f7e06a65109792d9f31a8
+    .agents/skills/skill-curator/SKILL.md: sha256:424045e0748d0a439b8ba4badf3c6abf36c319ac2a7409658f3f98e04fac3b58
+    .agents/skills/skill-curator/evals/evals.json: sha256:5aa412ce05dd0eb44052c17ac4795eb4239562182a122eff21d3bc0105ea1e77
+    .agents/skills/skill-curator/references/criteria.md: sha256:460b37306d9de61031b5399c428a54b7f1d9bdd95315c08953ae4705d7c1ff2f
+    .agents/skills/skill-curator/references/skill-map.md: sha256:184f63c087c0a7c6b9bf56db5e471602d7e7f8b3add387abc5899dd4e9041605
+    .claude/skills/skill-curator/README.md: sha256:2ae101d92e4b312a35f16bd40a2a22787bf515e2752f7e06a65109792d9f31a8
+    .claude/skills/skill-curator/SKILL.md: sha256:424045e0748d0a439b8ba4badf3c6abf36c319ac2a7409658f3f98e04fac3b58
+    .claude/skills/skill-curator/evals/evals.json: sha256:5aa412ce05dd0eb44052c17ac4795eb4239562182a122eff21d3bc0105ea1e77
+    .claude/skills/skill-curator/references/criteria.md: sha256:460b37306d9de61031b5399c428a54b7f1d9bdd95315c08953ae4705d7c1ff2f
+    .claude/skills/skill-curator/references/skill-map.md: sha256:184f63c087c0a7c6b9bf56db5e471602d7e7f8b3add387abc5899dd4e9041605
   source: local
   local_path: ./skill-curator/
 - repo_url: _local/skill-evolve
   package_type: claude_skill
   deployed_files:
   - .agents/skills/skill-evolve
+  - .agents/skills/skill-evolve/SKILL.md
+  - .agents/skills/skill-evolve/evals/evals.json
+  - .agents/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc
+  - .agents/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc
+  - .agents/skills/skill-evolve/scripts/check_updates.py
+  - .agents/skills/skill-evolve/scripts/extract_sources.py
   - .claude/skills/skill-evolve
+  - .claude/skills/skill-evolve/SKILL.md
+  - .claude/skills/skill-evolve/evals/evals.json
+  - .claude/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc
+  - .claude/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc
+  - .claude/skills/skill-evolve/scripts/check_updates.py
+  - .claude/skills/skill-evolve/scripts/extract_sources.py
+  deployed_file_hashes:
+    .agents/skills/skill-evolve/SKILL.md: sha256:8401c6aaf14f67115c1bbe98c437f92c0d5a4b6c7dbd385567fbbfab9db9500d
+    .agents/skills/skill-evolve/evals/evals.json: sha256:01b4480bcf7e236c24ef41eeefd03c2bffe657aa24f29f312990dd40341be64a
+    .agents/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc: sha256:c5ca06cec64514c9164fc213ca0c7f7a505702dc59f39c591175afcddbb2f753
+    .agents/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc: sha256:28f3515a31f98f09c4454da5afe3a6b1ad324700fe53a1bb7dcf6b421d733699
+    .agents/skills/skill-evolve/scripts/check_updates.py: sha256:15ed63a8bb7088bc4a96c013fa2df831d5cbaff16d2f7f01b64c566846a0d23a
+    .agents/skills/skill-evolve/scripts/extract_sources.py: sha256:fe8b6d874440681fb3ffc513ac9aa40422abe780b7e054a7c68dfed59eb92dcc
+    .claude/skills/skill-evolve/SKILL.md: sha256:8401c6aaf14f67115c1bbe98c437f92c0d5a4b6c7dbd385567fbbfab9db9500d
+    .claude/skills/skill-evolve/evals/evals.json: sha256:01b4480bcf7e236c24ef41eeefd03c2bffe657aa24f29f312990dd40341be64a
+    .claude/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc: sha256:c5ca06cec64514c9164fc213ca0c7f7a505702dc59f39c591175afcddbb2f753
+    .claude/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc: sha256:28f3515a31f98f09c4454da5afe3a6b1ad324700fe53a1bb7dcf6b421d733699
+    .claude/skills/skill-evolve/scripts/check_updates.py: sha256:15ed63a8bb7088bc4a96c013fa2df831d5cbaff16d2f7f01b64c566846a0d23a
+    .claude/skills/skill-evolve/scripts/extract_sources.py: sha256:fe8b6d874440681fb3ffc513ac9aa40422abe780b7e054a7c68dfed59eb92dcc
   source: local
   local_path: ./skill-evolve/
 - repo_url: _local/skill-finder
   package_type: claude_skill
   deployed_files:
   - .agents/skills/skill-finder
+  - .agents/skills/skill-finder/README.md
+  - .agents/skills/skill-finder/SKILL.md
+  - .agents/skills/skill-finder/evals/evals.json
   - .claude/skills/skill-finder
+  - .claude/skills/skill-finder/README.md
+  - .claude/skills/skill-finder/SKILL.md
+  - .claude/skills/skill-finder/evals/evals.json
+  deployed_file_hashes:
+    .agents/skills/skill-finder/README.md: sha256:24d93f1b28f14359b2dbc78504923a1a2fd30697f17f6140f7b7c43e0587a3ef
+    .agents/skills/skill-finder/SKILL.md: sha256:b791552dab59c92d56da68131213219f793e47d94864c2c975f2375326d8cbae
+    .agents/skills/skill-finder/evals/evals.json: sha256:570ea029465b41b01050434c59299d29e7cf668571e2df1c1bcdd4e51b075213
+    .claude/skills/skill-finder/README.md: sha256:24d93f1b28f14359b2dbc78504923a1a2fd30697f17f6140f7b7c43e0587a3ef
+    .claude/skills/skill-finder/evals/evals.json: sha256:570ea029465b41b01050434c59299d29e7cf668571e2df1c1bcdd4e51b075213
   source: local
   local_path: ./skill-finder/
 - repo_url: _local/slide-deck
   package_type: claude_skill
   deployed_files:
   - .agents/skills/slide-deck
+  - .agents/skills/slide-deck/SKILL.md
+  - .agents/skills/slide-deck/assets/template.html
+  - .agents/skills/slide-deck/evals/evals.json
+  - .agents/skills/slide-deck/examples/txone-profile.zh-TW.html
+  - .agents/skills/slide-deck/references/attribution.md
+  - .agents/skills/slide-deck/references/ingest.md
+  - .agents/skills/slide-deck/references/layouts.md
+  - .agents/skills/slide-deck/references/licensed-sources.md
+  - .agents/skills/slide-deck/references/output-formats.md
+  - .agents/skills/slide-deck/references/principles.md
+  - .agents/skills/slide-deck/references/style-presets.md
+  - .agents/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc
+  - .agents/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc
+  - .agents/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc
+  - .agents/skills/slide-deck/scripts/check_deck.py
+  - .agents/skills/slide-deck/scripts/export_pdf.py
+  - .agents/skills/slide-deck/scripts/extract_pptx.py
+  - .agents/skills/slide-deck/sources.lock
   - .claude/skills/slide-deck
+  - .claude/skills/slide-deck/SKILL.md
+  - .claude/skills/slide-deck/assets/template.html
+  - .claude/skills/slide-deck/evals/evals.json
+  - .claude/skills/slide-deck/examples/txone-profile.zh-TW.html
+  - .claude/skills/slide-deck/references/attribution.md
+  - .claude/skills/slide-deck/references/ingest.md
+  - .claude/skills/slide-deck/references/layouts.md
+  - .claude/skills/slide-deck/references/licensed-sources.md
+  - .claude/skills/slide-deck/references/output-formats.md
+  - .claude/skills/slide-deck/references/principles.md
+  - .claude/skills/slide-deck/references/style-presets.md
+  - .claude/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc
+  - .claude/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc
+  - .claude/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc
+  - .claude/skills/slide-deck/scripts/check_deck.py
+  - .claude/skills/slide-deck/scripts/export_pdf.py
+  - .claude/skills/slide-deck/scripts/extract_pptx.py
+  - .claude/skills/slide-deck/sources.lock
+  deployed_file_hashes:
+    .agents/skills/slide-deck/SKILL.md: sha256:da2b01a2ace247230cab89db3e5dcc9c9f2b585dfd29a279ed7ee6ec0ff265c3
+    .agents/skills/slide-deck/assets/template.html: sha256:409c9c1c6e9ea51a7e7e3875270f2de14cf02b31091e706be7dd1be2c9dfb478
+    .agents/skills/slide-deck/evals/evals.json: sha256:b0e76bf5a1b397aa129c5c5bc25cf3835931a007cdfc85bc58effd9d46ec5c36
+    .agents/skills/slide-deck/examples/txone-profile.zh-TW.html: sha256:d4f7ef8a2ce386169a04ca3538e29e83b96c56fb04ae7fc4558a02a92bc58474
+    .agents/skills/slide-deck/references/attribution.md: sha256:96919c4dd548308edd287c7d5b0965e98a26a700f46b2414334823ed49691335
+    .agents/skills/slide-deck/references/ingest.md: sha256:06322bea3addb3efe936205089d3d622a27d43fec191b9c67b873bdad49fddcd
+    .agents/skills/slide-deck/references/layouts.md: sha256:4dbb21775c96923fb053a8042518cb4bcd8c6699f5e08a9895a3ccd3d9b99887
+    .agents/skills/slide-deck/references/licensed-sources.md: sha256:25af6f76b6ec598fe5f1f5473693837d6befdbd5387c1933b2fbde76287cbef1
+    .agents/skills/slide-deck/references/output-formats.md: sha256:7a42fa8145240002426805ef1ccc79a81621f5db30ac113cfd324d7bfb4e0d17
+    .agents/skills/slide-deck/references/principles.md: sha256:7f4a54c9c578f7ebeff6862ee90a5301afa3e08241a221263c2d635a61e3db97
+    .agents/skills/slide-deck/references/style-presets.md: sha256:023bb1f55050f6a6c570c3f4dc0e02cae55b2ede33670e9622961b5fae4060c8
+    .agents/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc: sha256:f68b49020d13da5a34ddba55abe6bd48cb65690bd65966a48844cb7f3031feaf
+    .agents/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc: sha256:1333c9513c56eb716742c50a7e879f746c68ef5a8285cedd47c619f3941d0f60
+    .agents/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc: sha256:094de83661e7d4327a862659a8e291f250f184518809242436e48067cf163b97
+    .agents/skills/slide-deck/scripts/check_deck.py: sha256:66ed9082599ce058af3e1b6bea2aef95a8e2efa32d39baffc2bcc45aff84be71
+    .agents/skills/slide-deck/scripts/export_pdf.py: sha256:1723fe5aa513113c9fe554f8f3faf781aaca404a80e0b935852e80e0dccdff66
+    .agents/skills/slide-deck/scripts/extract_pptx.py: sha256:63db3ddcd09989a09ec80035a810f22dab118de9f1e8b10a2d55add01b342d3b
+    .agents/skills/slide-deck/sources.lock: sha256:40432b6bdbcda78931de39a01bd6c35dc27670f5bf9c187c6441b3a2cd362916
+    .claude/skills/slide-deck/SKILL.md: sha256:da2b01a2ace247230cab89db3e5dcc9c9f2b585dfd29a279ed7ee6ec0ff265c3
+    .claude/skills/slide-deck/assets/template.html: sha256:409c9c1c6e9ea51a7e7e3875270f2de14cf02b31091e706be7dd1be2c9dfb478
+    .claude/skills/slide-deck/evals/evals.json: sha256:b0e76bf5a1b397aa129c5c5bc25cf3835931a007cdfc85bc58effd9d46ec5c36
+    .claude/skills/slide-deck/examples/txone-profile.zh-TW.html: sha256:d4f7ef8a2ce386169a04ca3538e29e83b96c56fb04ae7fc4558a02a92bc58474
+    .claude/skills/slide-deck/references/attribution.md: sha256:96919c4dd548308edd287c7d5b0965e98a26a700f46b2414334823ed49691335
+    .claude/skills/slide-deck/references/ingest.md: sha256:06322bea3addb3efe936205089d3d622a27d43fec191b9c67b873bdad49fddcd
+    .claude/skills/slide-deck/references/layouts.md: sha256:4dbb21775c96923fb053a8042518cb4bcd8c6699f5e08a9895a3ccd3d9b99887
+    .claude/skills/slide-deck/references/licensed-sources.md: sha256:25af6f76b6ec598fe5f1f5473693837d6befdbd5387c1933b2fbde76287cbef1
+    .claude/skills/slide-deck/references/output-formats.md: sha256:7a42fa8145240002426805ef1ccc79a81621f5db30ac113cfd324d7bfb4e0d17
+    .claude/skills/slide-deck/references/principles.md: sha256:7f4a54c9c578f7ebeff6862ee90a5301afa3e08241a221263c2d635a61e3db97
+    .claude/skills/slide-deck/references/style-presets.md: sha256:023bb1f55050f6a6c570c3f4dc0e02cae55b2ede33670e9622961b5fae4060c8
+    .claude/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc: sha256:f68b49020d13da5a34ddba55abe6bd48cb65690bd65966a48844cb7f3031feaf
+    .claude/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc: sha256:1333c9513c56eb716742c50a7e879f746c68ef5a8285cedd47c619f3941d0f60
+    .claude/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc: sha256:094de83661e7d4327a862659a8e291f250f184518809242436e48067cf163b97
+    .claude/skills/slide-deck/scripts/check_deck.py: sha256:66ed9082599ce058af3e1b6bea2aef95a8e2efa32d39baffc2bcc45aff84be71
+    .claude/skills/slide-deck/scripts/export_pdf.py: sha256:1723fe5aa513113c9fe554f8f3faf781aaca404a80e0b935852e80e0dccdff66
+    .claude/skills/slide-deck/scripts/extract_pptx.py: sha256:63db3ddcd09989a09ec80035a810f22dab118de9f1e8b10a2d55add01b342d3b
+    .claude/skills/slide-deck/sources.lock: sha256:40432b6bdbcda78931de39a01bd6c35dc27670f5bf9c187c6441b3a2cd362916
   source: local
   local_path: ./slide-deck/
 - repo_url: _local/social-card
   package_type: claude_skill
   deployed_files:
   - .agents/skills/social-card
+  - .agents/skills/social-card/SKILL.md
+  - .agents/skills/social-card/assets/template-editorial.html
+  - .agents/skills/social-card/assets/template-swiss.html
+  - .agents/skills/social-card/evals/evals.json
+  - .agents/skills/social-card/example/output/ig45-01-cover.png
+  - .agents/skills/social-card/example/output/ig45-02-stat.png
+  - .agents/skills/social-card/example/output/ig45-03-checklist.png
+  - .agents/skills/social-card/example/txone-ig45.html
+  - .agents/skills/social-card/references/attribution.md
+  - .agents/skills/social-card/references/layouts.md
+  - .agents/skills/social-card/references/platform-specs.md
+  - .agents/skills/social-card/references/principles.md
+  - .agents/skills/social-card/references/render-qa.md
+  - .agents/skills/social-card/references/screenshot-treatment.md
+  - .agents/skills/social-card/references/style-system.md
+  - .agents/skills/social-card/scripts/qa-rules.js
+  - .agents/skills/social-card/scripts/render-frames.sh
+  - .agents/skills/social-card/sources.lock
   - .claude/skills/social-card
+  - .claude/skills/social-card/SKILL.md
+  - .claude/skills/social-card/assets/template-editorial.html
+  - .claude/skills/social-card/assets/template-swiss.html
+  - .claude/skills/social-card/evals/evals.json
+  - .claude/skills/social-card/example/output/ig45-01-cover.png
+  - .claude/skills/social-card/example/output/ig45-02-stat.png
+  - .claude/skills/social-card/example/output/ig45-03-checklist.png
+  - .claude/skills/social-card/example/txone-ig45.html
+  - .claude/skills/social-card/references/attribution.md
+  - .claude/skills/social-card/references/layouts.md
+  - .claude/skills/social-card/references/platform-specs.md
+  - .claude/skills/social-card/references/principles.md
+  - .claude/skills/social-card/references/render-qa.md
+  - .claude/skills/social-card/references/screenshot-treatment.md
+  - .claude/skills/social-card/references/style-system.md
+  - .claude/skills/social-card/scripts/qa-rules.js
+  - .claude/skills/social-card/scripts/render-frames.sh
+  - .claude/skills/social-card/sources.lock
+  deployed_file_hashes:
+    .agents/skills/social-card/SKILL.md: sha256:197c4cff29b5bc16e57290d7a962468482993079f9a385b2e3a2ea93184d2a38
+    .agents/skills/social-card/assets/template-editorial.html: sha256:1284f27e6c3b37cf4a451baf5cd377355ad348636cc84fda49ff67089d4e0638
+    .agents/skills/social-card/assets/template-swiss.html: sha256:e320b5843faf8a9683e6ac3bc1b472181de4d939c4df88548675c9d3638b6777
+    .agents/skills/social-card/evals/evals.json: sha256:f019bcfa15fed47985c6a1bea71ff6991b4e59971b76ba08e41a210eaa84e715
+    .agents/skills/social-card/example/output/ig45-01-cover.png: sha256:1e3f691ba1cfec3a05558349dec08d00d8966544c68beab09e641b033bea6608
+    .agents/skills/social-card/example/output/ig45-02-stat.png: sha256:e736f28d7fcdcda72838652394f5277a0769f48f53d01ea5d1d2f5c2a8fc3b86
+    .agents/skills/social-card/example/output/ig45-03-checklist.png: sha256:6229581cbb72a085ba716a4dfa5b0c155f3a4c43d88fb958a35f6566d1926b0d
+    .agents/skills/social-card/example/txone-ig45.html: sha256:ca99fa40458dc6ba8af6e19eab6245b28a09dc70705db13344263383a2666c05
+    .agents/skills/social-card/references/attribution.md: sha256:8e698938682b51f207fb800cd2f47c846e0c1e8fc27600d811b893d30692d1a7
+    .agents/skills/social-card/references/layouts.md: sha256:b7ae2fdf711145a6d45def02e2d253285e75801f7a2fe9595084f8a75cb3e46e
+    .agents/skills/social-card/references/platform-specs.md: sha256:49f1472c79ae81931573bf32104c91ed1b05acb6c7e4f880eb90bc1d3ea4382d
+    .agents/skills/social-card/references/principles.md: sha256:6bb9d20c46bab6029cf9193a5d74cc8d508c0fe95d09eb76c6ec8e95ae4c0d5e
+    .agents/skills/social-card/references/render-qa.md: sha256:44a94a8c06f603f1eaf8ac55da9a2ef654e7f16905b83daf0121327d10b1fad0
+    .agents/skills/social-card/references/screenshot-treatment.md: sha256:d9fbd3f509fdd41ce330522399a42413ae3825005272058c3c7c29576747e518
+    .agents/skills/social-card/references/style-system.md: sha256:6fca6c82fd60940c3b646b5a1a5380a9341b6120df606ac9c7ac8ba92c5fe949
+    .agents/skills/social-card/scripts/qa-rules.js: sha256:7c10ede9fab3dfbbbf0ee68f140cb045a642f5bd20f215c9e339812a1537b147
+    .agents/skills/social-card/scripts/render-frames.sh: sha256:b06ee7b22dabe8ee4ca0882962a35cf494a928aece2ce41bc37c64482c95a23b
+    .agents/skills/social-card/sources.lock: sha256:6c52b319df05570f39d38b7105b7c2265962490a8275501ca39818abde39c56a
+    .claude/skills/social-card/SKILL.md: sha256:197c4cff29b5bc16e57290d7a962468482993079f9a385b2e3a2ea93184d2a38
+    .claude/skills/social-card/assets/template-editorial.html: sha256:1284f27e6c3b37cf4a451baf5cd377355ad348636cc84fda49ff67089d4e0638
+    .claude/skills/social-card/assets/template-swiss.html: sha256:e320b5843faf8a9683e6ac3bc1b472181de4d939c4df88548675c9d3638b6777
+    .claude/skills/social-card/evals/evals.json: sha256:f019bcfa15fed47985c6a1bea71ff6991b4e59971b76ba08e41a210eaa84e715
+    .claude/skills/social-card/example/output/ig45-01-cover.png: sha256:1e3f691ba1cfec3a05558349dec08d00d8966544c68beab09e641b033bea6608
+    .claude/skills/social-card/example/output/ig45-02-stat.png: sha256:e736f28d7fcdcda72838652394f5277a0769f48f53d01ea5d1d2f5c2a8fc3b86
+    .claude/skills/social-card/example/output/ig45-03-checklist.png: sha256:6229581cbb72a085ba716a4dfa5b0c155f3a4c43d88fb958a35f6566d1926b0d
+    .claude/skills/social-card/example/txone-ig45.html: sha256:ca99fa40458dc6ba8af6e19eab6245b28a09dc70705db13344263383a2666c05
+    .claude/skills/social-card/references/attribution.md: sha256:8e698938682b51f207fb800cd2f47c846e0c1e8fc27600d811b893d30692d1a7
+    .claude/skills/social-card/references/layouts.md: sha256:b7ae2fdf711145a6d45def02e2d253285e75801f7a2fe9595084f8a75cb3e46e
+    .claude/skills/social-card/references/platform-specs.md: sha256:49f1472c79ae81931573bf32104c91ed1b05acb6c7e4f880eb90bc1d3ea4382d
+    .claude/skills/social-card/references/principles.md: sha256:6bb9d20c46bab6029cf9193a5d74cc8d508c0fe95d09eb76c6ec8e95ae4c0d5e
+    .claude/skills/social-card/references/render-qa.md: sha256:44a94a8c06f603f1eaf8ac55da9a2ef654e7f16905b83daf0121327d10b1fad0
+    .claude/skills/social-card/references/screenshot-treatment.md: sha256:d9fbd3f509fdd41ce330522399a42413ae3825005272058c3c7c29576747e518
+    .claude/skills/social-card/references/style-system.md: sha256:6fca6c82fd60940c3b646b5a1a5380a9341b6120df606ac9c7ac8ba92c5fe949
+    .claude/skills/social-card/scripts/qa-rules.js: sha256:7c10ede9fab3dfbbbf0ee68f140cb045a642f5bd20f215c9e339812a1537b147
+    .claude/skills/social-card/scripts/render-frames.sh: sha256:b06ee7b22dabe8ee4ca0882962a35cf494a928aece2ce41bc37c64482c95a23b
+    .claude/skills/social-card/sources.lock: sha256:6c52b319df05570f39d38b7105b7c2265962490a8275501ca39818abde39c56a
   source: local
   local_path: ./social-card/
 - repo_url: _local/solo-think
   package_type: claude_skill
   deployed_files:
   - .agents/skills/solo-think
+  - .agents/skills/solo-think/SKILL.md
+  - .agents/skills/solo-think/configs/thinking.json
+  - .agents/skills/solo-think/evals/evals.json
+  - .agents/skills/solo-think/references/attribution.md
+  - .agents/skills/solo-think/references/reflection.md
+  - .agents/skills/solo-think/sources.lock
   - .claude/skills/solo-think
+  - .claude/skills/solo-think/SKILL.md
+  - .claude/skills/solo-think/configs/thinking.json
+  - .claude/skills/solo-think/evals/evals.json
+  - .claude/skills/solo-think/references/attribution.md
+  - .claude/skills/solo-think/references/reflection.md
+  - .claude/skills/solo-think/sources.lock
+  deployed_file_hashes:
+    .agents/skills/solo-think/SKILL.md: sha256:e82423b85506bcf6114ff5558f3da6a29c93241f1f41da62a0d3d30420b55257
+    .agents/skills/solo-think/configs/thinking.json: sha256:57f5b026b19a3a539c38584f4709407baf6feb3f4c3d874e7c032226f43e38d1
+    .agents/skills/solo-think/evals/evals.json: sha256:721ace5e0bc73fed3f8c7966395e689b0dfe14e4bc6fbb46f99e1395988667e1
+    .agents/skills/solo-think/references/attribution.md: sha256:73afde3f9cce229a1d3612c3456cb3fbb79ca300c4fe8c490090156377c971f7
+    .agents/skills/solo-think/references/reflection.md: sha256:28c1b760c234b75447a2f43cc26a421b5499704082d3ddd8bf5f341c72cb1eb0
+    .agents/skills/solo-think/sources.lock: sha256:841a85cfd877df78555fe698ca5f05049f0bd506d90e3344f5d22a7590ea2d7d
+    .claude/skills/solo-think/SKILL.md: sha256:e82423b85506bcf6114ff5558f3da6a29c93241f1f41da62a0d3d30420b55257
+    .claude/skills/solo-think/configs/thinking.json: sha256:57f5b026b19a3a539c38584f4709407baf6feb3f4c3d874e7c032226f43e38d1
+    .claude/skills/solo-think/evals/evals.json: sha256:721ace5e0bc73fed3f8c7966395e689b0dfe14e4bc6fbb46f99e1395988667e1
+    .claude/skills/solo-think/references/attribution.md: sha256:73afde3f9cce229a1d3612c3456cb3fbb79ca300c4fe8c490090156377c971f7
+    .claude/skills/solo-think/references/reflection.md: sha256:28c1b760c234b75447a2f43cc26a421b5499704082d3ddd8bf5f341c72cb1eb0
+    .claude/skills/solo-think/sources.lock: sha256:841a85cfd877df78555fe698ca5f05049f0bd506d90e3344f5d22a7590ea2d7d
   source: local
   local_path: ./solo-think/
 - repo_url: _local/systematic-debugging
   package_type: claude_skill
   deployed_files:
   - .agents/skills/systematic-debugging
+  - .agents/skills/systematic-debugging/SKILL.md
+  - .agents/skills/systematic-debugging/evals/evals.json
+  - .agents/skills/systematic-debugging/references/attribution.md
+  - .agents/skills/systematic-debugging/sources.lock
   - .claude/skills/systematic-debugging
+  - .claude/skills/systematic-debugging/SKILL.md
+  - .claude/skills/systematic-debugging/evals/evals.json
+  - .claude/skills/systematic-debugging/references/attribution.md
+  - .claude/skills/systematic-debugging/sources.lock
+  deployed_file_hashes:
+    .agents/skills/systematic-debugging/SKILL.md: sha256:41ca330a14c8feee8febd4075dfd71110bb4d408b55fbe833563eb1d42fbb103
+    .agents/skills/systematic-debugging/evals/evals.json: sha256:b113e7ed0d49244d4e4694c34f84d5320a425e30bc335509a87f1a5f8bfd0e4c
+    .agents/skills/systematic-debugging/references/attribution.md: sha256:0c29675de513dcec42e64821863aa959431a74f964fd726ad9dea9ad53650076
+    .agents/skills/systematic-debugging/sources.lock: sha256:198cd705669df6b9a33723741a9aa17d37ddf9f577ce641ac84ce916bec883b9
+    .claude/skills/systematic-debugging/SKILL.md: sha256:41ca330a14c8feee8febd4075dfd71110bb4d408b55fbe833563eb1d42fbb103
+    .claude/skills/systematic-debugging/evals/evals.json: sha256:b113e7ed0d49244d4e4694c34f84d5320a425e30bc335509a87f1a5f8bfd0e4c
+    .claude/skills/systematic-debugging/references/attribution.md: sha256:0c29675de513dcec42e64821863aa959431a74f964fd726ad9dea9ad53650076
+    .claude/skills/systematic-debugging/sources.lock: sha256:198cd705669df6b9a33723741a9aa17d37ddf9f577ce641ac84ce916bec883b9
   source: local
   local_path: ./systematic-debugging/
 - repo_url: _local/tdd
   package_type: claude_skill
   deployed_files:
   - .agents/skills/tdd
+  - .agents/skills/tdd/SKILL.md
+  - .agents/skills/tdd/evals/evals.json
+  - .agents/skills/tdd/references/attribution.md
+  - .agents/skills/tdd/references/mocking.md
+  - .agents/skills/tdd/references/test-design.md
+  - .agents/skills/tdd/sources.lock
   - .claude/skills/tdd
+  - .claude/skills/tdd/SKILL.md
+  - .claude/skills/tdd/evals/evals.json
+  - .claude/skills/tdd/references/attribution.md
+  - .claude/skills/tdd/references/mocking.md
+  - .claude/skills/tdd/references/test-design.md
+  - .claude/skills/tdd/sources.lock
+  deployed_file_hashes:
+    .agents/skills/tdd/SKILL.md: sha256:a08e7a4163321d75ecaa86abc87759a708b3256f4687e7963b5bc8b721604ef3
+    .agents/skills/tdd/evals/evals.json: sha256:4ea260ee4513793aa81d9f07ad4b47b47adbf027e509d649b78186b53c43e7db
+    .agents/skills/tdd/references/attribution.md: sha256:15eeae063efe416f2a6064ed0bd07d74c3b5c65d5d86de1604fec7c89054e4c1
+    .agents/skills/tdd/references/mocking.md: sha256:50697e53a824e60d094ed63f78fda1631b3ec390a8a8e601d637d3b0c375f084
+    .agents/skills/tdd/references/test-design.md: sha256:3da10237c94c4bb9c65527816872520896976447ec376837ec609d40dfb6c570
+    .agents/skills/tdd/sources.lock: sha256:aa9a1355908d1e3b9bc564f58d59ddde41b62a2239fa49e13a55ace69028f5c7
+    .claude/skills/tdd/SKILL.md: sha256:a08e7a4163321d75ecaa86abc87759a708b3256f4687e7963b5bc8b721604ef3
+    .claude/skills/tdd/evals/evals.json: sha256:4ea260ee4513793aa81d9f07ad4b47b47adbf027e509d649b78186b53c43e7db
+    .claude/skills/tdd/references/attribution.md: sha256:15eeae063efe416f2a6064ed0bd07d74c3b5c65d5d86de1604fec7c89054e4c1
+    .claude/skills/tdd/references/mocking.md: sha256:50697e53a824e60d094ed63f78fda1631b3ec390a8a8e601d637d3b0c375f084
+    .claude/skills/tdd/references/test-design.md: sha256:3da10237c94c4bb9c65527816872520896976447ec376837ec609d40dfb6c570
+    .claude/skills/tdd/sources.lock: sha256:aa9a1355908d1e3b9bc564f58d59ddde41b62a2239fa49e13a55ace69028f5c7
   source: local
   local_path: ./tdd/
 - repo_url: _local/terse
   package_type: claude_skill
   deployed_files:
   - .agents/skills/terse
+  - .agents/skills/terse/SKILL.md
+  - .agents/skills/terse/evals/evals.json
+  - .agents/skills/terse/references/attribution.md
+  - .agents/skills/terse/sources.lock
   - .claude/skills/terse
+  - .claude/skills/terse/SKILL.md
+  - .claude/skills/terse/evals/evals.json
+  - .claude/skills/terse/references/attribution.md
+  - .claude/skills/terse/sources.lock
+  deployed_file_hashes:
+    .agents/skills/terse/SKILL.md: sha256:bf488fa6debbd38ca623b57ee32ff550882ed25ec04b16876eb402f075770dc6
+    .agents/skills/terse/evals/evals.json: sha256:3c15339de684086c7ca7eaf8ea77785096ec3b9c773752c1f985bb2629af9eec
+    .agents/skills/terse/references/attribution.md: sha256:b43ea14c7d97f07b36b1f5e52cf1100db2509ae60841dfd037fa16151da08382
+    .agents/skills/terse/sources.lock: sha256:be88e63812d93ce14ec96a289d6ac58671dd9615f605c394e9e7dd63e187e8d2
+    .claude/skills/terse/SKILL.md: sha256:bf488fa6debbd38ca623b57ee32ff550882ed25ec04b16876eb402f075770dc6
+    .claude/skills/terse/evals/evals.json: sha256:3c15339de684086c7ca7eaf8ea77785096ec3b9c773752c1f985bb2629af9eec
+    .claude/skills/terse/references/attribution.md: sha256:b43ea14c7d97f07b36b1f5e52cf1100db2509ae60841dfd037fa16151da08382
+    .claude/skills/terse/sources.lock: sha256:be88e63812d93ce14ec96a289d6ac58671dd9615f605c394e9e7dd63e187e8d2
   source: local
   local_path: ./terse/
 - repo_url: _local/to-issues
   package_type: claude_skill
   deployed_files:
   - .agents/skills/to-issues
+  - .agents/skills/to-issues/SKILL.md
+  - .agents/skills/to-issues/evals/evals.json
+  - .agents/skills/to-issues/references/attribution.md
+  - .agents/skills/to-issues/sources.lock
   - .claude/skills/to-issues
+  - .claude/skills/to-issues/SKILL.md
+  - .claude/skills/to-issues/evals/evals.json
+  - .claude/skills/to-issues/references/attribution.md
+  - .claude/skills/to-issues/sources.lock
+  deployed_file_hashes:
+    .agents/skills/to-issues/SKILL.md: sha256:6bdd7445bb3a53ce8af523d3f2c816f3fa0e1c0d3867da7851a7ad34859a8f70
+    .agents/skills/to-issues/evals/evals.json: sha256:dde6b206698badee10e53990f012c0dde431402d1676bf31f705e179b07f694f
+    .agents/skills/to-issues/references/attribution.md: sha256:4b4c3c510d95aa1ccea7463dc7baabf1661f62e0ada104473dafd3ea6b6a563c
+    .agents/skills/to-issues/sources.lock: sha256:d59ba7d98460f07575a5eae50e8ee66f2f9b36ebae950e0e476847076c2705fc
+    .claude/skills/to-issues/SKILL.md: sha256:6bdd7445bb3a53ce8af523d3f2c816f3fa0e1c0d3867da7851a7ad34859a8f70
+    .claude/skills/to-issues/evals/evals.json: sha256:dde6b206698badee10e53990f012c0dde431402d1676bf31f705e179b07f694f
+    .claude/skills/to-issues/references/attribution.md: sha256:4b4c3c510d95aa1ccea7463dc7baabf1661f62e0ada104473dafd3ea6b6a563c
+    .claude/skills/to-issues/sources.lock: sha256:d59ba7d98460f07575a5eae50e8ee66f2f9b36ebae950e0e476847076c2705fc
   source: local
   local_path: ./to-issues/
 - repo_url: _local/tutor
   package_type: claude_skill
   deployed_files:
   - .agents/skills/tutor
+  - .agents/skills/tutor/SKILL.md
+  - .agents/skills/tutor/evals/evals.json
+  - .agents/skills/tutor/references/attribution.md
+  - .agents/skills/tutor/sources.lock
   - .claude/skills/tutor
+  - .claude/skills/tutor/SKILL.md
+  - .claude/skills/tutor/evals/evals.json
+  - .claude/skills/tutor/references/attribution.md
+  - .claude/skills/tutor/sources.lock
+  deployed_file_hashes:
+    .agents/skills/tutor/SKILL.md: sha256:10119944df876919fabaea03d94cbb2c945a05917bda8ce522c3461e68fb7f42
+    .agents/skills/tutor/evals/evals.json: sha256:f0cf1149fef6c56a8bc18ec07d70f7124b6045fe003a87d34cdc6732d8aa3253
+    .agents/skills/tutor/references/attribution.md: sha256:af56c798e61bde1bc459e13d398aa232cbb63dc57546e60876f5a92a931651b2
+    .agents/skills/tutor/sources.lock: sha256:aa2eb536a0234368d37095eb5c99f9168932f919cbdfdcceb8cecbdb359d0532
+    .claude/skills/tutor/SKILL.md: sha256:10119944df876919fabaea03d94cbb2c945a05917bda8ce522c3461e68fb7f42
+    .claude/skills/tutor/evals/evals.json: sha256:f0cf1149fef6c56a8bc18ec07d70f7124b6045fe003a87d34cdc6732d8aa3253
+    .claude/skills/tutor/references/attribution.md: sha256:af56c798e61bde1bc459e13d398aa232cbb63dc57546e60876f5a92a931651b2
+    .claude/skills/tutor/sources.lock: sha256:aa2eb536a0234368d37095eb5c99f9168932f919cbdfdcceb8cecbdb359d0532
   source: local
   local_path: ./tutor/
 - repo_url: _local/ui-design-advisor
   package_type: claude_skill
   deployed_files:
   - .agents/skills/ui-design-advisor
+  - .agents/skills/ui-design-advisor/SKILL.md
+  - .agents/skills/ui-design-advisor/data/INDEX.md
+  - .agents/skills/ui-design-advisor/data/accessibility/aria-patterns.md
+  - .agents/skills/ui-design-advisor/data/accessibility/wcag-checklist.md
+  - .agents/skills/ui-design-advisor/data/color-combinations/colors.json
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/app-interface.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/charts.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/colors.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/google-fonts.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/icons.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/landing.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/products.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/react-performance.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/angular.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/astro.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/flutter.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/html-tailwind.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/jetpack-compose.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/laravel.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nextjs.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nuxt-ui.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nuxtjs.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/react-native.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/react.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/shadcn.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/svelte.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/swiftui.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/threejs.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/vue.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/styles.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/typography.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/ui-reasoning.csv
+  - .agents/skills/ui-design-advisor/data/ui-ux-pro-max/ux-guidelines.csv
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/10-usability-heuristics-for-user-interface-design.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/20-guiding-principles-for-experience-design.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/UX-for-Lizard-Brains.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/accessibility-usability-scale.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/accessible-user-experience-framework.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/defensive-design.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/designing-tables-to-be-read-not-looked-at.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/don-normans-principles.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/eight-steps-to-an-intuitive-ui.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/four-strategies-for-simplicity.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/ixd-checklist.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/reducing-cognitive-load.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/system-usability-scale.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/the-ten-principles-of-inclusive-web-design.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/top-10-Application-Design-Mistakes.md
+  - .agents/skills/ui-design-advisor/data/ux-heuristics/wcag-pour-framework.md
+  - .agents/skills/ui-design-advisor/evals/evals.json
+  - .agents/skills/ui-design-advisor/examples/txone-website-redesign.html
+  - .agents/skills/ui-design-advisor/examples/txone-website-redesign.md
+  - .agents/skills/ui-design-advisor/references/anti-default.md
+  - .agents/skills/ui-design-advisor/references/attribution.md
+  - .agents/skills/ui-design-advisor/sources.lock
   - .claude/skills/ui-design-advisor
+  - .claude/skills/ui-design-advisor/SKILL.md
+  - .claude/skills/ui-design-advisor/data/INDEX.md
+  - .claude/skills/ui-design-advisor/data/accessibility/aria-patterns.md
+  - .claude/skills/ui-design-advisor/data/accessibility/wcag-checklist.md
+  - .claude/skills/ui-design-advisor/data/color-combinations/colors.json
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/app-interface.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/charts.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/colors.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/google-fonts.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/icons.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/landing.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/products.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/react-performance.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/angular.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/astro.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/flutter.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/html-tailwind.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/jetpack-compose.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/laravel.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nextjs.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nuxt-ui.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nuxtjs.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/react-native.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/react.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/shadcn.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/svelte.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/swiftui.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/threejs.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/vue.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/styles.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/typography.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/ui-reasoning.csv
+  - .claude/skills/ui-design-advisor/data/ui-ux-pro-max/ux-guidelines.csv
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/10-usability-heuristics-for-user-interface-design.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/20-guiding-principles-for-experience-design.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/UX-for-Lizard-Brains.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/accessibility-usability-scale.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/accessible-user-experience-framework.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/defensive-design.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/designing-tables-to-be-read-not-looked-at.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/don-normans-principles.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/eight-steps-to-an-intuitive-ui.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/four-strategies-for-simplicity.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/ixd-checklist.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/reducing-cognitive-load.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/system-usability-scale.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/the-ten-principles-of-inclusive-web-design.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/top-10-Application-Design-Mistakes.md
+  - .claude/skills/ui-design-advisor/data/ux-heuristics/wcag-pour-framework.md
+  - .claude/skills/ui-design-advisor/evals/evals.json
+  - .claude/skills/ui-design-advisor/examples/txone-website-redesign.html
+  - .claude/skills/ui-design-advisor/examples/txone-website-redesign.md
+  - .claude/skills/ui-design-advisor/references/anti-default.md
+  - .claude/skills/ui-design-advisor/references/attribution.md
+  - .claude/skills/ui-design-advisor/sources.lock
+  deployed_file_hashes:
+    .agents/skills/ui-design-advisor/SKILL.md: sha256:d09c04920c6da865f0959aa5bff231981e59e081d28e1486ae5214dd4b31c508
+    .agents/skills/ui-design-advisor/data/INDEX.md: sha256:132524ab26e9bf2e374a5148753ab4f68afd3987a9ace7654dd349cf1ea00f12
+    .agents/skills/ui-design-advisor/data/accessibility/aria-patterns.md: sha256:a6a3988c5e9725cf38f39f569b893a646fe5faef99b42c5c5708bf39e79dfee6
+    .agents/skills/ui-design-advisor/data/accessibility/wcag-checklist.md: sha256:ac405c74b46ce2d37e96eada8e5a17affdb2b7e821a87df079de5cd14ebbf4af
+    .agents/skills/ui-design-advisor/data/color-combinations/colors.json: sha256:555f11c32eb8133078fd470dd7d5320533aaa8b636f12fa06a8dd3d0ee2703b4
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/app-interface.csv: sha256:2a17ef810dab715ce1f339861817a8fbe3ccc38142b70517301e874803e838ac
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/charts.csv: sha256:ebb565308115f955791b0431797a89d9b3587c25d5babb9428d10712c4924817
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/colors.csv: sha256:69ee8c1147b269599d20ca418bdd6f32563a9aa2d962fb9a9b8dec66bf7b1ba4
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/google-fonts.csv: sha256:2c03a3cd134d126bd9d6a7dc2a6360dc5272219ad6df3eb9315b031f806e1487
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/icons.csv: sha256:f376c29fb4df37b4bdb366a5aa70cb211ba3dd8b435390aaa03152a64b07d2e8
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/landing.csv: sha256:080cedbcd61ff8ec9520f33929baa76bee9589e783f83b2f8d824a466b6a46d7
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/products.csv: sha256:9fd9e776ba847cf44c1ea78f95fe5e33b2c56bb7e186e3cfff9c49bc7fcb691b
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/react-performance.csv: sha256:904c8afcda229629545912dde0e8ac37503757131f0169f80b016f1f58c4fd3f
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/angular.csv: sha256:dd7cc2a2b34cd8f0508bd05b067545e7a44f7724440c432d491d92a61a8fb6c1
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/astro.csv: sha256:ad18dae3ab6d148d37d144592df80dc1825b6c9e86d9d2d68fdda77434206a37
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/flutter.csv: sha256:fe36d404c799781e8ba6e9a8179b45799ed5126a545528550cd2eb0f2346e8c5
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/html-tailwind.csv: sha256:7aef38e75c53559470afcfa91580a9917ca8b7dbf8b92110389e23e93703ac52
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/jetpack-compose.csv: sha256:6c8fd4b0391c342c12b0af15610cd5becbeccaef0bbe8dcfc01d928c3195d93e
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/laravel.csv: sha256:50e11e60a64b30f329af25ae71f4b8bbdb43bafc1865451b74f9f540a88964d5
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nextjs.csv: sha256:e828ccc04843742f52f545a068e8a9ab0d2b97c0e771f7e93bf0cef74da05554
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nuxt-ui.csv: sha256:05d6e74501b2b6a636faed32450622759f49a5bcafad971f5f4e7eba0eb7be71
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nuxtjs.csv: sha256:f7a3f2d9542856d00199f85c6c023b7c284cc698e2e6e12d61afce2edacb24d6
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/react-native.csv: sha256:a08ca77fcf6b6d9531982dce465366296013bfcf12d2938ac72ad57cf0c4f085
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/react.csv: sha256:e5624ab41d33427d88e41d07581ce4eca59b37b36ab72a6ad43a9c8e2d0a1c72
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/shadcn.csv: sha256:395c2e415ef6f48a474acccdc8eb2c7258a6ed751a5037ba171a2d8823e02ded
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/svelte.csv: sha256:71af52d64f266c88070b91dbbaa900c2f8074b6baae9f35eaea6ba9cec6fd803
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/swiftui.csv: sha256:c9c2d2510f8e66281a2514e8dd0125a6b653b9ef53a71281b5e7dfe003d5b569
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/threejs.csv: sha256:f1c05f8f269fc4784170c837f4ff43b50042f00bbd6ba7dbef2896081a052544
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/vue.csv: sha256:c2724915d3c11cd67263f25896cff721f787a0fdd8326002d31e9f5806dfd8f8
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/styles.csv: sha256:9b5089dcde8999333b36878252a255cc3bacbb2fe7b836c76cc7f7aa2abb643d
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/typography.csv: sha256:dbea262a54e3bfa2e6c3b15989a365d5ef4c43349316aff46635e82ca825adce
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/ui-reasoning.csv: sha256:41976082ecae1100da937c949215dc6694393e03f3c2a7444dd92a9edb43cb11
+    .agents/skills/ui-design-advisor/data/ui-ux-pro-max/ux-guidelines.csv: sha256:1870ee048f2a2bdd60709f8f7adf7f3b6dcad560bc005c8b2915a8ac8639820d
+    .agents/skills/ui-design-advisor/data/ux-heuristics/10-usability-heuristics-for-user-interface-design.md: sha256:b69187a46c6c813ec1b0e286c594c429a4f26a890cc3be21fa54cac82f07034b
+    .agents/skills/ui-design-advisor/data/ux-heuristics/20-guiding-principles-for-experience-design.md: sha256:3ea85479f14c0edf12231edc162ae849dec1712a84ed415bfc7c4c9d407433e8
+    .agents/skills/ui-design-advisor/data/ux-heuristics/UX-for-Lizard-Brains.md: sha256:163a4568cce9713a299e81e813f9907e6aee392c90410e5125a6827aa1ac9f3f
+    .agents/skills/ui-design-advisor/data/ux-heuristics/accessibility-usability-scale.md: sha256:2da1744603727055a50eb00933d9367f5462b65c1c8006eafc5f0680a5220311
+    .agents/skills/ui-design-advisor/data/ux-heuristics/accessible-user-experience-framework.md: sha256:ab93abc2f35dc4c696f75e2d0294a6608cca908eaee6d133be258e7c95fe46be
+    .agents/skills/ui-design-advisor/data/ux-heuristics/defensive-design.md: sha256:a741932aeef0b2b443ad5fe7fb5c1fbe76bd7aee0ecc15061512bc061b6cbb95
+    .agents/skills/ui-design-advisor/data/ux-heuristics/designing-tables-to-be-read-not-looked-at.md: sha256:14225c0f42b7894b10f628196af5e6a67be90f72fc5eb4aafdb8393567b7fca8
+    .agents/skills/ui-design-advisor/data/ux-heuristics/don-normans-principles.md: sha256:1e5f42f8fad014701ff2e061bfe71fddee4843ce35b42ac2a0e6f1b65ec45198
+    .agents/skills/ui-design-advisor/data/ux-heuristics/eight-steps-to-an-intuitive-ui.md: sha256:84a12522d1e57173a392e45b63f50d47a3e6e8549b443071b67fa6f70f8c2a85
+    .agents/skills/ui-design-advisor/data/ux-heuristics/four-strategies-for-simplicity.md: sha256:933146409ef75f995434a1d4efc1e01c5296920195a2b3dba837adf3cab20d8c
+    .agents/skills/ui-design-advisor/data/ux-heuristics/ixd-checklist.md: sha256:5c043592828d1200fa4dcb0a634d98282053149f2a28039fe0b2312a7fa853f7
+    .agents/skills/ui-design-advisor/data/ux-heuristics/reducing-cognitive-load.md: sha256:2b59d4aaf69ba106a14a15457eb0c088b61ee2d5e04c82713da62d94f275e448
+    .agents/skills/ui-design-advisor/data/ux-heuristics/system-usability-scale.md: sha256:aefc69dc5f0d503a5c7fb95cfe2fcc396425438144f67203f0622e7dd5ec1b9e
+    .agents/skills/ui-design-advisor/data/ux-heuristics/the-ten-principles-of-inclusive-web-design.md: sha256:1a47c3876b62d3695533df846a6d933ad583a90fd32ffa48d622a89daa1fd26e
+    .agents/skills/ui-design-advisor/data/ux-heuristics/top-10-Application-Design-Mistakes.md: sha256:1f0ffc85e82a5ed10818019470a9cf948c12585bfd961238e8289684669a3faf
+    .agents/skills/ui-design-advisor/data/ux-heuristics/wcag-pour-framework.md: sha256:218209f6d7e8332fc86452dfb5bb24f76e4cfe64a5735eb89c0da639c0a53c49
+    .agents/skills/ui-design-advisor/evals/evals.json: sha256:ab41493cc7ae18a243a0c2b0b1e1f9994a89511bb378847edc0eb79761b62860
+    .agents/skills/ui-design-advisor/examples/txone-website-redesign.html: sha256:fb0fdee224808e2a92c7ae5e9e35b04024f78405d6290ccf8d141198f6bf5000
+    .agents/skills/ui-design-advisor/examples/txone-website-redesign.md: sha256:50f967d97f437f36828e090caa3d72665100f656457166bee282c4bcd8b9aea1
+    .agents/skills/ui-design-advisor/references/anti-default.md: sha256:8be7e51cbeaa13bbe6932afcb43caf3d94ac34c873cc80a5d30998ecec8d2bde
+    .agents/skills/ui-design-advisor/references/attribution.md: sha256:93a702dc91b84696613d0f4e4b8b5d384e449d88a8455cdb25ba74bc9977670d
+    .agents/skills/ui-design-advisor/sources.lock: sha256:56e296946afea5a23ff9294b02fafb6fd943d4aecabfa60ed25ef641053a296a
+    .claude/skills/ui-design-advisor/SKILL.md: sha256:d09c04920c6da865f0959aa5bff231981e59e081d28e1486ae5214dd4b31c508
+    .claude/skills/ui-design-advisor/data/INDEX.md: sha256:132524ab26e9bf2e374a5148753ab4f68afd3987a9ace7654dd349cf1ea00f12
+    .claude/skills/ui-design-advisor/data/accessibility/aria-patterns.md: sha256:a6a3988c5e9725cf38f39f569b893a646fe5faef99b42c5c5708bf39e79dfee6
+    .claude/skills/ui-design-advisor/data/accessibility/wcag-checklist.md: sha256:ac405c74b46ce2d37e96eada8e5a17affdb2b7e821a87df079de5cd14ebbf4af
+    .claude/skills/ui-design-advisor/data/color-combinations/colors.json: sha256:555f11c32eb8133078fd470dd7d5320533aaa8b636f12fa06a8dd3d0ee2703b4
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/app-interface.csv: sha256:2a17ef810dab715ce1f339861817a8fbe3ccc38142b70517301e874803e838ac
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/charts.csv: sha256:ebb565308115f955791b0431797a89d9b3587c25d5babb9428d10712c4924817
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/colors.csv: sha256:69ee8c1147b269599d20ca418bdd6f32563a9aa2d962fb9a9b8dec66bf7b1ba4
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/google-fonts.csv: sha256:2c03a3cd134d126bd9d6a7dc2a6360dc5272219ad6df3eb9315b031f806e1487
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/icons.csv: sha256:f376c29fb4df37b4bdb366a5aa70cb211ba3dd8b435390aaa03152a64b07d2e8
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/landing.csv: sha256:080cedbcd61ff8ec9520f33929baa76bee9589e783f83b2f8d824a466b6a46d7
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/products.csv: sha256:9fd9e776ba847cf44c1ea78f95fe5e33b2c56bb7e186e3cfff9c49bc7fcb691b
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/react-performance.csv: sha256:904c8afcda229629545912dde0e8ac37503757131f0169f80b016f1f58c4fd3f
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/angular.csv: sha256:dd7cc2a2b34cd8f0508bd05b067545e7a44f7724440c432d491d92a61a8fb6c1
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/astro.csv: sha256:ad18dae3ab6d148d37d144592df80dc1825b6c9e86d9d2d68fdda77434206a37
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/flutter.csv: sha256:fe36d404c799781e8ba6e9a8179b45799ed5126a545528550cd2eb0f2346e8c5
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/html-tailwind.csv: sha256:7aef38e75c53559470afcfa91580a9917ca8b7dbf8b92110389e23e93703ac52
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/jetpack-compose.csv: sha256:6c8fd4b0391c342c12b0af15610cd5becbeccaef0bbe8dcfc01d928c3195d93e
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/laravel.csv: sha256:50e11e60a64b30f329af25ae71f4b8bbdb43bafc1865451b74f9f540a88964d5
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nextjs.csv: sha256:e828ccc04843742f52f545a068e8a9ab0d2b97c0e771f7e93bf0cef74da05554
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nuxt-ui.csv: sha256:05d6e74501b2b6a636faed32450622759f49a5bcafad971f5f4e7eba0eb7be71
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/nuxtjs.csv: sha256:f7a3f2d9542856d00199f85c6c023b7c284cc698e2e6e12d61afce2edacb24d6
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/react-native.csv: sha256:a08ca77fcf6b6d9531982dce465366296013bfcf12d2938ac72ad57cf0c4f085
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/react.csv: sha256:e5624ab41d33427d88e41d07581ce4eca59b37b36ab72a6ad43a9c8e2d0a1c72
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/shadcn.csv: sha256:395c2e415ef6f48a474acccdc8eb2c7258a6ed751a5037ba171a2d8823e02ded
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/svelte.csv: sha256:71af52d64f266c88070b91dbbaa900c2f8074b6baae9f35eaea6ba9cec6fd803
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/swiftui.csv: sha256:c9c2d2510f8e66281a2514e8dd0125a6b653b9ef53a71281b5e7dfe003d5b569
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/threejs.csv: sha256:f1c05f8f269fc4784170c837f4ff43b50042f00bbd6ba7dbef2896081a052544
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/stacks/vue.csv: sha256:c2724915d3c11cd67263f25896cff721f787a0fdd8326002d31e9f5806dfd8f8
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/styles.csv: sha256:9b5089dcde8999333b36878252a255cc3bacbb2fe7b836c76cc7f7aa2abb643d
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/typography.csv: sha256:dbea262a54e3bfa2e6c3b15989a365d5ef4c43349316aff46635e82ca825adce
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/ui-reasoning.csv: sha256:41976082ecae1100da937c949215dc6694393e03f3c2a7444dd92a9edb43cb11
+    .claude/skills/ui-design-advisor/data/ui-ux-pro-max/ux-guidelines.csv: sha256:1870ee048f2a2bdd60709f8f7adf7f3b6dcad560bc005c8b2915a8ac8639820d
+    .claude/skills/ui-design-advisor/data/ux-heuristics/10-usability-heuristics-for-user-interface-design.md: sha256:b69187a46c6c813ec1b0e286c594c429a4f26a890cc3be21fa54cac82f07034b
+    .claude/skills/ui-design-advisor/data/ux-heuristics/20-guiding-principles-for-experience-design.md: sha256:3ea85479f14c0edf12231edc162ae849dec1712a84ed415bfc7c4c9d407433e8
+    .claude/skills/ui-design-advisor/data/ux-heuristics/UX-for-Lizard-Brains.md: sha256:163a4568cce9713a299e81e813f9907e6aee392c90410e5125a6827aa1ac9f3f
+    .claude/skills/ui-design-advisor/data/ux-heuristics/accessibility-usability-scale.md: sha256:2da1744603727055a50eb00933d9367f5462b65c1c8006eafc5f0680a5220311
+    .claude/skills/ui-design-advisor/data/ux-heuristics/accessible-user-experience-framework.md: sha256:ab93abc2f35dc4c696f75e2d0294a6608cca908eaee6d133be258e7c95fe46be
+    .claude/skills/ui-design-advisor/data/ux-heuristics/defensive-design.md: sha256:a741932aeef0b2b443ad5fe7fb5c1fbe76bd7aee0ecc15061512bc061b6cbb95
+    .claude/skills/ui-design-advisor/data/ux-heuristics/designing-tables-to-be-read-not-looked-at.md: sha256:14225c0f42b7894b10f628196af5e6a67be90f72fc5eb4aafdb8393567b7fca8
+    .claude/skills/ui-design-advisor/data/ux-heuristics/don-normans-principles.md: sha256:1e5f42f8fad014701ff2e061bfe71fddee4843ce35b42ac2a0e6f1b65ec45198
+    .claude/skills/ui-design-advisor/data/ux-heuristics/eight-steps-to-an-intuitive-ui.md: sha256:84a12522d1e57173a392e45b63f50d47a3e6e8549b443071b67fa6f70f8c2a85
+    .claude/skills/ui-design-advisor/data/ux-heuristics/four-strategies-for-simplicity.md: sha256:933146409ef75f995434a1d4efc1e01c5296920195a2b3dba837adf3cab20d8c
+    .claude/skills/ui-design-advisor/data/ux-heuristics/ixd-checklist.md: sha256:5c043592828d1200fa4dcb0a634d98282053149f2a28039fe0b2312a7fa853f7
+    .claude/skills/ui-design-advisor/data/ux-heuristics/reducing-cognitive-load.md: sha256:2b59d4aaf69ba106a14a15457eb0c088b61ee2d5e04c82713da62d94f275e448
+    .claude/skills/ui-design-advisor/data/ux-heuristics/system-usability-scale.md: sha256:aefc69dc5f0d503a5c7fb95cfe2fcc396425438144f67203f0622e7dd5ec1b9e
+    .claude/skills/ui-design-advisor/data/ux-heuristics/the-ten-principles-of-inclusive-web-design.md: sha256:1a47c3876b62d3695533df846a6d933ad583a90fd32ffa48d622a89daa1fd26e
+    .claude/skills/ui-design-advisor/data/ux-heuristics/top-10-Application-Design-Mistakes.md: sha256:1f0ffc85e82a5ed10818019470a9cf948c12585bfd961238e8289684669a3faf
+    .claude/skills/ui-design-advisor/data/ux-heuristics/wcag-pour-framework.md: sha256:218209f6d7e8332fc86452dfb5bb24f76e4cfe64a5735eb89c0da639c0a53c49
+    .claude/skills/ui-design-advisor/evals/evals.json: sha256:ab41493cc7ae18a243a0c2b0b1e1f9994a89511bb378847edc0eb79761b62860
+    .claude/skills/ui-design-advisor/examples/txone-website-redesign.html: sha256:fb0fdee224808e2a92c7ae5e9e35b04024f78405d6290ccf8d141198f6bf5000
+    .claude/skills/ui-design-advisor/examples/txone-website-redesign.md: sha256:50f967d97f437f36828e090caa3d72665100f656457166bee282c4bcd8b9aea1
+    .claude/skills/ui-design-advisor/references/anti-default.md: sha256:8be7e51cbeaa13bbe6932afcb43caf3d94ac34c873cc80a5d30998ecec8d2bde
+    .claude/skills/ui-design-advisor/references/attribution.md: sha256:93a702dc91b84696613d0f4e4b8b5d384e449d88a8455cdb25ba74bc9977670d
+    .claude/skills/ui-design-advisor/sources.lock: sha256:56e296946afea5a23ff9294b02fafb6fd943d4aecabfa60ed25ef641053a296a
   source: local
   local_path: ./ui-design-advisor/
 - repo_url: _local/verify-before-done
   package_type: claude_skill
   deployed_files:
   - .agents/skills/verify-before-done
+  - .agents/skills/verify-before-done/SKILL.md
+  - .agents/skills/verify-before-done/evals/evals.json
+  - .agents/skills/verify-before-done/references/attribution.md
+  - .agents/skills/verify-before-done/sources.lock
   - .claude/skills/verify-before-done
+  - .claude/skills/verify-before-done/SKILL.md
+  - .claude/skills/verify-before-done/evals/evals.json
+  - .claude/skills/verify-before-done/references/attribution.md
+  - .claude/skills/verify-before-done/sources.lock
+  deployed_file_hashes:
+    .agents/skills/verify-before-done/SKILL.md: sha256:d1737d684ac9329aa524a8659d5f46ce955bfd79b471370d6965c078df909445
+    .agents/skills/verify-before-done/evals/evals.json: sha256:699a83c2bd69571091394e32cddc7d4a9c7526ba63c24c75b2f97a743e78ede1
+    .agents/skills/verify-before-done/references/attribution.md: sha256:187c1d1542b147e41a4594a151b7e672aef0e552a7ccc548273fa8b1668ebf89
+    .agents/skills/verify-before-done/sources.lock: sha256:4e5290dd2fbce8b39f99ca5f0a08bbe2425485a13b8d8f1c6af975208ffc80c6
+    .claude/skills/verify-before-done/SKILL.md: sha256:d1737d684ac9329aa524a8659d5f46ce955bfd79b471370d6965c078df909445
+    .claude/skills/verify-before-done/evals/evals.json: sha256:699a83c2bd69571091394e32cddc7d4a9c7526ba63c24c75b2f97a743e78ede1
+    .claude/skills/verify-before-done/references/attribution.md: sha256:187c1d1542b147e41a4594a151b7e672aef0e552a7ccc548273fa8b1668ebf89
+    .claude/skills/verify-before-done/sources.lock: sha256:4e5290dd2fbce8b39f99ca5f0a08bbe2425485a13b8d8f1c6af975208ffc80c6
   source: local
   local_path: ./verify-before-done/
 - repo_url: anthropics/skills
   host: github.com
-  resolved_commit: 57546260929473d4e0d1c1bb75297be2fdfa1949
+  resolved_commit: 35414756ca55738e050562e272a6bbc6273aa926
   package_type: marketplace_plugin
-  deployed_files:
-  - .agents/skills/algorithmic-art
-  - .agents/skills/brand-guidelines
-  - .agents/skills/canvas-design
-  - .agents/skills/claude-api
-  - .agents/skills/doc-coauthoring
-  - .agents/skills/docx
-  - .agents/skills/frontend-design
-  - .agents/skills/internal-comms
-  - .agents/skills/mcp-builder
-  - .agents/skills/pdf
-  - .agents/skills/pptx
-  - .agents/skills/skill-creator
-  - .agents/skills/slack-gif-creator
-  - .agents/skills/theme-factory
-  - .agents/skills/web-artifacts-builder
-  - .agents/skills/webapp-testing
-  - .agents/skills/xlsx
-  - .claude/skills/algorithmic-art
-  - .claude/skills/brand-guidelines
-  - .claude/skills/canvas-design
-  - .claude/skills/claude-api
-  - .claude/skills/doc-coauthoring
-  - .claude/skills/docx
-  - .claude/skills/frontend-design
-  - .claude/skills/internal-comms
-  - .claude/skills/mcp-builder
-  - .claude/skills/pdf
-  - .claude/skills/pptx
-  - .claude/skills/skill-creator
-  - .claude/skills/slack-gif-creator
-  - .claude/skills/theme-factory
-  - .claude/skills/web-artifacts-builder
-  - .claude/skills/webapp-testing
-  - .claude/skills/xlsx
-  content_hash: sha256:4f6d306e750b5b4f3b0dfc0f50418fa8403b3fc99867d5c2f7c170eccf94203b
+  content_hash: sha256:0cd4c5aa5731b0e49ba55f14f9e2878c41438353e8b5d0d8c716da62f71b72cf
 - repo_url: vercel-labs/agent-browser
   host: github.com
-  resolved_commit: 5185339ca3fdab9848e11b8ec676eecfdec3733f
+  resolved_commit: ed2e10598c9064aecfaeb7cf21b540684db4be2c
   package_type: marketplace_plugin
   deployed_files:
   - .agents/skills/agent-browser
+  - .agents/skills/agent-browser/SKILL.md
   - .claude/skills/agent-browser
-  content_hash: sha256:f95bd93841bcc9493deb28a3d58a82ecbd0f57c466b1fc32c8b378d6119072e9
+  - .claude/skills/agent-browser/SKILL.md
+  deployed_file_hashes:
+    .agents/skills/agent-browser/SKILL.md: sha256:bb6b4c5aae49ff88addb31312437f94242a3e5aae950503ab4f332e28186c261
+    .claude/skills/agent-browser/SKILL.md: sha256:bb6b4c5aae49ff88addb31312437f94242a3e5aae950503ab4f332e28186c261
+  content_hash: sha256:339c95fdb3296e895315b0bf0a2eb569732dcdba926bfe66cff3c1dc59f0c5cb
