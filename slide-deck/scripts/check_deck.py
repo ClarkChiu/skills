@@ -11,6 +11,7 @@ never hand over a deck with a 14px caption or a `Lorem ipsum` still in it.
 
 Usage:
     python3 check_deck.py deck.html [--strict]
+    python3 check_deck.py --selftest      # self-check the font-axis rules (no file)
 
 Exit codes: 0 = clean (warnings allowed), 1 = errors found (or --strict + warnings),
 2 = file unreadable. Stdlib only.
@@ -55,6 +56,26 @@ FONTSIZE_RE = re.compile(r"font-size\s*:\s*(\d+(?:\.\d+)?)px", re.IGNORECASE)
 CJK_RE = re.compile(r"[㐀-鿿豈-﫿]")
 
 
+# CJK font families (lowercased). Used two ways: to flag a CJK-first font stack
+# (most CJK faces have weak Latin glyphs, so a CJK family before the Latin one drags
+# the deck's Latin down), and to flag a CJK webfont loaded into a deck with no Han.
+CJK_FAMILIES = (
+    "noto sans tc", "noto serif tc", "noto sans sc", "noto serif sc",
+    "noto sans jp", "noto serif jp", "noto sans hk", "source han",
+    "pingfang", "microsoft yahei", "hiragino", "heiti", "songti",
+    "ms mincho", "ms gothic", "simsun", "simhei",
+)
+# Generic CSS font keywords — never a "real" (Latin) named family.
+GENERIC_FAMILIES = (
+    "sans-serif", "serif", "monospace", "system-ui", "ui-sans-serif",
+    "ui-serif", "ui-monospace", "cursive", "fantasy", "inherit", "initial",
+)
+# Any CSS declaration whose value is a font stack: standard font-family, OR this
+# skill's preset custom properties (--font-display / --font-body / --font-mono),
+# where the actual family names live (font-family itself usually holds var(...)).
+FONTSTACK_RE = re.compile(r"(?:font-family|--font[\w-]*)\s*:\s*([^;}{]+)", re.IGNORECASE)
+
+
 def visible_text(fragment: str) -> str:
     """Strip tags and decode entities to get on-screen text from an HTML fragment."""
     no_tags = TAG_RE.sub(" ", fragment)
@@ -68,7 +89,70 @@ def count_units(text: str) -> int:
     return cjk + latin_words
 
 
+def _classify_family(token: str) -> str:
+    """Classify one font-stack token: 'cjk' | 'generic' | 'var' | 'latin'."""
+    t = token.strip().strip("\"'").strip().lower()
+    if not t or t.startswith("var("):
+        return "var"
+    if any(fam in t for fam in CJK_FAMILIES):
+        return "cjk"
+    if t in GENERIC_FAMILIES:
+        return "generic"
+    return "latin"
+
+
+def font_axis_warns(doc):
+    """CJK/Latin two-axis font checks (principles.md §3). Pure: doc string in, warns out.
+
+    (1) A CJK family before a real (named, non-generic) Latin family in a stack means the
+        CJK face renders the Latin glyphs — order it Latin-first.
+    (2) A CJK family is referenced but the deck has no Han glyphs — a megabyte CJK webfont
+        loaded for nothing (and an unsubsetted force-load hangs PDF export).
+    """
+    warns = []
+    order_bug = False
+    for m in FONTSTACK_RE.finditer(doc):
+        seen_cjk = False
+        for kind in (_classify_family(tok) for tok in m.group(1).split(",")):
+            if kind == "cjk":
+                seen_cjk = True
+            elif kind == "latin" and seen_cjk:
+                order_bug = True
+                break
+        if order_bug:
+            break
+    if order_bug:
+        warns.append("CJK font listed before the Latin family in a font stack — "
+                     "Latin glyphs will render in the CJK face; put the Latin family first")
+    if any(fam in doc.lower() for fam in CJK_FAMILIES):
+        if not CJK_RE.search(visible_text(SCRIPT_STYLE_RE.sub("", doc))):
+            warns.append("CJK webfont declared but the deck has no Han glyphs — "
+                         "drop it to keep the file light and PDF-safe")
+    return warns
+
+
+def _selftest() -> int:
+    """No-framework self-check for font_axis_warns (run via --selftest)."""
+    ORDER, UNUSED = "before the Latin family", "no Han glyphs"
+    a = ('<style>:root{--font-display:"Noto Sans TC","Switzer",sans-serif}</style>'
+         '<section class="slide"><h1>測試標題</h1></section>')        # CJK-first, has Han
+    b = ('<style>:root{--font-display:"Switzer","Noto Sans TC",sans-serif}</style>'
+         '<section class="slide"><h1>測試標題</h1></section>')        # Latin-first, has Han
+    c = ('<style>:root{--font-display:"Switzer","Noto Sans TC",sans-serif}</style>'
+         '<section class="slide"><h1>Hello world</h1></section>')      # CJK declared, no Han
+    wa, wb, wc = font_axis_warns(a), font_axis_warns(b), font_axis_warns(c)
+    assert any(ORDER in w for w in wa), f"A: expected order-bug warn, got {wa}"
+    assert not any(UNUSED in w for w in wa), f"A: unexpected unused warn, got {wa}"
+    assert wb == [], f"B: expected no warns, got {wb}"
+    assert any(UNUSED in w for w in wc), f"C: expected loaded-but-unused warn, got {wc}"
+    assert not any(ORDER in w for w in wc), f"C: unexpected order warn, got {wc}"
+    print("selftest OK")
+    return 0
+
+
 def main() -> int:
+    if "--selftest" in sys.argv[1:]:
+        return _selftest()
     args = [a for a in sys.argv[1:] if not a.startswith("-")]
     strict = "--strict" in sys.argv[1:]
     if not args:
@@ -142,6 +226,9 @@ def main() -> int:
     # 7. No-reflow sanity: overflow:auto/scroll hides a too-tall slide instead of splitting.
     if re.search(r"overflow\s*:\s*(auto|scroll)", low):
         warns.append("overflow:auto/scroll found — the canvas must not scroll; split the slide instead")
+
+    # 8. CJK/Latin two-axis font discipline (principles.md §3).
+    warns.extend(font_axis_warns(doc))
 
     for w in warns:
         print(f"WARN  {w}")
