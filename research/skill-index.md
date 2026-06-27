@@ -61,4 +61,7 @@
 | 2026-06-28 | DailyBrief（leiting-eric/DailyBrief） | github.com/leiting-eric/DailyBrief | leiting-eric | 否（不同需求） | 🟥 跳過（AI 每日「新聞」簡報：GitHub 熱門＋行情技術分析，非個人待辦日報＝離題。~266★ 未驗證、TS／MIT、活躍，但需求不符） |
 | 2026-06-28 | morning-digest（mshadmanrahman/morning-digest） | github.com/mshadmanrahman/morning-digest | mshadmanrahman | 部分（行事曆/Email/Slack/待辦合成晨報；送達層重疊 schedule） | 🟥 跳過（最貼近「個人晨間整合」，但價值在程式整合〔需串接各服務授權〕、~5★ 單人 Python。提示觀念自製、整合用內建 schedule） |
 
+| 2026-06-28 | CLAUDE.md 自我稽核去重流程（bnext 90421，slug 誤標 code-fix） | bnext.com.tw/article/90421/claude-cowork-code-fix | 數位時代（文章，非 repo） | 是（內建 /memory＋schedule；既有 skill-evolve 同款週期偵察骨架） | 🟥 跳過（正文非 debug，是 CLAUDE.md 設定稽核去重：5 條判準揪重複/衝突/冗餘＋週期排程。純 prose＋內建排程，無可重現工程；排程被內建 schedule 涵蓋；使用者已手動在做〔d64bafd〕；skill-evolve 已是自我資產週期偵察者。不需建技能，最多存一段薄提示或小幅擴 skill-evolve 視野到 CLAUDE.md） |
+| 2026-06-28 | claude-token-optimizer（nadimtuhin） | github.com/nadimtuhin/claude-token-optimizer | nadimtuhin | 部分（CLAUDE.md/context 稽核壓縮，與內建 /memory 相鄰） | 🟥 跳過（cto audit/compress/prune CLI 宣稱省 90% token；單人 481★、--break-system-packages 類自動裝＝安裝面要警覺。純 prose 路徑自寫即可，不裝；要裝須先 skill-auditor，本次未稽核） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
