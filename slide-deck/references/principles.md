@@ -77,6 +77,20 @@ true and predictable. No `rem` / `vw` / `%` for type.
   (request just the glyphs on the slides). A full CJK family is megabytes; an unsubsetted,
   force-loaded one also hangs or crashes PDF export. Restrict-and-subset keeps the
   self-contained file light and printable.
+- **兩軸字體（CJK 與 Latin 是兩個 face，不是一個）。** 雙語簡報用的是兩個字型家族，不是
+  一個：一個 Latin face、一個 CJK face，組成一條**有序的** `font-family` 堆疊。
+  - **Latin face 在前、CJK face 在後**：`font-family:"Switzer","Noto Sans TC",sans-serif`。
+    逐字 fallback 於是讓 Latin 字母用 Latin face、Han 字落到 CJK face。**絕不把 CJK 家族
+    排第一**——它的 Latin 字形通常扁平／等寬，會把整份簡報的西文拉低。
+  - **挑 CJK face 去配 Latin face**：grotesque／sans 的 Latin 配 `Noto Sans TC` 一類黑體；
+    serif／display 的 Latin 配 `Noto Serif TC` 一類明體。字重與調性對齊，讓兩個 face 讀起來
+    是同一個聲音。
+  - **依簡報主導語言決定載入**：先決定這份簡報是 Latin 主導還是 CJK 主導。Latin 主導、通篇
+    無 Han 的簡報**不得**載入 CJK webfont——整套 CJK 家族是 MB 級，未 subset 的強制載入會
+    拖慢／當掉 PDF 匯出（見上一條 Webfont discipline）。CJK 主導的簡報則仍要在堆疊裡保留一個
+    真正的 Latin face，給內嵌的術語、數字、日期用。
+  - 跨兩軸的**尺寸**已在 §13 處理（CJK 標題 −25–30%、混排行高偏高），此處不重複。
+  - 這兩條會出錯的點（CJK 排第一、載入卻無 Han 字）由 `check_deck.py` 機械檢查（第 8 條）。
 
 ## 4. The vertical-budget method (the anti-overflow technique)
 

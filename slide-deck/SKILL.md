@@ -108,7 +108,8 @@ forbid card grids.
 
 Start from `assets/template.html` (the engine: fixed stage, scaler, nav, print CSS, and
 the seven page archetypes). Replace the `:root` variables with the chosen preset; write
-each `<section class="slide">` following the principles. Use absolute px for everything —
+each `<section class="slide">` following the principles. 雙語簡報的字體堆疊遵守 §3 兩軸
+順序（Latin face 在前、CJK face 在後，依主導語言決定是否載入 CJK webfont）。 Use absolute px for everything —
 the scaler handles fit. Never hardcode page counts; the engine derives nav dots and page
 numbers from the DOM.
 

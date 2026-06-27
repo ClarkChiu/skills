@@ -129,5 +129,7 @@ restrained blue accent, clean tables. Motion: none.
 - Blending is fine: take Editorial's serif display over Swiss's grid, for instance. Keep
   it to one coherent result — change variables, not the principles.
 - For CJK decks, pair with a Noto/source CJK face and apply Pangu spacing (the
-  `chinese-typography` skill). Add `"Noto Sans TC"` / `"Noto Serif TC"` to the relevant
-  font stack so Han glyphs render in a matching weight.
+  `chinese-typography` skill). 雙語簡報用**兩軸字體**：把 CJK face **接在 Latin face 之後**
+  組成有序堆疊（`"<Latin>","Noto Sans TC",sans-serif`），**不可讓 CJK 家族排第一**（它的
+  Latin 字形會拉低整份簡報的西文）。依簡報主導語言決定要不要載入 CJK webfont——純 Latin、
+  無 Han 的簡報不載。完整規則見 `principles.md` §3「兩軸字體」；CJK 標題尺寸見 §13。
