@@ -52,5 +52,7 @@
 | 2026-06-14 | effective-html（html／html-diagram／html-plan 三技能） | github.com/plannotator/effective-html | plannotator | 部分（html≈web-artifacts-builder/slide-deck；html-plan≈design-gate；html-diagram 為缺口） | 🟨 收錄＋客製（選擇性 vendor html-effectiveness 參考庫＋架構圖能力；MIT＋內嵌 Apache-2.0 可收錄。聚焦真缺口〔架構圖／有效技術 HTML 交付物〕，跳過純重複部分；收錄要補 attribution〔指向 plannotator 與原始 thariqs/html-effectiveness〕＋sources.lock。資安純 prose 無腳本 SAFE；755★。先 design-gate 設計再動工） |
 
 | 2026-06-17 | ponytail | github.com/DietrichGebert/ponytail | DietrichGebert | 部分（重複 CLAUDE.md §2 Simplicity First＋§3 Surgical Changes 之常駐規則；為 caveman→`terse` 的程式碼極簡手足） | 🟦 參考自製（「懶惰資深工程師」程式碼極簡階梯：YAGNI→stdlib→原生→已裝相依→一行→最小可行；純 persona prose，兩個每回合 Node hook 僅旗標檔＋statusline 屬邊陲。資安 SAFE、MIT、v4.7.0 活躍。核心規則已被使用者全域 CLAUDE.md 每階段常駐涵蓋＝觸發式技能反而更弱；取三點加值〔明確階梯／`ponytail:` 捷徑註解慣例／非平凡邏輯留一個可跑檢查〕併進 CLAUDE.md §2/§3，或仿 terse 之於 caveman 建小技能。優先度低，不裝外掛） |
+| 2026-06-21 | jianying-editor-skill（剪映自動剪輯） | github.com/luoluoluo22/jianying-editor-skill | luoluoluo22 | 否（無內建影片編輯） | 🟥 跳過（以 UI 自動化驅動中國版剪映 Pro 做端到端剪輯〔配音／字幕／特效／螢幕錄製／自動匯出〕，需 Windows＋舊版剪映 5.9＋中國版專屬 App，離使用者網路／系統守備；2k★／MIT／結構完整／單人。完整稽核見當日本機紀錄） |
+| 2026-06-21 | daed（dae eBPF 路由引擎 Web 儀表板，非技能） | github.com/daeuniverse/daed | daeuniverse | 否（應用程式非技能；本專案無對應簇） | 🟥 跳過（現階段）（dae 的 eBPF 核心層分流技術對位使用者網路專長，但 daed 是 TS Web 儀表板、無可萃取技能素材；要用直接裝即可、不需技能中介。前端 MIT／後端 AGPL-3.0。日後若需 dae 設定／分流規則撰寫助手再評估自製，比照 graphiti 前例） |
 
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
