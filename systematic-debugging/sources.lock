@@ -1,14 +1,14 @@
 {
   "_comment": "Maintained by skill-evolve: the upstream this debugging method was adapted from, used to detect new rules. Update only after reviewing the report (--write-lock).",
-  "checked_at": "2026-06-17",
+  "checked_at": "2026-06-28",
   "sources": {
     "obra/superpowers": {
       "ref": "main",
-      "commit": "a21956e48c13",
-      "release": "v6.0.0",
-      "date": "2026-06-17",
+      "commit": "896224c4b187",
+      "release": "v6.0.3",
+      "date": "2026-06-18",
       "skills": ["systematic-debugging"],
-      "note": "Rules adapted, not vendored verbatim. 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — it is a subagent-driven-development orchestration overhaul; the only systematic-debugging change was narrowing a too-broad extended-thinking trigger keyword (a harness-loading packaging detail), not a method change. The 4-phase root-cause method is unchanged. Nothing to adopt. Re-sync by diffing this skill's content."
+      "note": "Rules adapted, not vendored verbatim. 2026-06-28 bump (was a21956e48c13 / v6.0.0): reviewed v6.0.0→v6.0.3 — pure SDD-orchestration/packaging/test maintenance, no debugging-method change. The 4-phase root-cause method is unchanged. Nothing to adopt. 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — it is a subagent-driven-development orchestration overhaul; the only systematic-debugging change was narrowing a too-broad extended-thinking trigger keyword (a harness-loading packaging detail), not a method change. Re-sync by diffing this skill's content."
     }
   }
 }

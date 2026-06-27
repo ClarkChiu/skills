@@ -1,14 +1,14 @@
 {
   "_comment": "Maintained by skill-evolve: the upstream this completion gate was adapted from, used to detect new rules. Update only after reviewing the report (--write-lock).",
-  "checked_at": "2026-06-17",
+  "checked_at": "2026-06-28",
   "sources": {
     "obra/superpowers": {
       "ref": "main",
-      "commit": "a21956e48c13",
-      "release": "v6.0.0",
-      "date": "2026-06-17",
+      "commit": "896224c4b187",
+      "release": "v6.0.3",
+      "date": "2026-06-18",
       "skills": ["verification-before-completion"],
-      "note": "Rule adapted, not vendored verbatim. 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — the verification energy in v6 went into reviewer discipline (read-only reviewers, can't-suppress-findings, cite file+line), a second-agent-review mechanism distinct from this skill's 'run the check yourself and read the full output before claiming done' gate. The skill itself wasn't restructured. Nothing to adopt. Re-sync by diffing this skill's content."
+      "note": "Rule adapted, not vendored verbatim. 2026-06-28 bump (was a21956e48c13 / v6.0.0): reviewed v6.0.0→v6.0.3 — pure SDD-orchestration/packaging/test maintenance; a 'feat(sdd)' commit is a scratch-dir helper (SDD orchestration, not adopted), not a verification discipline. Nothing to adopt. 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — the verification energy in v6 went into reviewer discipline (read-only reviewers, can't-suppress-findings, cite file+line), a second-agent-review mechanism distinct from this skill's 'run the check yourself and read the full output before claiming done' gate. Re-sync by diffing this skill's content."
     }
   }
 }

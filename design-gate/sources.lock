@@ -1,14 +1,14 @@
 {
   "_comment": "Maintained by skill-evolve: the upstream that design-gate's design/plan rules were adapted from, used to detect new rules. Update only after reviewing the report (--write-lock). Tracks only the two extracted skills; the upstream orchestration pieces (subagent-driven-development etc.) were deliberately not vendored and are not tracked here.",
-  "checked_at": "2026-06-17",
+  "checked_at": "2026-06-28",
   "sources": {
     "obra/superpowers": {
       "ref": "main",
-      "commit": "a21956e48c13",
-      "release": "v6.0.0",
-      "date": "2026-06-17",
+      "commit": "896224c4b187",
+      "release": "v6.0.3",
+      "date": "2026-06-18",
       "skills": ["brainstorming", "writing-plans"],
-      "note": "Rules adapted from these two skills (not vendored verbatim). 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — adopted the Global Constraints plan header + per-task Interfaces contract into references/writing-plans.md. The rest of v6 is subagent-driven-development orchestration (reviewer dispatch, file-vs-paste, model selection) deliberately not vendored — a single-agent gate doesn't use it. Re-sync by diffing these two skills' content."
+      "note": "Rules adapted from these two skills (not vendored verbatim). 2026-06-28 bump (was a21956e48c13 / v6.0.0): reviewed v6.0.0→v6.0.3 — pure SDD-orchestration/packaging/test maintenance (artifacts moved out of .git/, evals submodule dropped, per-worktree isolation, ws bump). Zero methodology change; the v6.0.0 plan improvements were already adopted last bump. Nothing to adopt. 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — adopted the Global Constraints plan header + per-task Interfaces contract into references/writing-plans.md. The rest of v6 is subagent-driven-development orchestration (reviewer dispatch, file-vs-paste, model selection) deliberately not vendored — a single-agent gate doesn't use it. Re-sync by diffing these two skills' content."
     },
     "mattpocock/skills :: engineering/grill-with-docs": {
       "ref": "main",

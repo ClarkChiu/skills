@@ -1,15 +1,15 @@
 {
   "_comment": "Maintained by skill-evolve: upstream data sources vendored into data/. Pins the commit each was copied at, to detect new/updated design data. Update only after reviewing the report (--write-lock). Only DATA was vendored — no scripts/CLI. Full audit: research/audits/2026-06-05-ui-ux-pro-max.md.",
-  "checked_at": "2026-06-17",
+  "checked_at": "2026-06-28",
   "sources": {
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "ref": "main",
-      "commit": "b7e3af80f6e3",
-      "release": "v2.5.0",
-      "date": "2026-04-03",
+      "commit": "65e23199492f",
+      "release": "v2.9.0",
+      "date": "2026-06-26",
       "license": "MIT",
       "vendored": "src/ui-ux-pro-max/data/*.csv (12 domain + stacks/16); dropped draft.csv, design.csv, all scripts",
-      "note": "2026-06-08: SHA widened from short 'b7e3af8' to full (same commit — the short form was false-flagging as UPDATED every run). Unchanged since vendoring. Main thing to re-check — CSVs update most often. Take data only; never vendor the CLI or the image-gen scripts that read ~/.claude/.env."
+      "note": "2026-06-28 bump (was b7e3af80f6e3 / v2.5.0). v2.6–2.9 release notes are all CLI/security/distribution (plugin-name validation, XSS-escape in slide generator, GitHub token support, npm fallback package) — no design-data change mentioned. CAVEAT (low confidence): release notes do not cover the data/ layer; not diffed CSV-by-CSV this round, so a silent palette/typography CSV tweak can't be fully ruled out. Re-vendor only if a CSV diff shows changes. Never vendor the CLI or image-gen scripts that read ~/.claude/.env. 2026-06-08: SHA widened to full (was false-flagging UPDATED)."
     },
     "mattdesl/dictionary-of-colour-combinations": {
       "ref": "master",
@@ -21,12 +21,12 @@
     },
     "plugin87/ux-ui-agent-skills": {
       "ref": "main",
-      "commit": "55c9347ce2a1",
-      "release": "v2.3.1",
-      "date": "2026-06-11",
+      "commit": "93a7fbbdb3f1",
+      "release": "v2.4.0",
+      "date": "2026-06-22",
       "license": "MIT (declared in README; NO LICENSE file — weaker grant)",
       "vendored": "accessibility/wcag-checklist.md, accessibility/aria-patterns.md",
-      "note": "2026-06-17 bump (was 3f288fac0a62). v2.3.x adds 22 component-state harnesses, a lucide sprite system, 280–414px responsive checks, and focus/contrast a11y gates. Adopted only the 'measurement over opinion' philosophy as two checks in references/anti-default.md §4: state coverage (hover/focus/disabled in light+dark) and computed WCAG contrast (not eyeballed). The harness/sprite/axe machinery and the no-emoji house rule are a build/verification toolchain, not design-decision advice — not adopted. Vendored a11y files unchanged; no re-vendor."
+      "note": "2026-06-28 bump (was 55c9347ce2a1 / v2.3.1). v2.4.0 adds a CONTEXT.md shared-vocabulary layer, /gate //ship //scaffold-project slash commands, project-scoped Figma MCP, and a real-screenshot reference folder — all build/verification toolchain + project scaffold, the same category explicitly NOT adopted before. The prior 'measurement over opinion' checks weren't extended. Nothing to adopt. Vendored a11y files unchanged; no re-vendor. 2026-06-17 bump (was 3f288fac0a62): adopted 'measurement over opinion' as two checks in references/anti-default.md §4."
     },
     "SteveBarnett/Checklists": {
       "ref": "main",

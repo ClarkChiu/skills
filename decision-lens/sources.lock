@@ -1,7 +1,15 @@
 {
   "_comment": "Maintained by skill-evolve. decision-lens adapts the METHODS (not files) of the yao-open-skills decision cluster; the math is public-domain. Pins each upstream skill at the commit reviewed on 2026-06-08, to detect a better protocol formulation worth folding in. Full audit: research/audits/2026-06-08-yao-open-skills.md.",
-  "checked_at": "2026-06-08",
+  "checked_at": "2026-06-28",
   "sources": {
+    "yaojingang/yao-open-skills": {
+      "ref": "main",
+      "commit": "0bacdf401eec",
+      "date": "2026-06-19",
+      "license": "MIT",
+      "note": "2026-06-28: repo-level umbrella pin. extract_sources.py reads the bare repo URL from references/attribution.md, so without this entry it false-flags as 🆕 NEW every run; the three method-only sub-skills below carry the real per-skill baselines. CAVEAT (fail-loud): this round only pinned repo HEAD to silence the false positive — did NOT re-read the bayesian/crux/kelly sub-skill prompts for protocol refinements (the math is public-domain and stable; a prompt re-read is low-value but was skipped, not done). Re-read the three sub-paths on the next substantive sync.",
+      "skills": ["yao-bayesian-skill", "yao-crux-skill", "yao-kelly-skill"]
+    },
     "yaojingang/yao-open-skills :: yao-bayesian-skill": {
       "ref": "main",
       "commit": "6494b76a8683",
