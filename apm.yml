@@ -29,6 +29,7 @@ dependencies:
   - ./terse/
   - ./to-issues/
   - ./html-diagram/
+  - ./daily-brief/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []

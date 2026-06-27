@@ -1,0 +1,96 @@
+{
+  "skill_name": "daily-brief",
+  "_note": "Stateless daily prioritization engine. Output is ONE concise, prioritized brief (Eisenhower → Frog → 1-3-5 → subtraction → load check), in the input's language (zh-TW → Traditional Chinese with 盤古之白). The things under test: it TRIGGERS on day-triage requests; it does NOT mis-fire on a one-off weighty decision (decision-lens) or an issue-filing request (to-issues); given an unordered task pile it returns Eisenhower classification + a single frog + a single highest-leverage move; a YESTERDAY item that has slipped repeatedly is surfaced as a decision rather than deferred again; a Chinese input yields a Chinese brief with a space between Han characters and numbers; newsletter/FYI email is NOT turned into tasks. Triggering, mis-fire, and behavioral-intent checks are non-deterministic; the 盤古之白 spacing and 'no positive-task fabrication' checks are deterministically inspectable.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "triggers-on-plan-my-day",
+      "lang": "zh",
+      "prompt": "幫我排今天的待辦：修 CI flaky test、回客戶的 PoC email、寫週報、訂機票、跟 PM 對規格、看一篇論文。",
+      "expected_output": "Triggers daily-brief (a day-triage request). Treats the list as an unordered task pool, classifies on the Eisenhower matrix, picks one frog, shapes with 1-3-5, names a subtraction, and returns ONE scannable sectioned brief in Traditional Chinese — not a flat re-listing of the six items.",
+      "assertions": [
+        {"text": "invokes daily-brief rather than just echoing the list back unprioritized", "deterministic": false},
+        {"text": "output is a sectioned brief with 今日焦點 / 先吃這隻青蛙 / 若只做一件事, not a flat copy of the input list", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "does-not-misfire-on-one-off-decision",
+      "lang": "zh",
+      "prompt": "我在考慮要不要離開現在的網路設備公司去一家 GCP 雲端新創，該不該換？",
+      "expected_output": "This is a single weighty belief/should-I decision, NOT a daily task-triage. daily-brief must NOT fire; this belongs to decision-lens (Bayesian / should-I). The correct behavior is to route to decision-lens (or at least decline to produce a daily brief), not to emit a 🎯/🐸 daily plan.",
+      "assertions": [
+        {"text": "does NOT produce a daily-brief (no Eisenhower/frog/1-3-5 day plan for a one-off career decision)", "deterministic": false},
+        {"text": "routes/defers to decision-lens (a should-I belief decision), not daily-brief", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "does-not-misfire-on-issue-filing",
+      "lang": "zh",
+      "prompt": "把這份設計計畫拆成一批 GitHub issue 發出去。",
+      "expected_output": "This is an issue-publishing request, not a day-triage. daily-brief must NOT fire; this belongs to to-issues (slice a plan into GitHub issues). The correct behavior is to route to to-issues, not to emit a daily brief.",
+      "assertions": [
+        {"text": "does NOT produce a daily brief for an issue-filing request", "deterministic": false},
+        {"text": "routes to to-issues (publish a plan as GitHub issues), not daily-brief", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "unordered-tasks-yield-eisenhower-frog-and-one-thing",
+      "lang": "en",
+      "prompt": "TASKS: ship the hotfix for the prod auth bug, reply to three Slack threads, reorganize my Notion, prep slides for Thursday's review, expense last month's receipts, read the new RFC, water the office plant. CONTEXT: the auth bug is blocking a customer; Thursday review is in 2 days.",
+      "expected_output": "Classifies every task on the Eisenhower matrix: the prod auth hotfix is important+urgent (DO), Thursday slides are important-not-urgent (SCHEDULE, before Thursday), Slack/expenses are urgent-not-important (DELEGATE/batch), Notion reorg and watering the plant are neither (DROP, stated). Picks the auth hotfix (or slides) as the frog — the single hardest important task. Ends with a single highest-leverage 'if you only do one thing' = ship the auth hotfix. Does not list all seven as equally urgent.",
+      "assertions": [
+        {"text": "classifies tasks into DO / SCHEDULE / DELEGATE / DROP rather than one flat list", "deterministic": false},
+        {"text": "names exactly one frog (the single hardest important task) and one highest-leverage 'only one thing' move", "deterministic": false},
+        {"text": "explicitly DROPs the low-value items (Notion reorg / water the plant) instead of padding the list with them", "deterministic": false}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "chronic-deferral-forces-a-decision",
+      "lang": "en",
+      "prompt": "TASKS: finish the sprint demo prep. YESTERDAY: carried over 'update the IPv6 migration design doc' — it was also on the list the previous two days and still isn't done. CONTEXT: nobody is actively blocked on it.",
+      "expected_output": "The IPv6 design-doc item has slipped 3+ days. The review loop must flag it as a CHRONIC DEFERRAL and surface it as a decision — do it today / shrink it / delegate it / kill it — NOT silently roll it forward onto today's list a fourth time. Failing loud about the repeated slip is the point.",
+      "assertions": [
+        {"text": "flags the IPv6 doc as a chronic/repeated deferral rather than silently carrying it forward again", "deterministic": false},
+        {"text": "frames it as an explicit decision (do today / shrink / delegate / kill), not just re-listed as a today task", "deterministic": false}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "chinese-input-yields-chinese-brief-with-pangu-spacing",
+      "lang": "zh",
+      "prompt": "TASKS：寫測試自動化框架的 PoC、review 兩個 PR、跟客戶開 1 場 90 分鐘的會。CALENDAR：14:00-15:30 客戶會議。CONTEXT：PoC 是這週重點。請順便估時間。",
+      "expected_output": "Responds in Traditional Chinese with a load check. Because the user asked for time estimates and there's a calendar slot, it estimates time per DO item and compares against the 90-minute meeting. Crucially, in the number-heavy load check it applies 盤古之白 — a space between Han characters and Latin letters/numbers (e.g. 「預估 3 小時」「PR review 約 45 分鐘」「90 分鐘 會議」), not 「預估3小時」.",
+      "assertions": [
+        {"text": "responds in Traditional Chinese (not Simplified, not English)", "deterministic": false},
+        {"text": "applies 盤古之白: a space between Han characters and adjacent numbers/Latin in the time estimates (e.g. '3 小時' / '45 分鐘', never '3小時'/'45分鐘')", "deterministic": true},
+        {"text": "includes a load check comparing estimated task time against the 90-minute calendar meeting", "deterministic": false}
+      ]
+    },
+    {
+      "id": 7,
+      "name": "newsletter-email-is-not-turned-into-a-task",
+      "lang": "en",
+      "prompt": "TASKS: submit the quarterly OKRs. EMAIL: (1) a TLDR newsletter digest, (2) a 'your AWS bill is ready' notification, (3) your manager asking you to confirm the OKR numbers by EOD, (4) a LinkedIn 'someone viewed your profile' alert.",
+      "expected_output": "Email triage must extract ONLY the actionable item — the manager's request to confirm OKR numbers by EOD becomes a task (important+urgent). The newsletter, the AWS-bill notification, and the LinkedIn alert are noise/FYI and must be DROPPED, NOT turned into tasks. Never turns every email into a to-do.",
+      "assertions": [
+        {"text": "extracts the manager's EOD OKR-confirmation request as an actionable task", "deterministic": false},
+        {"text": "does NOT create tasks from the newsletter, AWS-bill notification, or LinkedIn alert (drops them as noise)", "deterministic": true}
+      ]
+    },
+    {
+      "id": 8,
+      "name": "empty-input-asks-rather-than-fabricates",
+      "lang": "en",
+      "prompt": "Give me my daily brief.",
+      "expected_output": "No TASKS and no actionable EMAIL are provided. The guardrail is to ASK for input, not to invent a plausible-looking task list. It must not fabricate tasks/deadlines and present a fake brief as if grounded.",
+      "assertions": [
+        {"text": "asks for input (tasks / inbox / calendar) rather than inventing tasks", "deterministic": false},
+        {"text": "does not fabricate a list of tasks and present a fake brief as if it were grounded in real input", "deterministic": true}
+      ]
+    }
+  ]
+}

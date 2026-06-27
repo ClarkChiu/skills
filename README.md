@@ -48,6 +48,7 @@
 | [`terse`](./terse/) | 手動開關的**省 token 精簡模式**：砍開場白、避險、複述、客套、重複，答案先講——但**砍內容不砍文法**。語言感知:英文可電報式,**中文維持自然臺灣繁體**(修正了 caveman 讓中文怪腔怪調的毛病)。跨回合持續到你喊停;資安警告與破壞性操作確認自動退出精簡。與 `humanizer` 互補(tone vs length)。改寫自 `mattpocock/skills` 的 caveman（修正中文、MIT）。 |
 | [`to-issues`](./to-issues/) | 把計畫／規格／PRD 拆成可獨立認領的 **GitHub issue**：垂直曳光彈切片、依相依排序，**發布前一律先把整份清單給你確認**才用 `gh` 建立(用你既有登入、不碰 token,未登入交回你)。是 `design-gate` 的天然下游(出計畫 → 發成 issue),不重新規劃。改寫自 `mattpocock/skills` 的 to-issues（方法非檔、加確認閘門、MIT）。 |
 | [`html-diagram`](./html-diagram/) | 把系統畫成**單一自足 HTML／SVG 圖**：架構圖、堆疊圖、時序與請求流程圖、流程圖——全螢幕、以圖為主、文字極少、零相依、含手刻深色模式（CSS 變數＋localStorage＋paint 前套用）；節點可點、序列可動畫。鐵則：先把拓樸搞對（不明就問、不憑空編邊）、SVG 走 CSS class 不寫死 hex、用 viewBox 縮放、互動只在值得時才加。**收錄＋客製**：vendored `ThariqS/html-effectiveness`（Apache-2.0，作者 Thariq Shihipar）圖相關參考子集＋`plannotator/effective-html`（MIT）的完成範例，SKILL.md 自寫並收窄到「圖」；report/explainer 類交給內建 `web-artifacts-builder`。邊界：vs `slide-deck`（16:9 多頁簡報）、`social-card`（固定比例社群圖）、`frontend-design`（產品 UI）。 |
+| [`daily-brief`](./daily-brief/) | 把一天的原料——待辦、收件匣、行事曆、脈絡、昨日未竟——變成**一份**精簡、排好優先級、可三十秒掃完的每日日報：今天做什麼且**為何今天**、先吃哪隻青蛙、什麼排程／委派、以及最常被略過的「今天可以不做什麼」。無狀態的優先級引擎（艾森豪 × Eat-the-Frog × 1-3-5 × 減法 × 負荷檢查）；多語，輸出跟隨輸入語言，中文自動套盤古之白（負荷檢查的數字最明顯）。昨日反覆未竟會被**逼成決定**（做／縮／委派／砍）而非再延一天；newsletter／FYI 信不會被當成任務；缺輸入就問、絕不虛構任務。鐵則：失敗大聲（延後／刪除明說）、一次一份、不說教。**只做內容引擎**：定時觸發＋寄送交給內建 `schedule`、讀 Gmail／Calendar 交給 MCP／agent，保持無狀態可被串接。自製（公開方法零檔案收錄：艾森豪／GTD／Eat-the-Frog／Ivy Lee／1-3-5；多語設計參考 `NirDiamant/Prompt_Engineering`、`0x2e-Tech/awesome-ai-prompts`；繁中在地化參考數位時代／TechNice／電腦玩物）。純 prompt、僅 `Read`。 |
 
 ## 外部技能（經 APM 引入第三方）
 
