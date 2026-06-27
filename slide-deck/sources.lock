@@ -23,20 +23,20 @@
       "date": "2026-05-08"
     },
     "hugohe3/ppt-master": {
-      "commit": "313ee6729dba",
-      "release": "v2.10.0",
-      "date": "2026-06-16",
-      "note": "2026-06-17 bump (was 9d763c528b74 / v2.9.0). v2.10.0 separates deck structure (pyramid/narrative/instructional/showcase/briefing modes) from visual style families. The structure-vs-style orthogonality is a real idea but NOT adopted — slide-deck already layers style presets on a shared system, and adding a rhetorical-mode axis risks template-filler scope creep, which slide-deck explicitly is not. No action."
+      "commit": "13a25616e635",
+      "release": "v2.11.0",
+      "date": "2026-06-27",
+      "note": "2026-06-28 bump (was 313ee6729dba / v2.10.0). v2.11.0 previews CJK and Latin fonts independently + per-run language detection so Latin decks don't fall back to a CJK family. ADOPTED the underlying principle (CJK/Latin are two independent font axes) — borrowed the idea, implemented original in slide-deck: principles.md §3 'two-axis fonts' (Latin-first ordered stack, pick CJK face to match Latin, load CJK webfont by deck language) + check_deck.py check 8 (warn on CJK-first stack / CJK webfont with no Han). Zero upstream code vendored. Design+plan: docs/specs|plans/2026-06-28-cjk-latin-font-axis*. The v2.10.0 rhetorical-mode axis remains NOT adopted (template-filler scope creep). 2026-06-17 bump (was 9d763c528b74 / v2.9.0): reviewed v2.10.0 structure-vs-style split, not adopted."
     },
     "sivan/heti": {
       "commit": "7d5ceb72a6a7",
       "date": "2025-08-31"
     },
     "zarazhangrui/frontend-slides": {
-      "commit": "c28690100a28",
+      "commit": "9906a34d640d",
       "release": "v2.1.0",
-      "date": "2026-06-13",
-      "note": "2026-06-17 bump (was 24e420e4acef). v2.1.0 is a bold-template-pack + 3-preview workflow + packaging polish; the 'preview-authenticity' hygiene rule is reasonable but not a design technique. No structural principle to adopt."
+      "date": "2026-06-23",
+      "note": "2026-06-28 bump (was c28690100a28). Re-reviewed its density-by-use (low-density live-speaking vs high-density async-reading) + 3-preview workflow as part of the 2026-06-28 font-axis design. Both are ALREADY covered in slide-deck: density by principles.md §9 (Speaker-led/Reading-first) + §10 (deck rhythm), preview by SKILL.md Phase 2 (show-don't-tell 2–3 previews). No new principle to adopt this round. 2026-06-17 bump (was 24e420e4acef): v2.1.0 bold-template-pack + preview-authenticity hygiene, not a design technique."
     }
   }
 }
