@@ -38,7 +38,7 @@
 | [`design-gate`](./design-gate/) | 設計閘門：寫程式碼前，先把模糊想法逼成設計、再拆成可獨立執行的計畫。兩階段——先**設計**（逐題收斂、提 2–3 方案、寫成設計文件、自我複審），中間一道**硬閘門**（設計沒拍板前不寫程式碼、不建專案雛形、不叫實作），再**計畫**（拆成 2–5 分鐘一個的任務，每個標明確檔案路徑、完整可跑程式碼、驗證指令、提交）。只做前段；實際寫程式碼與測試的紀律交棒給 `CLAUDE.md` 的 Rule 0–12，不重複。規則改寫自 `obra/superpowers` 的 `brainstorming` 與 `writing-plans`（MIT），去品牌路徑、調成 pytest＋git 與這位使用者的本行；上游的多代理工程編排刻意未收錄（裁決見 `research/`）。純 prompt、不執行程式碼、不連網。 |
 | [`verify-before-done`](./verify-before-done/) | 完成閘門：宣稱「測試過了／build 綠了／bug 修好了／搬遷完成」之前，先把該跑的驗證**重新跑一次、讀完整輸出和 exit code**，確認真的成立才能說。把 `CLAUDE.md` Rule 12（fail loud）落成五步閘門。刻意和內建 `verify`（跑 app 看行為）切開、不重複——這個是任何 test／lint／build／修復宣稱的輕量紀律閘門。改寫自 `obra/superpowers` 的 `verification-before-completion`（MIT）。含 Bash（要實際跑驗證指令）。 |
 | [`systematic-debugging`](./systematic-debugging/) | 四階段根因除錯，擋掉「猜一個改一個」的瞎修：先把問題穩定重現、讀完錯誤訊息、查最近改動、回溯資料流找根因 → 比對能跑／壞掉的差異 → 單變數假設逐一測 → 先寫會失敗的重現測試再修。鐵律「沒找到根因不准修」；同一個 bug 修 ≥3 次還不好就停、質疑架構。交棒給 `verify-before-done` 做最終確認。改寫自 `obra/superpowers` 的 `systematic-debugging`（MIT）。含 Bash。 |
-| [`ui-design-advisor`](./ui-design-advisor/) | UI **設計決策**層：動手寫前端前，先定「該長怎樣」。給產品／畫面／功能，挑出一致的視覺設計語言——風格、含 hex 的配色、字體配對、圖表型別、效果、無障礙要點，每項都對照收錄的策展資料（UI 風格、產業色盤、字體配對、圖表選型、UX 啟發式、WCAG/ARIA），產出一份 DESIGN BRIEF 再交棒內建 `frontend-design` 實作。資料**收錄**自四個來源：`nextlevelbuilder/ui-ux-pro-max-skill`、`mattdesl/dictionary-of-colour-combinations`、`plugin87/ux-ui-agent-skills`、`SteveBarnett/Checklists`（皆 MIT；只取資料、不取腳本；逐檔稽核見 `research/`）。LLM 直接讀檔（CSV/JSON/MD），靠 `data/INDEX.md` 路由只讀當次相關的表。 |
+| [`ui-design-advisor`](./ui-design-advisor/) | UI **設計決策**層：動手寫前端前，先定「該長怎樣」。給產品／畫面／功能，挑出一致的視覺設計語言——風格、含 hex 的配色、字體配對、圖表型別、效果、無障礙要點，每項都對照收錄的精選資料（UI 風格、產業色盤、字體配對、圖表選型、UX 啟發式、WCAG/ARIA），產出一份 DESIGN BRIEF 再交棒內建 `frontend-design` 實作。資料**收錄**自四個來源：`nextlevelbuilder/ui-ux-pro-max-skill`、`mattdesl/dictionary-of-colour-combinations`、`plugin87/ux-ui-agent-skills`、`SteveBarnett/Checklists`（皆 MIT；只取資料、不取腳本；逐檔稽核見 `research/`）。LLM 直接讀檔（CSV/JSON/MD），靠 `data/INDEX.md` 路由只讀當次相關的表。 |
 | [`solo-think`](./solo-think/) | 讓 Hermes Agent 在你離線、閒置時「自己想事情」：由 Hermes 的 heartbeat 週期喚醒，做夢式反思加上思考佇列，把想法寫進記憶檔。**只向內反思、絕不對外動作**——靠 heartbeat 的 `--toolsets file` 與技能 `allowed-tools` 兩層結構性鎖死，它手上根本沒有任何能對外的工具。只讀寫記憶與工作區設定檔；反思方向由 `focus` 錨定、時段由 `active_hours` 限制，觸發頻率交給 heartbeat 排程，不靠它自己估算用量。改寫自 `loryoncloud/Heartbeat-Like-A-Man`（MIT）：砍掉原作的自主對外探索與社群巡邏、從 OpenClaw 移植到 Hermes、改寫成臺灣繁體中文。 |
 | [`tutor`](./tutor/) | 互動式家教協定（費曼＋蘇格拉底兩種模式），給「想真正搞懂」而非只要答案的時候用。承載價值是把硬規則釘死：一回合只講一個概念或只問一題、問完就停下來等、蘇格拉底模式絕不直接給答案（卡住只縮小提問範圍）、費曼模式答錯不前進改換類比、收尾一定由學習者把整個主題講回來再給「對／漏／錯」的誠實裁定——沒有這些規則，模型聊兩輪就會破功變成單向開講。零基礎自動走費曼、已有半懂或立場走蘇格拉底，明講模式優先。改寫自 @AnatoliKopadze 二十條提示詞中的 #18、#20（經動區譯文評估）；另三條成下一列的 roleplay-coach，餘十五條評估後跳過。 |
 | [`roleplay-coach`](./roleplay-coach/) | 高風險對話的排練教練：薪資談判、模擬面試、困難對話三種情境。扮演**會真實抵抗的對手**——不輕易讓步、弱論點給具體反駁、強論點承認了照樣施壓；一回合一句、絕不自己演完兩邊；目標不切實際就在開演**之前**直說；結束必出戲做覆盤，重點是點名「你沒打出去的那張牌」——這是真實對手永遠不會告訴你的。困難對話採「先給劇本（開場白、對方三種可能反應的逐字應對、最容易踩的陷阱、收場方式），再陪你排練」。用真實對話會發生的語言排練。改寫自同一文章的 #9、#10、#12。 |
@@ -50,6 +50,16 @@
 | [`to-issues`](./to-issues/) | 把計畫／規格／PRD 拆成可獨立認領的 **GitHub issue**：垂直曳光彈切片、依相依排序，**發布前一律先把整份清單給你確認**才用 `gh` 建立(用你既有登入、不碰 token,未登入交回你)。是 `design-gate` 的天然下游(出計畫 → 發成 issue),不重新規劃。改寫自 `mattpocock/skills` 的 to-issues（方法非檔、加確認閘門、MIT）。 |
 | [`html-diagram`](./html-diagram/) | 把系統畫成**單一自足 HTML／SVG 圖**：架構圖、堆疊圖、時序與請求流程圖、流程圖——全螢幕、以圖為主、文字極少、零相依、含手刻深色模式（CSS 變數＋localStorage＋paint 前套用）；節點可點、序列可動畫。鐵則：先把拓樸搞對（不明就問、不憑空編邊）、SVG 走 CSS class 不寫死 hex、用 viewBox 縮放、互動只在值得時才加。**收錄＋客製**：vendored `ThariqS/html-effectiveness`（Apache-2.0，作者 Thariq Shihipar）圖相關參考子集＋`plannotator/effective-html`（MIT）的完成範例，SKILL.md 自寫並收窄到「圖」；report/explainer 類交給內建 `web-artifacts-builder`。邊界：vs `slide-deck`（16:9 多頁簡報）、`social-card`（固定比例社群圖）、`frontend-design`（產品 UI）。 |
 | [`daily-brief`](./daily-brief/) | 把一天的原料——待辦、收件匣、行事曆、脈絡、昨日未竟——變成**一份**精簡、排好優先級、可三十秒掃完的每日日報：今天做什麼且**為何今天**、先吃哪隻青蛙、什麼排程／委派、以及最常被略過的「今天可以不做什麼」。無狀態的優先級引擎（艾森豪 × Eat-the-Frog × 1-3-5 × 減法 × 負荷檢查）；多語，輸出跟隨輸入語言，中文自動套盤古之白（負荷檢查的數字最明顯）。昨日反覆未竟會被**逼成決定**（做／縮／委派／砍）而非再延一天；newsletter／FYI 信不會被當成任務；缺輸入就問、絕不虛構任務。鐵則：失敗大聲（延後／刪除明說）、一次一份、不說教。**只做內容引擎**：定時觸發＋寄送交給內建 `schedule`、讀 Gmail／Calendar 交給 MCP／agent，保持無狀態可被串接。自製（公開方法零檔案收錄：艾森豪／GTD／Eat-the-Frog／Ivy Lee／1-3-5；多語設計參考 `NirDiamant/Prompt_Engineering`、`0x2e-Tech/awesome-ai-prompts`；繁中在地化參考數位時代／TechNice／電腦玩物）。純 prompt、僅 `Read`。 |
+
+## 新增一個自建技能
+
+建立或檢視一個自建技能時，照這份「必備檔案＋登錄」清單逐項確認：
+
+- **每個技能都要有**：`SKILL.md`（frontmatter 含 `name`、描述清楚且帶觸發語的 `description`、`allowed-tools`）；以及 `evals/evals.json`（測「意圖」不只測「行為」，每個案例附斷定，能確定性判斷的標 `deterministic: true`）。
+- **登錄三處**：`apm.yml` 的 `- ./技能名/`、上方〈自建技能〉表一列、`skill-curator/references/skill-map.md`（歸到對的群組、補邊界，並回頭更新這張地圖，免得日後重工）。
+- **要全域可用**：把技能 symlink 進主機代理的 skills 目錄（範本見下方〈手動符號連結〉；`apm install` 只部署到專案範圍的 `.claude/skills`、`.agents/skills`，不會進全域）。
+- **只有「改寫自／收錄上游」的技能才加**：`references/attribution.md`（來龍去脈：哪個上游、取了什麼、怎麼改、授權、注意事項——這是 `skill-evolve` 發現該追哪些源的入口）＋ `sources.lock`（把每個源釘在某 commit／日期的基準，讓 `skill-evolve` 能比對更新）。純原創的技能不需要這兩個；要加就要**成對**——只有 `sources.lock` 沒有 `attribution.md`，`skill-evolve` 的「發現」那半就空轉。
+- **撰寫語言看主題、不看儲存庫**：主題綁定中文的（中文排版、中文文風）用中文，與語言無關的工程／流程技能用英文（細節見 `CLAUDE.md`〈撰寫語言〉條）。
 
 ## 外部技能（經 APM 引入第三方）
 
