@@ -234,4 +234,6 @@ touched follows the documented rules.
 - `references/typography-rules.md` — the full rule set, Taiwan-vs-mainland
   differences, edge cases, and the reasoning behind each rule. Read it when a
   result is questioned or you hit a case the script doesn't cover.
+- `references/glossary.md` — 個人用詞偏好與但書（該用哪個詞、哪些不能機械替換）。
+  寫臺灣繁體中文內容、或要把某個用詞釘死時參照。
 - `references/attribution.md` — sources these rules are derived from.
