@@ -17,6 +17,7 @@
 | `chinese-typography/`、`design-gate/`、`tdd/`… 等**單一技能目錄** | 每個是一個自建技能（`SKILL.md` + `references/` + 視需要 `scripts/`／`evals/`／`attribution.md`＋`sources.lock`） | ✅ 進版控（真相來源） |
 | `docs/` | `design-gate` 的產物：`specs/`（設計文件）、`plans/`（實作計畫） | ✅ |
 | `research/` | `skill-curator` 的產物：`skill-index.md`（外部技能評估索引）進版控；`audits/`（完整稽核）與當日工作日誌 gitignored（本機私有） | 部分 |
+| `prompts/` | 存起來的**薄提示**（非技能、無 `SKILL.md`／`evals`）：純文字、隨 git 帶著走，手動貼或由內建 `schedule` 週期跑；`prompts/README.md` 是索引並記載排程接線 | ✅ 進版控 |
 | `CLAUDE.md`、`README.md`、`apm.yml`、`apm.lock.yaml`、`.gitignore` | 專案說明與 APM 設定／鎖定檔 | ✅ |
 | `.claude/`、`.agents/`、`.opencode/`、`apm_modules/` | **APM 的部署目標與模組快取**（`apm install` 產生，部署副本與源技能重複） | ❌ gitignored，靠 `apm.lock.yaml` 重現 |
 
