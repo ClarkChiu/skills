@@ -12,6 +12,7 @@
 |---|---|---|---|
 | [`claude-md-audit.md`](./claude-md-audit.md) | 規則衛生 | 揪出可刪規則／衝突／冗餘／模糊指令，只回報待核可 | 每週一 09:00 |
 | [`claude-md-context-budget.md`](./claude-md-context-budget.md) | 載入成本／結構 | 量化 CLAUDE.md 臃腫，標出該移到 path-scoped rules／子目錄／skill 的部分 | 每月／按需 |
+| [`read-paper-3prompts.md`](./read-paper-3prompts.md) | 讀論文 | 三段式讀論文：心智圖筆記 → 10 組概念性問題 → 回填整合（亦提供 `read-paper.espanso.yml` 供 Espanso 展開） | 手動／互動 |
 
 ## 接 schedule（這份 index 的重點：知道哪些提示要掛排程、怎麼掛）
 
