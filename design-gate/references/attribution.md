@@ -20,6 +20,14 @@ decisions crystallise (rather than batching docs at the end). The ADR format its
 standard Michael Nygard structure (public, not copyrightable). No files copied; pinned in
 `sources.lock`. Full evaluation: `research/audits/2026-06-08-mattpocock-skills.md`.
 
+## Spec conventions (spec-conventions.md)
+
+`references/spec-conventions.md` is **original** to this repo. It draws only on public,
+non-copyrightable standards — **RFC 2119** requirement keywords (IETF) and **Given/When/Then**
+acceptance scenarios (Gherkin convention). No files copied, no GitHub upstream to track, so
+nothing is added to `sources.lock`. Added 2026-06-30; rationale in
+`research/2026-06-30-gentle-ai-borrowed-ideas.md`.
+
 ## Further upstream
 
 obra/superpowers' "design before code" stance shares a root with this repo's `CLAUDE.md` — Rule 1 (think before coding) and Rule 4 (goal-driven execution). design-gate is essentially the **front half** of that discipline (design, plan) turned into a repeatable workflow.

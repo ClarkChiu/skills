@@ -27,6 +27,18 @@ say "bump it", so next time's diff stays meaningful.
 
 ## Workflow
 
+### 0 — Form check (deterministic, this repo only)
+
+```bash
+python3 scripts/lint-skills.py     # run from the skills repo root
+```
+
+Before chasing upstream drift, confirm the skills are still well-formed against this
+repo's own conventions (SKILL.md + evals, frontmatter, attribution/sources.lock pairing,
+apm.yml + README registration, symlinks). Read-only; exits 1 and lists violations. Scoped
+to THIS repo's layout — skip it when scouting skills elsewhere. Rules and rationale:
+`docs/skill-style-guide.md`.
+
 ### 1 — Discover sources (deterministic)
 
 ```bash
@@ -81,6 +93,7 @@ Nothing in the skill changes until they decide.
 ```
 SKILL EVOLVE REPORT — <skill>
 ─────────────────────────────
+FORM CHECK: <pass N/N | M violations — list them>   (this-repo runs only)
 SOURCES CHECKED: <n>  (updated <a> · new-source <b> · unchanged <c> · error <d>)
 
 UPDATED UPSTREAM
