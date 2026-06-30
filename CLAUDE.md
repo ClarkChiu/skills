@@ -185,6 +185,26 @@ If you can't be sure something worked, say so explicitly.
 "Feature works" is wrong if you didn't verify the edge case I asked about.
 Default to surfacing uncertainty, not hiding it.
 
+### Rule 13 — Delegate at complexity boundaries; keep one thin orchestrator
+
+Past a threshold, a single thread hoarding context does worse work than a fresh
+delegate. Keep the main thread thin; spin out a sub-agent (a read-only search
+sub-agent — in Claude Code, Explore; a context-carrying one — fork) or open a
+fresh-context review at these triggers:
+
+| Trigger | Expected move |
+|---|---|
+| Tracing one flow through 5+ files in unfamiliar code | Delegate the exploration to a read-only search sub-agent; keep the conclusion, not the file dumps. |
+| Touching 3+ non-trivial files, or any non-trivial change to a correctness-critical path (protocol, money, security) | One writer thread; require a fresh-context review before calling it done (verify-before-done). |
+| Commit / push / PR after code changes | Review the diff in fresh context first, unless it's trivial docs/text. |
+| Wrong cwd, worktree/git accident, merge recovery, or a test/env failure you can't explain | Stop. Run a fresh audit before continuing (systematic-debugging) — don't push through. |
+| Long monolithic session, context visibly filling | Checkpoint (Rule 10), then /compact or fresh session (Rule 6) — don't run a degraded window. |
+| Adversarial pass on diffs, conflicts, PR readiness, incidents | Use fresh context where the platform supports it — the thread that wrote it is the worst one to audit it. |
+
+The goal is not ceremony — it's avoiding accidental chaos while keeping one
+responsible orchestrator and one writer. If a trigger fires and you choose not
+to delegate, say why in one line.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
