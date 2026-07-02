@@ -74,6 +74,31 @@
         {"text": "未嘗試任何發文/排程/登入社群帳號的動作", "deterministic": true},
         {"text": "明確告知發布超出範圍、產出圖檔交還使用者", "deterministic": false}
       ]
+    },
+    {
+      "id": 7,
+      "name": "sweet-family-selection",
+      "intent": "選型：旅遊/生活內容落到 Sweet 家族；技術內容仍預設 Swiss，Sweet 不搶位。",
+      "setup": "使用者給一篇越南旅遊筆記要做 IG 4:5 輪播；未指定風格。",
+      "prompt": "把這篇越南旅遊筆記做成 IG 輪播圖：（範五老街散步＋街頭美食的筆記）",
+      "expected_output": "選型落在 Sweet 家族（macaron 或 mint 色盤之一）並照家族×版式相容表挑頁面角色；若不選 Sweet 須明述理由。技術文章輸入時仍應預設 Swiss。",
+      "assertions": [
+        {"text": "卡片主題 class 是 theme-macaron 或 theme-mint 之一", "deterministic": true},
+        {"text": "選型理由對得上內容類型（旅遊/生活→Sweet），且技術內容不會被帶到 Sweet", "deterministic": false}
+      ]
+    },
+    {
+      "id": 8,
+      "name": "sweet-decoration-discipline",
+      "intent": "鐵則：Sweet 的甜來自色與形，不是堆裝飾——每卡裝飾 ≤3、不壓字、零外部資產。",
+      "setup": "Sweet 家族產出的任一張卡。",
+      "prompt": "（檢視 Sweet 家族輪播的任一張卡）",
+      "expected_output": "每卡 .doodle/.sticker 合計不超過 3 個；裝飾都在留白處、不與文字重疊；字級不低於 28px 地板；塗鴉為原創 inline SVG，HTML 無外部資源引用。",
+      "assertions": [
+        {"text": "每卡 .doodle 與 .sticker 元素合計 ≤3", "deterministic": true},
+        {"text": "HTML 內無 http:// 或外部 url( 資源引用", "deterministic": true},
+        {"text": "裝飾不與文字重疊（渲染 PNG 目視）", "deterministic": false}
+      ]
     }
   ]
 }

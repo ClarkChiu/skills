@@ -3,7 +3,7 @@ name: social-card
 description: >-
   Generate polished IG / LinkedIn social card image sets (carousels + single cards)
   from an article, notes, outline, or screenshots — a principle-driven design engine
-  (Swiss + Editorial systems, fixed-ratio frames) that renders to exact-size PNG via
+  (Swiss + Editorial + Sweet systems, fixed-ratio frames) that renders to exact-size PNG via
   agent-browser. USE THIS SKILL when the user wants Instagram carousel images, IG
   4:5 / 1:1 / 9:16 posts, LinkedIn document-carousel or square cards, or 「社群卡片」
   「IG 輪播圖」「貼文圖」「LinkedIn 卡片」. Targets IG (4:5 primary, 1:1, 9:16) and
@@ -50,10 +50,12 @@ images, you publish them.
    `references/platform-specs.md` for the exact pixel size and safe area of each ratio.
 2. **Plan the card set** — pick page roles from `references/layouts.md` (cover →
    points → optional checklist/comparison/quote → summary) and a style family +
-   palette from `references/style-system.md` (Swiss or Editorial).
+   palette from `references/style-system.md` (Swiss, Editorial, or Sweet — the
+   family × page-role fit table is there too).
 3. **Build one HTML file** in a task folder, each card a fixed-dimension
    `<section class="card ig-45" id="ig-01">…</section>`. Start from
-   `assets/template-swiss.html` or `assets/template-editorial.html`. Screenshots follow
+   `assets/template-swiss.html`, `assets/template-editorial.html`, or
+   `assets/template-sweet.html`. Screenshots follow
    `references/screenshot-treatment.md` (object-fit by content type).
 4. **Render + QA** per `references/render-qa.md`. Render with the helper
    `bash scripts/render-frames.sh <task>/index.html <task>/output` — it isolates each
@@ -67,7 +69,7 @@ images, you publish them.
 
 - `references/platform-specs.md` — IG/LinkedIn/FB pixel sizes, safe areas, naming.
 - `references/principles.md` — one idea per card, shorten-not-shrink, CJK line-height.
-- `references/style-system.md` — Swiss vs Editorial, original palettes.
+- `references/style-system.md` — Swiss / Editorial / Sweet, original palettes, family × page-role fit.
 - `references/layouts.md` — the page-role catalog with character caps.
 - `references/screenshot-treatment.md` — object-fit / framing rules.
 - `references/render-qa.md` — the agent-browser render + eval QA pipeline.

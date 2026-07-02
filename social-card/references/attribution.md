@@ -28,6 +28,20 @@
   QA 規則重寫成餵 `agent-browser eval --stdin` 的 `scripts/qa-rules.js`。不引入 playwright/chromium。
 - **撰寫語言**：英文（工程／工具技能，照本專案「語言看主題」慣例）；description 帶中文觸發語。
 
+## Sweet 家族原則參考自
+
+**JimLiu/baoyu-skills**（作者 Jim Liu／宝玉，MIT）
+- 儲存庫：https://github.com/JimLiu/baoyu-skills
+- 評估紀錄：`research/audits/2026-07-02-baoyu-skills.md`、`research/skill-index.md`
+
+只取**甜美系設計語言的方向**，不是檔案：baoyu-xhs-images 的 `cute` 預設與
+baoyu-infographic 的 `kawaii` 風格給了「馬卡龍色系＋貼紙／拍立得元素＋圓潤字形」
+這組視覺語言，以及「風格×版式相容表」的想法（原為四軸機讀元素組合，本技能只取
+相容表、不採機讀結構——裁決見 `docs/specs/2026-07-02-social-card-sweet-design.md` §6）。
+**未收任何上游檔**：色票原創重調（macaron／cream-mint）、塗鴉為原創 inline SVG、
+濃度收斂（每卡裝飾 ≤3、不壓字）以貼合本技能的克制哲學——上游的滿版愛心星星、
+Q 版臉、氣氛濾鏡刻意不取。`sources.lock` 已釘上游基準供 `skill-evolve` 比對。
+
 ## 反預設清單（principles.md §7）
 
 `principles.md` 的「避開 LLM 預設」一節屬通用設計常識（與 `slide-deck` 既有的 anti-slop 同類），

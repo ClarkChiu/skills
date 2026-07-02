@@ -88,6 +88,10 @@ The script returns a JSON array of findings; **empty array = pass**. Each findin
 | `title-cap` | title > 4 display lines | shorten the title |
 | `safe-area` | text enters the Stories/Reels UI band | pull content into the central safe band |
 
+**Sweet family cards — extra visual check** (not in qa-rules.js): count the decorations
+(doodles/stickers) — at most 3 per card — and confirm none overlaps text. Do this while
+eyeballing the rendered PNGs. `# 天花板：若裝飾壓字反覆出現，屆時在 qa-rules.js 加 .doodle/.sticker 與文字節點的重疊檢查`
+
 ## The loop
 
 Render → QA → if findings, **fix by cutting/splitting copy or adjusting layout, never by

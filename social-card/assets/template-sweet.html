@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>social-card — Sweet template</title>
+<style>
+  /* ---- original Sweet skeleton; no third-party assets ---- */
+  :root{
+    --grid: 96px;            /* base safe margin */
+    --h-hero: 140px; --h-xl: 96px; --lead: 50px; --body: 36px; --caption: 28px;
+  }
+  /* palette (swap the theme- class on a card to retheme); --deco is decoration-only, never text */
+  .theme-macaron { --paper:#fff5f7; --ink:#46323d; --muted:#a38a95; --accent:#e0507e; --deco:#8fd0c5; }
+  .theme-mint    { --paper:#f4faf5; --ink:#2e4137; --muted:#7c988a; --accent:#e8933a; --deco:#f2b8c6; }
+
+  html,body{margin:0;padding:0;background:#ddd;
+    font-family:"PingFang TC","Noto Sans TC",ui-rounded,"Hiragino Maru Gothic ProN",system-ui,sans-serif;}
+  .sheet{display:flex;flex-wrap:wrap;gap:32px;padding:32px;}
+
+  /* fixed-dimension frames (canonical — see references/platform-specs.md) */
+  .card{box-sizing:border-box;overflow:hidden;position:relative;
+    background:var(--paper);color:var(--ink);}
+  .ig-45 {width:1080px;height:1350px;}
+  .ig-11 {width:1080px;height:1080px;}
+  .ig-916{width:1080px;height:1920px;}
+  .li-11 {width:1080px;height:1080px;}
+  .li-191{width:1200px;height:627px;}
+  .fb-191{width:1200px;height:630px;}
+
+  /* Sweet base: big radius, sticker outlines, restrained doodles (≤3/card, never over text) */
+  .card{padding:var(--grid);display:flex;flex-direction:column;}
+  .panel{background:rgba(255,255,255,.6);border-radius:28px;padding:40px 48px;}
+  .kicker{font-size:var(--caption);letter-spacing:.14em;color:var(--muted);margin-bottom:24px;}
+  .h-hero{font-size:var(--h-hero);line-height:1.14;font-weight:800;margin:0;}
+  .title{font-size:var(--h-xl);line-height:1.16;font-weight:800;margin:0;}
+  .lead{font-size:var(--lead);line-height:1.42;font-weight:500;color:var(--muted);margin:24px 0 0;}
+  .body{font-size:var(--body);line-height:1.55;font-weight:400;margin:0;}
+  .spacer{flex:1;}
+  .accent{color:var(--accent);}
+  /* sticker: pill with a thick white cut-out outline */
+  .sticker{display:inline-block;align-self:flex-start;padding:12px 32px;border-radius:999px;
+    background:var(--accent);color:#fff;font-weight:700;font-size:var(--caption);
+    border:6px solid #fff;box-shadow:0 4px 0 rgba(0,0,0,.08);}
+  /* polaroid: this family's photo treatment (object-fit rules still apply inside) */
+  .polaroid{background:#fff;padding:24px 24px 72px;border-radius:8px;
+    box-shadow:0 8px 24px rgba(70,50,61,.15);transform:rotate(-1.5deg);}
+  .polaroid img{display:block;width:100%;height:auto;border-radius:4px;}
+  /* doodles: original inline SVG, --deco color, low weight, whitespace only, ≤3 per card */
+  .doodle{position:absolute;color:var(--deco);opacity:.8;pointer-events:none;}
+  /* rounded checklist */
+  .list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:24px;}
+  .list li{display:flex;gap:24px;align-items:baseline;font-size:var(--body);line-height:1.45;
+    background:rgba(255,255,255,.6);border-radius:20px;padding:28px 36px;}
+  .list .tick{color:var(--accent);font-weight:800;}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <!-- COVER (role: cover) — macaron; decorations: 2 doodles + 1 sticker = cap of 3 -->
+  <section class="card ig-45 theme-macaron" id="ig45-01">
+    <svg class="doodle" style="top:72px;right:88px;" width="88" height="88" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <!-- hand-drawn heart (original) -->
+      <path d="M12 20c-5-3.6-8-6.6-8-10a4 4 0 0 1 7.2-2.4L12 8.5l.8-.9A4 4 0 0 1 20 10c0 3.4-3 6.4-8 10Z"
+            stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    </svg>
+    <svg class="doodle" style="bottom:220px;left:64px;" width="120" height="36" viewBox="0 0 60 12" fill="none" aria-hidden="true">
+      <!-- wavy line (original) -->
+      <path d="M2 8c5-7 9 5 14-1s9 5 14-1 9 5 14-1 9 5 14-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <div class="kicker">越南 · 街頭散步</div>
+    <h1 class="h-hero">法國麵包<br>要在<span class="accent">早上七點</span>吃</h1>
+    <p class="lead">范五老街的五個小發現，背包客視角。</p>
+    <div class="spacer"></div>
+    <span class="sticker">5 個小發現 →</span>
+  </section>
+
+  <!-- POINTS (role: checklist) — mint; decorations: 1 star doodle -->
+  <section class="card ig-45 theme-mint" id="ig45-02">
+    <svg class="doodle" style="top:64px;right:72px;" width="72" height="72" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <!-- hand-drawn star (original) -->
+      <path d="M12 3l2.2 5.4 5.8.4-4.4 3.8 1.4 5.7L12 15.2 7 18.3l1.4-5.7L4 8.8l5.8-.4L12 3Z"
+            stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    </svg>
+    <div class="kicker">02 · 吃什麼</div>
+    <h2 class="title">先記這三攤</h2>
+    <div class="spacer"></div>
+    <ul class="list">
+      <li><span class="tick">✓</span><span>河粉湯頭清而不淡，加萊姆才完整</span></li>
+      <li><span class="tick">✓</span><span>滴漏咖啡等三分鐘，別催</span></li>
+      <li><span class="tick">✓</span><span>法國麵包夾肝醬，早上最脆</span></li>
+    </ul>
+  </section>
+
+</main>
+</body>
+</html>
