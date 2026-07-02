@@ -39,8 +39,14 @@ These caps are what make density mechanically checkable, not just eyeballed.
 
 In *reading-first* density mode (principles §9) the Content/Comparison ceilings may rise
 (≤8 bullets / 4–6 cards) — but the cap still exists, and overflowing it still means split,
-not shrink. `check_deck.py` enforces the Content/Agenda bullet cap when a slide's
-`data-label` names its role.
+not shrink.
+
+**Role lock.** Every slide MUST carry a `data-label` naming a role from this catalog
+(hyphen/case variants like `Big-Number` are accepted) — that label is the hook
+`check_deck.py` uses for role checks: the Content/Agenda bullet caps, and a near-empty
+density ceiling on the sparse roles (Cover / Section / Closing / Big number / Quote).
+A label outside the catalog draws a warning: invented layouts are the main source of
+unstable slides — constraints are what make generated decks reliable.
 
 ## Decision tree — content relationship → layout
 

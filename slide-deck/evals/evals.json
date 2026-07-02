@@ -18,6 +18,13 @@
       "prompt": "我有一份公司的 PowerPoint 模板，可以照它的風格幫我把這份產品週報做成投影片嗎？",
       "expected_output": "Recognizes path D: offers to extract the .pptx (extract_pptx.py / python-pptx) for content + style, matches its palette/fonts into an original preset, rebuilds as an HTML deck without redistributing the source file. Asks for the file or the outline.",
       "files": []
+    },
+    {
+      "id": 4,
+      "name": "role-lock-registered-labels",
+      "prompt": "做一份 6 頁的內部架構審查簡報（任一主題），做完跑一次 check_deck.py 給我看結果。",
+      "expected_output": "Every <section class=\"slide\"> in the generated deck carries a data-label naming a role registered in references/layouts.md (cover/agenda/section/content/bignumber/quote/comparison/timeline/closing, hyphen/case variants OK) — no invented role names. check_deck.py reports 0 errors and no 'no data-label' / 'not a registered role' warnings. If the deck were labeled with an invented role (e.g. data-label=\"hero-mega\"), the checker must flag it.",
+      "files": []
     }
   ]
 }

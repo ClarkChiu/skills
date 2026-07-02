@@ -1,6 +1,6 @@
 {
   "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
-  "checked_at": "2026-06-28",
+  "checked_at": "2026-07-02",
   "sources": {
     "1weiho/open-slide": {
       "commit": "2adbe12a8462",
@@ -36,7 +36,14 @@
       "commit": "9906a34d640d",
       "release": "v2.1.0",
       "date": "2026-06-23",
-      "note": "2026-06-28 bump (was c28690100a28). Re-reviewed its density-by-use (low-density live-speaking vs high-density async-reading) + 3-preview workflow as part of the 2026-06-28 font-axis design. Both are ALREADY covered in slide-deck: density by principles.md §9 (Speaker-led/Reading-first) + §10 (deck rhythm), preview by SKILL.md Phase 2 (show-don't-tell 2–3 previews). No new principle to adopt this round. 2026-06-17 bump (was 24e420e4acef): v2.1.0 bold-template-pack + preview-authenticity hygiene, not a design technique."
+      "note": "2026-07-02 (same commit): ADOPTED two principles this round — selection-index metadata idea → best_for/avoid_for table in style-presets.md; preview composition (1 safe + 1 bold + 1 wildcard) + preview-authenticity → SKILL.md Phase 2. Template pack + CDN fonts still deliberately NOT adopted (zero-third-party-assets stance). Full re-evaluation: research/audits/2026-07-02-frontend-slides.md. 2026-06-28 bump (was c28690100a28): density-by-use + 3-preview reviewed, already covered. 2026-06-17 bump (was 24e420e4acef): v2.1.0 bold-template-pack + preview-authenticity hygiene noted."
+    },
+    "op7418/guizang-ppt-skill": {
+      "commit": "82fe5ae129e8",
+      "release": null,
+      "date": "2026-07-02",
+      "license": "AGPL-3.0 — 僅取原則，永不收檔",
+      "note": "2026-07-02: adopted the layout-lock PRINCIPLE (registered role catalog + mandatory data-label + checker flags invented layouts) into layouts.md + check_deck.py slide_role_warns — checker code entirely original, WARN-level instead of upstream's hard block, our own nine-role registry (not S01–S22). Earlier: CJK-headline downscaling (principles §13). Evaluation: research/audits/2026-07-02-guizang-ppt-skill.md. Re-sync: watch its S01–S22 registry and validate-swiss-deck.mjs for new check ideas (ideas only — AGPL)."
     }
   }
 }

@@ -52,6 +52,15 @@ DATALABEL_RE = re.compile(r'data-label="([^"]*)"', re.IGNORECASE)
 # Roles whose one-line-bullet density is deterministically cappable (layouts.md). A slide
 # tagged with one of these via data-label gets its bullet count checked against the cap.
 ROLE_CAPS = {"content": 5, "agenda": 6}
+# Registered page roles (layouts.md). data-label is the hook that makes role checks
+# possible; an unregistered label usually means an invented layout — the main source
+# of unstable slides (constraints make generated decks more reliable).
+ROLE_ALIASES = {"big-number": "bignumber", "section-divider": "section", "divider": "section"}
+KNOWN_ROLES = {"cover", "agenda", "section", "content", "bignumber", "quote",
+               "comparison", "timeline", "closing"}
+# Near-empty roles (layouts.md density table): prose beyond this belongs on a Content slide.
+SPARSE_ROLES = {"cover", "section", "closing", "bignumber", "quote"}
+MAX_SPARSE_UNITS = 50
 FONTSIZE_RE = re.compile(r"font-size\s*:\s*(\d+(?:\.\d+)?)px", re.IGNORECASE)
 CJK_RE = re.compile(r"[㐀-鿿豈-﫿]")
 
@@ -131,6 +140,35 @@ def font_axis_warns(doc):
     return warns
 
 
+def slide_role_warns(attrs: str, frag: str, n: int):
+    """Role-lock checks against the layouts.md registry. Pure: attrs+fragment in, warns out.
+
+    Every slide should declare its page role via data-label; that hook is what makes
+    role-level checks (bullet caps, near-empty density) possible at all. An unregistered
+    label is usually an invented layout, which is where unstable pages come from.
+    """
+    warns = []
+    units = count_units(visible_text(frag))
+    bullets = len(re.findall(r"<li\b", frag, re.IGNORECASE))
+    m_lbl = DATALABEL_RE.search(attrs)
+    role = m_lbl.group(1).strip().lower() if m_lbl else ""
+    role = ROLE_ALIASES.get(role, role)
+    if not role:
+        warns.append(f"slide {n}: no data-label — tag its registered role "
+                     f"({', '.join(sorted(KNOWN_ROLES))}) so role checks can apply")
+    elif role not in KNOWN_ROLES:
+        warns.append(f"slide {n}: data-label '{role}' is not a registered role "
+                     f"({', '.join(sorted(KNOWN_ROLES))}) — invented layouts are the "
+                     f"main source of unstable slides; pick from the catalog")
+    cap = ROLE_CAPS.get(role)
+    if cap and bullets > cap:
+        warns.append(f"slide {n}: role '{role}' has {bullets} bullets (cap {cap}) — split, don't cram")
+    if role in SPARSE_ROLES and units > MAX_SPARSE_UNITS:
+        warns.append(f"slide {n}: role '{role}' is a near-empty role but carries ~{units} "
+                     f"text units (> {MAX_SPARSE_UNITS}) — move the prose to a Content slide")
+    return warns
+
+
 def _selftest() -> int:
     """No-framework self-check for font_axis_warns (run via --selftest)."""
     ORDER, UNUSED = "before the Latin family", "no Han glyphs"
@@ -146,6 +184,16 @@ def _selftest() -> int:
     assert wb == [], f"B: expected no warns, got {wb}"
     assert any(UNUSED in w for w in wc), f"C: expected loaded-but-unused warn, got {wc}"
     assert not any(ORDER in w for w in wc), f"C: unexpected order warn, got {wc}"
+    # role-lock checks (slide_role_warns)
+    R_MISS, R_UNREG, R_SPARSE = "no data-label", "not a registered role", "near-empty role"
+    wd = slide_role_warns('class="slide"', "<h1>Hi</h1>", 1)
+    assert any(R_MISS in w for w in wd), f"D: expected missing-label warn, got {wd}"
+    we = slide_role_warns('class="slide" data-label="hero-mega"', "<h1>Hi</h1>", 2)
+    assert any(R_UNREG in w for w in we), f"E: expected unregistered-role warn, got {we}"
+    wf = slide_role_warns('class="slide" data-label="Quote"', "<p>" + "字" * 60 + "</p>", 3)
+    assert any(R_SPARSE in w for w in wf), f"F: expected sparse-density warn, got {wf}"
+    wg = slide_role_warns('class="slide" data-label="Big-Number"', "<h1>42</h1>", 4)
+    assert wg == [], f"G: alias Big-Number should be registered and clean, got {wg}"
     print("selftest OK")
     return 0
 
@@ -199,11 +247,7 @@ def main() -> int:
         bullets = len(re.findall(r"<li\b", frag, re.IGNORECASE))
         if bullets > 6:
             warns.append(f"slide {n}: {bullets} bullets (> 6) — split into continuation slides, don't cram")
-        m_lbl = DATALABEL_RE.search(attrs)
-        role = m_lbl.group(1).strip().lower() if m_lbl else ""
-        cap = ROLE_CAPS.get(role)
-        if cap and bullets > cap:
-            warns.append(f"slide {n}: role '{role}' has {bullets} bullets (cap {cap}) — split, don't cram")
+        warns.extend(slide_role_warns(attrs, frag, n))
         if units > MIN_UNITS_FOR_EMPHASIS and not EMPHASIS_RE.search(frag):
             warns.append(f"slide {n}: ~{units} text units and nothing emphasized — lift the key "
                          f"nouns/numbers (bold/accent), uniform text reads as a wall")

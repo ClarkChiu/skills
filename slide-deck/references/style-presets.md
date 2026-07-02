@@ -5,9 +5,24 @@ pairing, and a feel. **These are our own CSS, inspired by public-domain design
 *movements* (Swiss, editorial, brutalist…) — not copied from any template file.** Reuse
 freely; the design styles themselves are not copyrightable.
 
-How to use: pick the preset that fits the subject, paste its `:root` block over the one
-in `assets/template.html`, load its fonts, and follow its layout note. When the user is
-unsure, render one slide in 2–3 presets and let them choose by sight.
+How to use: **check the selection table first**, then read only the chosen preset's
+section; paste its `:root` block over the one in `assets/template.html`, load its fonts,
+and follow its layout note. When the user is unsure, render one slide in 3 presets
+(1 safe + 1 bold + 1 wildcard, see SKILL.md Phase 2) and let them choose by sight.
+
+## Selection table (best_for / avoid_for)
+
+| preset | best_for | avoid_for |
+|---|---|---|
+| Swiss | product, finance, anything precise & serious | warm narrative, kids' education |
+| Editorial | storytelling, brand, narrative talks | dense data review, spec walkthroughs |
+| Brutalist | launches, manifestos, opinionated stands | conservative clients, medical/finance compliance |
+| Dark Neon | AI, developer, data, late-night product | print-first decks, bright-room projection |
+| Warm Humanist | education, healthcare, community, onboarding | hard technical specs, financial reporting |
+| Technical | specs, architecture, internal review | outward marketing, emotional narrative |
+
+`avoid_for` is as load-bearing as `best_for` — a preset that fits the subject but
+mismatches the room (projection, compliance, print) is still the wrong pick.
 
 All fonts below are **commercial-OK**: Google Fonts (OFL/Apache) or Fontshare (free
 commercial license). Load Google Fonts via `<link>`; Fontshare via its CSS API
