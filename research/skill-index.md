@@ -64,4 +64,13 @@
 | 2026-06-28 | CLAUDE.md 自我稽核去重流程（bnext 90421，slug 誤標 code-fix） | bnext.com.tw/article/90421/claude-cowork-code-fix | 數位時代（文章，非 repo） | 是（內建 /memory＋schedule；既有 skill-evolve 同款週期偵察骨架） | 🟥 跳過（正文非 debug，是 CLAUDE.md 設定稽核去重：5 條判準揪重複/衝突/冗餘＋週期排程。純 prose＋內建排程，無可重現工程；排程被內建 schedule 涵蓋；使用者已手動在做〔d64bafd〕；skill-evolve 已是自我資產週期偵察者。不需建技能，最多存一段薄提示或小幅擴 skill-evolve 視野到 CLAUDE.md） |
 | 2026-06-28 | claude-token-optimizer（nadimtuhin） | github.com/nadimtuhin/claude-token-optimizer | nadimtuhin | 部分（CLAUDE.md/context 稽核壓縮，與內建 /memory 相鄰） | 🟥 跳過（cto audit/compress/prune CLI 宣稱省 90% token；單人 481★、--break-system-packages 類自動裝＝安裝面要警覺。純 prose 路徑自寫即可，不裝；要裝須先 skill-auditor，本次未稽核） |
 
+| 2026-07-02 | html-ppt-skill | github.com/lewislulu/html-ppt-skill | lewislulu | 是（slide-deck） | 🟥 跳過（範本驅動 HTML 簡報＋演講者模式；與 slide-deck 同域，範本依賴 CDN 與零資產原則相斥、渲染綁 macOS、內容簡體。演講者模式工程為日後可參考增量，MIT） |
+| 2026-07-02 | baoyu-skills（整包 21 技能） | github.com/JimLiu/baoyu-skills | JimLiu（宝玉） | 部分 | 🟥 整包不裝＋逐項挖（MIT、37 貢獻者、活躍，出處強；多數綁簡體／中國平臺或需操控已登入瀏覽器；圖像類重精選資料。逐項裁決見下與本機日誌） |
+| 2026-07-02 | baoyu-translate | github.com/JimLiu/baoyu-skills | JimLiu（宝玉） | 否 | 🟦 參考自製（三段式翻譯法〔初翻→自我批評→精翻〕純文字可自寫，改鎖 EN↔zh-TW＋臺灣用語、下游接 chinese-typography；使用者雙語技術寫作高對位） |
+| 2026-07-02 | baoyu-url-to-markdown | github.com/JimLiu/baoyu-skills | JimLiu（宝玉） | 否 | 🟥 跳過（現階段）（自建 fetch＋站點配接器工程紮實；Muse 入庫管線動工時再正式評估，比照 graphiti 前例） |
+| 2026-07-02 | guizang-ppt-skill | github.com/op7418/guizang-ppt-skill | op7418（歸藏） | 是（slide-deck） | 🟦 參考自製（低優先）（與 slide-deck 同域不裝；AGPL-3.0 不宜收錄檔案；可自寫其「版式登記表＋靜態校驗器」約束式品管原則進 slide-deck） |
+| 2026-07-02 | huashu-design | github.com/alchaincyf/huashu-design | alchaincyf（花叔） | 部分（ui-design-advisor／slide-deck／內建 pptx） | 🟦 參考自製（風格顧問與簡報鏈重複既有管線；MIT；真缺口對位＝時間軸動畫→MP4/GIF 匯出鏈，列為日後 IG 影片技能候選參考；品牌資產協議原則可挑進 ui-design-advisor） |
+| 2026-07-02 | frontend-slides | github.com/zarazhangrui/frontend-slides | zarazhangrui | 是（slide-deck） | 🟦 參考自製（低優先）（與 slide-deck 同域、CDN 字型路線與零資產原則相斥，範本庫不收；MIT、出處強；可挑「機讀選型索引＋漸進揭露＋3 預覽先看再選」機制進 slide-deck） |
+| 2026-07-02 | agency-agents（233 人格合集） | github.com/msitarzewski/agency-agents | msitarzewski | 部分（工程紀律簇重疊 design-gate／systematic-debugging／verify-before-done＋內建 code-review） | 🟥 跳過（人格定義合集非技能；厚實的工程／資安／測試簇正是使用者本人守備、行銷簇較薄；MIT、治理成熟；日後可單檔參考自寫） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_

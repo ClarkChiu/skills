@@ -3,7 +3,7 @@
 - 日期：2026-06-08
 - 設計文件：`docs/specs/2026-06-08-social-card-design.md`（已核准）
 - 慣例：gitmoji + Conventional Commits，**無** `Co-Authored-By`。每個任務一個 commit。
-- 取捨：程式碼類任務給完整可跑碼；散文 reference 給內容規格 + 驗收標準（執行時依規格撰寫）。
+- 取捨：程式碼類任務給完整可跑碼；文字 reference 給內容規格 + 驗收標準（執行時依規格撰寫）。
 
 ---
 
@@ -61,7 +61,7 @@ PY
 
 ---
 
-## Phase B — 技能骨架 + 散文 references
+## Phase B — 技能骨架 + 文字 references
 
 ### 任務 2：`social-card/SKILL.md`
 
