@@ -50,6 +50,7 @@
 | [`to-issues`](./to-issues/) | 把計畫／規格／PRD 拆成可獨立認領的 **GitHub issue**：垂直曳光彈切片、依相依排序，**發布前一律先把整份清單給你確認**才用 `gh` 建立(用你既有登入、不碰 token,未登入交回你)。是 `design-gate` 的天然下游(出計畫 → 發成 issue),不重新規劃。改寫自 `mattpocock/skills` 的 to-issues（方法非檔、加確認閘門、MIT）。 |
 | [`html-diagram`](./html-diagram/) | 把系統畫成**單一自足 HTML／SVG 圖**：架構圖、堆疊圖、時序與請求流程圖、流程圖——全螢幕、以圖為主、文字極少、零相依、含手刻深色模式（CSS 變數＋localStorage＋paint 前套用）；節點可點、序列可動畫。鐵則：先把拓樸搞對（不明就問、不憑空編邊）、SVG 走 CSS class 不寫死 hex、用 viewBox 縮放、互動只在值得時才加。**收錄＋客製**：vendored `ThariqS/html-effectiveness`（Apache-2.0，作者 Thariq Shihipar）圖相關參考子集＋`plannotator/effective-html`（MIT）的完成範例，SKILL.md 自寫並收窄到「圖」；report/explainer 類交給內建 `web-artifacts-builder`。邊界：vs `slide-deck`（16:9 多頁簡報）、`social-card`（固定比例社群圖）、`frontend-design`（產品 UI）。 |
 | [`daily-brief`](./daily-brief/) | 把一天的原料——待辦、收件匣、行事曆、脈絡、昨日未竟——變成**一份**精簡、排好優先級、可三十秒掃完的每日日報：今天做什麼且**為何今天**、先吃哪隻青蛙、什麼排程／委派、以及最常被略過的「今天可以不做什麼」。無狀態的優先級引擎（艾森豪 × Eat-the-Frog × 1-3-5 × 減法 × 負荷檢查）；多語，輸出跟隨輸入語言，中文自動套盤古之白（負荷檢查的數字最明顯）。昨日反覆未竟會被**逼成決定**（做／縮／委派／砍）而非再延一天；newsletter／FYI 信不會被當成任務；缺輸入就問、絕不虛構任務。鐵則：失敗大聲（延後／刪除明說）、一次一份、不說教。**只做內容引擎**：定時觸發＋寄送交給內建 `schedule`、讀 Gmail／Calendar 交給 MCP／agent，保持無狀態可被串接。自製（公開方法零檔案收錄：艾森豪／GTD／Eat-the-Frog／Ivy Lee／1-3-5；多語設計參考 `NirDiamant/Prompt_Engineering`、`0x2e-Tech/awesome-ai-prompts`；繁中在地化參考數位時代／TechNice／電腦玩物）。純 prompt、僅 `Read`。 |
+| [`ig-reel`](./ig-reel/) | 把**你自己的影音庫存**剪成 IG 直式短片（Reel，9:16、1080×1920、目標 ≤60 秒）：盤點（ffprobe）→ 粗剪 → 9:16 重構圖（主體置中裁切或模糊墊底，**逐支決策不盲裁**）→ 字幕（whisper 選用，燒錄進安全區＋字級地板）→ 混音（ducking＋響度正規化）→ 合成輸出，可批次。鐵則：**素材是使用者的**（不抓網路庫存、不 AI 補鏡頭）、**每支輸出 ffprobe 驗證** fail loud（批次失敗明列、離開碼非零）、最少重編碼、不發文（發布同 social-card 界線）。核心引擎 ffmpeg（必備）；auto-editor／whisper 選用、缺席優雅降級、絕不自動安裝。與 `social-card` 併成 IG 的「圖＋影」家族。原創建構（管線形狀經本機研究筆記參考 MoneyPrinterTurbo 類專案，零檔案收錄；HTML 動畫→MP4 擴充線釘 huashu-design 追蹤）。 |
 | [`translate`](./translate/) | EN↔臺灣繁體中文**雙向翻譯**，兩模式：**快翻**（直翻不留檔）與**精翻**（分析→初稿→批評→重翻，中間檔全留、發表品質），快翻後說「繼續精翻」可沿用產出升級、不重翻。承重紀律：**批評步只診斷不動筆**（問題清單＋位置＋修法），改寫留給下一步；批評清單依方向換——英譯中抓翻譯腔（歐化句、被動濫用、中國用語混入），中譯英抓中式英文（冠詞、時態、直譯搭配）。用詞接 `chinese-typography` 用詞層（user-dictionary＞glossary＞技能術語表）；與 `humanizer` 畫界：翻譯腔歸這裡、AI 腔歸它，完成建議下游接 humanizer→chinese-typography。改寫自 `JimLiu/baoyu-skills` 的 baoyu-translate（方法非檔、三模式砍成二、zh-CN→zh-TW、MIT）。 |
 
 ## 新增一個自建技能
@@ -76,6 +77,14 @@
 npm install -g agent-browser     # 任意平台（或 macOS：brew install agent-browser）
 agent-browser install            # 下載 Chrome（首次必跑）
 # 免裝試用：npx agent-browser open example.com
+```
+
+**`ffmpeg`／`ffprobe`（影音處理引擎）**——`ig-reel` 的核心（必備）。選用搭檔：`auto-editor`（剪靜音廢秒）、`openai-whisper`（字幕轉錄）——缺席時技能優雅降級，**絕不自動安裝**。
+
+```bash
+sudo apt install ffmpeg            # Debian/Ubuntu（macOS：brew install ffmpeg）
+pipx install auto-editor           # 選用
+pipx install openai-whisper        # 選用（首次執行會下載模型）
 ```
 
 **`rtk`（Rust Token Killer，token 優化 CLI 代理，[github.com/rtk-ai/rtk](https://github.com/rtk-ai/rtk)）**——透過 PreToolUse hook 把 `git status` 之類透明改寫成 `rtk git status`，省 60–90% 輸出 token。**它自帶安裝器,不要手刻 hook**：

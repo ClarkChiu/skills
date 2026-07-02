@@ -1,0 +1,14 @@
+{
+  "_comment": "Maintained by skill-evolve. ig-reel is an ORIGINAL build (recipes/prose all local; see references/attribution.md). This lock pins only the tracked future-extension upstream. MoneyPrinterTurbo/ShortGPT informed the pipeline shape via research/2026-06-21-video-editing-projects-for-ig.md but were never cloned/audited, so they are deliberately NOT pinned — pin them if their code is ever consulted directly (after skill-auditor).",
+  "checked_at": "2026-07-02",
+  "sources": {
+    "alchaincyf/huashu-design": {
+      "ref": "master",
+      "commit": "0e7ec8aca005",
+      "date": "2026-07-02",
+      "license": "MIT",
+      "vendored": "NOTHING YET — tracked as the candidate engine for the future HTML-animation→MP4 route (render-video.js / render-video-seek.js / convert-formats.sh / add-music.sh).",
+      "note": "2026-07-02: pinned at evaluation time (research/audits/2026-07-02-huashu-design.md, 🟦). When the animated-card route is built: audit those scripts per-file, then adapt principles or selectively vendor (MIT) with attribution updates. Re-sync: watch its render pipeline for capture/export improvements."
+    }
+  }
+}

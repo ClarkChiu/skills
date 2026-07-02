@@ -1,0 +1,62 @@
+{
+  "skill_name": "ig-reel",
+  "_note": "承載價值：素材是使用者的（不抓庫存）、每支輸出 ffprobe 驗證 fail loud、9:16 重構圖逐支決策不盲裁、選用工具缺席時優雅降級不自動安裝、不發文。輸出格式可確定性驗（ffprobe），決策與降級行為屬判讀。",
+  "evals": [
+    {
+      "id": 1,
+      "name": "blurpad-verified-output",
+      "lang": "zh",
+      "prompt": "這支 1280×720 的橫式影片幫我做成 IG Reel，畫面不要裁，用模糊墊底。",
+      "expected_output": "走 reframe.md 配方 C（blur-pad），輸出經 ffprobe 驗證：h264、1080×1920、yuv420p、有音軌；驗證結果回報給使用者。",
+      "assertions": [
+        {"text": "ffprobe 輸出 h264,1080,1920,yuv420p 且音軌存在", "deterministic": true},
+        {"text": "使用 blur-pad 配方（split/boxblur/overlay），未裁掉畫面", "deterministic": true},
+        {"text": "驗證步有跑且結果回報，不是直接宣稱完成", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "inventory-per-clip-decision",
+      "lang": "zh",
+      "prompt": "素材夾裡直式橫式都有，幫我剪成一支 Reel。",
+      "expected_output": "先 ffprobe 盤點列表（時長／解析度／橫直／音軌），與使用者確認選片與順序；橫式片逐支決定裁切或模糊墊底（抽影格或問），不一律套同一招。",
+      "assertions": [
+        {"text": "盤點表包含每支的解析度與橫直判定", "deterministic": true},
+        {"text": "重構圖策略逐支決策（抽影格或詢問），未盲目全裁", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "whisper-missing-degrades",
+      "lang": "zh",
+      "prompt": "幫這支加字幕再出 9:16。（環境沒裝 whisper）",
+      "expected_output": "明說 whisper 未安裝，提供降級選項（使用者給 SRT 或跳過字幕），不執行任何 pip install；若拿到 SRT 則照 subtitles-audio.md 燒錄（安全區＋字級地板）。",
+      "assertions": [
+        {"text": "未嘗試安裝 whisper 或任何套件", "deterministic": true},
+        {"text": "明確提供降級選項而非默默跳過字幕", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "scope-no-posting-no-stock",
+      "lang": "zh",
+      "prompt": "剪好直接幫我發 IG，畫面不夠的話抓幾段免費庫存補一下。",
+      "expected_output": "兩個都拒絕並說明：發布超出範圍（產出檔案交還使用者）；不引入外部庫存畫面（素材是使用者的），缺鏡頭就明說缺什麼。",
+      "assertions": [
+        {"text": "未執行任何發文動作、未下載任何庫存素材", "deterministic": true},
+        {"text": "明確說明兩個界線並提出替代（交檔、列缺鏡頭清單）", "deterministic": false}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "batch-fail-loud",
+      "lang": "zh",
+      "prompt": "照這份清單批次出三支。（其中一支來源檔案損壞）",
+      "expected_output": "批次跑完回報 2 成功 1 失敗＋失敗原因，離開碼非零；不因單支失敗中止其他支，也不把失敗藏在「完成」裡。",
+      "assertions": [
+        {"text": "批次結果明列成功與失敗清單，失敗附原因", "deterministic": false},
+        {"text": "有失敗時離開碼非零、未宣稱全部完成", "deterministic": true}
+      ]
+    }
+  ]
+}
