@@ -60,6 +60,16 @@ verdict in `research/audits/2026-06-08-taste-skill.md`); these three directives
 were the parts worth keeping. Pinned in `sources.lock` so `skill-evolve` tracks
 the upstream for better wording later.
 
+`references/brand-assets.md` adapts the **brand-asset protocol** from
+**alchaincyf/huashu-design** (MIT) — never write brand hex/logo rules from model
+memory; fetch from official sources and pin the result — plus its framing of the
+anti-slop argument ("default AI output is the average of all brands"). **No files
+copied**; the ladder is restructured for this skill (offline-first: user-supplied
+spec → WebFetch pin → ask; upstream's mandatory WebSearch step dropped), and the
+pin format (`docs/design/brand/<brand>-spec.md`) is original. Full verdict:
+`research/audits/2026-07-02-huashu-design.md` (🟦 build-your-own). Pinned in
+`sources.lock` for `skill-evolve`.
+
 ## Re-sync
 
 `sources.lock` pins each source at the commit vendored. When `skill-evolve` runs,

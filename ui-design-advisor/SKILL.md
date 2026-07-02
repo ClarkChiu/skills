@@ -17,7 +17,7 @@ description: >-
   writing the actual component code (that's frontend-design), for HTML slide
   decks (that's slide-deck), or for pre-code engineering design+plan of
   non-visual logic (that's design-gate).
-allowed-tools: Read, Grep, Glob, Write, AskUserQuestion
+allowed-tools: Read, Grep, Glob, Write, AskUserQuestion, WebFetch
 ---
 
 # UI Design Advisor
@@ -55,7 +55,9 @@ aesthetic-palette JSON, and accessibility + UX-heuristic markdown.
    do not guess silently. Then **state a one-line Design Read** before deciding
    anything (`references/anti-default.md` §1): *"Reading this as: \<screen> for
    \<audience>, with a \<vibe> language, leaning toward \<style>."* The audience
-   picks the aesthetic, not your taste.
+   picks the aesthetic, not your taste. If the request involves a **recognizable
+   brand**, open `references/brand-assets.md` and follow its source ladder —
+   never write brand hex/logo rules from memory.
 
 2. **Route, then read.** Open `data/INDEX.md`. Start from
    `ui-ux-pro-max/ui-reasoning.csv` (the per-category decision rules), then pull
@@ -85,6 +87,8 @@ aesthetic-palette JSON, and accessibility + UX-heuristic markdown.
    - **Style** — name + why (cite the style row's reasoning), light/dark stance.
    - **Palette** — roles with hex (primary / accent / background / surface /
      muted / border / destructive), or a `colors.json` combination if editorial.
+     Brand case: cite the brand-spec (`references/brand-assets.md`) — its values
+     override palette rows on color; the data still picks the style.
    - **Typography** — heading + body pairing, with the Google Fonts / Tailwind
      hookup from `typography.csv`.
    - **Charts** (if any) — type per data shape, with accessibility note.

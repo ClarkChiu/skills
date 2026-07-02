@@ -61,6 +61,18 @@
         {"text": "does not default to an AI-purple/indigo gradient, centered-hero-on-dark-mesh, or Inter display face; if any cliché is kept it is justified, not reached for by default", "deterministic": false},
         {"text": "still hands implementation off to frontend-design rather than writing the page", "deterministic": false}
       ]
+    },
+    {
+      "id": 6,
+      "name": "brand-never-guess",
+      "lang": "en",
+      "prompt": "Design direction for the Proxmox community dashboard we're building — it should feel on-brand with Proxmox.",
+      "expected_output": "A recognizable brand (Proxmox) is in scope and no brand-spec exists yet. The skill must follow references/brand-assets.md: it must NOT state Proxmox's brand hex from memory. With WebFetch available it pins the values from an official source (site CSS / svgl / simpleicons) and records source URL + fetch date, then writes docs/design/brand/proxmox-spec.md; without network it asks the user for the values. Style/type decisions still come from the vendored data; the brand-spec overrides on color only.",
+      "assertions": [
+        {"text": "no brand hex value is asserted from memory — every brand color is either fetched (with source URL + date) or requested from the user", "deterministic": false},
+        {"text": "when values are obtained, a brand-spec file is written for reuse (docs/design/brand/<brand>-spec.md)", "deterministic": false},
+        {"text": "vendored data still picks the style; the brand-spec overrides color only", "deterministic": false}
+      ]
     }
   ]
 }

@@ -43,6 +43,14 @@
       "license": "MIT",
       "vendored": "PRINCIPLES ONLY — no files. references/anti-default.md rewrites 3 directives: the Design Read declaration, the anti-default cliché list, the 3 dials (variance/motion/density).",
       "note": "2026-06-08: adapted, not vendored. Prompt-only frontend generator, 37k★ but viral/solo/4-months-old; verdict build-your-own (not install/vendor) — research/audits/2026-06-08-taste-skill.md. Tracked so skill-evolve can surface upstream wording tweaks; refinement would live in upstream skills/taste-skill/SKILL.md — re-read it on a bump."
+    },
+    "alchaincyf/huashu-design": {
+      "ref": "master",
+      "commit": "0e7ec8aca005",
+      "date": "2026-07-02",
+      "license": "MIT",
+      "vendored": "PRINCIPLES ONLY — no files. references/brand-assets.md adapts the brand-asset protocol (never guess brand colors from memory; fetch official sources and pin) + the 'default AI output = average of all brands' anti-slop framing.",
+      "note": "2026-07-02: adapted, not vendored — research/audits/2026-07-02-huashu-design.md (🟦 build-your-own). Ladder restructured offline-first (user spec → WebFetch pin → ask); upstream's mandatory WebSearch step dropped. Re-sync: watch upstream SKILL.md 品牌资产协议 §1.a and the anti-slop list for protocol refinements."
     }
   }
 }
