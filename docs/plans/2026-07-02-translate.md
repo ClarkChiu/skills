@@ -80,8 +80,9 @@
 
 ## 任務 9：設計與計畫文件入版控
 
-- `git add docs/specs/2026-07-02-translate-design.md docs/plans/2026-07-02-translate.md research/skill-index.md chinese-typography/references/glossary.md`
-- **提交**：`📝 docs: translate 設計＋計畫；skill-index 補 2026-07-02 六筆評估；glossary 釘「文字」`
+- `git add docs/specs/2026-07-02-translate-design.md docs/plans/2026-07-02-translate.md research/skill-index.md docs/plans/2026-06-08-social-card.md`
+- **提交**：`📝 docs: translate 設計＋計畫；skill-index 補 2026-07-02 六筆評估；全庫「散文」改「文字」`
+- 執行時偏離（回填記錄）：`glossary.md` 原列在此任務，因該檔載有會話前使用者未提交的修改（連同 `user-dictionary.json`），**刻意排除**、留給使用者自行提交——本次新增的「文字／散文」釘選列目前只在工作區。
 
 ## 完成定義
 
@@ -89,4 +90,4 @@
 - [ ] 三處登錄＋symlink 可解析
 - [ ] evals 6 案、JSON 可解析
 - [ ] attribution＋sources.lock 成對、commit 釘 `a4e78af8136f`
-- [ ] 三個提交訊息合 gitmoji＋Conventional、無 Co-Authored-By
+- [ ] 四個提交訊息（任務 6／7／8／9 各一）合 gitmoji＋Conventional、無 Co-Authored-By
