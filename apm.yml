@@ -30,6 +30,7 @@ dependencies:
   - ./to-issues/
   - ./html-diagram/
   - ./daily-brief/
+  - ./translate/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []

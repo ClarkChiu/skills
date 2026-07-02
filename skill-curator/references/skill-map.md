@@ -12,11 +12,12 @@ When evaluating the **duplication** of an external skill, check this map first �
 
 Pipeline: `skill-finder (discover) → skill-auditor (security) → skill-curator (verdict/record) → [build-your-own] skill-creator [built-in] drafts → skill-evolve (track upstream)`
 
-### B. Chinese text (two-stage pipeline)
+### B. Chinese text (three-stage pipeline)
+- `translate`: translation layer — EN↔zh-TW bidirectional, two modes (快翻 direct / 精翻 analyze→draft→critique→revise). Load-bearing rule: the critique step diagnoses only, never rewrites in the same step. Direction-specific critique checklists (EN→zh-TW hunts translation-ese: 歐化句/被動濫用/中國用語; zh-TW→EN hunts Chinglish: articles/tenses/collocations). Word choices wired to the chinese-typography preference stack (user-dictionary.json > glossary.md > its own terms-en-zhtw.md). Adapted from `JimLiu/baoyu-skills` baoyu-translate (method only, no files; MIT; three modes cut to two, zh-CN→zh-TW, all engineering dropped). Boundary vs `humanizer`: translation-ese (source-language structure residue) belongs here; AI-tell removal belongs to humanizer — neither copies the other's rules.
 - `humanizer`: voice layer, removes AI-writing tells (bilingual EN + zh-TW). Also carries a "preserve-the-author" subtractive guardrail (don't flatten a real author's voice when editing their own draft) — principles from `orange2ai/renwei-writing` (2026-06-14, principles only, not vendored; custom license), tracked in humanizer's sources.lock.
 - `chinese-typography`: typography layer — 盤古之白 / full-width punctuation / Simplified→Traditional / regional vocabulary / normalization.
 
-Pipeline: `humanizer (voice) → chinese-typography (typography)`. Regional-vocabulary substitution belongs to the typography layer.
+Pipeline: `translate (translate) → humanizer (voice) → chinese-typography (typography)`. Regional-vocabulary substitution belongs to the typography layer; translate's critique only pre-flags gross typography issues, never fixes them.
 
 ### C. Engineering discipline (around CLAUDE.md Rule 0–12)
 - `design-gate`: **before** code — design → hard gate → plan. Phase 1 now also sharpens ubiquitous language + captures ADRs inline (`references/adr.md`, adapted from mattpocock grill-with-docs).
@@ -57,6 +58,7 @@ Order: `design-gate (before/plan) → to-issues (publish plan as issues) → tdd
 | `to-issues` | `design-gate` | to-issues = publish a settled plan as GitHub issues (downstream); design-gate = produce the design+plan (upstream) — don't re-plan in to-issues |
 | `daily-brief` | `decision-lens` (Crux) | daily-brief = recurring lightweight day-triage into one prioritized brief; decision-lens = a one-off weighty scored prioritization / should-I decision. Also vs `to-issues` (file work as issues) and built-in `schedule` (the timer+delivery; daily-brief is the content engine) |
 | `terse` | `humanizer` | terse = remove length / save tokens (live mode); humanizer = remove AI tone (post-edit). Both keep grammar intact |
+| `translate` | `humanizer` / `chinese-typography` | translate = EN↔zh-TW translation with a diagnose-only critique step (hunts translation-ese / Chinglish); humanizer = de-AI the voice; chinese-typography = typography normalization. Chain: translate → humanizer → chinese-typography |
 | `git-guardrails` | (none — it's a hook) | a PreToolUse safety hook, not a prose skill; no built-in equivalent. Merges alongside the RTK hook (and must run before it, or tolerate an `rtk ` prefix, since rtk rewrites commands) |
 
 ## Quick judgment for a new external skill
