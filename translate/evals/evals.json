@@ -1,0 +1,75 @@
+{
+  "skill_name": "translate",
+  "_note": "EN↔zh-TW 兩模式翻譯。受測的承重點：術語走詞彙層（信令不是訊令）、精翻批評步只診斷不動筆、批評清單依方向換、快翻升級不重翻、程式碼區塊逐位元不變。案例對應設計文件 docs/specs/2026-07-02-translate-design.md §8 的六條驗收準則。",
+  "evals": [
+    {
+      "id": 1,
+      "name": "terminology-signaling",
+      "lang": "zh",
+      "prompt": "快翻成中文：The NAT traversal procedure relies on out-of-band signaling to exchange candidate addresses before the media session starts.",
+      "expected_output": "自然的臺灣繁體譯文；signaling 譯為「信令」且首次出現以括號附原文，例如「信令（signaling）」；NAT traversal 譯「NAT 穿越」。",
+      "assertions": [
+        {"text": "譯文用「信令」，不用「訊令」", "deterministic": true},
+        {"text": "專業術語首次出現附原文括號（至少 signaling 有）", "deterministic": false},
+        {"text": "譯文是自然臺灣繁體，不是逐字直譯的翻譯腔", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "refined-produces-four-files",
+      "lang": "zh",
+      "prompt": "精翻這個檔案成中文：./sample-article.md（一篇約 600 字的英文技術部落格文）",
+      "expected_output": "輸出目錄 sample-article-zhtw/ 內存在 01-analysis.md、02-draft.md、03-critique.md、04-final.md 四檔；03-critique.md 是問題清單（類別／位置／描述／修法＋統計），不含改寫後的整段或全文譯文。",
+      "assertions": [
+        {"text": "四個中間檔都存在且非空", "deterministic": true},
+        {"text": "03-critique.md 只含診斷清單，沒有改寫後的全文或整段重寫", "deterministic": false},
+        {"text": "01-analysis.md 含術語表且標注來源層", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "critique-catches-passive",
+      "lang": "zh",
+      "prompt": "精翻成中文：The issue was identified by the on-call engineer. The root cause was determined to be a race condition, and the fix was deployed by the team within an hour. The incident report was written and was reviewed by management.",
+      "expected_output": "批評步（03-critique.md）點名初稿的被動語態濫用（被／由／受到）並給修法；最終稿（04-final.md）對應句改為主動或自然中文句式，例如「值班工程師找出問題」而非「問題被值班工程師識別」。",
+      "assertions": [
+        {"text": "03-critique.md 的翻譯腔區塊至少點名一處被動濫用", "deterministic": false},
+        {"text": "04-final.md 的對應句不再是「被…」句式堆疊", "deterministic": false},
+        {"text": "事實（一小時內、race condition）在最終稿中保持正確", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "direction-specific-checklist",
+      "lang": "en",
+      "prompt": "精翻成英文：我們昨天部署新版本，發現一個問題：使用者打開設定頁，系統就當機。工程師已經修好，也補了回歸測試。",
+      "expected_output": "批評步使用 zh-TW→EN 清單：檢查冠詞（a/the）、時態（yesterday → deployed/found）、搭配詞；不出現 EN→zh-TW 方向的條目（歐化句、中國用語）。最終英文自然、時態一致。",
+      "assertions": [
+        {"text": "03-critique.md 檢查冠詞與時態（中式英文清單），而非歐化句／臺灣用語（中譯方向清單）", "deterministic": false},
+        {"text": "最終英文時態正確（yesterday 配過去式）且冠詞完整", "deterministic": false}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "upgrade-no-retranslate",
+      "lang": "zh",
+      "prompt": "（前一回合已快翻完成一段譯文）繼續精翻",
+      "expected_output": "把既有快翻結果存為 02-draft.md 當初稿，不重新翻譯；補齊術語分析後直接進批評步。初稿內容與快翻產出一致（可辨識為同一份，僅檔案化）。",
+      "assertions": [
+        {"text": "02-draft.md 與快翻產出一致，沒有重翻（措辭可辨識為同一份）", "deterministic": false},
+        {"text": "流程直接進批評步，未重跑初翻", "deterministic": false}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "code-block-unchanged",
+      "lang": "zh",
+      "prompt": "快翻成中文：To reproduce, run the following:\n\n```bash\ncurl -s http://localhost:8080/health | jq '.status'\n```\n\nIf the status is not \"ok\", restart the service.",
+      "expected_output": "敘述文字譯成中文；```bash 程式碼區塊內容逐位元不變（含 curl 指令、jq 篩選、引號）；行內的 \"ok\" 維持原樣。",
+      "assertions": [
+        {"text": "程式碼區塊內容與原文逐位元相同", "deterministic": true},
+        {"text": "區塊外的敘述已譯為自然臺灣繁體", "deterministic": false}
+      ]
+    }
+  ]
+}
