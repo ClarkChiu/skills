@@ -73,4 +73,7 @@
 | 2026-07-02 | frontend-slides | github.com/zarazhangrui/frontend-slides | zarazhangrui | 是（slide-deck） | 🟦 參考自製（低優先）（與 slide-deck 同域、CDN 字型路線與零資產原則相斥，範本庫不收；MIT、出處強；可挑「機讀選型索引＋漸進揭露＋3 預覽先看再選」機制進 slide-deck） |
 | 2026-07-02 | agency-agents（233 人格合集） | github.com/msitarzewski/agency-agents | msitarzewski | 部分（工程紀律簇重疊 design-gate／systematic-debugging／verify-before-done＋內建 code-review） | 🟥 跳過（人格定義合集非技能；厚實的工程／資安／測試簇正是使用者本人守備、行銷簇較薄；MIT、治理成熟；日後可單檔參考自寫） |
 
+| 2026-07-03 | qiaomu-anything-to-notebooklm | github.com/joeseesun/qiaomu-anything-to-notebooklm | joeseesun（向陽喬木） | 否（無「內容→NotebookLM 入庫」簇；與擱置的 Muse 入庫線相鄰） | 🟥 跳過（多源內容→NotebookLM 生成〔播客/PPT/心智圖/測驗〕；核心 NotebookLM 整合為薄包裝〔引擎在外部 notebooklm-py〕，實質工程集中在中國平臺內容擷取〔微信/小宇宙/飛書/得到〕，深綁簡中生態＋平臺帳號依賴、與使用者守備低相關；安裝面較重。5467★、MIT、單人 11 commit 3 月。Muse 入庫線動工時直接評估 notebooklm-py／graphiti，非此包裝） |
+| 2026-07-03 | html-ppt-skill／baoyu-slide-deck／frontend-slides／huashu-design／guizang-ppt-skill／ppt-master（重貼） | 見 2026-07-02 各列 | 多方 | 見各列 | ♻️ Recall：六者於 2026-07-02 已評估或早已追蹤（前五者見上方 07-02 列；ppt-master 為 slide-deck 蒸餾來源、在其 sources.lock 追蹤、非安裝候選）。簡報機制已榨完，無上游改動故不重評 |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
