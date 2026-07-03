@@ -81,7 +81,7 @@ The deck's look comes from a **style preset**: a self-contained recipe of palett
 + layout + motion. Three ways to source one, all repo-clean:
 
 - **B — Built-in original presets (default).** Choose from `references/style-presets.md`
-  (Swiss-minimal, editorial, brutalist, dark-neon, warm-paper, technical). These are our
+  (Swiss, Editorial, Brutalist, Dark Neon, Warm Humanist, Technical). These are our
   own CSS; pick one that fits the subject, or blend. Prefer this.
 - **C — A commercial-OK licensed source.** Only if the user wants a specific external
   look. `references/licensed-sources.md` lists permissively-licensed template/font
@@ -98,7 +98,7 @@ render internal process labels ("option A", "preset: swiss") onto a slide.
 ### Phase 3 — Plan the deck
 
 Sketch page roles before writing any HTML: Cover · Agenda · Section divider · Content ·
-Big number · Quote · Comparison · Closing (catalog + when-to-use in
+Big number · Quote · Comparison · Timeline · Closing (catalog + when-to-use in
 `references/layouts.md`). Commit to the chosen preset's palette and type scale. For each
 content slide, do the vertical-budget check (rule 4).
 

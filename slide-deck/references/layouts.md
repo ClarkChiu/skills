@@ -2,7 +2,9 @@
 
 A deck is a sequence of *roles*, not a stack of identical content slides. Reaching for
 the right role per point is what gives a deck rhythm. The engine in `assets/template.html`
-ships an archetype for each.
+ships archetypes for seven of the nine roles; **Agenda** composes from the Content
+archetype's numbered-list pattern, and **Timeline** from Content on the wide width with
+a horizontal axis — both are still registered roles for `data-label`.
 
 ## The roles
 

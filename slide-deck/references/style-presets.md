@@ -12,17 +12,19 @@ and follow its layout note. When the user is unsure, render one slide in 3 prese
 
 ## Selection table (best_for / avoid_for)
 
-| preset | best_for | avoid_for |
-|---|---|---|
-| Swiss | product, finance, anything precise & serious | warm narrative, kids' education |
-| Editorial | storytelling, brand, narrative talks | dense data review, spec walkthroughs |
-| Brutalist | launches, manifestos, opinionated stands | conservative clients, medical/finance compliance |
-| Dark Neon | AI, developer, data, late-night product | print-first decks, bright-room projection |
-| Warm Humanist | education, healthcare, community, onboarding | hard technical specs, financial reporting |
-| Technical | specs, architecture, internal review | outward marketing, emotional narrative |
+| preset | temperature | best_for | avoid_for |
+|---|---|---|---|
+| Swiss | cool-precise | product, finance, anything precise & serious | warm narrative, kids' education |
+| Editorial | warm-literary | storytelling, brand, narrative talks | dense data review, spec walkthroughs |
+| Brutalist | loud-structural | launches, manifestos, opinionated stands | conservative clients, medical/finance compliance |
+| Dark Neon | dark-luminous | AI, developer, data, late-night product | print-first decks, bright-room projection |
+| Warm Humanist | warm-soft | education, healthcare, community, onboarding | hard technical specs, financial reporting |
+| Technical | cool-even | specs, architecture, internal review | outward marketing, emotional narrative |
 
 `avoid_for` is as load-bearing as `best_for` — a preset that fits the subject but
-mismatches the room (projection, compliance, print) is still the wrong pick.
+mismatches the room (projection, compliance, print) is still the wrong pick. The
+`temperature` column is what "one bold = adjacent temperature" (SKILL.md Phase 2)
+selects on: adjacent = same first word (cool/warm) or one step louder/darker.
 
 All fonts below are **commercial-OK**: Google Fonts (OFL/Apache) or Fontshare (free
 commercial license). Load Google Fonts via `<link>`; Fontshare via its CSS API

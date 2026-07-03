@@ -1,6 +1,6 @@
 # Attribution & sources
 
-This skill's **principles** are distilled from four mature slide projects. We reused
+This skill's **principles** are distilled from five mature slide projects. We reused
 their *ideas and conventions* (type scales, the vertical-budget method, density modes,
 motion restraint, "one idea per slide") — which are not copyrightable — and wrote all
 code, presets, and prose here from scratch. We did **not** copy any template files,

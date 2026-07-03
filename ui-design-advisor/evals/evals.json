@@ -1,6 +1,6 @@
 {
   "skill_name": "ui-design-advisor",
-  "_note": "Decision-layer skill: output is a DESIGN BRIEF, not code. Most checks are qualitative (did it route to the right data, is the direction coherent and concrete, did it hand off instead of implementing); a few are deterministic (marked deterministic: true). The four things under test: it reads only the relevant data files rather than dumping everything, it commits to ONE coherent direction with concrete values (hex, named fonts), it stays in the decision layer and hands implementation to frontend-design, and a stated user preference overrides the vendored data.",
+  "_note": "Decision-layer skill: output is a DESIGN BRIEF, not code. Most checks are qualitative (did it route to the right data, is the direction coherent and concrete, did it hand off instead of implementing); a few are deterministic (marked deterministic: true). Under test: it reads only the relevant data files rather than dumping everything, it commits to ONE coherent direction with concrete values (hex, named fonts), it stays in the decision layer and hands implementation to frontend-design, a stated user preference overrides the vendored data, it states a Design Read + the three dials and screens the anti-default clichés (eval 5), and it never asserts brand colors from memory — fetch-and-pin or ask (eval 6).",
   "evals": [
     {
       "id": 1,

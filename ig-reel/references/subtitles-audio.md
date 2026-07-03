@@ -9,7 +9,9 @@ whisper input.mp4 --model small --language zh --output_format srt --output_dir "
 ```
 
 No whisper → ask for an SRT or offer to skip. **Proofread before burning** — ASR
-mangles names and jargon; a wrong burned-in subtitle is permanent.
+mangles names and jargon, and whisper's `zh` output is **often Simplified Chinese**:
+check for 簡體 and convert with OpenCC `s2twp` (the `chinese-typography` skill's
+engine) before burning. A wrong burned-in subtitle is permanent.
 
 ### 2. Burn (inside the safe area, above the type floor)
 
@@ -27,6 +29,10 @@ the 1920-tall canvas —
 
 White text + 2px black outline stays readable on any footage. Keep lines ≤ ~16 Han
 characters; whisper's segmenting is usually fine after proofreading.
+
+**After burning, extract one frame and look at it** (`-ss <t> -frames:v 1 check.jpg`) —
+if the named font is missing, libass silently substitutes (or renders tofu boxes on a
+machine with no CJK font at all), and the ffprobe verify step cannot catch that.
 
 ## Audio
 
@@ -53,6 +59,14 @@ ffmpeg -y -i video.mp4 -i music.mp3 -filter_complex \
 
 ```bash
 -af loudnorm=I=-16:TP=-1.5:LRA=11
+```
+
+`-af` **cannot** be combined with `-filter_complex` on the same stream — when the
+pipeline runs as one `-filter_complex` pass (pipeline.md's "chain into one pass"),
+append loudnorm to the chain tail instead:
+
+```
+…amix=inputs=2:duration=first[mix];[mix]loudnorm=I=-16:TP=-1.5:LRA=11[a]
 ```
 
 Single-pass is fine for short reels; it prevents the "one reel blasts, the next

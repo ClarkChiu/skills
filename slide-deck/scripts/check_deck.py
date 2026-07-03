@@ -48,7 +48,7 @@ COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 SCRIPT_STYLE_RE = re.compile(r"<(script|style)\b.*?</\1>", re.IGNORECASE | re.DOTALL)
 SLIDE_RE = re.compile(r'<section\b([^>]*class="[^"]*\bslide\b[^"]*"[^>]*)>(.*?)</section>',
                       re.IGNORECASE | re.DOTALL)
-DATALABEL_RE = re.compile(r'data-label="([^"]*)"', re.IGNORECASE)
+DATALABEL_RE = re.compile(r'data-label=(["\'])([^"\']*)\1', re.IGNORECASE)
 # Roles whose one-line-bullet density is deterministically cappable (layouts.md). A slide
 # tagged with one of these via data-label gets its bullet count checked against the cap.
 ROLE_CAPS = {"content": 5, "agenda": 6}
@@ -151,7 +151,8 @@ def slide_role_warns(attrs: str, frag: str, n: int):
     units = count_units(visible_text(frag))
     bullets = len(re.findall(r"<li\b", frag, re.IGNORECASE))
     m_lbl = DATALABEL_RE.search(attrs)
-    role = m_lbl.group(1).strip().lower() if m_lbl else ""
+    role = m_lbl.group(2).strip().lower() if m_lbl else ""
+    role = re.sub(r"[\s_]+", "-", role)   # catalog display names use spaces ("Big number")
     role = ROLE_ALIASES.get(role, role)
     if not role:
         warns.append(f"slide {n}: no data-label — tag its registered role "
@@ -194,6 +195,10 @@ def _selftest() -> int:
     assert any(R_SPARSE in w for w in wf), f"F: expected sparse-density warn, got {wf}"
     wg = slide_role_warns('class="slide" data-label="Big-Number"', "<h1>42</h1>", 4)
     assert wg == [], f"G: alias Big-Number should be registered and clean, got {wg}"
+    wh = slide_role_warns("class=\"slide\" data-label='cover'", "<h1>Hi</h1>", 5)
+    assert wh == [], f"H: single-quoted data-label should parse, got {wh}"
+    wi = slide_role_warns('class="slide" data-label="Section divider"', "<h1>Part 2</h1>", 6)
+    assert wi == [], f"I: space variant 'Section divider' should normalize, got {wi}"
     print("selftest OK")
     return 0
 

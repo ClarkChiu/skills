@@ -87,13 +87,19 @@ An output failing any line is **not delivered** — fix and re-run.
 ## Batch
 
 Manifest = one TSV line per reel: `source-clips<TAB>in-out points<TAB>srt<TAB>music<TAB>outname`.
-Loop it; **collect failures instead of stopping or hiding them**:
+Loop it; **collect failures instead of stopping or hiding them**.
+
+⚠ **ffmpeg eats stdin.** By default ffmpeg reads stdin for interactive control, so a
+plain `while read … done < manifest.tsv` loop feeds your manifest's next lines INTO
+ffmpeg — remaining reels are silently skipped while the loop still exits 0. Two
+defenses, use **both**: read the manifest on fd 3, and pass `-nostdin` to every
+ffmpeg invocation inside a loop.
 
 ```bash
 fail=0
-while IFS=$'\t' read -r srcs cuts srt music out; do
+while IFS=$'\t' read -u3 -r srcs cuts srt music out; do
   build_one "$srcs" "$cuts" "$srt" "$music" "$OUT/$out" || { echo "FAIL: $out"; fail=1; }
-done < manifest.tsv
+done 3< manifest.tsv
 exit $fail
 ```
 
