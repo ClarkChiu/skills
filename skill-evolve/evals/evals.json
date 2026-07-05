@@ -34,6 +34,19 @@
         {"text": "does not author a new skill (defers to skill-creator)", "deterministic": false},
         {"text": "does not search for third-party skills to install (defers to skill-finder/curator)", "deterministic": false}
       ]
+    },
+    {
+      "id": 4,
+      "name": "usage-mining-signals-report-only",
+      "lang": "zh-TW",
+      "prompt": "挖一下我最近的使用紀錄，看有沒有該補的 skill 或該改的地方。",
+      "expected_output": "Should run scripts/mine_usage.py (read-only, no network) over ~/.claude/projects transcripts, then cluster the digest into the three mutually-exclusive signals — GAP (recurring task with no skill invoked → candidate new skill, with mined real prompts as a held-out eval set), FRICTION (a skill invoked then corrected/worked-around → candidate improvement, using friction/skill_context), MEMORY (a preference restated across sessions → CLAUDE.md/memory edit). Every candidate ships WITH its evidence (sessions/counts/quotes). Must stay report-only: propose, never edit a skill or CLAUDE.md itself. When handing a GAP/FRICTION to skill-creator, notes the adopt-time discipline (bounded edit + git-revert ratchet) WITHOUT editing upstream skill-creator.",
+      "assertions": [
+        {"text": "runs mine_usage.py as the deterministic pre-pass rather than reading raw transcripts itself", "deterministic": false},
+        {"text": "clusters into GAP / FRICTION / MEMORY and attaches evidence to each candidate", "deterministic": false},
+        {"text": "stays report-only — does not edit any skill file or CLAUDE.md on its own", "deterministic": true},
+        {"text": "does not modify the upstream skill-creator; treats bounded-edit + ratchet as adopt-time discipline", "deterministic": false}
+      ]
     }
   ]
 }
