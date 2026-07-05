@@ -36,6 +36,22 @@ editor UIs, explainers, etc.) duplicate the built-in `web-artifacts-builder` /
 `slide-deck` territory and are intentionally left out. If the scope ever widens
 to general technical HTML deliverables, pull the rest from the same commit.
 
+## Idea sources (not vendored)
+
+`references/diagram-style.md` is written from scratch for this project, but its
+principles were **adapted** (not copied) from one upstream:
+
+- **`SpaceZephyr/design-buddy`**, sub-skill `space-architecture-diagram`
+  (https://github.com/SpaceZephyr/design-buddy), MIT-licensed. Borrowed as
+  articulated ideas: the semantic-accent-palette-by-component-type, the
+  "accents stay constant across themes" rule, hand-SVG craft tips (opaque
+  mask-bg behind translucent fills, arrow Z-order, spacing, legend-outside-
+  boundaries, boundary encodings), and CJK label width/spacing. **No files are
+  vendored from it**, and its Google-Fonts-CDN approach to typography was
+  deliberately rejected (it breaks this skill's zero-network requirement — see
+  the caution in `diagram-style.md`). Evaluated 2026-07-05 (verdict: 🟥 skip the
+  bundle, borrow this one idea); full audit in the research day log.
+
 ## Security note
 
 All vendored HTML is self-contained: verified (2026-06-14) to have **no external

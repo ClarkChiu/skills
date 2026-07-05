@@ -13,6 +13,12 @@
       "release": null,
       "date": "2026-05-18",
       "note": "原始參考庫（Apache-2.0，作者 Thariq Shihipar）。只 vendored 圖相關子集：05/07/08/10/13 + LICENSE + README。整庫 20 檔，其餘刻意不收（重複 web-artifacts-builder/slide-deck）。"
+    },
+    "SpaceZephyr/design-buddy": {
+      "commit": "d4e9fc42bb7b",
+      "release": null,
+      "date": "2026-07-03",
+      "note": "點子來源（非 vendored 檔案）：diagram-style.md 的語意配色／SVG craft／CJK 適配原則改寫自其 space-architecture-diagram 子技能（MIT）。刻意棄用其 Google Fonts CDN 字型（違零網路）。2026-07-05 評估：整包 🟥 跳過、只借此一原則。drift 追蹤低優先——內容創作者快變 repo，除非重寫 diagram-style 否則不必重新同步。"
     }
   }
 }

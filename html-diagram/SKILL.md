@@ -54,6 +54,11 @@ with a diagram inside, that's a general artifact (built-in
    - `05-design-system.html` — the styling bar: tokens, type, spacing, restraint.
    - `07-prototype-animation.html` — animating a sequence of states.
    - `08-prototype-interaction.html` — clickable nodes, hover/focus states.
+
+   For concrete styling defaults — a **semantic accent palette by component
+   type**, the SVG craft rules (opaque mask behind translucent boxes, arrow
+   Z-order, spacing, legend placement, boundary encodings), and **CJK label
+   width/spacing** — read `references/diagram-style.md`.
 3. **Draw the SVG by hand, and iterate on it more than anything else.** Spend
    the time here. Lay out nodes on a grid, route edges so they don't cross
    needlessly, label edges with the protocol / call, group by boundary. Prefer
@@ -74,7 +79,10 @@ with a diagram inside, that's a general artifact (built-in
   theme-toggle button; `localStorage` persistence; an apply-before-paint script
   in `<head>` that defaults to `prefers-color-scheme` (so there's no flash).
 - **Theme the SVG through CSS classes**, never hard-coded `#hex` inside the SVG —
-  fill/stroke come from the CSS variables so the diagram follows the theme.
+  fill/stroke come from the CSS variables so the diagram follows the theme. The
+  one deliberate exception: **semantic accent colors** (the per-component-type
+  strokes in `references/diagram-style.md`) stay constant across themes, so the
+  color→meaning mapping never shifts.
 - **Responsive.** Use a `viewBox` so the diagram scales to any screen; don't pin
   pixel sizes.
 
@@ -82,7 +90,8 @@ with a diagram inside, that's a general artifact (built-in
 
 - Topology is correct: every edge is a real call/dependency, every boundary real.
 - Edges are labeled (protocol / call / what flows), not just lines.
-- Toggling dark/light re-themes the SVG with no hard-coded colors left behind.
+- Toggling dark/light re-themes the SVG substrate; semantic accent colors are
+  consistent across both themes (not re-themed).
 - No external resource of any kind is fetched; opening the file offline works.
 - It reads as a diagram, not a slide and not a report.
 
@@ -100,4 +109,6 @@ with a diagram inside, that's a general artifact (built-in
 - `references/architecture-example.html` — the finished worked example.
 - `references/html-effectiveness/` — curated subset of the upstream gallery
   (diagram / SVG / design-system / animation / interaction examples).
+- `references/diagram-style.md` — semantic accent palette, SVG craft rules, and
+  CJK label handling (styling defaults for the hand-drawn SVG).
 - `references/attribution.md` — upstream sources & licenses.
