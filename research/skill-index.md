@@ -79,4 +79,8 @@
 | 2026-07-03 | darwin-skill | github.com/alchaincyf/darwin-skill | alchaincyf（花叔） | 部分（skill-evolve／內建 skill-creator） | 🟦 參考自製（技能自我優化流程，9 維評分＋git revert 棘輪；價值在 prose，單人、~2 月、LICENSE 未證實） |
 | 2026-07-03 | SkillOpt | github.com/microsoft/SkillOpt | microsoft | 部分（skill-evolve／內建 skill-creator） | 🟦 參考自製（官方研究框架，方法論參考：有界編輯＋held-out 驗證；非可直接裝的技能，附帶 skillopt-sleep 子技能日後另評） |
 
+| 2026-07-05 | design-buddy（視覺產製合集，~19 子技能） | github.com/SpaceZephyr/design-buddy | SpaceZephyr（產品星球） | 是（html-diagram／slide-deck／social-card／ui-design-advisor／內建 skill-creator/canvas-design） | 🟥 跳過（bundle 非單元；多數綁中國社群版式＋簡體輸出，與 zh-TW 相斥；架構圖／簡報／海報諸子技能多與既有自建重複，且既有版本本地渲染、無金鑰無外部呼叫更貼合 terminal-first；圖生核心依賴第三方付費影像代理＋Gemini 金鑰＝對外傳輸＋成本。至多挑風格點子併入 html-diagram，不收錄。完整稽核見當日本機紀錄） |
+| 2026-07-05 | read-buddy（閱讀／PKM 擷取合集，16+ 子技能） | github.com/SpaceZephyr/read-buddy | SpaceZephyr（空格的鍵盤） | 部分（無閱讀/PKM 簇；子技能薄且重疊內建 WebFetch／deep-research／agent-browser／自建 translate） | 🟥 跳過（bundle 非單元；重心是中國消費內容擷取＋個人媒體知識庫〔豆瓣/小紅書/B站/微信讀書/抖音/Kindle〕＝閱讀研究非使用者守備；唯一淨新的個人資料採集＋本地 SQLite PKM 是最敏感的一塊〔活登入憑證與反偵測面〕，且屬刻意擱置給第二大腦專案〔muse-decomposition〕之領域，不屬此儲存庫；MIT 授權方法可日後自寫參考，不整包裝。完整稽核見當日本機紀錄） |
+| 2026-07-05 | creator-buddy（創作者內容分析總控，4 子技能） | github.com/SpaceZephyr/creator-buddy | SpaceZephyr | 否（名為 false friend：creator＝內容創作者非技能作者；與 skill-creator 簇不重疊，也不填任何缺口） | 🟥 跳過（中國社群〔小紅書/公眾號/抖音/B站〕爆款/選題分析，完全離題——非網路/系統/測試，亦非 PM/寫作/ML；簡體綁陸站；依賴不透明第三方付費抓取服務，且安裝面另有資安顧慮〔詳見本機紀錄〕。無檔案可收錄、無缺口可填） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
