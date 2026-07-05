@@ -76,4 +76,7 @@
 | 2026-07-03 | qiaomu-anything-to-notebooklm | github.com/joeseesun/qiaomu-anything-to-notebooklm | joeseesun（向陽喬木） | 否（無「內容→NotebookLM 入庫」簇；與擱置的 Muse 入庫線相鄰） | 🟥 跳過（多源內容→NotebookLM 生成〔播客/PPT/心智圖/測驗〕；核心 NotebookLM 整合為薄包裝〔引擎在外部 notebooklm-py〕，實質工程集中在中國平臺內容擷取〔微信/小宇宙/飛書/得到〕，深綁簡中生態＋平臺帳號依賴、與使用者守備低相關；安裝面較重。5467★、MIT、單人 11 commit 3 月。Muse 入庫線動工時直接評估 notebooklm-py／graphiti，非此包裝） |
 | 2026-07-03 | html-ppt-skill／baoyu-slide-deck／frontend-slides／huashu-design／guizang-ppt-skill／ppt-master（重貼） | 見 2026-07-02 各列 | 多方 | 見各列 | ♻️ Recall：六者於 2026-07-02 已評估或早已追蹤（前五者見上方 07-02 列；ppt-master 為 slide-deck 蒸餾來源、在其 sources.lock 追蹤、非安裝候選）。簡報機制已榨完，無上游改動故不重評 |
 
+| 2026-07-03 | darwin-skill | github.com/alchaincyf/darwin-skill | alchaincyf（花叔） | 部分（skill-evolve／內建 skill-creator） | 🟦 參考自製（技能自我優化流程，9 維評分＋git revert 棘輪；價值在 prose，單人、~2 月、LICENSE 未證實） |
+| 2026-07-03 | SkillOpt | github.com/microsoft/SkillOpt | microsoft | 部分（skill-evolve／內建 skill-creator） | 🟦 參考自製（官方研究框架，方法論參考：有界編輯＋held-out 驗證；非可直接裝的技能，附帶 skillopt-sleep 子技能日後另評） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
