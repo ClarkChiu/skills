@@ -1,4 +1,6 @@
 {"type":"user","promptSource":"typed","timestamp":"2026-07-03T02:00:00Z","message":{"role":"user","content":"再幫我解析一個 pcap 的 NAT binding"}}
 {"type":"assistant","timestamp":"2026-07-03T02:00:05Z","attributionSkill":"chinese-typography","message":{"role":"assistant","content":[{"type":"tool_use","name":"Skill","input":{"skill":"chinese-typography"}}]}}
-{"type":"user","promptSource":"typed","attributionSkill":"chinese-typography","timestamp":"2026-07-03T02:01:00Z","message":{"role":"user","content":"不對，你把盤古之白加到 URL 裡面了，重來"}}
-{"type":"user","promptSource":"typed","timestamp":"2026-07-03T02:02:00Z","message":{"role":"user","content":"我的 key 是 FAKEtestSECRETforREDACTIONcheck000000000 記住"}}
+{"type":"user","promptSource":"typed","timestamp":"2026-07-03T02:01:00Z","message":{"role":"user","content":"不對，你把盤古之白加到 URL 裡面了，重來"}}
+{"type":"user","timestamp":"2026-07-03T02:01:30Z","message":{"role":"user","content":"<command-name>/model</command-name>"}}
+{"type":"user","promptSource":"typed","timestamp":"2026-07-03T02:02:00Z","message":{"role":"user","content":"重來"}}
+{"type":"user","promptSource":"typed","timestamp":"2026-07-03T02:03:00Z","message":{"role":"user","content":"我的 key 是 FAKEtestSECRETforREDACTIONcheck000000000 記住"}}

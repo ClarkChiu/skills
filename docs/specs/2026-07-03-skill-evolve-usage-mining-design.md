@@ -114,13 +114,19 @@ Rule 5: the script counts/extracts (deterministic); the LLM clusters intents and
 
 - **Input / flags:** `<transcripts-dir>` (default `~/.claude/projects/`),
   `--lookback-hours N` (default 72, mirrors skillopt-sleep), `--max-sessions N`,
-  `--redact` (SHOULD: mask obvious secret patterns — long hex/base64, key-like tokens —
-  in emitted prompt text).
-- **Per session, deterministically extract:** `session_id`, timestamps, user-turn prompt
-  texts (truncated per prompt), skill/tool invocation names, and **friction markers**
-  (a user turn immediately following an assistant turn that contains a correction signal:
-  negation / "no" / "actually" / "that's wrong" / a near-duplicate re-ask). No semantic
-  judgment — just surface the raw signal.
+  `--max-prompts-per-session N` (default 50 — bounds digest size), `--redact` (SHOULD: mask
+  obvious secret patterns — long hex/base64, key-like tokens — in emitted prompt text).
+- **A typed prompt is strict:** `type=="user"` + `promptSource=="typed"` + not `isMeta`,
+  and not a `<command-…>` wrapper. The lenient "absent promptSource = typed" reading floods
+  the digest with slash-command noise (verified: absent-bucket ≫ typed-bucket) — don't use it.
+- **Per session, deterministically extract:** `session_id`, typed prompt texts (truncated),
+  skill invocations (`attributionSkill` — which appears on **assistant** lines only — plus
+  assistant `tool_use` name=="Skill"), and **friction markers** (a typed prompt whose
+  *immediately preceding turn* was an assistant turn AND carries a strong correction cue —
+  redo/fix/重來/改成/不對, NOT ambiguous 其實/不是/actually). A friction marker's
+  `skill_context` is the skill active in that preceding assistant turn (never off the user
+  line — user lines carry no `attributionSkill`). `isSidechain` lines are skipped. No
+  semantic judgment — just surface the raw signal; the LLM clusters.
 - **Output:** JSON to stdout —
   `[{session_id, ts, user_prompts:[...], skills_invoked:[...], friction_markers:[...]}]`,
   capped in total size so the digest stays small.
