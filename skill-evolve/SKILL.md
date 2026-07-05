@@ -118,6 +118,26 @@ reported **with its evidence** (sessions, counts, quotes):
 deterministically; the clustering is your judgment, so false positives are expected — ship
 every candidate with evidence and let the user decide.
 
+### Running it nightly (so you don't have to remember)
+
+Scheduling is **external** — this skill only produces the report; the timer lives
+elsewhere (repo convention: content-engine + built-in `schedule`, same split as
+daily-brief). Two routes, and the difference matters:
+
+- **Full report, unattended** — use the built-in **`schedule`** skill (a cron cloud
+  agent). Create a routine at e.g. nightly 03:00 whose prompt is: *"Run skill-evolve's
+  usage mining over `~/.claude/projects` for the last 24h and produce the USAGE SIGNALS
+  report."* The clustering into GAP/FRICTION/MEMORY is an **LLM step**, so full automation
+  needs an agent scheduler — **not** a bare OS crontab.
+- **Digest only, plain OS cron** — `mine_usage.py` is deterministic, so a crontab line can
+  pre-compute just the digest:
+  `0 3 * * * python3 /path/to/skill-evolve/scripts/mine_usage.py --lookback-hours 24 --redact > ~/usage-digest.json`
+  — you still hand that digest to this skill for the clustered report.
+
+Either way: automation covers **scouting + report**; **adoption stays manual** (you review,
+then `skill-creator` or a CLAUDE.md edit). That's the "automate the scouting, not the
+adopting" split.
+
 ### When the user adopts a GAP / FRICTION candidate
 
 Hand it to the built-in `skill-creator` and apply two disciplines **around** it —

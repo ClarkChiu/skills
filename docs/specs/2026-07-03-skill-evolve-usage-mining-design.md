@@ -152,10 +152,13 @@ SCOPE NOTE: <lookback window, caps, sessions skipped — no implied exhaustivene
 
 ## 6. Scheduling (external, not baked in)
 
-SKILL.md documents: to run nightly, wire the built-in `schedule` (cron cloud agent) to
-invoke skill-evolve's usage scan; the user reviews the queued report in the morning.
-Matches the repo's content-engine-vs-timer split (daily-brief + schedule precedent).
-The skill itself stays trigger-agnostic.
+SKILL.md carries a concrete **"Running it nightly"** recipe: for the full report
+unattended, create a built-in `schedule` routine (cron cloud agent) at e.g. 03:00 whose
+prompt runs skill-evolve's usage scan; for a digest-only pre-pass, a bare OS crontab can
+call `mine_usage.py` (but the GAP/FRICTION/MEMORY clustering is an LLM step, so the full
+report needs an agent scheduler, not plain cron). The user reviews the queued report in the
+morning; adoption stays manual. Matches the repo's content-engine-vs-timer split
+(daily-brief + schedule precedent). The skill itself stays trigger-agnostic.
 
 ## 7. Security (strengthen skill-evolve's existing note)
 
