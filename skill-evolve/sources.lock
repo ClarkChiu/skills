@@ -1,0 +1,8 @@
+{
+  "_comment": "Maintained by skill-evolve: records the version last seen for each cited source, to detect updates. commit fields blank until scripts/check_updates.py bumps them on the first real run (set GITHUB_TOKEN to avoid rate limits).",
+  "checked_at": "2026-07-03",
+  "sources": {
+    "microsoft/SkillOpt": {"commit": "", "release": "v0.2.0", "date": "2026-07-02"},
+    "alchaincyf/darwin-skill": {"commit": "", "release": "", "date": "2026-06-14"}
+  }
+}
