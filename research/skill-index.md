@@ -83,4 +83,6 @@
 | 2026-07-05 | read-buddy（閱讀／PKM 擷取合集，16+ 子技能） | github.com/SpaceZephyr/read-buddy | SpaceZephyr（空格的鍵盤） | 部分（無閱讀/PKM 簇；子技能薄且重疊內建 WebFetch／deep-research／agent-browser／自建 translate） | 🟥 跳過（bundle 非單元；重心是中國消費內容擷取＋個人媒體知識庫〔豆瓣/小紅書/B站/微信讀書/抖音/Kindle〕＝閱讀研究非使用者守備；唯一淨新的個人資料採集＋本地 SQLite PKM 是最敏感的一塊〔活登入憑證與反偵測面〕，且屬刻意擱置給第二大腦專案〔muse-decomposition〕之領域，不屬此儲存庫；MIT 授權方法可日後自寫參考，不整包裝。完整稽核見當日本機紀錄） |
 | 2026-07-05 | creator-buddy（創作者內容分析總控，4 子技能） | github.com/SpaceZephyr/creator-buddy | SpaceZephyr | 否（名為 false friend：creator＝內容創作者非技能作者；與 skill-creator 簇不重疊，也不填任何缺口） | 🟥 跳過（中國社群〔小紅書/公眾號/抖音/B站〕爆款/選題分析，完全離題——非網路/系統/測試，亦非 PM/寫作/ML；簡體綁陸站；依賴不透明第三方付費抓取服務，且安裝面另有資安顧慮〔詳見本機紀錄〕。無檔案可收錄、無缺口可填） |
 
+| 2026-07-06 | Agent-Reach（社媒／全網取數路由 CLI） | github.com/Panniantong/Agent-Reach | Panniantong | 是（on-target 部分＝WebFetch／WebSearch／deep-research／gh／agent-browser 已涵蓋） | 🟥 跳過（「一 CLI 零 API 費」實為：安裝約 15 個平臺 CLI＋注入 SKILL 路由表，取數靠自動採集瀏覽器 cookie／登入態＋便宜代理繞反爬〔小紅書/抖音/B站/推特〕＝與使用者「不碰爬蟲規避」原則相斥。on-target 後端〔web/gh/search/youtube〕本機已原生涵蓋；唯一非重複能力＝陸社群 turnkey 抓取＝正是灰區那塊。靜態掃描無惡意標記，但安裝時自動抽瀏覽器 cookie＋金鑰鏈、強制注入 SKILL 到 ~/.claude/skills 並含維護者遠端 update 迴圈＝安裝衛生扣分。51k★但作者 fork 農場＋星數組織性存疑。可一瞥 probe.py 健康探測分類作參考，不裝不收錄。此即 buddy 家族背後 shell out 的取數引擎） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
