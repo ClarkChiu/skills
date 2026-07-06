@@ -85,4 +85,6 @@
 
 | 2026-07-06 | Agent-Reach（社媒／全網取數路由 CLI） | github.com/Panniantong/Agent-Reach | Panniantong | 是（on-target 部分＝WebFetch／WebSearch／deep-research／gh／agent-browser 已涵蓋） | 🟥 跳過（「一 CLI 零 API 費」實為：安裝約 15 個平臺 CLI＋注入 SKILL 路由表，取數靠自動採集瀏覽器 cookie／登入態＋便宜代理繞反爬〔小紅書/抖音/B站/推特〕＝與使用者「不碰爬蟲規避」原則相斥。on-target 後端〔web/gh/search/youtube〕本機已原生涵蓋；唯一非重複能力＝陸社群 turnkey 抓取＝正是灰區那塊。靜態掃描無惡意標記，但安裝時自動抽瀏覽器 cookie＋金鑰鏈、強制注入 SKILL 到 ~/.claude/skills 並含維護者遠端 update 迴圈＝安裝衛生扣分。51k★但作者 fork 農場＋星數組織性存疑。可一瞥 probe.py 健康探測分類作參考，不裝不收錄。此即 buddy 家族背後 shell out 的取數引擎） |
 
+| 2026-07-06 | career.skill（career-skill-factory，職業→技能庫工廠） | github.com/SpaceZephyr/career.skill | SpaceZephyr（空格的鍵盤） | 部分（skill-creator／design-gate 產技能流程；唯一淨新＝專家心智蒸餾＋顧問團編排） | 🟥 跳過（純提示無碼、資安乾淨〔技能本體無 star-nag／update 迴圈，自宣傳只在 README〕；但離核心——輸出是知識工作決策顧問〔專家人格＋商業書方法論〕，範例投資／AI PM，非網路/系統/測試；且屬新手上手工具〔說出職業就給你造 skill〕，使用者是重度技能作者、已過此受眾。旗艦範例「價值投資 guru 人格〔段永平/芒格/Marks〕」與其被動指數＋investment-guardian 立場相衝。MIT 只在 README 宣稱、無 LICENSE 檔。唯一可挖＝多人格「評審會」編排＋公眾人物心智蒸餾，列 build-your-own 候選、經 design-gate、非急件） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
