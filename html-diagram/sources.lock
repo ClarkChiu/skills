@@ -1,18 +1,18 @@
 {
   "_comment": "由 skill-evolve 維護：references/ 下 vendored HTML 的上游，用來偵測上游更新。檢視報告後才重新同步。html-diagram 的 SKILL.md/evals 為本專案自寫，不在此追蹤。",
-  "checked_at": "2026-06-17",
+  "checked_at": "2026-07-06",
   "sources": {
     "plannotator/effective-html": {
-      "commit": "59c437d99256",
+      "commit": "50260e15d9a0",
       "release": null,
-      "date": "2026-06-15",
-      "note": "MIT 轉散布包；architecture-example.html 出處於此（skills/html-diagram）。2026-06-14 自 commit 36220e286bcc vendored。2026-06-17 bump（原 36220e286bcc）：近期 commit 純屬包裝／文件（外掛 manifest、README、停用 model invocation），圖表能力本身未動。無可採納。新題材若要找則看其引用的 ThariqS/html-effectiveness 語料庫。"
+      "date": "2026-06-19",
+      "note": "2026-07-06 bump (was 59c437d99256): README-only; architecture-example.html and diagram capability unchanged. No action. MIT 轉散布包；architecture-example.html 出處於此（skills/html-diagram）。2026-06-14 自 commit 36220e286bcc vendored。2026-06-17 bump（原 36220e286bcc）：近期 commit 純屬包裝／文件（外掛 manifest、README、停用 model invocation），圖表能力本身未動。無可採納。新題材若要找則看其引用的 ThariqS/html-effectiveness 語料庫。"
     },
     "ThariqS/html-effectiveness": {
-      "commit": "0e8d447494c8",
+      "commit": "1787245d94aa",
       "release": null,
-      "date": "2026-05-18",
-      "note": "原始參考庫（Apache-2.0，作者 Thariq Shihipar）。只 vendored 圖相關子集：05/07/08/10/13 + LICENSE + README。整庫 20 檔，其餘刻意不收（重複 web-artifacts-builder/slide-deck）。"
+      "date": "2026-07-03",
+      "note": "2026-07-06 bump (was 0e8d447494c8): new unknowns/*.html examples (none are diagrams) + top-level index; the vendored subset (05/07/08/10/13 + LICENSE + README) is UNTOUCHED. No re-sync. 原始參考庫（Apache-2.0，作者 Thariq Shihipar）。只 vendored 圖相關子集：05/07/08/10/13 + LICENSE + README。整庫 20 檔，其餘刻意不收（重複 web-artifacts-builder/slide-deck）。"
     },
     "SpaceZephyr/design-buddy": {
       "commit": "d4e9fc42bb7b",

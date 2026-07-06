@@ -1,14 +1,14 @@
 {
   "_comment": "Maintained by skill-evolve. daily-brief is an ORIGINAL skill that composes public-domain prioritization methods (Eisenhower / GTD / Eat-the-Frog / Ivy Lee / 1-3-5) — those carry no GitHub source and are not pinned (see references/attribution.md). This lock pins only the two trackable GitHub references used for the multilingual prompt design and the chief-of-staff / daily-planning prompt paradigm, so skill-evolve can detect a sharper formulation worth folding in. No upstream files are vendored. Full verdict: research/2026-06-28-skill-research-log.md.",
-  "checked_at": "2026-06-28",
+  "checked_at": "2026-07-06",
   "sources": {
     "NirDiamant/Prompt_Engineering": {
       "ref": "main",
-      "commit": "eca5c597392b",
-      "date": "2026-06-17",
+      "commit": "d2fdeb0996f0",
+      "date": "2026-07-04",
       "license": "NOASSERTION (custom; reference/idea only)",
       "vendored": "METHOD/IDEA ONLY — no files. The 'respond in the input's language' technique and structured-output prompting discipline informed the Output section. Reimplemented from scratch in SKILL.md.",
-      "note": "2026-06-28 baseline. Re-check for a sharper multilingual / structured-output prompt formulation; ideas only — the custom license means do NOT vendor any file."
+      "note": "2026-07-06 bump (was eca5c597392b): idea-only reference; custom license forbids vendoring, off-core — watch-only. No action. 2026-06-28 baseline. Re-check for a sharper multilingual / structured-output prompt formulation; ideas only — the custom license means do NOT vendor any file."
     },
     "0x2e-Tech/awesome-ai-prompts": {
       "ref": "main",

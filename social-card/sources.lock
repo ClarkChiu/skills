@@ -1,21 +1,24 @@
 {
   "_comment": "供 skill-evolve 追蹤上游：social-card 取 op7418/guizang-social-card-skill 的設計系統『原則』（一卡一想法、先砍字不縮字、object-fit、Swiss/Editorial 雙系統、QA 規則構想），未收任何檔（授權 AGPL/ISC 不一致）。平台改 IG/LinkedIn、render 由 playwright 改用 agent-browser。2026-07-02 起 Sweet 家族另取 JimLiu/baoyu-skills 的甜美系設計語言（原則非檔）。上游若改動設計系統或新增版式，由 skill-evolve 提醒回看。",
-  "checked_at": "2026-07-02",
+  "checked_at": "2026-07-06",
   "sources": {
     "op7418/guizang-social-card-skill": {
-      "commit": "032782ff67e0",
+      "commit": "cf4b810fac1c",
       "release": null,
-      "date": "2026-05-27",
+      "date": "2026-07-01",
       "license": "AGPL-3.0 (repo) / ISC (package.json) — 不一致，故不收檔",
-      "note": "只取設計原則非檔；render 改 agent-browser；平台改 IG/LinkedIn。比對重點：上游若新增版式/主題或調整 QA 規則。"
+      "note": "2026-07-06 bump (was 032782ff67e0): v0.15 adds Live Photo (a new Apple/iPhone medium) + R8/R9 QA rules bound to its own layout; social-card's tracked design-system layer is unchanged and its qa-rules.js already covers the equivalent. No action. 只取設計原則非檔；render 改 agent-browser；平台改 IG/LinkedIn。比對重點：上游若新增版式/主題或調整 QA 規則。"
     },
     "JimLiu/baoyu-skills": {
-      "commit": "a4e78af8136f",
-      "release": null,
-      "date": "2026-07-02",
+      "commit": "6b7a2e417500",
+      "release": "v2.5.2",
+      "date": "2026-07-04",
       "license": "MIT",
-      "skills": ["baoyu-xhs-images", "baoyu-infographic"],
-      "note": "Sweet 家族只取甜美系設計語言與相容表想法（cute 預設／kawaii 風格），未收檔、色票原創、塗鴉自畫、濃度收斂（每卡裝飾 ≤3）。比對重點：上游若新增 cute 系風格預設或改元素組合結構。"
+      "skills": [
+        "baoyu-xhs-images",
+        "baoyu-infographic"
+      ],
+      "note": "2026-07-06 bump (was a4e78af8136f): v2.5.2 touched only baoyu-wechat-summary; the tracked baoyu-xhs-images / baoyu-infographic are UNCHANGED. No action. Sweet 家族只取甜美系設計語言與相容表想法（cute 預設／kawaii 風格），未收檔、色票原創、塗鴉自畫、濃度收斂（每卡裝飾 ≤3）。比對重點：上游若新增 cute 系風格預設或改元素組合結構。"
     }
   }
 }

@@ -1,23 +1,23 @@
 {
   "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。",
-  "checked_at": "2026-06-28",
+  "checked_at": "2026-07-06",
   "sources": {
     "sysprog21/zhtw-mcp": {
-      "commit": "fbc0fa8347df",
-      "date": "2026-06-27",
-      "note": "2026-06-28 bump (was 409132225db1). Recent commits: 'exclude ambiguous chars from single-char fallback', narrow 聯繫 cross-strait tagging, 函數/函式 split, math/linear-algebra vocab. The 'single-char fallback should exclude ambiguous chars' principle is a useful CONCEPT REFERENCE for the rules doc's caveats, but the architecture is an MCP detector (context-judgment), not this skill's OpenCC+rules pipeline — not adopted mechanically. 2026-06-17 bump (was defcc020fd76): detector layer belongs to humanizer domain, not chinese-typography. No action."
+      "commit": "df4762639f8b",
+      "date": "2026-06-29",
+      "note": "2026-07-06 bump (was fbc0fa8347df): only nix-shell docs + a merge, no rule/detector change. No action. 2026-06-28 bump (was 409132225db1). Recent commits: 'exclude ambiguous chars from single-char fallback', narrow 聯繫 cross-strait tagging, 函數/函式 split, math/linear-algebra vocab. The 'single-char fallback should exclude ambiguous chars' principle is a useful CONCEPT REFERENCE for the rules doc's caveats, but the architecture is an MCP detector (context-judgment), not this skill's OpenCC+rules pipeline — not adopted mechanically. 2026-06-17 bump (was defcc020fd76): detector layer belongs to humanizer domain, not chinese-typography. No action."
     },
     "BYVoid/OpenCC": {
-      "commit": "b9e757b6de2c",
-      "release": "ver.1.3.1",
-      "date": "2026-06-27",
-      "note": "2026-06-28 bump (was c208e2780e5b, still ver.1.3.1 — intra-release commits). EMPIRICAL re-validation of the standing decision: ran A/B s2twp on 23 terms, frozen opencc-python-reimplemented==0.1.7 vs maintained C++ `opencc` 1.3.x. Only 2/23 differed and they CANCEL OUT — C++ better on 以太网→乙太網路 (Taiwan std, on-domain) but WORSE on 拉链→拉鏈 (frozen gives 拉鍊, MOE-preferred). The much-touted 云计算→雲端計算 is already correct in BOTH (not a differentiator; the earlier changelog-based claim was wrong). Net quality = wash; switching costs reproducibility + a native build. DECISION HELD: stay on frozen port, no engine switch, no code change. The one on-domain gap (乙太網→乙太網路) can't be patched via user-dictionary.json replacements either: that layer is post-OpenCC substring with no word boundary, so 乙太網→乙太網路 would double-apply to existing 乙太網路 (→乙太網路路, the documented substring-collision trap). Would need a context-aware regex rule — not worth it for one term. Revisit only if accuracy genuinely demands a maintained binding. 2026-06-17 bump (was 47cccca4f826): first review of 1.3.x."
+      "commit": "6a49a351b4be",
+      "release": "ver.1.4.0",
+      "date": "2026-07-05",
+      "note": "2026-07-06 bump (was b9e757b6de2c / ver.1.3.1): ver.1.4.0 is a C++ ABI/SOVERSION bump + .ocd dict fast-path; TWPhrases.txt (the Taiwan-phrase layer) UNCHANGED — only a 芯片 segmentation fix + minor STPhrases. LIVE-VERIFIED that frozen opencc-python-reimplemented==0.1.7 already yields 芯片→晶片 / 內存芯片→記憶體晶片 correctly, so 1.4.0's fix is a no-op for us. Frozen-port decision HELD, no engine switch. 2026-06-28 bump (was c208e2780e5b, still ver.1.3.1 — intra-release commits). EMPIRICAL re-validation of the standing decision: ran A/B s2twp on 23 terms, frozen opencc-python-reimplemented==0.1.7 vs maintained C++ `opencc` 1.3.x. Only 2/23 differed and they CANCEL OUT — C++ better on 以太网→乙太網路 (Taiwan std, on-domain) but WORSE on 拉链→拉鏈 (frozen gives 拉鍊, MOE-preferred). The much-touted 云计算→雲端計算 is already correct in BOTH (not a differentiator; the earlier changelog-based claim was wrong). Net quality = wash; switching costs reproducibility + a native build. DECISION HELD: stay on frozen port, no engine switch, no code change. The one on-domain gap (乙太網→乙太網路) can't be patched via user-dictionary.json replacements either: that layer is post-OpenCC substring with no word boundary, so 乙太網→乙太網路 would double-apply to existing 乙太網路 (→乙太網路路, the documented substring-collision trap). Would need a context-aware regex rule — not worth it for one term. Revisit only if accuracy genuinely demands a maintained binding. 2026-06-17 bump (was 47cccca4f826): first review of 1.3.x."
     },
     "FuDesign2008/open-skills": {
-      "commit": "0b223168b033",
-      "release": "v1.59.0",
-      "date": "2026-06-26",
-      "note": "2026-06-28 bump (was 49ee024727a7 / v1.52.0). v1.59.0 folds 5 solver workflows into effective-web-research (a web-research router) — unrelated to Chinese typography/normalization/Taiwan vocabulary. No action. 2026-06-17 bump (was aaa405d3774c / v1.46.2): new releases touch none of the cited chinese-format skill."
+      "commit": "5e88d9661cb9",
+      "release": "v1.61.0",
+      "date": "2026-07-05",
+      "note": "2026-07-06 bump (was 0b223168b033 / v1.59.0): v1.60–1.61 add a git conflict-defense workflow + browser-debug-toolkit — unrelated to Chinese typography/Taiwan vocab. No action. 2026-06-28 bump (was 49ee024727a7 / v1.52.0). v1.59.0 folds 5 solver workflows into effective-web-research (a web-research router) — unrelated to Chinese typography/normalization/Taiwan vocabulary. No action. 2026-06-17 bump (was aaa405d3774c / v1.46.2): new releases touch none of the cited chinese-format skill."
     },
     "StarCC0/starcc-py": {
       "commit": "5ec1b1d9ef03",
@@ -42,9 +42,9 @@
       "date": "2023-08-09"
     },
     "vinta/pangu.js": {
-      "commit": "3d67d8a611aa",
-      "date": "2026-06-15",
-      "note": "2026-06-17 bump (was 1c30f32d2638). Recent commits are Vite v8 build/tooling + test additions (CJK-period patterns, ignored tags, nested containers) and a canIgnoreNode refactor — the 盤古之白 spacing algorithm is unchanged. No action."
+      "commit": "a75b0e9c3af2",
+      "date": "2026-06-29",
+      "note": "2026-07-06 bump (was 3d67d8a611aa): README-only (added a pangu.skill link); the 盤古之白 spacing algorithm is unchanged. No action. 2026-06-17 bump (was 1c30f32d2638). Recent commits are Vite v8 build/tooling + test additions (CJK-period patterns, ignored tags, nested containers) and a canIgnoreNode refactor — the 盤古之白 spacing algorithm is unchanged. No action."
     },
     "zhlint-project/zhlint": {
       "commit": "c8678fe71ce3",
