@@ -1,15 +1,15 @@
 {
   "_comment": "Maintained by skill-evolve: upstream data sources vendored into data/. Pins the commit each was copied at, to detect new/updated design data. Update only after reviewing the report (--write-lock). Only DATA was vendored — no scripts/CLI. Full audit: research/audits/2026-06-05-ui-ux-pro-max.md.",
-  "checked_at": "2026-07-02",
+  "checked_at": "2026-07-06",
   "sources": {
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "ref": "main",
-      "commit": "65e23199492f",
-      "release": "v2.9.0",
-      "date": "2026-06-26",
+      "commit": "4baa399d00da",
+      "release": "v2.10.1",
+      "date": "2026-07-04",
       "license": "MIT",
       "vendored": "src/ui-ux-pro-max/data/*.csv (12 domain + stacks/16); dropped draft.csv, design.csv, all scripts",
-      "note": "2026-06-28 bump (was b7e3af80f6e3 / v2.5.0). v2.6–2.9 release notes are all CLI/security/distribution (plugin-name validation, XSS-escape in slide generator, GitHub token support, npm fallback package) — no design-data change mentioned. CAVEAT (low confidence): release notes do not cover the data/ layer; not diffed CSV-by-CSV this round, so a silent palette/typography CSV tweak can't be fully ruled out. Re-vendor only if a CSV diff shows changes. Never vendor the CLI or image-gen scripts that read ~/.claude/.env. 2026-06-08: SHA widened to full (was false-flagging UPDATED)."
+      "note": "2026-07-06 bump (was 65e23199492f): v2.10.1 — FIRST round to touch the vendored data layer. RE-VENDORED the changed CSVs (products +31 types, 162→193 rows; colors/typography/styles; stacks angular/astro/laravel/nuxt-ui). Did NOT vendor new motion.csv (GSAP code) or the 6 new desktop stacks (avalonia/javafx/uno/uwp/winui/wpf, off-core). 2026-06-28 bump (was b7e3af80f6e3 / v2.5.0). v2.6–2.9 release notes are all CLI/security/distribution (plugin-name validation, XSS-escape in slide generator, GitHub token support, npm fallback package) — no design-data change mentioned. CAVEAT (low confidence): release notes do not cover the data/ layer; not diffed CSV-by-CSV this round, so a silent palette/typography CSV tweak can't be fully ruled out. Re-vendor only if a CSV diff shows changes. Never vendor the CLI or image-gen scripts that read ~/.claude/.env. 2026-06-08: SHA widened to full (was false-flagging UPDATED)."
     },
     "mattdesl/dictionary-of-colour-combinations": {
       "ref": "master",

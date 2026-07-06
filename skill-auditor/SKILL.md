@@ -110,9 +110,14 @@ shell is available out-of-band, run it FIRST for a deterministic baseline:
 skillspector scan <skill-dir-or-url> --no-llm --format json
 ```
 
-- Covers 64 static patterns in 16 categories (prompt injection, exfiltration,
-  MCP tool poisoning, YARA signatures, taint tracking) plus live OSV.dev CVE
-  lookups — feed its findings into Steps 3–6 as machine-generated leads.
+- Covers static patterns across a growing category set (prompt injection,
+  exfiltration, MCP tool poisoning, YARA signatures, taint tracking; recent
+  additions cover privileged-container escape, cloud-storage exfiltration, and
+  privileged-Kubernetes deploy) plus live OSV.dev CVE lookups — feed its findings
+  into Steps 3–6 as machine-generated leads.
+- It is now **fail-closed**: a degraded or partial deep scan can no longer return
+  SAFE, and silent LLM-stage degradation is surfaced rather than hidden. So an
+  unexpectedly clean result on a large skill is a prompt to look twice, not relax.
 - **A clean SkillSpector result never skips this protocol.** It is
   pattern-based static analysis: it can miss non-English content (much of
   this repo is zh-TW), image-based attacks, and syntactically-clean-but-
@@ -125,6 +130,12 @@ skillspector scan <skill-dir-or-url> --no-llm --format json
   skill; judge each finding on context, not on the score.
 - Default to `--no-llm` for unknown third-party skills — the LLM stage sends
   the scanned content to the configured provider.
+- If you *do* want the optional LLM stage, `skillspector` now supports a
+  **no-API-key local provider**: `SKILLSPECTOR_PROVIDER=claude_cli` reuses your
+  logged-in Claude CLI session (in a hardened subprocess — tools disabled, no
+  MCP, untrusted content only via stdin) instead of an NVIDIA/OpenAI key. It
+  still sends the skill's content to that session, so weigh the exfil caveat
+  above before enabling it on an untrusted skill.
 - Record its risk score and verdict in the report NOTES.
 
 ### Step 0 — Source check 🔍

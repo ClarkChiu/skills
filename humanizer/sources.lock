@@ -1,12 +1,12 @@
 {
   "_comment": "由 skill-evolve 維護：rules-en.md 原樣收錄的上游，用來偵測新規則。檢視報告後才更新。中文規則的文章類參考非 GitHub repo、不在此追蹤；ali-words 雖是 repo 但僅為靜態術語表參考（非逐字收錄），列在此處只為避免每次掃描都誤報為 NEW。",
-  "checked_at": "2026-06-08",
+  "checked_at": "2026-07-06",
   "sources": {
     "blader/humanizer": {
-      "commit": "9600f2b7241c",
-      "release": "2.8.0",
-      "date": "2026-06-07",
-      "note": "rules-en.md 原樣收錄；33 條規則。2026-06-08 自 v2.7.0 同步到 v2.8.0（新增 #31–#33、擴充 #20）。"
+      "commit": "1b48564898e9",
+      "release": "2.8.2",
+      "date": "2026-06-29",
+      "note": "2026-07-06 bump (was 9600f2b7241c / 2.8.0): 2.8.2 — rules-en.md UNCHANGED (still 33 rules, no #34+). ADOPTED the new Secondhand-text false-positive caveat into humanizer/SKILL.md (mention-vs-use guard), reworded not vendored. Example swap ignored. rules-en.md 原樣收錄；33 條規則。2026-06-08 自 v2.7.0 同步到 v2.8.0（新增 #31–#33、擴充 #20）。"
     },
     "justjavac/ali-words": {
       "commit": "f358597dbafa",
