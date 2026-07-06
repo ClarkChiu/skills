@@ -15,18 +15,21 @@ which is a Python package, not a CLI).
 """
 import argparse, json, shutil, subprocess, sys
 
-# Curated per-skill external dependency map. Skills with no external CLI are absent
-# (e.g. html-diagram is self-contained; skill-curator only *describes* other skills' tools).
+# Curated per-skill external dependency map, verified against each skill's source
+# (fresh-context review, 2026-07-06). Skills with no external CLI are absent — e.g.
+# html-diagram is self-contained; skill-curator only *describes* other skills' tools;
+# translate delegates to chinese-typography and invokes nothing itself.
+# Invariant: each CLI name uses a single kind across the map (see build_report).
 CLI_DEPS = {
     "ig-reel":            [("ffmpeg", "cli"), ("ffprobe", "cli")],
-    "p2pscout":           [("go", "cli")],
+    "p2pscout":           [("go", "cli"), ("aria2c", "cli")],       # downloads delegated to aria2c
     "social-card":        [("agent-browser", "cli"), ("convert", "cli")],
-    "slide-deck":         [("agent-browser", "cli")],
-    "skill-auditor":      [("skillspector", "cli")],
-    "git-guardrails":     [("rtk", "cli")],
+    "slide-deck":         [("playwright", "pymod"), ("pptx", "pymod")],  # export_pdf/extract_pptx
+    "skill-auditor":      [("skillspector", "cli")],                # optional/best-effort; still informative
+    "to-issues":          [("gh", "cli")],                          # gh issue create / auth
+    "git-guardrails":     [("jq", "cli")],                          # hook parses tool_input.command with jq
     "chinese-typography": [("python3", "cli"), ("opencc", "pymod")],
-    "translate":          [("opencc", "pymod")],
-    "humanizer":          [("opencc", "pymod")],
+    "humanizer":          [("opencc", "pymod")],                    # via chinese-typography normalize.py
 }
 
 # CLIs that don't accept --version; override the probe args here (verified on real tools).
@@ -78,6 +81,11 @@ def _probe(name, kind):
 
 def build_report(deps=None):
     deps = CLI_DEPS if deps is None else deps
+    kinds = {}                                      # invariant: one kind per CLI name (tools is keyed by name)
+    for items in deps.values():
+        for name, kind in items:
+            if kinds.setdefault(name, kind) != kind:
+                raise ValueError(f"CLI '{name}' declared with two kinds: {kinds[name]} vs {kind}")
     results = {}                                    # (name, kind) -> (state, detail), one probe each
     for items in deps.values():
         for name, kind in items:

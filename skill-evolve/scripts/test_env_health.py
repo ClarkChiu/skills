@@ -88,6 +88,25 @@ def test_deterministic():
     assert eh.build_report(deps) == eh.build_report(deps)
 
 
+def test_cli_deps_wellformed():
+    # every real map entry uses a valid kind, and no CLI name is declared with two kinds
+    # (the build_report invariant — tools is keyed by name alone).
+    kinds = {}
+    for items in eh.CLI_DEPS.values():
+        for name, kind in items:
+            assert kind in ("cli", "pymod"), (name, kind)
+            assert kinds.setdefault(name, kind) == kind, f"{name} declared with two kinds"
+
+
+def test_build_report_rejects_mixed_kind():
+    bad = {"a": [("x", "cli")], "b": [("x", "pymod")]}   # same name, two kinds → must fail loud
+    try:
+        eh.build_report(bad)
+    except ValueError:
+        return
+    assert False, "build_report must reject a CLI name with two kinds"
+
+
 def test_no_network_no_mutation():
     src = open(os.path.join(HERE, "env_health.py"), encoding="utf-8").read()
     for bad in ("import socket", "import requests", "urllib.request", "http.client", "urlopen"):

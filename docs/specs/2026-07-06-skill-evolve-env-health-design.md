@@ -27,7 +27,7 @@ A `CLI_DEPS` map (`skill → [cli, …]`) **curated by hand** inside the script.
 - `cli` → `shutil.which` + `<name> --version`, full 5-state taxonomy.
 - `pymod` → `python3 -c "import <name>"`, exit 0 = `ok`, else `missing`.
 
-> The exact map contents are finalized in the plan (implementation), from a per-skill judgment call — NOT from the noisy grep. Draft seed (to be verified during implementation): `ig-reel→[ffmpeg,ffprobe]`, `p2pscout→[go]` (or a prebuilt binary), `social-card→[agent-browser]`, `slide-deck→[agent-browser]`, `skill-auditor→[skillspector]`, `git-guardrails→[rtk]`, `chinese-typography/humanizer/translate→[opencc]` (via python), etc. Prose-only mentions are excluded.
+> The exact map contents come from a per-skill judgment call verified against each skill's source (fresh-context review, 2026-07-06) — NOT the noisy grep. Final map: `ig-reel→[ffmpeg,ffprobe]`, `p2pscout→[go,aria2c]`, `social-card→[agent-browser,convert]`, `slide-deck→[playwright(pymod),pptx(pymod)]`, `skill-auditor→[skillspector]` (optional), `to-issues→[gh]`, `git-guardrails→[jq]` (hook parses tool_input with jq), `chinese-typography→[python3,opencc(pymod)]`, `humanizer→[opencc(pymod)]`. Excluded: `translate` (delegates to chinese-typography, invokes nothing); prose-only mentions. Corrections the review caught: slide-deck was wrongly `agent-browser` (copy-paste), git-guardrails wrongly `rtk` (only in comments — real dep is `jq`), p2pscout missing `aria2c`, `to-issues→gh` missing entirely.
 
 ## 4. Component
 
