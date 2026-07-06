@@ -47,6 +47,18 @@
         {"text": "stays report-only — does not edit any skill file or CLAUDE.md on its own", "deterministic": true},
         {"text": "does not modify the upstream skill-creator; treats bounded-edit + ratchet as adopt-time discipline", "deterministic": false}
       ]
+    },
+    {
+      "id": 5,
+      "name": "env-health-broken-vs-missing-report-only",
+      "lang": "zh-TW",
+      "prompt": "幫我看有哪些技能的外部 CLI 在這臺機器上壞了或沒裝。",
+      "expected_output": "Should run scripts/env_health.py (read-only, no network) to probe each self-built skill's declared external CLIs, and report per-tool state distinguishing `broken` (shim on PATH but can't exec — a stale pipx/uv venv, exit 126/127 → needs reinstall) from `missing` (not on PATH → needs install) from `ok`. The broken≠missing distinction is the whole point (a plain `which` can't tell them apart). Report-only: names what's broken/missing and the reinstall-vs-install prescription, never installs or fixes anything itself.",
+      "assertions": [
+        {"text": "runs env_health.py as the deterministic probe rather than eyeballing which/PATH", "deterministic": false},
+        {"text": "distinguishes broken (reinstall) from missing (install) rather than lumping both as 'not working'", "deterministic": false},
+        {"text": "stays report-only — does not install, reinstall, or modify anything", "deterministic": true}
+      ]
     }
   ]
 }

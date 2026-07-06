@@ -1,12 +1,14 @@
 ---
 name: skill-evolve
 description: >-
-  On-demand or scheduled reconnaissance for keeping your own skills current, from TWO
+  On-demand or scheduled reconnaissance for keeping your own skills current, from THREE
   evidence streams: (1) upstream drift — the reference sources each skill cites (from its
-  references/attribution.md), checked against a per-skill sources.lock baseline; and (2)
+  references/attribution.md), checked against a per-skill sources.lock baseline; (2)
   your own usage — mining your Claude Code transcripts for recurring tasks with no skill
   (GAP), skills you worked around (FRICTION), and preferences worth saving to memory
-  (MEMORY). It reports findings and discusses changes with you. USE THIS SKILL when the
+  (MEMORY); and (3) environment health — whether each skill's declared external CLIs
+  actually run on this machine (missing / broken / ok). It reports findings and discusses
+  changes with you. USE THIS SKILL when the
   user asks to "check my skills for updates", "看我的 skill 有沒有該更新", "有沒有新專案可以參考",
   "self-evolve / 自我進化", "refresh references", "is my skill stale", "mine my usage",
   "挖使用紀錄", "我常做卻沒 skill 的事", or wants to keep a skill's sources/principles
@@ -44,6 +46,20 @@ repo's own conventions (SKILL.md + evals, frontmatter, attribution/sources.lock 
 apm.yml + README registration, symlinks). Read-only; exits 1 and lists violations. Scoped
 to THIS repo's layout — skip it when scouting skills elsewhere. Rules and rationale:
 `docs/skill-style-guide.md`.
+
+### 0.5 — Environment health (deterministic, this repo only)
+
+```bash
+python3 scripts/env_health.py            # add --json for machine-readable output
+```
+
+Probe each self-built skill's **declared external CLIs** on THIS machine and report
+`ok / missing / broken / timeout / error`. The point is **broken ≠ missing**: a shim
+still on PATH whose interpreter is gone (a stale pipx/uv venv after a Python upgrade) is
+`broken` and needs a *reinstall*, not a fresh install — a plain `which` can't tell them
+apart. Read-only, report-only; the skill→CLI map is curated in the script (deps live in
+agent-facing prose, not scripts, so they can't be auto-scanned). Scoped to THIS repo's
+skills; skip it when scouting elsewhere.
 
 ### 1 — Discover sources (deterministic)
 
@@ -182,6 +198,11 @@ USAGE SIGNALS  (from your own transcripts · lookback <N>h · <S> sessions · <K
             → consider improving <X>; evidence: "<quote>"
   MEMORY  "<recurring preference/fact>"  ×<count>
             → consider adding to CLAUDE.md / memory
+
+ENV HEALTH  (declared external CLIs · this machine)
+  ✓ ok        <cli> <cli> ...
+  ✗ missing   <cli>  → used by: <skills>              → install
+  ⚠ broken    <cli> (exit 127)  → used by: <skills>   → stale shim; reinstall (not install)
 ```
 
 ## sources.lock (the baseline)
