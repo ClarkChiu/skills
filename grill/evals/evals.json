@@ -1,0 +1,53 @@
+{
+  "skill_name": "grill",
+  "_note": "Adversarial stress-test of an EXISTING idea. The load-bearing things under test: it ATTACKS (assumptions/failure modes/alternatives/cost) rather than helping build; it asks ONE question at a time and waits; each question carries a recommended answer/stance; it looks up facts itself but puts decisions to the user; it does NOT produce code/plan/artifacts (hands off instead); and it stays in the stress-test lane rather than sliding into design-gate's produce-a-plan job. Temperament (lead with the objection, no cushioning) is the point that separates it from design-gate.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "attacks-one-question-at-a-time-with-a-stance",
+      "lang": "en",
+      "prompt": "Grill me on this: I'm going to add a Redis cache in front of our session lookups to cut latency.",
+      "expected_output": "Opens by attacking a soft spot (e.g. cache invalidation / stale sessions on logout, the added failure mode when Redis is down, whether latency is actually the bottleneck) — leading with the objection, not praise. Asks ONE question and stops for the answer. The question carries a recommended answer / stance, not a blank prompt. Does not start writing code or a plan.",
+      "assertions": [
+        {"text": "leads with a concrete objection targeting an assumption/failure-mode/cost, not the happy path", "deterministic": false},
+        {"text": "asks exactly one question then waits, rather than firing a batch of questions at once", "deterministic": false},
+        {"text": "attaches its own recommended answer/stance to the question", "deterministic": false},
+        {"text": "does not begin implementing or emit a task plan", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "looks-up-facts-defers-decisions",
+      "lang": "en",
+      "prompt": "Grill my plan to swap our retry logic to exponential backoff. The code is in net/retry.py.",
+      "expected_output": "For knowable FACTS (current retry count, whether jitter exists, the caller's timeout) it reads net/retry.py rather than asking. For DECISIONS (max backoff, cap, whether to add jitter, idempotency assumptions) it puts each to the user one at a time. Does not ask the user to recite facts it could read itself.",
+      "assertions": [
+        {"text": "reads the referenced code to establish facts instead of asking the user for them", "deterministic": false},
+        {"text": "surfaces the design DECISIONS to the user and waits, one at a time", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "stays-standalone-does-not-become-design-gate",
+      "lang": "zh",
+      "prompt": "電我這個計畫：我想重寫 NAT 穿越模組改用 ICE。順便幫我寫好設計文件跟實作計畫。",
+      "expected_output": "Grills the ICE rewrite adversarially (e.g. why ICE over the current approach, TURN fallback cost, symmetric-NAT edge cases, how it gets tested) one question at a time. Does NOT silently switch into producing a design doc + task plan — that is design-gate's job; it notes the boundary and offers to hand off to design-gate AFTER the idea survives grilling. Responds in Traditional Chinese.",
+      "assertions": [
+        {"text": "stress-tests the idea adversarially rather than helping flesh it out", "deterministic": false},
+        {"text": "does not produce a design doc / task plan itself; points that to design-gate as a handoff", "deterministic": false},
+        {"text": "replies in natural Taiwan Traditional Chinese", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "closes-with-survivors-and-open-risks",
+      "lang": "en",
+      "prompt": "ok, we're done grilling — I'm convinced.",
+      "expected_output": "Wraps up with a short summary: what held under pressure, what CHANGED during the grilling, and what open risk the user is now knowingly accepting. Then hands off (design-gate / to-issues / build) instead of just stopping or instead of starting to implement on its own.",
+      "assertions": [
+        {"text": "summarizes what held, what changed, and the remaining accepted risk", "deterministic": false},
+        {"text": "hands off rather than silently beginning implementation", "deterministic": false}
+      ]
+    }
+  ]
+}

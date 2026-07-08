@@ -1,0 +1,14 @@
+{
+  "_comment": "Maintained by skill-evolve. grill adapts the METHOD (relentless one-at-a-time adversarial interrogation of a plan/design) of mattpocock/skills productivity/grilling; original rewrite, no files copied. Key changes: standalone stress-tester distinct from design-gate (attack an EXISTING idea, produce no artifact), explicit adversarial temperament tuned to the user's disagreement protocol + domain, and a survivors/risk handoff close. Full audit: research/audits/2026-07-08-grilling.md.",
+  "checked_at": "2026-07-08",
+  "sources": {
+    "mattpocock/skills :: productivity/grilling": {
+      "ref": "main",
+      "commit": "e5932a7a47e5",
+      "date": "2026-07-06",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Relentless one-question-at-a-time interrogation with a recommended answer per question, fact-lookup vs decision split, stop at shared understanding, don't enact — reimplemented in SKILL.md as a standalone adversarial stress-tester (not a design→gate→plan flow).",
+      "note": "2026-07-08 baseline. grill-with-docs still exists (engineering/grill-with-docs, commit 658d53e/2026-05-31) but was refactored into a thin composer 'Run a /grilling session, using the /domain-modeling skill.' — pure interrogation split into productivity/grilling (grill's source), ADR/ubiquitous-language moved into a NEW engineering/domain-modeling skill (ee8bae4/2026-06-17). design-gate pins grill-with-docs at e3b90b5/2026-05-28; minor drift, and the borrowed ADR/glossary principle now lives in domain-modeling — next skill-evolve should consider tracking engineering/domain-modeling for design-gate. Keep grill's standalone framing + adversarial temperament + handoff close on any re-sync."
+    }
+  }
+}

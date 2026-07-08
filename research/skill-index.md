@@ -87,4 +87,10 @@
 
 | 2026-07-06 | career.skill（career-skill-factory，職業→技能庫工廠） | github.com/SpaceZephyr/career.skill | SpaceZephyr（空格的鍵盤） | 部分（skill-creator／design-gate 產技能流程；唯一淨新＝專家心智蒸餾＋顧問團編排） | 🟥 跳過（純提示無碼、資安乾淨〔技能本體無 star-nag／update 迴圈，自宣傳只在 README〕；但離核心——輸出是知識工作決策顧問〔專家人格＋商業書方法論〕，範例投資／AI PM，非網路/系統/測試；且屬新手上手工具〔說出職業就給你造 skill〕，使用者是重度技能作者、已過此受眾。旗艦範例「價值投資 guru 人格〔段永平/芒格/Marks〕」與其被動指數＋investment-guardian 立場相衝。MIT 只在 README 宣稱、無 LICENSE 檔。唯一可挖＝多人格「評審會」編排＋公眾人物心智蒸餾，列 build-your-own 候選、經 design-gate、非急件） |
 
+| 2026-07-08 | hmm（「4-token prompting framework」） | github.com/tumenbaev/hmm | tumenbaev | 是（design-gate／內建 plan mode 同軸——工程紀律簇的最輕量端） | 🟥 跳過（技能本體全文就一句 `Let's discuss before implementing`，SKILL.md 與命令檔相同；資安 trivially SAFE〔無 shell／網路／碼〕。無工程或精選資料可裝、無檔可收錄、一句話撐不起獨立技能，且與它自身 less-is-more 主張＋Rule 2 相矛盾〔作者亦言可背起來不用裝〕。可吸收兩個習慣：措辭用意圖非動作〔I want to build X〕、在 design-gate／plan mode 之外加一句話輕量對齊檔位，皆非技能） |
+
+| 2026-07-08 | space-multi-design-ppt | github.com/SpaceZephyr/space-multi-design-ppt | SpaceZephyr（空格的鍵盤） | 是（slide-deck／內建 pptx／frontend-design——簡報生成簇高度重疊） | 🟥 跳過（品牌設計驅動簡報生成，核心與自建 slide-deck＋內建 pptx／frontend-design 高度重疊，且既有版原生渲染、無金鑰無外部呼叫更貼合 terminal-first。唯一淨新＝62 具名品牌「像素級」氣質模仿，與 slide-deck 原創 preset＋零授權資產哲學正面衝突；可選 AI 圖像模式靠第三方付費代理〔LabNana〕外送簡報內容＋Bearer 金鑰〔預設關但程式在倉庫內〕，另有 npx getdesign@latest 未釘版本供應鏈面。無 LICENSE＋全篇簡體＝與 zh-TW 相斥。可挖「先推薦風格再生成」互動選型層點子，日後以原創 preset 自寫，不收錄。完整稽核見當日本機紀錄） |
+
+| 2026-07-08 | grilling（＋grill-me） | github.com/mattpocock/skills（skills/productivity/grilling） | mattpocock（Matt Pocock） | 部分（design-gate DESIGN 提問階段相鄰，但姿態／獨立性不同） | 🟦 參考自製（5 句純散文拷問協定：毫不留情逐題壓測 plan／design、沿 design tree 解決決策相依、每題附推薦答案、一次一題、事實自查決策交人、達成共識前不動手。MIT，同一已多次採納的可信上游，資安純散文 SAFE。與使用者反對協議高度契合。淨新於 design-gate＝對抗式姿態＋輕量獨立隨叫隨到＋顯式召喚＋每題押注＋事實/決策分工；上游 grill-with-docs 仍在，已重構成 grilling＋新 domain-modeling 的組合殼，design-gate 借走的 ADR/詞彙面向搬進 domain-modeling〔非移除〕。形狀待使用者定：折進 design-gate 對抗模式 vs 獨立微技能 grill） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
