@@ -3,7 +3,7 @@
 `last30d` **vendors** the hard-to-reproduce, endpoint-fragile fetchers from
 **mvanhorn/last30days-skill** (MIT) and wraps them in an original, narrowed skill.
 Full evaluation & security audit: `research/audits/2026-07-08-last30days.md`
-(skill-curator verdict: 🟨 vendor & customize). Design: `docs/specs/2026-07-08-social-pulse-design.md`.
+(skill-curator verdict: 🟨 vendor & customize). Design: `docs/specs/2026-07-08-last30d-design.md`.
 
 ## Vendored verbatim (upstream `skills/last30days/scripts/lib/`, copied into `scripts/sources/`)
 

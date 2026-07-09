@@ -109,7 +109,7 @@ run: python3 scripts/last30d.py "<topic>" [--depth quick|default|deep]
 ## 8. Registration & packaging (per CLAUDE.md)
 
 - APM-managed → **skip `package_skill`**.
-- Register: `apm.yml` (`- ./social-pulse/`), README self-built table row, `skill-curator/references/skill-map.md` (Standalone tools; boundary vs `deep-research`/`WebSearch`).
+- Register: `apm.yml` (`- ./last30d/`), README self-built table row, `skill-curator/references/skill-map.md` (Standalone tools; boundary vs `deep-research`/`WebSearch`).
 - Symlink into global (Claude Code + OpenCode).
 - `attribution.md` + `sources.lock` **paired** (vendored-from-upstream).
 - Language: **English** (engineering skill).
