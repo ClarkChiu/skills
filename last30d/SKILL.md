@@ -42,10 +42,12 @@ Read the printed digest and synthesize from it, or pass the `--json` output to
 
 **Four always-on (keyless / free):**
 - **Reddit** — RSS discovery + shreddit listing partials for real upvote scores + top
-  comment per post. No key.
+  comment per post. No key. (Keyless Reddit has no date-range query, so the window is
+  approximated by the feeds' `t=month`; `--as-of` doesn't shift the Reddit window.)
 - **Hacker News** — Algolia Search API. No key.
-- **GitHub** — REST Search (repos matching the topic, ranked by stars). Uses `GITHUB_TOKEN`
-  if set (higher rate limit).
+- **GitHub** — REST Search, scoped to repos pushed within the window, **ranked by lifetime
+  stars** (GitHub's API has no stars-gained-in-window sort — a popular repo with one recent
+  push can top the lane). Uses `GITHUB_TOKEN` if set (higher rate limit).
 - **arXiv** — arXiv API; no engagement metric, so ranked by recency.
 
 **Two optional (degrade visibly if unavailable — the run continues):**

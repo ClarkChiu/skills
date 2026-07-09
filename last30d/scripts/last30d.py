@@ -67,7 +67,15 @@ def main(argv=None):
     ap.add_argument("--as-of", help=argparse.SUPPRESS)  # test hook: fixes 'today'
     a = ap.parse_args(argv)
 
-    lanes = [l.strip() for l in a.lanes.split(",") if l.strip() in ALL_LANES]
+    requested = [l.strip() for l in a.lanes.split(",") if l.strip()]
+    lanes = [l for l in requested if l in ALL_LANES]
+    bad = [l for l in requested if l not in ALL_LANES]
+    if bad:  # fail loud (Rule 12) rather than silently dropping unknown lanes
+        sys.stderr.write(f"[last30d] ignoring unknown lane(s): {', '.join(bad)}; "
+                         f"valid: {', '.join(ALL_LANES)}\n")
+    if not lanes:
+        sys.stderr.write("[last30d] no valid lanes selected — nothing to do.\n")
+        return 2
     frm, to, results, skips = run(a.topic, a.depth, lanes, a.as_of)
     render = digest.render_json if a.json else digest.render_markdown
     out = render(a.topic, frm, to, results, skips)

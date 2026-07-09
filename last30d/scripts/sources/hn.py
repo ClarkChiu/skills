@@ -9,9 +9,11 @@ BASE = "https://hn.algolia.com/api/v1/search_by_date"
 
 def search(topic, from_date, to_date, limit=25):
     frm = int(datetime.fromisoformat(from_date).replace(tzinfo=timezone.utc).timestamp())
+    to = int(datetime.fromisoformat(to_date).replace(tzinfo=timezone.utc).timestamp()) + 86400
     q = urllib.parse.urlencode({
         "query": topic, "tags": "story",
-        "numericFilters": f"created_at_i>{frm}", "hitsPerPage": max(limit * 2, 50),
+        "numericFilters": f"created_at_i>{frm},created_at_i<{to}",
+        "hitsPerPage": max(limit * 2, 50),
     })
     try:
         with urllib.request.urlopen(f"{BASE}?{q}", timeout=15) as r:

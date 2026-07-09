@@ -32,8 +32,9 @@ def render_markdown(topic, from_date, to_date, results, skips):
                   "|---|-------|------:|------|------|------|"]
         for i, r in enumerate(recs, 1):
             title_txt = (r.get("title") or "").replace("|", "\\|")
+            meta_txt = (r.get("meta") or "").replace("|", "\\|")
             lines.append(f'| {i} | {title_txt} | {_score_cell(r)} | '
-                         f'{r.get("meta", "")} | {r.get("date", "")} | [↗]({r.get("url", "")}) |')
+                         f'{meta_txt} | {r.get("date", "")} | [↗]({r.get("url", "")}) |')
             if r.get("top_comment"):
                 lines.append(f'      ↳ top comment {r["top_comment"]}')
         lines.append("")

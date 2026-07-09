@@ -9,7 +9,9 @@ BASE = "https://api.github.com/search/repositories"
 
 
 def search(topic, from_date, to_date, limit=25):
-    query = f"{topic} pushed:>={from_date}"
+    # NOTE: ranked by LIFETIME stars — GitHub's API has no stars-gained-in-window sort.
+    # `pushed:from..to` scopes to repos active in the window; stars reflect total popularity.
+    query = f"{topic} pushed:{from_date}..{to_date}"
     url = f"{BASE}?" + urllib.parse.urlencode({
         "q": query, "sort": "stars", "order": "desc",
         "per_page": min(max(limit, 10), 50),

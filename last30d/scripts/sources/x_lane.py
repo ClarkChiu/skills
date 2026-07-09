@@ -11,6 +11,7 @@ SKIP = {"reason": None}
 
 
 def search(topic, from_date, to_date, limit=25, depth="default"):
+    SKIP["reason"] = None  # clear any stale reason from a prior in-process run
     key = os.environ.get("XAI_API_KEY")
     if not key:
         SKIP["reason"] = "no XAI_API_KEY"

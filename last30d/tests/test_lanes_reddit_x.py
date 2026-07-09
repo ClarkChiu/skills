@@ -39,6 +39,7 @@ def test_x_lane_skips_without_key(monkeypatch):
 
 
 def test_x_lane_maps_items_when_keyed(monkeypatch):
+    x_lane.SKIP["reason"] = "no XAI_API_KEY"  # stale reason from a prior keyless run
     monkeypatch.setenv("XAI_API_KEY", "xai-test")
     items = [
         {"text": "small", "url": "https://x.com/u/1", "author_handle": "u",
@@ -52,3 +53,4 @@ def test_x_lane_maps_items_when_keyed(monkeypatch):
     assert [r["title"] for r in out] == ["big one", "small"], "not ranked by likes"
     assert out[0]["lane"] == "x" and out[0]["score"] == 900 and out[0]["score_label"] == "likes"
     assert "@v" in out[0]["meta"]
+    assert x_lane.SKIP["reason"] is None, "a successful keyed run must clear the stale skip reason"

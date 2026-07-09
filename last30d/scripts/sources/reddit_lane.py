@@ -5,6 +5,10 @@ use). The essential keyless flow, kept small:
   RSS discover (no scores) -> listing partials backfill real upvote scores by post-id
   -> rank by relevance+engagement -> enrich the top few with their single top comment.
 Maps to the common record shape. Never raises (returns []).
+
+NOTE: keyless Reddit has no date-range query, so the window is APPROXIMATED by the
+vendored feeds' `?t=month`. `from_date`/`to_date` are accepted for a uniform lane
+signature but not applied here (so `--as-of` does not shift the Reddit window).
 """
 import math
 import re

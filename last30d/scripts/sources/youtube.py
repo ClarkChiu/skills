@@ -17,6 +17,7 @@ def available():
 
 
 def search(topic, from_date, to_date, limit=25):
+    SKIP["reason"] = None  # clear any stale reason from a prior in-process run
     if not available():
         SKIP["reason"] = "yt-dlp not installed"
         return []
