@@ -33,6 +33,7 @@ dependencies:
   - ./translate/
   - ./ig-reel/
   - ./grill/
+  - ./last30d/
   - vercel-labs/agent-browser
   - anthropics/skills
   mcp: []

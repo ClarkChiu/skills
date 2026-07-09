@@ -93,4 +93,6 @@
 
 | 2026-07-08 | grilling（＋grill-me） | github.com/mattpocock/skills（skills/productivity/grilling） | mattpocock（Matt Pocock） | 部分（design-gate DESIGN 提問階段相鄰，但姿態／獨立性不同） | 🟦 參考自製（5 句純散文拷問協定：毫不留情逐題壓測 plan／design、沿 design tree 解決決策相依、每題附推薦答案、一次一題、事實自查決策交人、達成共識前不動手。MIT，同一已多次採納的可信上游，資安純散文 SAFE。與使用者反對協議高度契合。淨新於 design-gate＝對抗式姿態＋輕量獨立隨叫隨到＋顯式召喚＋每題押注＋事實/決策分工；上游 grill-with-docs 仍在，已重構成 grilling＋新 domain-modeling 的組合殼，design-gate 借走的 ADR/詞彙面向搬進 domain-modeling〔非移除〕。形狀待使用者定：折進 design-gate 對抗模式 vs 獨立微技能 grill） |
 
+| 2026-07-08 | last30days（plugin＋Go MCP＋Python 技能） | github.com/mvanhorn/last30days-skill | mvanhorn（Matt Van Horn） | 部分（相鄰 deep-research／內建 WebSearch／agent-browser；「跨社群聚合＋互動加權＋LLM 綜合簡報」為真缺口） | 🟨 收錄＋客製（原判 🟥 已撤回——初判把「反爬規避」當紅線，使用者當日更正該非其原則，改用真風險軸評）。skill-auditor 六步無惡意：無外洩/C2/注入/隱蔽回傳，cookie 僅讀你自己 x.com auth_token/ct0＝自我認證〔預設關＋需同意＋用後即刪〕，hosted 無預設端點，MCP 不下載外部二進位，安全工程佳。真風險軸：外洩無、憑證範圍窄、來源強，僅安裝面重〔plugin＋Go MCP＋作者 npm CLI＋SessionStart hook〕＋契合僅 4/15 車道。裁決＝收錄需要的 MIT 模組〔reddit_keyless＋reddit_rss/listing/shreddit＋vendor/bird-search〕進自建薄技能，收窄到 Reddit/X/HN/GitHub；替代＝🟩 精簡安裝〔npx skills add 只裝 skill、隨上游更新，解 X 客戶端 rot〕。**已於 2026-07-09 建成自建 `last30d`**：收錄 Reddit 免登入葉子引擎＋xai_x 逐字，編排／HN／GitHub／arXiv／YouTube 車道原創；design＋plan 見 docs/，完整稽核見當日本機紀錄） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
