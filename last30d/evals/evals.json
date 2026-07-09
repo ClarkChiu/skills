@@ -1,0 +1,49 @@
+{
+  "skill_name": "last30d",
+  "_note": "Fetch-and-score social-signal tool. Load-bearing intent: per-lane ranking (never a merged score); optional lanes (X/YouTube) degrade VISIBLY without crashing; it FETCHES a digest, it does NOT synthesize prose (that's deep-research); depth changes per-lane N; the header surfaces per-lane counts so a failed/empty lane is visible. These are exercised deterministically by tests/ (test_*.py); the eval cases below check the skill triggers and stays in its lane vs deep-research/WebSearch.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "fetches-digest-not-a-synthesized-report",
+      "lang": "en",
+      "prompt": "What are people saying about the new React compiler in the last 30 days?",
+      "expected_output": "Runs last30d/scripts/last30d.py with the topic and presents the per-lane engagement-ranked digest (Reddit/HN/GitHub/arXiv, X and YouTube if available). It does NOT hand-write a prose report from its own knowledge — the digest is the deliverable; any synthesis is clearly derived from the fetched items with their links/scores.",
+      "assertions": [
+        {"text": "invokes the last30d script rather than answering from model knowledge", "deterministic": false},
+        {"text": "produces a per-lane digest (not a single merged ranked list)", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "optional-lanes-skip-visibly-not-crash",
+      "lang": "en",
+      "prompt": "last30d on 'homelab networking' — I don't have an xAI key or yt-dlp installed.",
+      "expected_output": "The run completes; Reddit/HN/GitHub/arXiv return results while the X section shows 'skipped: no XAI_API_KEY' and YouTube shows 'skipped: yt-dlp not installed'. It does not abort or error out over the missing optional dependencies.",
+      "assertions": [
+        {"text": "X and YouTube render a visible skip line; other lanes still produce results", "deterministic": false},
+        {"text": "the run does not crash due to the missing key/CLI", "deterministic": true}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "stays-in-lane-vs-deep-research",
+      "lang": "zh",
+      "prompt": "幫我對「臺灣 IPv6 部署」做一份完整查證、附引用的研究報告。",
+      "expected_output": "Recognizes this asks for a web-verified CITED report, which is deep-research's job, not last30d. Either points to / hands off to deep-research, or clarifies — it does not pretend last30d's engagement digest is a cited research report. If it does fetch social signal, it frames it as input to the report, not the report itself. Responds in Traditional Chinese.",
+      "assertions": [
+        {"text": "does not present last30d's social digest as a cited verified report", "deterministic": false},
+        {"text": "routes the cited-report request to deep-research", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "depth-controls-breadth",
+      "lang": "en",
+      "prompt": "Give me a deep last30d scan on 'RISC-V', top 50 per source.",
+      "expected_output": "Passes --depth deep so each lane returns up to 50 items (not the default 25).",
+      "assertions": [
+        {"text": "uses --depth deep (N=50) rather than the default", "deterministic": false}
+      ]
+    }
+  ]
+}

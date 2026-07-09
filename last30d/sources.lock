@@ -1,0 +1,20 @@
+{
+  "_comment": "Maintained by skill-evolve. last30d VENDORS files verbatim from mvanhorn/last30days-skill (MIT) — the Reddit keyless leaf fetchers/parsers + xai_x + their shallow deps. Copied from main HEAD below. On drift: re-pull the changed leaf file verbatim (don't hand-port); tests/test_reddit_parsers.py guards the re-pull. The reddit_keyless orchestrator was NOT vendored (own reddit_lane.py); hn/arxiv/github/youtube are original. Full audit: research/audits/2026-07-08-last30days.md.",
+  "checked_at": "2026-07-09",
+  "sources": {
+    "mvanhorn/last30days-skill": {
+      "ref": "main",
+      "copied_from_commit": "ae8c32327f86",
+      "license": "MIT",
+      "vendored": "FILES (verbatim copy into scripts/sources/): reddit_rss.py, reddit_listing.py, reddit_shreddit.py, reddit_enrich.py, xai_x.py + shared deps http.py, relevance.py, cjk.py, dates.py, log.py.",
+      "vendored_file_commits": {
+        "reddit_shreddit.py": {"commit": "ca3fbbe377bf", "date": "2026-06-17"},
+        "reddit_rss.py": {"commit": "ca3fbbe377bf", "date": "2026-06-17"},
+        "reddit_listing.py": {"commit": "4bd20f3f4beb", "date": "2026-06-25"},
+        "xai_x.py": {"commit": "d51e91ea2696", "date": "2026-05-17"}
+      },
+      "not_vendored": "reddit_keyless.py (orchestrator — own reddit_lane.py instead), reddit_arctic.py, reddit.py (keyed), rerank.py, and all other platforms.",
+      "note": "2026-07-09 baseline. On re-sync watch the shreddit /svc endpoints (reddit_listing/reddit_shreddit) and the xAI x_search contract (xai_x) — those rot. Keep the verbatim-copy + own-orchestrator split; re-pull, don't hand-merge."
+    }
+  }
+}
