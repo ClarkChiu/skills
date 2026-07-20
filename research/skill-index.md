@@ -97,4 +97,6 @@
 
 | 2026-07-12 | mattpocock/skills 上游漂移複查（新增 16 技能） | github.com/mattpocock/skills | mattpocock（Matt Pocock） | 部分 | ♻️ Recall＋漂移：整包早已逐項挖完（見 06-08／07-08 各列），HEAD e5932a7→391a2701 新增「deep-module 工程叢集」＋寫作管線。逐項 [0]/[1] 分類：resolving-merge-conflicts＝🟦 參考自製候選（唯一無內建對應且對位 git 工作流，低–中優先）；writing-beats/fragments/shape＝🟦 觀望（對位技術寫作但仍 in-progress，離開再議）；codebase-design＝deep-module 詞彙層，可日後豐富 design-gate。其餘 🟥 跳過：ask-matt（repo 專屬 router）、code-review（≈內建）、implement／prototype／wayfinder（≈design-gate）、research（≈內建 deep-research）、setup-pre-commit（JS 棧）、handoff（≈內建 /compact）、teach（重複 tutor）、improve-codebase-architecture／loop-me。無一值得現在動工，整包「不裝、逐項挖」不變。上游更名 to-issues→to-tickets／to-prd→to-spec、caveman 已移除（均不影響 method-only 自建）。完整分類見當日本機日誌 |
 
+| 2026-07-17 | xiaohongshu-ai-workbench（《小红书运营手册 · AI工作台》，6 技能） | github.com/nihe0909/xiaohongshu-ai-workbench | nihe0909（Mengke／王梦珂） | 否（無小紅書／社群行銷簇可撞；相鄰的 social-card／ig-reel 是出圖／出片引擎，非行銷顧問） | 🟥 跳過（純文字的小紅書行銷維運：標題／主頁／選題／評論區／私信成交路徑——不觸及使用者核心〔網路／系統／協定／測試自動化／DevOps〕，PM 與技術寫作那一側也構不著〔行銷漏斗文案≠規格定義或技術文件〕；平臺與語言皆不對位：本專案的社群面已刻意由陸站轉向 IG／LinkedIn〔social-card 4:5、ig-reel 9:16〕，上游為簡體＋陸站慣用語，且鎖定 Codex 而非 Claude Code。與 creator-buddy〔2026-07-05〕同因同判。相關性即止，未跑完整稽核；靜態觀察為六技能純文字、腳本僅 stdlib 打包／檢查，無網路無 shell＝最低風險層，但無缺口可填、無檔案值得收錄。上游單次提交、無後續維護。完整理由見當日本機紀錄） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
