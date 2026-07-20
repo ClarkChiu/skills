@@ -1,15 +1,15 @@
 {
   "_comment": "Maintained by skill-evolve: upstream data sources vendored into data/. Pins the commit each was copied at, to detect new/updated design data. Update only after reviewing the report (--write-lock). Only DATA was vendored — no scripts/CLI. Full audit: research/audits/2026-06-05-ui-ux-pro-max.md.",
-  "checked_at": "2026-07-06",
+  "checked_at": "2026-07-20",
   "sources": {
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "ref": "main",
-      "commit": "4baa399d00da",
-      "release": "v2.10.1",
-      "date": "2026-07-04",
+      "commit": "b484e8338c25",
+      "release": "v2.11.0",
+      "date": "2026-07-19",
       "license": "MIT",
-      "vendored": "src/ui-ux-pro-max/data/*.csv (12 domain + stacks/16); dropped draft.csv, design.csv, all scripts",
-      "note": "2026-07-06 bump (was 65e23199492f): v2.10.1 — FIRST round to touch the vendored data layer. RE-VENDORED the changed CSVs (products +31 types, 162→193 rows; colors/typography/styles; stacks angular/astro/laravel/nuxt-ui). Did NOT vendor new motion.csv (GSAP code) or the 6 new desktop stacks (avalonia/javafx/uno/uwp/winui/wpf, off-core). 2026-06-28 bump (was b7e3af80f6e3 / v2.5.0). v2.6–2.9 release notes are all CLI/security/distribution (plugin-name validation, XSS-escape in slide generator, GitHub token support, npm fallback package) — no design-data change mentioned. CAVEAT (low confidence): release notes do not cover the data/ layer; not diffed CSV-by-CSV this round, so a silent palette/typography CSV tweak can't be fully ruled out. Re-vendor only if a CSV diff shows changes. Never vendor the CLI or image-gen scripts that read ~/.claude/.env. 2026-06-08: SHA widened to full (was false-flagging UPDATED)."
+      "vendored": ".claude/skills/ui-ux-pro-max/data/*.csv (12 domain + stacks/22); dropped draft.csv, design.csv (now deleted upstream too), motion.csv, all scripts",
+      "note": "2026-07-20 bump (was 4baa399d00da / v2.10.1): v2.11.0 data resync, diffed CSV-by-CSV against the pinned commit. Upstream fixed drift between its three internal data copies (#412); synced from .claude/skills/ui-ux-pro-max/data/ (LF, canonical — the src/ copy still carries mixed CRLF), blob-SHA-verified. ADDED the 6 desktop stacks (wpf/winui/uwp/uno/avalonia/javafx, reversing the 2026-07-06 off-core skip now that the resync scope was approved). REWRITTEN threejs.csv re-vendored (adds No column, r128 CDN-pinning guidance). 7 files (charts/colors/google-fonts/landing/ui-reasoning/ux-guidelines/stacks-react-native) were content-identical, only normalized CRLF→LF to match upstream blobs so future diffs stay clean. colors/products/typography/angular/laravel/nuxt-ui already matched (picked up at v2.10.1). Still NOT vendored: motion.csv (GSAP snippet pack, off the vendored subset). Security scan clean: no hidden Unicode, no injection phrasing, no credential URLs; <script>/CDN strings are guideline example code, expected in this dataset. Never vendor the CLI or image-gen scripts that read ~/.claude/.env. Older history: 2026-07-06 v2.10.1 first data re-vendor (products 162→193 rows); 2026-06-28 v2.5.0 bump; 2026-06-08 SHA widened to full."
     },
     "mattdesl/dictionary-of-colour-combinations": {
       "ref": "master",
@@ -38,16 +38,16 @@
     },
     "Leonxlnx/taste-skill": {
       "ref": "main",
-      "commit": "3c7017d636c3",
-      "date": "2026-05-26",
+      "commit": "7c397f22d3af",
+      "date": "2026-07-17",
       "license": "MIT",
       "vendored": "PRINCIPLES ONLY — no files. references/anti-default.md rewrites 3 directives: the Design Read declaration, the anti-default cliché list, the 3 dials (variance/motion/density).",
-      "note": "2026-06-08: adapted, not vendored. Prompt-only frontend generator, 37k★ but viral/solo/4-months-old; verdict build-your-own (not install/vendor) — research/audits/2026-06-08-taste-skill.md. Tracked so skill-evolve can surface upstream wording tweaks; refinement would live in upstream skills/taste-skill/SKILL.md — re-read it on a bump."
+      "note": "2026-06-08: adapted, not vendored. Prompt-only frontend generator, 37k★ but viral/solo/4-months-old; verdict build-your-own (not install/vendor) — research/audits/2026-06-08-taste-skill.md. Tracked so skill-evolve can surface upstream wording tweaks; refinement would live in upstream skills/taste-skill/SKILL.md — re-read it on a bump. 2026-07-20 reviewed: sponsor/README churn only; the one rule fix (LAYOUT_VARIANCE→DESIGN_VARIANCE typo) is already correct in our local anti-default.md."
     },
     "alchaincyf/huashu-design": {
       "ref": "master",
-      "commit": "0e7ec8aca005",
-      "date": "2026-07-02",
+      "commit": "32cc58127f60",
+      "date": "2026-07-19",
       "license": "MIT",
       "vendored": "PRINCIPLES ONLY — no files. references/brand-assets.md adapts the brand-asset protocol (never guess brand colors from memory; fetch official sources and pin) + the 'default AI output = average of all brands' anti-slop framing.",
       "note": "2026-07-02: adapted, not vendored — research/audits/2026-07-02-huashu-design.md (🟦 build-your-own). Ladder restructured offline-first (user spec → WebFetch pin → ask); upstream's mandatory WebSearch step dropped. Re-sync: watch upstream SKILL.md 品牌资产协议 §1.a and the anti-slop list for protocol refinements."

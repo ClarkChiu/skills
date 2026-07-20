@@ -10,11 +10,18 @@ or executed. Each source's full security review is in
 
 ### 1. ui-ux-pro-max (the design-decision CSV pack) — MIT
 - Repo: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill (LICENSE file: MIT)
-- Vendored: `src/ui-ux-pro-max/data/*.csv` → `data/ui-ux-pro-max/` (12 domain CSVs
-  + `stacks/` 16 framework files).
+- Vendored: `.claude/skills/ui-ux-pro-max/data/*.csv` → `data/ui-ux-pro-max/`
+  (12 domain CSVs + `stacks/` 22 framework files; originally taken from
+  `src/ui-ux-pro-max/data/`, switched at v2.11.0 to the `.claude` copy — upstream
+  fixed drift between its three internal data copies in #412 and the `.claude`
+  copy is the canonical LF version).
 - **Dropped:** `draft.csv` and `design.csv` (self-marked backup / not read by the
-  upstream engine, Simplified-Chinese scratch), and all scripts (`_sync_all.py`,
+  upstream engine, Simplified-Chinese scratch; deleted upstream as of v2.11.0),
+  `motion.csv` (GSAP snippet pack), and all scripts (`_sync_all.py`,
   `search.py`, `core.py`, `design_system.py` — we read the data directly instead).
+- Re-synced 2026-07-20 at v2.11.0 (commit `b484e8338c25`): CSV-by-CSV diff;
+  added the 6 desktop stacks (WPF/WinUI/UWP/Uno/Avalonia/JavaFX), re-vendored the
+  rewritten `threejs.csv`, normalized line endings to upstream; scan clean.
 - Note: upstream is a full skill with a CLI installer and image-generation scripts
   that read `~/.claude/.env`; **none of that is vendored** — only the pure-data
   CSVs. Star/commit anomaly (87k★ / ~134 commits) noted in the audit; irrelevant
@@ -68,7 +75,11 @@ copied**; the ladder is restructured for this skill (offline-first: user-supplie
 spec → WebFetch pin → ask; upstream's mandatory WebSearch step dropped), and the
 pin format (`docs/design/brand/<brand>-spec.md`) is original. Full verdict:
 `research/audits/2026-07-02-huashu-design.md` (🟦 build-your-own). Pinned in
-`sources.lock` for `skill-evolve`.
+`sources.lock` for `skill-evolve`. 2026-07-20: upstream 32cc5812 (2026-07-19)
+hardened its direction gate — a brand name or style keyword no longer exempts
+the 2–3-direction choice, it only narrows it; adopted as one sentence in
+SKILL.md step 1. The §1.a brand-asset five-step protocol this file adapts is
+unchanged at that commit.
 
 ## Re-sync
 

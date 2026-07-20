@@ -57,7 +57,11 @@ aesthetic-palette JSON, and accessibility + UX-heuristic markdown.
    \<audience>, with a \<vibe> language, leaning toward \<style>."* The audience
    picks the aesthetic, not your taste. If the request involves a **recognizable
    brand**, open `references/brand-assets.md` and follow its source ladder —
-   never write brand hex/logo rules from memory.
+   never write brand hex/logo rules from memory. A user-supplied style keyword
+   or brand name ("make it feel like Stripe", a brand kit) **narrows the
+   interpretation space but does not transfer the choice**: still present 2–3
+   differentiated directions within that constraint instead of treating the
+   direction as decided.
 
 2. **Route, then read.** Open `data/INDEX.md`. Start from
    `ui-ux-pro-max/ui-reasoning.csv` (the per-category decision rules), then pull
