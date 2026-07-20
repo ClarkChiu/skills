@@ -39,7 +39,7 @@ to general technical HTML deliverables, pull the rest from the same commit.
 ## Idea sources (not vendored)
 
 `references/diagram-style.md` is written from scratch for this project, but its
-principles were **adapted** (not copied) from one upstream:
+principles were **adapted** (not copied) from these upstreams:
 
 - **`SpaceZephyr/design-buddy`**, sub-skill `space-architecture-diagram`
   (https://github.com/SpaceZephyr/design-buddy), MIT-licensed. Borrowed as
@@ -51,6 +51,12 @@ principles were **adapted** (not copied) from one upstream:
   deliberately rejected (it breaks this skill's zero-network requirement — see
   the caution in `diagram-style.md`). Evaluated 2026-07-05 (verdict: 🟥 skip the
   bundle, borrow this one idea); full audit in the research day log.
+- **`plannotator/effective-html`** (the MIT bundle already credited above as the
+  vendored-file source): 2026-07-20 — its two interaction rules (dismissible
+  overlay cards with a visible close button; pan/zoom for oversized diagrams
+  with 1:1 SVG-coordinate panning, cursor-anchored zoom, and drag-vs-click
+  suppression) were adapted in our own words into `diagram-style.md` §4 and
+  SKILL.md workflow step 4. Ideas only; no additional files vendored.
 
 ## Security note
 

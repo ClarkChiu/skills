@@ -66,6 +66,10 @@ with a diagram inside, that's a general artifact (built-in
 4. **Make it interactive only when it earns its keep.** Clickable nodes that
    reveal detail, and flow chips that animate a request path through the
    diagram, are worth it for anything non-trivial. Don't animate for decoration.
+   When you do go interactive, follow the interaction craft rules in
+   `references/diagram-style.md`: overlays (detail cards, legend) always carry a
+   visible close button and never permanently occlude the diagram; diagrams
+   larger than the viewport get cursor-anchored pan/zoom with a reset button.
 5. **Self-review against the checklist**, then deliver the single file.
 
 ## Hard requirements
@@ -109,6 +113,7 @@ with a diagram inside, that's a general artifact (built-in
 - `references/architecture-example.html` — the finished worked example.
 - `references/html-effectiveness/` — curated subset of the upstream gallery
   (diagram / SVG / design-system / animation / interaction examples).
-- `references/diagram-style.md` — semantic accent palette, SVG craft rules, and
-  CJK label handling (styling defaults for the hand-drawn SVG).
+- `references/diagram-style.md` — semantic accent palette, SVG craft rules,
+  interaction craft (dismissible overlays, pan/zoom), and CJK label handling
+  (styling defaults for the hand-drawn SVG).
 - `references/attribution.md` — upstream sources & licenses.

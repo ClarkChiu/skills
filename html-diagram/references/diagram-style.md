@@ -1,4 +1,4 @@
-# Diagram style system — accents, SVG craft, CJK labels
+# Diagram style system — accents, SVG craft, interaction, CJK labels
 
 A concrete styling layer for the hand-drawn SVG. The gallery examples show *how
 good looks*; this file gives **reusable defaults and craft rules** so you don't
@@ -65,7 +65,31 @@ requirements demand.)
   ordinary data-flow edges.
 - **Boxes:** rounded rects, `rx="6"`–`8"`, 1.5px stroke. Grid pattern at 40px.
 
-## 4. CJK labels (Traditional Chinese)
+## 4. Interaction craft (overlays, pan & zoom)
+
+When the diagram is interactive (SKILL.md workflow step 4), two patterns recur;
+get them right the first time:
+
+- **Every overlay is dismissible.** Anything floating over the SVG stage — a
+  node detail card, a legend panel — gets a visible close (×) button. Clicking
+  a related node may reopen it, but nothing may permanently occlude diagram
+  content: the diagram *is* the page, and an un-closable card hides part of it.
+- **Pan + zoom for large diagrams.** Architecture diagrams usually outgrow the
+  viewport; make the stage pannable and zoomable rather than shrinking the SVG:
+  - Wrap all diagram content in **one `<g>`** and drive pan/zoom by updating
+    that single group's `transform` (translate + scale).
+  - Pan **1:1 in SVG coordinates**. Do *not* divide the mouse delta by the zoom
+    scale — that makes dragging feel sluggish exactly when you're zoomed in and
+    need precision most.
+  - Anchor zoom **at the cursor**: adjust the translate so the point under the
+    pointer stays fixed while the scale changes.
+  - **Drag ≠ click.** After a drag exceeding ~5px, suppress the click that
+    would otherwise fire on a node (a one-shot capture-phase `stopPropagation`
+    on the next click) — otherwise every pan ending on a node pops its card.
+  - Use `grab` / `grabbing` cursors, show a small zoom-level indicator, and
+    provide a reset-view button.
+
+## 5. CJK labels (Traditional Chinese)
 
 When labels are Chinese (this project's default per the repo convention):
 
