@@ -10,7 +10,7 @@ description: |
   (GitHub, ClawHub, skills.sh, Anthropic Skills, community repos, files shared
   by humans or other agents). Produces a SKILL AUDIT REPORT with verdict
   and safe-run plan.
-version: 1.2.0
+version: 1.3.0
 permissions:
   file-read: true
   file-write: false
@@ -112,9 +112,10 @@ skillspector scan <skill-dir-or-url> --no-llm --format json
 
 - Covers static patterns across a growing category set (prompt injection,
   exfiltration, MCP tool poisoning, YARA signatures, taint tracking; recent
-  additions cover privileged-container escape, cloud-storage exfiltration, and
-  privileged-Kubernetes deploy) plus live OSV.dev CVE lookups — feed its findings
-  into Steps 3–6 as machine-generated leads.
+  additions cover privileged-container escape, cloud-storage exfiltration,
+  privileged-Kubernetes deploy, and untrusted container-image pulls — SC7,
+  `docker pull` with no content trust) plus live OSV.dev CVE lookups — feed its
+  findings into Steps 3–6 as machine-generated leads.
 - It is now **fail-closed**: a degraded or partial deep scan can no longer return
   SAFE, and silent LLM-stage degradation is surfaced rather than hidden. So an
   unexpectedly clean result on a large skill is a prompt to look twice, not relax.
@@ -249,6 +250,12 @@ If the skill installs packages (`npm install`, `pip install`, `go get`,
 - [ ] Source not obfuscated, minified, or compressed
 - [ ] **Not published in the last week with minimal downloads**
 - [ ] **No recent ownership transfer of the package**
+- [ ] **Untrusted container images**: skill scripts that `docker pull` /
+      `docker run` / `podman run` an image are installing executable code from
+      a registry — a mutable tag (`:latest`, `:1.x`) can be repointed to a
+      malicious payload after your review. Require digest pinning
+      (`image@sha256:…`) or content trust; treat an unpinned or
+      unknown-publisher image as a supply-chain red flag
 - [ ] **MCP rug-pull**: if the skill wires in an MCP server, its tool
       definitions are fetched at runtime and can change *after* you trust it —
       a server that serves benign tools on review can swap in malicious ones on
