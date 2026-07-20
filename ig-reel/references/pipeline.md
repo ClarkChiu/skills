@@ -79,7 +79,11 @@ ffprobe -v error -select_streams v:0 \
 ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 out.mp4
 # expected: aac   (empty output = NO AUDIO — fail)
 ffprobe -v error -show_entries format=duration -of csv=p=0 out.mp4
-# sanity-check against the planned length
+# must match the planned cut within ±2% or ±0.2s, whichever is larger — bigger drift = wrong trim or a broken concat
+ffmpeg -nostdin -i out.mp4 -vf blackdetect=d=0.1:pix_th=0.10 -an -f null - 2>&1 | grep blackdetect
+# no output = clean; a hit near t=0 or the tail = recording-start offset or a bad concat/loop join
+ffmpeg -nostdin -i out.mp4 -af loudnorm=I=-14:TP=-1:print_format=summary -f null - 2>&1 | grep 'Input Integrated'
+# the export's real integrated loudness — must land near -14 LUFS (IG target); we normalize on the way in, this proves it survived the mix
 ```
 
 An output failing any line is **not delivered** — fix and re-run.
