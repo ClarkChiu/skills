@@ -1,6 +1,6 @@
 {
   "_comment": "供 skill-evolve 追蹤上游：solo-think 改寫自 loryoncloud/Heartbeat-Like-A-Man 的對內構想（已砍對外動作、移植到 Hermes、改寫成臺灣繁體中文）。上游若改動心跳/思考佇列的設計，由 skill-evolve 提醒回看。",
-  "checked_at": "2026-06-08",
+  "checked_at": "2026-07-20",
   "sources": {
     "loryoncloud/Heartbeat-Like-A-Man": {
       "commit": "d644d727acc0",

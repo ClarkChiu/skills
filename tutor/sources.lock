@@ -1,6 +1,6 @@
 {
   "_comment": "Maintained by skill-evolve: tutor adapts prompts #18 (Feynman Tutor) and #20 (Socratic Mode) from a 20-prompt article. The source is a static article/thread, not a repo — no ref to diff; re-check is only worthwhile if the author publishes a revised collection.",
-  "checked_at": "2026-06-07",
+  "checked_at": "2026-07-20",
   "sources": {
     "blocktempo/20-claude-prompts-productivity": {
       "url": "https://www.blocktempo.com/20-claude-prompts-productivity/",

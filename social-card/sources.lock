@@ -1,6 +1,6 @@
 {
   "_comment": "供 skill-evolve 追蹤上游：social-card 取 op7418/guizang-social-card-skill 的設計系統『原則』（一卡一想法、先砍字不縮字、object-fit、Swiss/Editorial 雙系統、QA 規則構想），未收任何檔（授權 AGPL/ISC 不一致）。平台改 IG/LinkedIn、render 由 playwright 改用 agent-browser。2026-07-02 起 Sweet 家族另取 JimLiu/baoyu-skills 的甜美系設計語言（原則非檔）。上游若改動設計系統或新增版式，由 skill-evolve 提醒回看。",
-  "checked_at": "2026-07-06",
+  "checked_at": "2026-07-20",
   "sources": {
     "op7418/guizang-social-card-skill": {
       "commit": "cf4b810fac1c",

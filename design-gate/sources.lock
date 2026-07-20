@@ -1,6 +1,6 @@
 {
   "_comment": "Maintained by skill-evolve: the upstream that design-gate's design/plan rules were adapted from, used to detect new rules. Update only after reviewing the report (--write-lock). Tracks only the two extracted skills; the upstream orchestration pieces (subagent-driven-development etc.) were deliberately not vendored and are not tracked here.",
-  "checked_at": "2026-07-06",
+  "checked_at": "2026-07-20",
   "sources": {
     "obra/superpowers": {
       "ref": "main",
@@ -15,11 +15,11 @@
     },
     "mattpocock/skills :: engineering/grill-with-docs": {
       "ref": "main",
-      "commit": "e3b90b5238f3",
-      "date": "2026-05-28",
+      "commit": "697d4ce9742d",
+      "date": "2026-07-13",
       "license": "MIT",
       "vendored": "PRINCIPLE ONLY — no files. Inspired the Phase-1 'sharpen terms + capture ADRs inline' step and references/adr.md (ubiquitous language + living ADR/CONTEXT capture). ADR format is the public Michael Nygard structure.",
-      "note": "2026-06-08: added when ADR/ubiquitous-language capture was folded into design-gate. On re-sync, mine glossary/ADR-capture refinements; the ADR format itself is standard and stable."
+      "note": "2026-06-08: added when ADR/ubiquitous-language capture was folded into design-gate. On re-sync, mine glossary/ADR-capture refinements; the ADR format itself is standard and stable. 2026-07-20 reviewed: only thin-composer wording tweaks (2064fb64/658d53e6) + repo-wide Codex metadata; nothing to adopt. Standing flag from grill research remains: consider retargeting this source to skills/engineering/domain-modeling where the cited ADR/ubiquitous-language material now lives."
     }
   }
 }
