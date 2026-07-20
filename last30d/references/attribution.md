@@ -33,6 +33,17 @@ and every other platform (design §11 register).
 (yt-dlp), `reddit_lane.py`, `x_lane.py`, `digest.py`, `scripts/last30d.py`, all tests.
 These lanes use clean official APIs — no vendoring needed (CLAUDE.md Rule 2).
 
+## Re-pull log
+
+**2026-07-20** — verbatim re-pull of three leaves (upstream files now live at
+`skills/last30days/scripts/lib/` — path moved since the 2026-07-09 baseline):
+`xai_x.py` + `log.py` at `39cca461aab5` (fixes an AttributeError on the xAI error
+path: `http.DEBUG` → lazy `log.is_debug()`); `reddit_listing.py` at `298310ca34a5`
+(backward-compatible timeframe param, r/all, discovery helpers — `reddit_lane.py`'s
+`fetch_listings` call unchanged). `http.py` deliberately **held** at the
+`ae8c32327f86` baseline: upstream's version is now coupled to a `health.py`
+module / fixture tooling we don't vendor. All 20 tests pass after the re-pull.
+
 ## Re-sync rule (for skill-evolve)
 
 `sources.lock` pins the upstream commit the vendored files were copied from. On drift:

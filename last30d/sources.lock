@@ -1,20 +1,22 @@
 {
   "_comment": "Maintained by skill-evolve. last30d VENDORS files verbatim from mvanhorn/last30days-skill (MIT) — the Reddit keyless leaf fetchers/parsers + xai_x + their shallow deps. Copied from main HEAD below. On drift: re-pull the changed leaf file verbatim (don't hand-port); tests/test_reddit_parsers.py guards the re-pull. The reddit_keyless orchestrator was NOT vendored (own reddit_lane.py); hn/arxiv/github/youtube are original. Full audit: research/audits/2026-07-08-last30days.md.",
-  "checked_at": "2026-07-09",
+  "checked_at": "2026-07-20",
   "sources": {
     "mvanhorn/last30days-skill": {
       "ref": "main",
-      "copied_from_commit": "ae8c32327f86",
+      "copied_from_commit": "39cca461aab5",
+      "upstream_path": "skills/last30days/scripts/lib/ — upstream MOVED the vendored files here (was scripts/lib/ relative to the skill root at the 2026-07-09 baseline). Future `commits?path=` drift checks MUST use this new path or they false-negative.",
       "license": "MIT",
       "vendored": "FILES (verbatim copy into scripts/sources/): reddit_rss.py, reddit_listing.py, reddit_shreddit.py, reddit_enrich.py, xai_x.py + shared deps http.py, relevance.py, cjk.py, dates.py, log.py.",
       "vendored_file_commits": {
         "reddit_shreddit.py": {"commit": "ca3fbbe377bf", "date": "2026-06-17"},
         "reddit_rss.py": {"commit": "ca3fbbe377bf", "date": "2026-06-17"},
-        "reddit_listing.py": {"commit": "4bd20f3f4beb", "date": "2026-06-25"},
-        "xai_x.py": {"commit": "d51e91ea2696", "date": "2026-05-17"}
+        "reddit_listing.py": {"commit": "298310ca34a5", "date": "2026-07-12"},
+        "xai_x.py": {"commit": "39cca461aab5", "date": "2026-07-15"},
+        "log.py": {"commit": "39cca461aab5", "date": "2026-07-15"}
       },
-      "not_vendored": "reddit_keyless.py (orchestrator — own reddit_lane.py instead), reddit_arctic.py, reddit.py (keyed), rerank.py, and all other platforms.",
-      "note": "2026-07-09 baseline. On re-sync watch the shreddit /svc endpoints (reddit_listing/reddit_shreddit) and the xAI x_search contract (xai_x) — those rot. Keep the verbatim-copy + own-orchestrator split; re-pull, don't hand-merge."
+      "not_vendored": "reddit_keyless.py (orchestrator — own reddit_lane.py instead), reddit_arctic.py, reddit.py (keyed), rerank.py, health.py (new upstream module — see note), and all other platforms.",
+      "note": "2026-07-20 re-pull (baseline 2026-07-09 at ae8c32327f86): xai_x.py + log.py re-pulled at 39cca461aab5 (fixes AttributeError on the xAI error path — `http.DEBUG` → `log.is_debug()`); reddit_listing.py re-pulled at 298310ca34a5 (backward-compatible: timeframe param, r/all, discovery helpers). http.py DELIBERATELY HELD at the ae8c32327f86 baseline — upstream's http.py is now coupled to a health.py module / fixture tooling we don't vendor; before re-pulling any leaf later, confirm it doesn't use the new http API. On re-sync watch the shreddit /svc endpoints (reddit_listing/reddit_shreddit) and the xAI x_search contract (xai_x) — those rot. Keep the verbatim-copy + own-orchestrator split; re-pull, don't hand-merge."
     }
   }
 }
