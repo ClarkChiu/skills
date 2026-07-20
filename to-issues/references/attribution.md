@@ -18,7 +18,17 @@ idea — break a plan into vertical, independently-grabbable issues — is Matt'
   Dropped the upstream's tracker-config coupling (`setup-matt-pocock-skills`); this skill
   just uses whatever `gh`/`glab` is already set up.
 
+## Upstream path lineage
+
+Upstream deleted `engineering/to-issues` on 2026-07-08 (commit 386d4ff719a7), merging
+/to-plan + /to-issues into `engineering/to-tickets` (and renaming /to-prd → /to-spec).
+`sources.lock` now tracks `engineering/to-tickets`; drift checks should query that path.
+
 ## Re-sync
 
 `sources.lock` pins upstream. On `skill-evolve`, mine slicing/ordering refinements; keep
 the design-gate-downstream framing and the confirm-before-publish gate.
+
+- 2026-07-20: adopted expand–contract slicing for wide refactors (upstream
+  a0329ba9/aa591116) and the native-relations publishing hint (details in
+  `sources.lock`).

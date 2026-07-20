@@ -35,7 +35,15 @@ plan; to-issues publishes that plan. It does not re-plan.
   unblock the rest. Prefer a walking skeleton first (one thin slice that runs end to end),
   then widen.
 - Keep each issue small — if it can't be described in a title + a few acceptance bullets,
-  split it.
+  split it. Practical bound: a slice should fit a single fresh context window, since
+  that's all an agent picking up the ticket gets.
+- **Exception — wide refactors.** One mechanical change with repo-wide blast radius
+  (rename a column, change a shared symbol's type) doesn't slice vertically. Use
+  expand–contract: **expand** (new alongside old) → **migrate** in batches (per
+  package/directory, one issue per batch, blocked by expand, CI green after each) →
+  **contract** (delete the old once unreferenced, blocked by all migrate batches). If
+  even batches can't stay green, put them on a shared integration branch and land green
+  in one final integrate-and-verify issue.
 
 ## Each run
 
@@ -51,7 +59,11 @@ plan; to-issues publishes that plan. It does not re-plan.
    gh issue create --title "<title>" --body "<goal + acceptance + blocked-by>" --label "ready-for-agent"
    ```
    Create in dependency order; capture each issue number so later issues can reference
-   "blocked by #N". (Use `glab` instead for GitLab.)
+   "blocked by #N". Where the tracker has native relations, prefer them over body text —
+   GitHub: sub-issues for parent/child and blocked-by for ordering, e.g.
+   `gh api repos/{owner}/{repo}/issues/<parent#>/sub_issues -F sub_issue_id=<child-id>`
+   (issue IDs, not numbers) — keeping the in-body "blocked by #N" text as fallback for
+   trackers without them. (Use `glab` instead for GitLab.)
 5. **Report** the created issue numbers + URLs.
 
 ## Guardrails
