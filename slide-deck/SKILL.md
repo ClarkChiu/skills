@@ -118,6 +118,14 @@ role-lock hook; an invented label draws a warning). 雙語簡報的字體堆疊�
 the scaler handles fit. Never hardcode page counts; the engine derives nav dots and page
 numbers from the DOM.
 
+**Gate on slide 1 before batching.** Don't write the whole deck blind: produce
+slide 1 first, run `python3 <skill>/scripts/check_deck.py` on that one-slide file,
+and confirm it comes back clean — role `data-label` recognized, density within
+budget, no overflow — before generating the remaining slides. A systemic mistake
+(wrong type scale, broken budget math, invented role label) costs one slide to fix
+here and a rewrite if discovered at Phase 5. The full-deck lint still runs at the
+end regardless.
+
 **Re-anchor on long decks.** Before each slide, restate the locked constraints to
 yourself — the 4 palette colors, the type scale, the chosen fonts, this slide's rhythm
 tag — so slide 25 stays on the same palette as slide 1. Long generations drift off-style
