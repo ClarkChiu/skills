@@ -8,7 +8,10 @@ description: >-
   completed, or a feature works — and when reviewing whether such a claim is
   actually backed by evidence. Triggers on 「跑過了嗎」「確認一下有沒有過」
   「真的好了嗎」「verify before done」「is it actually passing」, or any moment
-  you're about to report success. Does NOT replace the built-in `verify` skill
+  you're about to report success. Gates two axes: that a claim is backed by
+  fresh evidence (false green), and — on delegated or non-trivial work — that
+  the result didn't silently drift from what the user meant (a true green on
+  the wrong thing). Does NOT replace the built-in `verify` skill
   (which launches the app to observe behavior) — this is the lighter discipline
   gate that applies to any test/lint/build/fix claim. Not for exploratory work
   with nothing to claim yet.
@@ -21,7 +24,7 @@ A gate against false "done". The operating rule:
 
 > **No completion claim without fresh verification evidence.**
 
-This is `CLAUDE.md` Rule 12 (fail loud) turned into a concrete gate. "It passes", "it's fixed", "the build is green", "the migration completed" — every one of those is a claim, and a claim needs evidence you just produced, not assumed.
+This is `CLAUDE.md` Rule 12 (fail loud) turned into a concrete gate. "It passes", "it's fixed", "the build is green", "the migration completed" — every one of those is a claim, and a claim needs evidence you just produced, not assumed. That's the first axis. A claim can also be green and still solve the wrong thing — correct code aimed at the wrong target; the second axis (below) catches that on delegated work.
 
 ## When to use, when not to
 
@@ -59,6 +62,20 @@ If you can't attach fresh output that confirms it, don't claim it. Say what you 
 - "The linter passed" when you actually only ran it on one file.
 - Exit code 0 from a wrapper script that swallowed an inner failure.
 
+## Second axis: did it drift from intent?
+
+The five-step gate catches a **false green** — a claim with no evidence behind it. It does not catch a **true green on the wrong thing**: tests pass, build is clean, and the work still solves a problem you weren't asked to solve, on a silent wrong assumption. Fresh output proves the code does what the *code* says — never that it does what the user *meant*.
+
+So on delegated or non-trivial work, add a cheap drift check before "done" — surface the drift yourself, don't wait to be caught:
+
+1. **Name the top two or three checks.** "To confirm I didn't drift from what you meant, check these" — aimed at the riskiest decisions, not trivia: the assumption you're least sure of, a constraint you only inferred, a path you never tested against the actual goal.
+2. **Call the likelier failure mode:** did you **miss a constraint** (something true about their world you never saw) or **misread the goal** (constraints understood, wrong target)? Bet on one.
+3. **List the silent assumptions** the work stands on, so a wrong one is visible instead of buried.
+
+Then it's the user's move — self-classify each part as sure / fuzzy / only-trusting-you-here, and probe the fuzzy. Don't classify for them; make it possible by doing 1–3.
+
+The payoff of surfacing 1–3: if the work later breaks, the user can localize it fast — reasoning drifted, or a constraint was missed — instead of diagnosing from zero.
+
 ## Boundary
 
-Adapted from obra/superpowers' `verification-before-completion` (MIT); see `references/attribution.md`. This skill only gates claims — it doesn't decide what the right verification is for a given task; that's your judgment (and for "run the app and observe", the built-in `verify` skill).
+Adapted from obra/superpowers' `verification-before-completion` (MIT); the intent-drift second axis is from Geoffrey Litt's "Understanding is the new bottleneck" (the code-quiz thesis; idea only, not a tracked repo) — see `references/attribution.md`. This skill only gates claims — it doesn't decide what the right verification is for a given task; that's your judgment (and for "run the app and observe", the built-in `verify` skill).

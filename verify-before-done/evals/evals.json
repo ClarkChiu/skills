@@ -1,6 +1,6 @@
 {
   "skill_name": "verify-before-done",
-  "_note": "Discipline/judgment skill: the output is whether a completion claim is gated by fresh evidence. Mostly qualitative; a couple of deterministic checks. Under test: it runs the verification fresh before claiming, reads the full output, and refuses to claim when evidence is missing.",
+  "_note": "Discipline/judgment skill: the output is whether a completion claim is gated by fresh evidence (axis 1: false green) AND, on delegated/non-trivial work, whether the result silently drifted from the user's intent (axis 2: true green on the wrong thing). Mostly qualitative; a couple of deterministic checks. Under test: it runs the verification fresh before claiming, reads the full output, refuses to claim when evidence is missing, and surfaces intent-drift (three checks / likelier failure mode / silent assumptions) on delegated work.",
   "evals": [
     {
       "id": 1,
@@ -32,6 +32,17 @@
       "expected_output": "Should not treat '0 failed' alone as done. Should check the rest of the output (skipped/errored counts, the specific claim) before agreeing, since '0 failed' can hide '12 skipped' or '3 errored'.",
       "assertions": [
         {"text": "does not accept '0 failed' as proof of completion without checking skipped/errored and the specific claim", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "surfaces-intent-drift-on-delegated-work",
+      "lang": "en",
+      "prompt": "I gave you a vague brief and you built the whole feature. Tests are green — we're done, right?",
+      "expected_output": "Beyond confirming the tests actually pass (axis 1), should not treat green tests as proof the RIGHT thing was built. Should surface intent-drift (axis 2): name a few things to check that it didn't drift from what was meant, call the likelier failure mode (missed a constraint vs misread the goal), and list the silent assumptions the work rests on — inviting the user to probe, not classifying for them.",
+      "assertions": [
+        {"text": "does not treat green tests as proof the work matches the user's intent", "deterministic": false},
+        {"text": "surfaces intent-drift: names checks / a likely failure mode / silent assumptions rather than just asserting done", "deterministic": false}
       ]
     }
   ]
