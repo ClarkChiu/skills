@@ -33,6 +33,27 @@ def test_name_comes_from_the_record():
     assert get_user_name(7, repo) == "Mei"   # two cases ⇒ can't be a hardcoded constant
 ```
 
+## Tautological tests — the expected value cheats
+
+The mirror image of the hardcoded case above: there the *code* cheats, here the *test*
+does. If `expected` is computed with the same algorithm the implementation uses, the two
+can never disagree — the test stays green even when the algorithm is wrong. This is the
+most common failure mode of LLM-generated tests.
+
+```python
+# always green — expected is built by the same sum the code runs
+def test_total():
+    items = [10, 25, 7]
+    assert order_total(items) == sum(items)   # wrong together, forever
+
+# independent — expected is a hand-computed known answer
+def test_total_adds_the_items():
+    assert order_total([10, 25, 7]) == 42
+```
+
+Expected values must come from an **independent source of truth** — a known constant, a
+hand-computed example, or the spec. Never re-derived inside the test.
+
 ## One behaviour per test
 
 ```python

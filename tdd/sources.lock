@@ -1,14 +1,14 @@
 {
   "_comment": "Maintained by skill-evolve. tdd adapts the METHOD (red-green-refactor) of mattpocock/skills engineering/tdd; the discipline is universal (Beck), this is an original rewrite re-aimed at pytest/protocol testing, no files copied. Full audit: research/audits/2026-06-08-mattpocock-skills.md.",
-  "checked_at": "2026-06-08",
+  "checked_at": "2026-07-20",
   "sources": {
     "mattpocock/skills :: engineering/tdd": {
       "ref": "main",
-      "commit": "7afa86d3a5dd",
-      "date": "2026-04-28",
+      "commit": "697d4ce9742d",
+      "date": "2026-07-13",
       "license": "MIT",
       "vendored": "METHOD ONLY — no files. Red-green-refactor loop reimplemented in SKILL.md + references/{test-design,mocking}.md, re-aimed at pytest + network-protocol integration examples, wired into design-gate → tdd → verify-before-done.",
-      "note": "2026-06-08 baseline. On re-sync mine rule phrasings / test-design ideas; keep the pytest/protocol re-aiming and pipeline wiring."
+      "note": "2026-06-08 baseline (7afa86d3a5dd). 2026-07-20 re-sync (697d4ce9742d, 2026-07-13): adopted the tautological-test anti-pattern (43ea0884) into references/test-design.md; reviewed and rejected the reference-only reshape (e81f9766 — our loop stays executable, wired design-gate → tdd → verify-before-done) and the refactor-stage drop (80e9dcc6 — upstream offloads refactor to its code-review skill; we keep Beck's third step with the existing only-refactor-on-green guard). On re-sync mine rule phrasings / test-design ideas; keep the pytest/protocol re-aiming and pipeline wiring."
     }
   }
 }

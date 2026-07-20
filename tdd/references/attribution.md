@@ -23,3 +23,7 @@ of it. This is an **original rewrite**, no files copied. Full evaluation:
 
 `sources.lock` pins upstream. On `skill-evolve`, mine sharper rule phrasings or
 test-design ideas; keep the pytest/protocol re-aiming and the pipeline wiring.
+
+- 2026-07-20: adopted upstream's tautological-test anti-pattern (43ea0884) into
+  `references/test-design.md`; rejected the reference-only reshape and the refactor-stage
+  drop (details in `sources.lock`).
