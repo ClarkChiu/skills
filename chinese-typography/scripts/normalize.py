@@ -235,6 +235,19 @@ def _fix_variants(text, formal_tai=False):
 
 
 # ---------------------------------------------------------------------------
+# 不換行空格 U+00A0 正規化（pangu.js v8.0.0 SOLITARY_NBSP）
+# ---------------------------------------------------------------------------
+# 孤立的 NBSP（前後都不是 NBSP）幾乎都是網頁複製貼上帶進來的雜訊，轉成一般
+# 半形空格；連續 2 個以上的 NBSP 是刻意的版面排版（縮排／對齊），原樣保留。
+# 在 _protect 之後執行，所以 code／URL 內的 NBSP 不受影響。
+_SOLITARY_NBSP = re.compile('(?<!\\u00A0)\\u00A0(?!\\u00A0)')
+
+
+def _fix_nbsp(text):
+    return _SOLITARY_NBSP.sub(' ', text)
+
+
+# ---------------------------------------------------------------------------
 # 第 4 步：引號 → 「」『』
 # ---------------------------------------------------------------------------
 # 台灣慣例：主引號 「」、巢狀 『』（直角引號），而非中國大陸／西式的 ""''。
@@ -297,6 +310,14 @@ _ANS = r'A-Za-z0-9'
 _SYM = r'@$%^&\-+=|/`'   # 反引號納入，讓行內 code 與中文之間也有盤古之白
 _CJK_ANS = re.compile(f'([{CJK}])([{_ANS}{_SYM}])')
 _ANS_CJK = re.compile(f'([{_ANS}{_SYM}])([{CJK}])')
+# 斜線啟發式（pangu.js v8.0.0）：一行出現 2 個以上的 '/' 時，斜線幾乎都是
+# 路徑（/home/用戶/文件）或並列分隔符（甲/乙/丙），不是「中文/英文」這種
+# 二擇一寫法——該行的斜線不加盤古之白；恰好 1 個斜線維持原行為。
+# 注意：進到 _pangu 時 _SPAN_PATTERNS 佔位符已還原，ASCII 路徑的斜線同樣
+# 計入該行斜線數；行內若另有「中文/英文」二擇一也會連帶不加空格（上游同款取捨）。
+_SYM_NOSLASH = _SYM.replace('/', '')
+_CJK_ANS_NOSLASH = re.compile(f'([{CJK}])([{_ANS}{_SYM_NOSLASH}])')
+_ANS_CJK_NOSLASH = re.compile(f'([{_ANS}{_SYM_NOSLASH}])([{CJK}])')
 # markdown 強調符號（**粗體**、__底線__、~~刪除~~）透明化：補不補空格看符號
 # 「包住的內容」對外面的字元，空格永遠補在整組標記的「外側」，絕不插進標記與
 # 內容之間（同 pangu.js 行為）：中文**bold**中文 → 中文 **bold** 中文。
@@ -306,11 +327,19 @@ _ANS_MARK_CJK = re.compile(f'([{_ANS}])([{_MARK}]+)([{CJK}])')
 
 
 def _pangu(text):
-    text = _CJK_ANS.sub(r'\1 \2', text)
-    text = _ANS_CJK.sub(r'\1 \2', text)
-    text = _CJK_MARK_ANS.sub(r'\1 \2\3', text)   # 空格補在標記外側（左）
-    text = _ANS_MARK_CJK.sub(r'\1\2 \3', text)   # 空格補在標記外側（右）
-    return text
+    out = []
+    for line in text.split('\n'):
+        # 斜線啟發式逐行判斷：2+ 個 '/' 的行，斜線視為路徑／並列分隔符
+        if line.count('/') > 1:
+            line = _CJK_ANS_NOSLASH.sub(r'\1 \2', line)
+            line = _ANS_CJK_NOSLASH.sub(r'\1 \2', line)
+        else:
+            line = _CJK_ANS.sub(r'\1 \2', line)
+            line = _ANS_CJK.sub(r'\1 \2', line)
+        line = _CJK_MARK_ANS.sub(r'\1 \2\3', line)   # 空格補在標記外側（左）
+        line = _ANS_MARK_CJK.sub(r'\1\2 \3', line)   # 空格補在標記外側（右）
+        out.append(line)
+    return '\n'.join(out)
 
 
 # code（行內／圍欄）在最後才逐字還原。pangu 跑時看不到真正的反引號，無法在
@@ -428,6 +457,7 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
         formal_tai = user_dict['formal_tai']
     # 個人字典的 protect 詞與內建保護片段一起抽出，全程不被更動。
     text, store = _protect(text, extra_protect=user_dict.get('protect'))
+    text = _fix_nbsp(text)      # 孤立 NBSP → 一般空格；連續 NBSP（刻意版面）保留
     opencc_ok = None
     if convert:
         text, opencc_ok = _opencc_convert(text, force=force_convert)

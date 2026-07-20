@@ -10,7 +10,15 @@ library (OpenCC).
 - **pangu.js** — Vinta Chien. <https://github.com/vinta/pangu.js> (MIT).
   The 盤古之白 (CJK ↔ Latin/digit spacing) rule set. `scripts/normalize.py`
   re-implements the core spacing regex natively to avoid a runtime dependency;
-  the boundary definitions follow pangu.js.
+  the boundary definitions follow pangu.js. Two v8.0.0 text-layer heuristics
+  were adopted into `normalize.py` (2026-07-20): SOLITARY_NBSP (a solitary
+  U+00A0 becomes a regular space; runs of 2+ NBSPs are deliberate layout and
+  are preserved) and the per-line slash guard (a line with 2+ `/` treats
+  slashes as path/list separators — no spacing added around them; exactly one
+  slash keeps the spacing behavior). Deliberate divergence from upstream v8:
+  our SOLITARY_NBSP also converts a solitary NBSP at string edges (upstream
+  keeps edge NBSPs and collapses NBSP-containing whitespace runs) — local
+  behavior is documented in normalize.py; don't "fix" it on the next re-sync.
 
 - **OpenCC** — Open Chinese Convert. <https://github.com/BYVoid/OpenCC> (Apache-2.0).
   Used directly (optional dependency, `opencc-python-reimplemented`) for
@@ -26,6 +34,9 @@ library (OpenCC).
 
 - **fudesign2008/open-skills `chinese-format`** — FuDesign2008.
   <https://github.com/FuDesign2008/open-skills> (MIT).
+  Note: the standalone `chinese-format` skill was removed upstream in v1.67.1
+  (PR #205, 2026-07-11) and its rules were merged into their `article-writer`
+  skill — the punctuation prior art now lives there.
   Prior-art agent skill for Chinese punctuation formatting. This skill follows
   its punctuation-conversion approach and deliberately extends beyond it: it adds
   Taiwan 「」『』 quotation marks, enforces (not optional) 盤古之白 spacing,
