@@ -64,6 +64,7 @@
 - **要全域可用**：把技能 symlink 進主機代理的 skills 目錄（範本見下方〈手動符號連結〉；`apm install` 只部署到專案範圍的 `.claude/skills`、`.agents/skills`，不會進全域）。
 - **只有「改寫自／收錄上游」的技能才加**：`references/attribution.md`（來龍去脈：哪個上游、取了什麼、怎麼改、授權、注意事項——這是 `skill-evolve` 發現該追哪些源的入口）＋ `sources.lock`（把每個源釘在某 commit／日期的基準，讓 `skill-evolve` 能比對更新）。純原創的技能不需要這兩個；要加就要**成對**——只有 `sources.lock` 沒有 `attribution.md`，`skill-evolve` 的「發現」那半就空轉。
 - **撰寫語言看主題、不看儲存庫**：主題綁定中文的（中文排版、中文文風）用中文，與語言無關的工程／流程技能用英文（細節見 `CLAUDE.md`〈撰寫語言〉條）。
+- **善用既有術語**：寫 `description` 欄位或步驟說明時，優先借用語言模型本來就認得的既有術語來錨定行為（例如 `red-green-refactor`、盤古之白、`s2twp`），一個詞就能喚起整套流程，比自創新詞或長篇解釋更省篇幅，也更能讓技能每次都走同一套流程。本專案的自建技能其實早已大量在用，只是沒明講；把它當成一條明確的設計原則、回頭檢視即可。（這條取自 mattpocock 的 `writing-great-skills`，2026-07-22 評估為 🟥 跳過，但單獨採納了它——見 `skill-index.md` 裡同一天的那一列。）
 
 ## 外部技能（經 APM 引入第三方）
 
