@@ -99,4 +99,8 @@
 
 | 2026-07-17 | xiaohongshu-ai-workbench（《小红书运营手册 · AI工作台》，6 技能） | github.com/nihe0909/xiaohongshu-ai-workbench | nihe0909（Mengke／王梦珂） | 否（無小紅書／社群行銷簇可撞；相鄰的 social-card／ig-reel 是出圖／出片引擎，非行銷顧問） | 🟥 跳過（純文字的小紅書行銷維運：標題／主頁／選題／評論區／私信成交路徑——不觸及使用者核心〔網路／系統／協定／測試自動化／DevOps〕，PM 與技術寫作那一側也構不著〔行銷漏斗文案≠規格定義或技術文件〕；平臺與語言皆不對位：本專案的社群面已刻意由陸站轉向 IG／LinkedIn〔social-card 4:5、ig-reel 9:16〕，上游為簡體＋陸站慣用語，且鎖定 Codex 而非 Claude Code。與 creator-buddy〔2026-07-05〕同因同判。相關性即止，未跑完整稽核；靜態觀察為六技能純文字、腳本僅 stdlib 打包／檢查，無網路無 shell＝最低風險層，但無缺口可填、無檔案值得收錄。上游單次提交、無後續維護。完整理由見當日本機紀錄） |
 
+| 2026-07-22 | zh-humanizer-literary（中文去 AI 味＋文采增強） | github.com/nihe0909/zh-humanizer-literary | nihe0909（Mengke／王梦珂） | 是（去 AI 味半邊＝自建 `humanizer` voice 層；唯一新的「文采增強」加法層無內建對應） | 🟥 跳過（兩半皆不適配：去 AI 味診斷已由 `humanizer` 全包〔含保留作者護欄〕，純重複；唯一新東西「文采增強」是加法提升〔命名／意象／容器／節奏／金句〕，方向與 humanizer 承重紀律「技術文件保持平實、減法優先、改完那個人還在」相反，嫁接會違 Rule 7；且該加法層為公众号／小红书／即刻／课程稿／产品文案等陸系內容行銷文體最佳化，落在使用者核心〔網路／系統／協定／測試自動化／DevOps／技術寫作〕之外——他寫技術 zh-TW／EN 文件，「保持平實」才是正解。純簡體、單提交、KOL 語感蒸餾、鎖 Codex。與同作者 xiaohongshu-workbench〔07-17〕、creator-buddy〔07-05〕同因同判。純 prose 最低風險層。完整理由見當日本機紀錄） |
+
+| 2026-07-22 | writing-great-skills（mattpocock，前身 write-a-skill 改名） | github.com/mattpocock/skills（skills/productivity/writing-great-skills） | mattpocock（Matt Pocock） | 是（功能重內建 skill-creator；骨幹原則重使用者既有實作） | 🟥 跳過（當參考讀值得、當技能不必：約 2,400 字純散文的「如何寫好技能」參考，`disable-model-invocation`、無腳本／網路，資安最低風險層。這是 06-08🟥 `write-a-skill` 改名＋改寫的後繼，依現況重判。相關性高但指向「值得一讀」非「值得裝」——資訊分層／刪 no-op／描述精雕／可預測性＝每次同流程等骨幹他早已內化，功能面又被內建 skill-creator 蓋住。淨新僅薄薄一層：`leading words`〔借底模已預訓練的既有術語壓縮指令〕框架＋「可預測性為首要美德」一句，值得當透鏡、不值得起技能。可信上游〔MIT、120k★、tdd／git-guardrails／terse／to-issues／grilling 皆採納過〕。與 `claude-code-prompt-library` 記憶同型。研究≠安裝。完整理由見當日本機紀錄） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
