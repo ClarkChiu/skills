@@ -18,7 +18,7 @@
 | `docs/` | `design-gate` 的產物：`specs/`（設計文件）、`plans/`（實作計畫） | ✅ |
 | `research/` | `skill-curator` 的產物：`skill-index.md`（外部技能評估索引）進版控；`audits/`（完整稽核）與當日工作日誌 gitignored（本機私有） | 部分 |
 | `prompts/` | 存起來的**薄提示**（非技能、無 `SKILL.md`／`evals`）：純文字、隨 git 帶著走，手動貼或由內建 `schedule` 週期跑；`prompts/README.md` 是索引並記載排程接線 | ✅ 進版控 |
-| `CLAUDE.md`、`README.md`、`apm.yml`、`apm.lock.yaml`、`.gitignore` | 專案說明與 APM 設定／鎖定檔 | ✅ |
+| `CLAUDE.md`、`README.md`、`apm.yml`、`apm.lock.yaml`、`opencode.json`、`.gitignore` | 專案說明與 APM／主機設定（`opencode.json` 以 `instructions` 讓 OpenCode 載入 `CLAUDE.md`，跨代理共用同一份可攜情境）／鎖定檔 | ✅ |
 | `.claude/`、`.agents/`、`.opencode/`、`apm_modules/` | **APM 的部署目標與模組快取**（`apm install` 產生，部署副本與源技能重複） | ❌ gitignored，靠 `apm.lock.yaml` 重現 |
 
 所以「子目錄看起來不只技能」是正常的：技能目錄是源碼，`docs/`／`research/` 是流程技能的輸出；部署副本一律不進版控。
@@ -53,6 +53,7 @@
 | [`ig-reel`](./ig-reel/) | 把**你自己的影音庫存**剪成 IG 直式短片（Reel，9:16、1080×1920、目標 ≤60 秒）：盤點（ffprobe）→ 粗剪 → 9:16 重構圖（主體置中裁切或模糊墊底，**逐支決策不盲裁**）→ 字幕（whisper 選用，燒錄進安全區＋字級地板）→ 混音（ducking＋響度正規化）→ 合成輸出，可批次。鐵則：**素材是使用者的**（不抓網路庫存、不 AI 補鏡頭）、**每支輸出 ffprobe 驗證** fail loud（批次失敗明列、離開碼非零）、最少重編碼、不發文（發布同 social-card 界線）。核心引擎 ffmpeg（必備）；auto-editor／whisper 選用、缺席優雅降級、絕不自動安裝。與 `social-card` 併成 IG 的「圖＋影」家族。原創建構（管線形狀經本機研究筆記參考 MoneyPrinterTurbo 類專案，零檔案收錄；HTML 動畫→MP4 擴充線釘 huashu-design 追蹤）。 |
 | [`last30d`](./last30d/) | **最近 30 天社群訊號取數器**：給一個主題／人物，抓 Reddit、X、Hacker News、GitHub、arXiv、YouTube 的近月討論，**各車道用自己的互動指標**（upvote／讚／points／stars／時間新近／觀看數）排序，吐一張**分車道結構化 digest**（Markdown 或 `--json`）。**只取數不綜合**——把 digest 交給當前模型或 `deep-research` 寫成敘述（邊界：這是社群訊號取數器，`deep-research` 是網路查證＋引用報告）。四條免金鑰常開（Reddit／HN／GitHub／arXiv）＋兩條選用（X 需 `XAI_API_KEY`＝xAI 第一方 API；YouTube 需外部 `yt-dlp`），選用車道缺件就**顯眼跳過**、其餘照跑（fail loud）。**收錄＋客製**：Reddit 免登入引擎與 X（`xai_x`）客戶端逐字收錄自 `mvanhorn/last30days-skill`（MIT，難複製、會 rot 的葉子抓取器），編排與 HN／GitHub／arXiv／YouTube 車道原創；上游追蹤見 `sources.lock`。純取數、不發文，只讀你自己的 `XAI_API_KEY`／`GITHUB_TOKEN`。 |
 | [`grill`](./grill/) | 對抗式**壓力測試**一個**既有**的計畫／設計／PR／想法：毫不留情地逐題拷問——一次一題、每題先押自己的推薦答案，專攻沒講的假設、失敗模式、被太快否決的替代方案、沒人算的成本，以及「10 倍／高負載／依賴掛掉時會怎樣」，直到想法撐住或破掉。是 `design-gate` 的**對抗版對照組**：design-gate 幫你把模糊想法**想出來並產出設計＋計畫**（重、pre-code、出文件）；grill **不產任何 artifact**、輕量、隨叫隨到，可對半成品計畫／他人的 PR 中途發動，能查的事實自己查、決策交給你，達成共識才收手並交棒（design-gate／to-issues／直接建）。姿態貼合 CLAUDE.md 反對協議（先給最強反論、不先讚美），攻擊面偏向使用者本行（協定邊界、併發競態、NAT／網路分割、可測性）。改寫自 `mattpocock/skills` 的 grilling（方法非檔、獨立化並標明與 design-gate 邊界、MIT）。純 prompt、只讀不寫。 |
+| [`handover`](./handover/) | 對話**交接**打包器：把當前會話的「可續行核心」整理成全新對話（零記憶）能直接接手的交接文件——電梯簡報、三態進度（已驗證／未驗證／未開始）、決策附理由、踩過的死路、接手第一步、附驗證方式的剩餘任務與可驗證的驗收標準。鐵則：只寫實際發生的事、**引用不複製**（路徑＋提交雜湊，儲存庫才是真相來源）、金鑰個資不得進入、產出後**必經使用者審閱**。依**接手者**分兩模式：讀得到儲存庫→寫 `.claude/handovers/`（git 排除）＋現查 git 中繼資料；讀不到（如 claude.ai 網頁對話）→吐單一可貼 Markdown 區塊、關鍵成品反轉為內嵌（網頁版薄提示孿生：`prompts/handover.md`）。方法改寫自 `mattpocock/skills` handoff＋`softaworks/agent-toolkit` session-handoff（皆 MIT、方法非檔）＋HumanLayer ACE-FCA 的 40–60% 時機律。與內建 `/compact` 畫界：壓縮會遞迴失真，交接是經審閱的乾淨接棒。 |
 | [`translate`](./translate/) | EN↔臺灣繁體中文**雙向翻譯**，兩模式：**快翻**（直翻不留檔）與**精翻**（分析→初稿→批評→重翻，中間檔全留、發表品質），快翻後說「繼續精翻」可沿用產出升級、不重翻。承重紀律：**批評步只診斷不動筆**（問題清單＋位置＋修法），改寫留給下一步；批評清單依方向換——英譯中抓翻譯腔（歐化句、被動濫用、中國用語混入），中譯英抓中式英文（冠詞、時態、直譯搭配）。用詞接 `chinese-typography` 用詞層（user-dictionary＞glossary＞技能術語表）；與 `humanizer` 畫界：翻譯腔歸這裡、AI 腔歸它，完成建議下游接 humanizer→chinese-typography。改寫自 `JimLiu/baoyu-skills` 的 baoyu-translate（方法非檔、三模式砍成二、zh-CN→zh-TW、MIT）。 |
 
 ## 新增一個自建技能

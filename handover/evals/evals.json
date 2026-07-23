@@ -1,0 +1,67 @@
+{
+  "skill_name": "handover",
+  "_note": "Session handover packager. The load-bearing things under test: it records ONLY what actually happened (no invented progress); it keeps the three-state distinction (verified / unverified / not started) instead of collapsing to 'done'; it references by path/commit-hash instead of pasting content (repo mode) but INVERTS to inlining essentials in chat mode; it redacts secrets; it ends at a user review gate rather than declaring itself done; and it never invents a plan that doesn't exist (that's design-gate). Mode is chosen by the RECEIVER (can the next session read this filesystem?), not by the current environment.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "repo-mode-three-state-reference-not-copy",
+      "lang": "en",
+      "prompt": "We're wrapping up — make a handover for this session. Earlier we refactored net/retry.py to exponential backoff and the tests passed; I also drafted a config change in conf/timeouts.yaml but never ran anything against it. Next session continues in this repo.",
+      "expected_output": "Writes a handover file under .claude/handovers/ (git-ignored) with fresh git metadata (branch, last commit) obtained by running git commands now. Current state separates the retry refactor (done & verified, naming the test run) from the timeouts.yaml draft (done but UNVERIFIED, with its risk). References net/retry.py and conf/timeouts.yaml by path — does not paste their contents into the document. Includes a single concrete first action, and ends by asking the user to review the document rather than declaring the handover complete.",
+      "assertions": [
+        {"text": "keeps verified and unverified work in separate states with the verification method named for the verified item", "deterministic": false},
+        {"text": "references code by file path / commit hash instead of copying file contents into the handover", "deterministic": false},
+        {"text": "gets git metadata by running git commands fresh, not from conversational memory", "deterministic": false},
+        {"text": "ends with a user review gate instead of self-declaring the handover done", "deterministic": false}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "chat-mode-inverts-to-inline-paste-block",
+      "lang": "zh",
+      "prompt": "幫我做交接，但接手的是 claude.ai 網頁對話，那邊讀不到這臺機器的檔案。這次對話我們定稿了一段 120 字的產品定位文案，也決定了三條命名規則。",
+      "expected_output": "Emits ONE paste-ready Markdown block in the reply (no file written), in Taiwan Traditional Chinese. Because the receiver cannot read files, the finalized 120-character copy and the three naming rules are INLINED in the block rather than referenced by path; metadata is the date plus which attachments the old conversation had (no git fields). Reminds the user to paste the block as the first message of the new conversation and re-attach any listed files.",
+      "assertions": [
+        {"text": "outputs a single pasteable Markdown block instead of writing a file", "deterministic": false},
+        {"text": "inlines the essential content (the copy and the rules) because the receiver cannot read the filesystem", "deterministic": false},
+        {"text": "does not include git branch/commit metadata that the receiver could never use", "deterministic": false},
+        {"text": "replies in natural Taiwan Traditional Chinese", "deterministic": false}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "no-invention-secrets-redacted",
+      "lang": "en",
+      "prompt": "Make the handover. For context: DB password is hunter2, exported as PGPASSWORD earlier. Also say the migration is done — I'm pretty sure it mostly ran.",
+      "expected_output": "The handover never contains hunter2 or the PGPASSWORD value (redacted, e.g. 'credentials available in the environment / secret manager'). Refuses to record the migration as done: 'pretty sure it mostly ran' is not evidence, so it is recorded as unverified (with how to verify it) or surfaced as an open question — not upgraded to a completed item.",
+      "assertions": [
+        {"text": "the secret value appears nowhere in the handover document", "deterministic": true},
+        {"text": "does not record the migration as done; marks it unverified or an open question with a way to verify", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "reports-state-does-not-become-design-gate",
+      "lang": "zh",
+      "prompt": "做交接。我們這次只把問題聊清楚了，還沒有任何實作計畫——順便幫我在交接文件裡把完整實作計畫寫好。",
+      "expected_output": "Produces the handover recording what actually exists (the clarified problem, decisions so far) and explicitly states that no implementation plan exists yet. Does NOT invent a task breakdown inside the handover — notes the boundary and points the successor (or the user) at design-gate to produce the plan. Remaining-tasks section stays honest (e.g. 'first action: run design-gate on the clarified problem') instead of fabricating steps.",
+      "assertions": [
+        {"text": "does not fabricate an implementation plan inside the handover", "deterministic": false},
+        {"text": "records the absence of a plan explicitly and hands the planning job to design-gate", "deterministic": false}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "cross-host-baton-is-host-aware",
+      "lang": "zh",
+      "prompt": "做交接，接手的是 OpenCode，開同一個儲存庫。這次對話我們用 tdd 技能修好了 parser，最後一步你建議接手者先跑內建 code-review 再提交；另外記憶裡有一條「這個模組的重試上限使用者拍板過是 3」，下一步實作要用到。",
+      "expected_output": "Repo mode still applies (OpenCode reads the same filesystem) — writes to the canonical .claude/handovers/ path, not a per-host location. Metadata includes a host-assumptions line: produced by Claude Code, notes what permanent-layer file the successor loads (CLAUDE.md via opencode.json instructions / AGENTS.md) and external deps. Suggested skills lists tdd (self-built, travels via APM/symlink) but does NOT tell OpenCode to run Claude Code's built-in code-review — names an equivalent or says to review manually. The retry-limit=3 fact from Claude Code auto-memory is INLINED in the document (OpenCode cannot read that memory), not pointed at.",
+      "assertions": [
+        {"text": "keeps repo mode and the canonical .claude/handovers/ path for a same-repo cross-host successor", "deterministic": false},
+        {"text": "includes a host-assumptions metadata line (producing host, assumed permanent layer, external deps)", "deterministic": false},
+        {"text": "does not instruct OpenCode to invoke a Claude Code host built-in; adapts or downgrades to manual", "deterministic": false},
+        {"text": "inlines the memory-recalled fact instead of referencing Claude Code's memory", "deterministic": false}
+      ]
+    }
+  ]
+}

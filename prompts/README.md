@@ -13,11 +13,14 @@
 | [`claude-md-audit.md`](./claude-md-audit.md) | 規則衛生 | 揪出可刪規則／衝突／冗餘／模糊指令，只回報待核可 | 每週一 09:00 |
 | [`claude-md-context-budget.md`](./claude-md-context-budget.md) | 載入成本／結構 | 量化 CLAUDE.md 臃腫，標出該移到 path-scoped rules／子目錄／skill 的部分 | 每月／按需 |
 | [`read-paper-3prompts.md`](./read-paper-3prompts.md) | 讀論文 | 三段式讀論文：心智圖筆記 → 10 組概念性問題 → 回填整合（亦提供 `read-paper.espanso.yml` 供 Espanso 展開） | 手動／互動 |
+| [`handover.md`](./handover.md) | 對話交接 | `handover` 技能的**聊天版孿生**：網頁對話（claude.ai）載入不了技能，收尾時貼這份，把對話打包成可複製的交接區塊（關鍵成品內嵌、附件列「需重新上傳」）給新對話接手 | 手動（對話收尾時） |
 
 ## 接 schedule（這份 index 的重點：知道哪些提示要掛排程、怎麼掛）
 
 排程是 Claude Code／Cowork **內建**能力（網頁版不支援，需改手動）。設定時，把提示檔的內容當任務
-內容，並**務必加「只輸出報告、不修改任何檔案」**。範例接線（用內建 `schedule`／`/loop` 或對話直接
+內容，並**務必加「只輸出報告、不修改任何檔案」**。一個但書：內建 `schedule` 建立的是**雲端**排程
+代理，未必讀得到本機 `~/.claude` 與工作磁碟——要掃本機設定的提示（上表前兩份）若排程後報告空洞，
+改用本機 `/loop` 或手動貼。範例接線（用內建 `schedule`／`/loop` 或對話直接
 要求建立週期任務）：
 
 **claude-md-audit（每週一 09:00）：**

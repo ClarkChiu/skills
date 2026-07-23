@@ -103,4 +103,6 @@
 
 | 2026-07-22 | writing-great-skills（mattpocock，前身 write-a-skill 改名） | github.com/mattpocock/skills（skills/productivity/writing-great-skills） | mattpocock（Matt Pocock） | 是（功能重內建 skill-creator；骨幹原則重使用者既有實作） | 🟥 跳過（當參考讀值得、當技能不必：約 2,400 字純散文的「如何寫好技能」參考，`disable-model-invocation`、無腳本／網路，資安最低風險層。這是 06-08🟥 `write-a-skill` 改名＋改寫的後繼，依現況重判。相關性高但指向「值得一讀」非「值得裝」——資訊分層／刪 no-op／描述精雕／可預測性＝每次同流程等骨幹他早已內化，功能面又被內建 skill-creator 蓋住。淨新僅薄薄一層：`leading words`〔借底模已預訓練的既有術語壓縮指令〕框架＋「可預測性為首要美德」一句，值得當透鏡、不值得起技能。可信上游〔MIT、120k★、tdd／git-guardrails／terse／to-issues／grilling 皆採納過〕。與 `claude-code-prompt-library` 記憶同型。研究≠安裝。完整理由見當日本機紀錄） |
 
+| 2026-07-23 | handoff（對話交接） | github.com/mattpocock/skills（skills/productivity/handoff） | mattpocock（Matt Pocock） | 部分（內建 `/compact` 為就地壓縮，非乾淨交接） | 🟦 參考自製（取「引用不複製／suggested-skills／密資編修」三規則融入自建 `handover`；上游僅約 15 行、無三態進度／死路／驗收／審閱閘門，且寫 OS 暫存目錄在 WSL2 重開機即失。方法非檔、MIT。同日另兩上游：softaworks session-handoff 🟦〔十區塊模板＋交接鏈＋驗證閘門，捨其 Python 評分機制〕、Sonovore claude-code-handoff 🟥〔hook 常駐注入過重，僅留「前瞻優先於回顧」一念〕；Cline Memory Bank 🟥〔常駐記憶非交接，分層洞察轉為邊界規則〕；HumanLayer ACE-FCA 採 40–60% 時機律＋審閱閘門。此判**推翻 07-12 整包分類中 handoff 的 🟥 初判**——當時視為 ≈內建 `/compact`，本次深評後認定交接（經審閱的乾淨接棒）與壓縮（就地遞迴失真）是不同物。詳 `2026-07-23-skill-research-log.md`） |
+
 _由 `skill-curator` 維護。新評估在當日本機工作日誌完成後，把中性一列同步到這裡。_
