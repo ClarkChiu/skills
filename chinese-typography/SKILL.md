@@ -135,7 +135,7 @@ hard-coding them:
 
 ```json
 {
-  "replacements": {"原文": "目標"},   // verbatim, applied last — wins over everything
+  "replacements": {"原文": "目標"},   // verbatim, applied last (longest key first) — wins over everything
   "casing":       {"myapp": "MyApp"}, // extends/overrides the casing table
   "protect":      ["別動我"],          // never altered by any rule
   "formal_tai":   true                 // override the 台/臺 code default

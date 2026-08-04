@@ -479,7 +479,12 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
         text = _fix_casing(text, extra=user_dict.get('casing'))
     text = _cleanup(text)
     # 個人字典的逐字替換放最後 ── 權限最高，凌駕所有規則與 OpenCC。
-    for src_term, dst_term in (user_dict.get('replacements') or {}).items():
+    # 長鍵先套：短鍵若是長鍵的前綴（快快閃記憶體儲 ⊂ 快快閃記憶體儲器），先套短的
+    # 會把長的咬掉半截。排序讓字典檔不必靠人工排列順序。代價是不支援鏈式替換
+    # （A→B 再 B→C），本來就不該那樣用。
+    for src_term, dst_term in sorted(
+            (user_dict.get('replacements') or {}).items(),
+            key=lambda kv: len(kv[0]), reverse=True):
         text = text.replace(src_term, dst_term)
     # 還原 code 前，先對其哨符補 CJK 邊界空格（此時殘留哨符必為 code、無歧義；
     # 改用還原後的反引號比對會在 ≥2 段時誤配 close1↔open2）。
