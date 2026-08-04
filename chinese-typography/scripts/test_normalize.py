@@ -5,10 +5,7 @@ normalize.py 的回歸測試 (regression tests).
 執行：python3 test_normalize.py
 每一條都鎖住一個曾經出錯、或容易再出錯的行為。
 """
-from normalize import normalize, _load_user_dict
-
-# 出貨用的那份個人字典（不是測試假資料）——下面幾條 s2twp 補丁鎖的就是它真的有補上。
-USER_DICT = _load_user_dict()
+from normalize import normalize
 
 
 def n(s, **kw):
@@ -58,7 +55,7 @@ CASES = [
     # 個人字典：權限最高，逐字替換凌駕一切
     ("個人字典 replacements 蓋過規則",
      "敝公司很棒", "本團隊很棒", dict(user_dict={"replacements": {"敝公司": "本團隊"}})),
-    ("個人字典長鍵先套：短鍵寫在前面也不會把長鍵咬掉半截",
+    ("逐字替換長鍵先套：短鍵寫在前面也不會把長鍵咬掉半截",
      "快快閃記憶體儲器", "快閃記憶體",
      dict(user_dict={"replacements": {"快快閃記憶體儲": "快閃記憶體",
                                       "快快閃記憶體儲器": "快閃記憶體"}})),
@@ -100,15 +97,19 @@ OPENCC_CASES = [
     ("--force-convert 回到整篇轉換（文件→檔案）",
      "請看這份文件", "請看這份檔案", dict(force_convert=True)),
     # opencc-python-reimplemented 0.1.7 的 s2twp 有貪婪比對錯字（BYVoid/OpenCC 1.4.1
-    # 已修，但那份修正流不進這個被釘住的套件），只能靠 user-dictionary.json 補。
-    # 這幾條鎖的是「出貨字典真的補上了」，不是「替換機制會動」。
-    ("s2twp 貪婪錯字：互联网络 不吐出 網際網路絡",
-     "互联网络技术", "網際網路技術", dict(user_dict=USER_DICT)),
+    # 已修，但那份修正流不進這個被釘住的套件），補在 data/defaults.json 的 vocab_fixes。
+    # 這幾條鎖的是「出貨的預設表真的補上了」，不是「替換機制會動」。
+    ("s2twp 貪婪錯字：互联网络 不吐出 網際網路絡", "互联网络技术", "網際網路技術", {}),
     ("s2twp 貪婪錯字：快闪存储器 不吐出 快快閃記憶體儲器（短鍵是長鍵前綴，順序會咬人）",
-     "快闪存储器很小", "快閃記憶體很小", dict(user_dict=USER_DICT)),
-    ("s2twp 貪婪錯字：快闪存储 單獨出現也要對",
-     "快闪存储技术", "快閃記憶體技術", dict(user_dict=USER_DICT)),
-    ("s2twp 漏詞：数字人文 → 數位人文", "数字人文", "數位人文", dict(user_dict=USER_DICT)),
+     "快闪存储器很小", "快閃記憶體很小", {}),
+    ("s2twp 貪婪錯字：快闪存储 單獨出現也要對", "快闪存储技术", "快閃記憶體技術", {}),
+    ("老挝 官方國名（跟進 OpenCC 1.4.1）",
+     "老挝人民民主共和国", "寮人民民主共和國", {}),
+    # 刻意不收 数字人文→數位人文：這一層沒有詞界線，「數字」＋「人文…」跨小句會被咬。
+    # 這條鎖的是「別再把它加回出貨的 defaults.json」（使用者自己的 user-dictionary.json
+    # 不在測試載入範圍，那是他的檔案）。理由見 references/glossary.md。
+    ("數字人文 不進 defaults.json（跨小句會誤傷）",
+     "報表上的數字人文科系的學生未必看得懂", "報表上的數字人文科系的學生未必看得懂", {}),
 ]
 
 

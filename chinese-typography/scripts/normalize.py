@@ -218,16 +218,26 @@ def _load_defaults():
 _DEFAULTS = _load_defaults()
 
 
+def _apply_map(text, mapping):
+    """逐字替換一整張對照表；長鍵先套。
+
+    短鍵若是長鍵的前綴（快快閃記憶體儲 ⊂ 快快閃記憶體儲器），先套短的會把長的
+    咬掉半截。排序讓資料檔不必靠人工排列順序；同長度維持原順序（sorted 穩定）。
+    這一層沒有詞界線，所以只該收「輸出不含任何鍵」的無歧義詞。
+    """
+    for src, dst in sorted(mapping.items(), key=lambda kv: len(kv[0]), reverse=True):
+        text = text.replace(src, dst)
+    return text
+
+
 def _fix_variants(text, formal_tai=False):
-    for a, b in _DEFAULTS.get('always_fixes', {}).items():
-        text = text.replace(a, b)
-    # OpenCC s2twp 漏掉的台灣在地用詞（攝像頭→攝影機 等）。只收無歧義、不撞詞的。
-    for a, b in _DEFAULTS.get('vocab_fixes', {}).items():
-        text = text.replace(a, b)
+    text = _apply_map(text, _DEFAULTS.get('always_fixes', {}))
+    # OpenCC s2twp 漏掉的台灣在地用詞（攝像頭→攝影機 等），外加凍結版 OpenCC
+    # 貪婪比對吐出的壞字（網際網路絡→網際網路）。只收無歧義、不撞詞的。
+    text = _apply_map(text, _DEFAULTS.get('vocab_fixes', {}))
     if formal_tai:
         # 要官方字形：補強地名（OpenCC 已大致完成，這裡涵蓋 --no-convert 的情況）
-        for a, b in _DEFAULTS.get('formal_tai_map', {}).items():
-            text = text.replace(a, b)
+        text = _apply_map(text, _DEFAULTS.get('formal_tai_map', {}))
     else:
         # 預設：還原 OpenCC s2twp 一律轉出的 臺，回到通用的 台
         text = text.replace('臺', '台')
@@ -478,14 +488,9 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
     if casing:
         text = _fix_casing(text, extra=user_dict.get('casing'))
     text = _cleanup(text)
-    # 個人字典的逐字替換放最後 ── 權限最高，凌駕所有規則與 OpenCC。
-    # 長鍵先套：短鍵若是長鍵的前綴（快快閃記憶體儲 ⊂ 快快閃記憶體儲器），先套短的
-    # 會把長的咬掉半截。排序讓字典檔不必靠人工排列順序。代價是不支援鏈式替換
-    # （A→B 再 B→C），本來就不該那樣用。
-    for src_term, dst_term in sorted(
-            (user_dict.get('replacements') or {}).items(),
-            key=lambda kv: len(kv[0]), reverse=True):
-        text = text.replace(src_term, dst_term)
+    # 個人字典的逐字替換放最後 ── 權限最高，凌駕所有規則與 OpenCC。與 defaults.json
+    # 共用 _apply_map 的長鍵先套規則，字典檔才不必靠人工排列順序。
+    text = _apply_map(text, user_dict.get('replacements') or {})
     # 還原 code 前，先對其哨符補 CJK 邊界空格（此時殘留哨符必為 code、無歧義；
     # 改用還原後的反引號比對會在 ≥2 段時誤配 close1↔open2）。
     if spacing:
