@@ -1,5 +1,5 @@
 {
-  "_comment": "chinese-typography 的通用預設表（臺灣／技術慣例，非個人偏好）。隨 skill 出貨、可自由編輯。casing＝專有名詞大小寫；always_fixes＝一律修正的異體字；vocab_fixes＝OpenCC s2twp 漏掉的臺灣在地用詞，以及被釘住的 opencc-python-reimplemented 0.1.7 貪婪比對吐出的壞字（網際網路絡、快快閃記憶體儲器——鍵是轉換後的字串，不是簡體原文；上游 BYVoid/OpenCC 1.4.1 已修但流不進這個凍結版本）。在 OpenCC 之後套用，只收無歧義、不撞詞的；會撞詞的（例：數字人文）不收，見 references/glossary.md；formal_tai_map＝啟用 --formal-tai 時補強的 台→臺 地名。個人習慣請放 user-dictionary.json（權限更高，會蓋過這裡）。",
+  "_comment": "chinese-typography 的通用預設表（臺灣／技術慣例，非個人偏好）。隨 skill 出貨、可自由編輯。casing＝專有名詞大小寫；always_fixes＝一律修正的異體字（秘→祕 依教育部標準，也跟上游 OpenCC 從 TWVariants.txt 移除 祕→秘 之後的 s2tw／s2twp 行為；讀ㄅㄧˋ的音譯字例外，由 vocab_fixes 的 祕魯→秘魯 改回——always_fixes 先套、vocab_fixes 後套，順序是刻意的）；vocab_fixes＝OpenCC s2twp 漏掉的臺灣在地用詞，以及被釘住的 opencc-python-reimplemented 0.1.7 貪婪比對吐出的壞字（網際網路絡、快快閃記憶體儲器——鍵是轉換後的字串，不是簡體原文；上游 BYVoid/OpenCC 1.4.1 已修但流不進這個凍結版本）。在 OpenCC 之後套用，只收無歧義、不撞詞的；會撞詞的（例：數字人文）不收，見 references/glossary.md；detector_traditional_ok＝簡體偵測時當成合法繁體的字：OpenCC 0.1.7 字典把它們標成簡體專用，但臺灣照用（秘），不列會讓含 秘魯 的繁體行被整行重轉；formal_tai_map＝啟用 --formal-tai 時補強的 台→臺 地名。個人習慣請放 user-dictionary.json（權限更高，會蓋過這裡）。",
   "casing": {
     "github": "GitHub", "gitlab": "GitLab", "javascript": "JavaScript",
     "typescript": "TypeScript", "nodejs": "Node.js", "node.js": "Node.js",
@@ -9,12 +9,22 @@
     "css": "CSS", "json": "JSON", "api": "API", "url": "URL", "sql": "SQL",
     "youtube": "YouTube", "wifi": "Wi-Fi"
   },
-  "always_fixes": { "裏": "裡", "賬": "帳" },
+  "always_fixes": { "裏": "裡", "賬": "帳", "秘": "祕" },
+  "detector_traditional_ok": "秘",
   "vocab_fixes": {
     "攝像頭": "攝影機", "公交車": "公車", "優盤": "隨身碟",
     "西紅柿": "番茄", "三文魚": "鮭魚", "人臉識別": "人臉辨識",
     "網際網路絡": "網際網路", "快快閃記憶體儲器": "快閃記憶體",
-    "快快閃記憶體儲": "快閃記憶體", "寮國人民民主共和國": "寮人民民主共和國"
+    "快快閃記憶體儲": "快閃記憶體", "寮國人民民主共和國": "寮人民民主共和國",
+    "子網掩碼": "子網路遮罩", "掩碼": "遮罩", "記憶體條": "記憶體模組",
+    "祕魯": "秘魯",
+    "請求頭部": "請求標頭", "請求頭": "請求標頭", "虛擬現實": "虛擬實境",
+    "置信區間": "信賴區間", "置信水平": "信賴水準", "協方差": "共變異數",
+    "正態分佈": "常態分布", "正態分布": "常態分布", "常態分佈": "常態分布",
+    "最大似然估計": "最大概似估計", "似然函式": "概似函數", "似然函數": "概似函數",
+    "備擇假設": "對立假設", "顯著性水平": "顯著水準",
+    "馬爾可夫": "馬可夫", "馬爾科夫": "馬可夫", "艾滋病": "愛滋病", "腦卒中": "腦中風",
+    "靶向治療": "標靶治療", "論文答辯": "論文口試"
   },
   "formal_tai_map": {
     "台灣": "臺灣", "台北": "臺北", "台中": "臺中", "台南": "臺南", "台東": "臺東"

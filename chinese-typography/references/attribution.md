@@ -14,11 +14,18 @@ library (OpenCC).
   were adopted into `normalize.py` (2026-07-20): SOLITARY_NBSP (a solitary
   U+00A0 becomes a regular space; runs of 2+ NBSPs are deliberate layout and
   are preserved) and the per-line slash guard (a line with 2+ `/` treats
-  slashes as path/list separators — no spacing added around them; exactly one
-  slash keeps the spacing behavior). Deliberate divergence from upstream v8:
-  our SOLITARY_NBSP also converts a solitary NBSP at string edges (upstream
-  keeps edge NBSPs and collapses NBSP-containing whitespace runs) — local
-  behavior is documented in normalize.py; don't "fix" it on the next re-sync.
+  slashes as path/list separators). The slash guard was replaced on 2026-09-17
+  by the pangu.js v10 slash rule, chosen by the user: `/` never triggers spacing
+  against CJK, and existing `A / B` spacing is preserved. The old single-slash
+  behavior spaced only the CJK side (`中文/English` → `中文 /English`).
+
+  **NBSP handling is ours now, not upstream's** (recorded 2026-09-17, user decision).
+  Upstream reversed SOLITARY_NBSP in v8.1.0 — there a lone U+00A0 is left untouched. We
+  keep converting it, because a lone NBSP in this user's material is nearly always noise
+  pasted in from a web page, while runs of 2+ stay as deliberate layout. Ours also
+  converts a solitary NBSP at string edges (upstream kept edge NBSPs and collapsed
+  NBSP-containing whitespace runs). Both are deliberate local choices, documented in
+  `normalize.py` and locked by tests; don't "re-sync" them away.
 
 - **OpenCC** — Open Chinese Convert. <https://github.com/BYVoid/OpenCC> (Apache-2.0).
   Used directly (optional dependency, `opencc-python-reimplemented`) for

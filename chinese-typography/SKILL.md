@@ -66,7 +66,7 @@ file unless you pass `--in-place`.
    > **Validated against `opencc-python-reimplemented==0.1.7`** (pure-Python; it
    > bundles its own s2twp dictionaries, so the conversion output is *frozen* at
    > that snapshot and stays stable — see `requirements.txt`). Note: the official
-   > C++ **BYVoid/OpenCC moved to v1.3.x and changed some s2twp mappings**
+   > C++ **BYVoid/OpenCC is now at v1.4.2 and has changed some s2twp mappings**
    > (程序/程式, 通过/透過, 缺省/預設, plus 33 phrase-segmentation fixes). That does
    > **not** affect this skill unless you switch to the official `opencc` package or
    > bump the reimplemented one. If you do either, **re-run
@@ -99,7 +99,7 @@ or the user questions a specific change.
   — already-Traditional lines are skipped (with a stderr `NOTE`), because
   re-converting Traditional text rewrites the author's word choices wrongly
   (文件→檔案, 登錄→登入). `--force-convert` restores whole-text conversion.
-- **異體字** — Taiwan-preferred glyphs (裏→裡). Conservative by default. Place
+- **異體字** — Taiwan-preferred glyphs (裏→裡, 秘→祕 per the MOE standard — except the transliteration 秘魯). Conservative by default. Place
   names 台→臺 are OFF by **code default** (both are accepted; 台 is far more
   common in everyday writing): OpenCC's `s2twp` forces 臺, so the default reverts
   it back to 台. **This repo opts into the MoE 正字 臺** via `formal_tai: true`

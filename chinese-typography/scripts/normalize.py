@@ -137,13 +137,29 @@ def _restore(text, store, verbatim=None):
 # （英文「本體」→ 英「文本」體 → 英文「字體」）。因此先用 s2t（純字轉）當偵測器：
 # 一行轉完等於原樣，就是繁體行，跳過 s2twp；含簡體專屬字的行才轉。逐行粒度讓
 # 「繁體文章引用簡體段落」的混排也正確。--force-convert 可回到整篇轉換的舊行為。
-# 已知侷限：一簡對多繁的字（如「干擾」的 干，s2t 也會改成 幹）會讓該行被誤判為
-# 簡體而照轉——這與舊的整篇模式行為相同，逐行偵測沒有讓它更糟。
+# 偵測改為逐字（2026-10-05）：「s2t 轉完不等於原樣」會被繁簡共用字誤觸發——布→佈、
+# 干→幹，整行就被當成簡體照轉，連帶把 文件 改成 檔案。現在只看「簡體專用字」：
+# OpenCC 字典 STCharacters.txt 裡，候選繁體不含自己的字（软→軟）。布、干 的候選含
+# 自己，是合法繁體，不算數。字典裡被標成簡體專用、但臺灣其實照用的字（秘），列在
+# data/defaults.json 的 detector_traditional_ok。讀不到字典的移植版退回舊的 s2t 比對。
 _OPENCC_HINT = (
     "WARNING: OpenCC not installed — 簡轉繁/台灣用語 step SKIPPED. "
     "Text was NOT converted simplified→traditional. "
     "Install: pip install opencc-python-reimplemented"
 )
+
+
+def _simplified_only_chars():
+    """STCharacters.txt 裡候選繁體不含自己的字；讀不到字典回傳 None。"""
+    try:
+        import opencc
+        path = os.path.join(os.path.dirname(opencc.__file__), 'dictionary', 'STCharacters.txt')
+        with open(path, encoding='utf-8') as f:
+            rows = [line.rstrip('\n').split('\t') for line in f if '\t' in line]
+    except (ImportError, OSError):
+        return None
+    ok = set(_DEFAULTS.get('detector_traditional_ok', ''))
+    return {k for k, v in rows if k not in v.split() and k not in ok}
 
 
 def _opencc_convert(text, force=False):
@@ -168,14 +184,22 @@ def _opencc_convert(text, force=False):
         return text, False
     if force:
         return cc.convert(text), True
-    det = _make(('s2t', 's2t.json'))
-    if det is None:           # 偵測器建不起來 → 退回整篇轉換（舊行為）
-        return cc.convert(text), True
+    simp_only = _simplified_only_chars()
+    if simp_only is not None:
+        def is_simplified(line):
+            return any(ch in simp_only for ch in line)
+    else:
+        det = _make(('s2t', 's2t.json'))
+        if det is None:       # 偵測器建不起來 → 退回整篇轉換（舊行為）
+            return cc.convert(text), True
+
+        def is_simplified(line):
+            return det.convert(line) != line
     out, skipped = [], 0
     for line in text.split('\n'):
         if not ANY_CJK.search(line):
             out.append(line)               # 無中文的行不關 s2twp 的事
-        elif det.convert(line) != line:
+        elif is_simplified(line):
             out.append(cc.convert(line))   # 含簡體專屬字 → 轉
         else:
             skipped += 1
@@ -245,7 +269,8 @@ def _fix_variants(text, formal_tai=False):
 
 
 # ---------------------------------------------------------------------------
-# 不換行空格 U+00A0 正規化（pangu.js v8.0.0 SOLITARY_NBSP）
+# 不換行空格 U+00A0 正規化（源自 pangu.js v8.0.0 SOLITARY_NBSP；上游 v8.1.0 已反轉成
+# 「孤立 NBSP 不動」，這裡刻意不跟——理由見 references/attribution.md）
 # ---------------------------------------------------------------------------
 # 孤立的 NBSP（前後都不是 NBSP）幾乎都是網頁複製貼上帶進來的雜訊，轉成一般
 # 半形空格；連續 2 個以上的 NBSP 是刻意的版面排版（縮排／對齊），原樣保留。
@@ -317,17 +342,12 @@ _ANS = r'A-Za-z0-9'
 # 星號刻意「不」收進 _SYM：中文文本裡的 * 幾乎都是 markdown 強調符號（**粗體**），
 # 收進去會把空格插進標記和內容之間（**來源** → ** 來源 **），直接撐破粗體。
 # 數學式 3*4 沒有 CJK 邊界，不受影響；中文緊鄰星號的情況由下方透明化規則處理。
-_SYM = r'@$%^&\-+=|/`'   # 反引號納入，讓行內 code 與中文之間也有盤古之白
+# 斜線刻意「不」收進 _SYM（pangu.js v10 規則）：斜線緊貼中文時兩側都不補空格，
+# 原文已有的「A / B」空格保留。收進去時只有碰到中文的那一側會補，
+# 「中文/English」變成「中文 /English」，兩頭不是；路徑、並列分隔、斜線日期也不會被拆。
+_SYM = r'@$%^&\-+=|`'   # 反引號納入，讓行內 code 與中文之間也有盤古之白
 _CJK_ANS = re.compile(f'([{CJK}])([{_ANS}{_SYM}])')
 _ANS_CJK = re.compile(f'([{_ANS}{_SYM}])([{CJK}])')
-# 斜線啟發式（pangu.js v8.0.0）：一行出現 2 個以上的 '/' 時，斜線幾乎都是
-# 路徑（/home/用戶/文件）或並列分隔符（甲/乙/丙），不是「中文/英文」這種
-# 二擇一寫法——該行的斜線不加盤古之白；恰好 1 個斜線維持原行為。
-# 注意：進到 _pangu 時 _SPAN_PATTERNS 佔位符已還原，ASCII 路徑的斜線同樣
-# 計入該行斜線數；行內若另有「中文/英文」二擇一也會連帶不加空格（上游同款取捨）。
-_SYM_NOSLASH = _SYM.replace('/', '')
-_CJK_ANS_NOSLASH = re.compile(f'([{CJK}])([{_ANS}{_SYM_NOSLASH}])')
-_ANS_CJK_NOSLASH = re.compile(f'([{_ANS}{_SYM_NOSLASH}])([{CJK}])')
 # markdown 強調符號（**粗體**、__底線__、~~刪除~~）透明化：補不補空格看符號
 # 「包住的內容」對外面的字元，空格永遠補在整組標記的「外側」，絕不插進標記與
 # 內容之間（同 pangu.js 行為）：中文**bold**中文 → 中文 **bold** 中文。
@@ -339,13 +359,8 @@ _ANS_MARK_CJK = re.compile(f'([{_ANS}])([{_MARK}]+)([{CJK}])')
 def _pangu(text):
     out = []
     for line in text.split('\n'):
-        # 斜線啟發式逐行判斷：2+ 個 '/' 的行，斜線視為路徑／並列分隔符
-        if line.count('/') > 1:
-            line = _CJK_ANS_NOSLASH.sub(r'\1 \2', line)
-            line = _ANS_CJK_NOSLASH.sub(r'\1 \2', line)
-        else:
-            line = _CJK_ANS.sub(r'\1 \2', line)
-            line = _ANS_CJK.sub(r'\1 \2', line)
+        line = _CJK_ANS.sub(r'\1 \2', line)
+        line = _ANS_CJK.sub(r'\1 \2', line)
         line = _CJK_MARK_ANS.sub(r'\1 \2\3', line)   # 空格補在標記外側（左）
         line = _ANS_MARK_CJK.sub(r'\1\2 \3', line)   # 空格補在標記外側（右）
         out.append(line)

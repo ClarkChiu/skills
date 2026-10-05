@@ -4,7 +4,7 @@
 # package, which bundles its OWN copy of the OpenCC dictionaries. Pinning it freezes the
 # conversion output so results stay reproducible.
 #
-# Validated against 0.1.7. The official C++ BYVoid/OpenCC has since moved to v1.3.x and
+# Validated against 0.1.7. The official C++ BYVoid/OpenCC is now at v1.4.2 and has
 # changed some s2twp mappings — that does NOT reach this skill unless you switch to the
 # `opencc` package or bump this one. After any change here, re-run scripts/test_normalize.py.
 opencc-python-reimplemented==0.1.7

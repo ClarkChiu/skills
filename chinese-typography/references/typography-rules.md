@@ -141,10 +141,13 @@ alone (a loud `NOTE` on stderr says how many lines were skipped); only lines
 containing Simplified-specific characters are converted. Per-line granularity
 keeps mixed documents correct — a Traditional article quoting a Simplified
 passage converts just the quote. `--force-convert` restores whole-text
-conversion. Known limit: characters where one Simplified form maps to several
-Traditional ones (e.g. the 干 of 干擾, which `s2t` rewrites to 幹) make that line
-look Simplified and it gets converted — identical to the old whole-text
-behavior, so the detector never makes things worse.
+conversion. Since 2026-10-05 the detector is per character: a line counts as
+Simplified only if it holds a character whose `STCharacters.txt` candidates do
+not include itself (软→軟). Shared characters such as 布 (布/佈) or 干 (幹/乾/干)
+no longer trigger a re-conversion; characters the frozen dictionary wrongly
+marks Simplified-only but Taiwan uses (秘) are listed in `data/defaults.json`
+`detector_traditional_ok`. Ports without a readable dictionary fall back to the
+old `s2t` round-trip test.
 
 ---
 
