@@ -1,13 +1,21 @@
 {
   "_comment": "Maintained by skill-evolve. decision-lens adapts the METHODS (not files) of the yao-open-skills decision cluster; the math is public-domain. Pins each upstream skill at the commit reviewed on 2026-06-08, to detect a better protocol formulation worth folding in. Full audit: research/audits/2026-06-08-yao-open-skills.md.",
-  "checked_at": "2026-07-20",
+  "checked_at": "2026-09-18",
   "sources": {
+    "powerycy/goutoujunshi": {
+      "ref": "main",
+      "commit": "6db7354a4002",
+      "date": "2026-09-15",
+      "license": "MIT（2026-08-17 起，上游提交 8d30c86）；本鎖基準 619463a 當時仍是 PolyForm Noncommercial 1.0.0。仍僅取方法、不收檔——理由改為語境（中國法規、性別預設、MBTI 評分）與維護成本，不再是授權。",
+      "vendored": "METHOD ONLY — no files. Two disciplines reimplemented in SKILL.md: the A/B/C/D input grades with the wording pinned to each grade, and the closing watch-window / stop-condition / tripwire block.",
+      "note": "2026-08-05 baseline. Repo is 2 weeks old and moving fast (23 commits, single maintainer); treat churn as noise and re-check only for genuinely new *method* formulations. Its relationship content, PRC-law chapter, MBTI/0–100 scoring fields, and PUA-translation chapter are all deliberately out of scope here. Evaluation: research/audits/2026-08-05-goutoujunshi.md."
+    },
     "yaojingang/yao-open-skills": {
       "ref": "main",
-      "commit": "ab04ef5caa57",
-      "date": "2026-07-16",
+      "commit": "093996ec6136",
+      "date": "2026-08-28",
       "license": "MIT",
-      "note": "2026-06-28: repo-level umbrella pin. extract_sources.py reads the bare repo URL from references/attribution.md, so without this entry it false-flags as 🆕 NEW every run; the three method-only sub-skills below carry the real per-skill baselines. CAVEAT (fail-loud): this round only pinned repo HEAD to silence the false positive — did NOT re-read the bayesian/crux/kelly sub-skill prompts for protocol refinements (the math is public-domain and stable; a prompt re-read is low-value but was skipped, not done). Re-read the three sub-paths on the next substantive sync. 2026-07-20 reviewed: only addition is yao-positioning-skill (brand positioning, irrelevant); the three cited decision skills unchanged.",
+      "note": "2026-09-17 bump: 3 commits, all for a new unrelated Chinese fiction-writing skill. The bayesian/crux/kelly sub-paths have no commits since their pins. Nothing adopted; the standing caveat that those sub-skill prompts were never re-read is still open. Previous: 2026-06-28: repo-level umbrella pin. extract_sources.py reads the bare repo URL from references/attribution.md, so without this entry it false-flags as 🆕 NEW every run; the three method-only sub-skills below carry the real per-skill baselines. CAVEAT (fail-loud): this round only pinned repo HEAD to silence the false positive — did NOT re-read the bayesian/crux/kelly sub-skill prompts for protocol refinements (the math is public-domain and stable; a prompt re-read is low-value but was skipped, not done). Re-read the three sub-paths on the next substantive sync. 2026-07-20 reviewed: only addition is yao-positioning-skill (brand positioning, irrelevant); the three cited decision skills unchanged.",
       "skills": [
         "yao-bayesian-skill",
         "yao-crux-skill",

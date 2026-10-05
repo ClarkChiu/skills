@@ -12,8 +12,8 @@ maximize long-run log growth given an edge — and refuses to size when there is
 
 1. **State the edge inputs** with their source: win probability `p` and net odds `b` (win
    `b` per 1 staked), or a list of outcome scenarios with probabilities and return
-   multiples. These are estimates — label assumptions, and remember a wrong `p` hurts more
-   than a wrong `b`.
+   multiples. These are estimates — grade each one (A/B/C/D; an assumed value is **D**, the
+   grade *is* the assumption label), and remember a wrong `p` hurts more than a wrong `b`.
 2. **Size it.** Binary:
    ```bash
    python3 scripts/kelly_size.py --json '{"mode":"binary","b":2.0,"p":0.6,"fraction":0.5}'
@@ -35,9 +35,18 @@ maximize long-run log growth given an edge — and refuses to size when there is
 ```
 ## Allocation — <opportunity>
 - **Read:** allocation decision, stake <…>
-- **Edge inputs:** p = <…>, b = <…>  (source / assumption)
+- **Edge inputs:** p = <…> (grade <A/B/C/D>), b = <…> (grade <…>)  — source each
 - **Full Kelly:** <f*>   (via kelly_size.py)
 - **Recommended size:** <fractional + cap>, fraction = <0.5/0.25>
 - **If no edge:** do not allocate
 - **Downside / survivability:** <…>
+- **Fragility:** <does the size survive the C and D inputs moving? cheapest input to upgrade:>
+- **Watch window:** <date or event when this gets re-sized>
+- **Stop condition:** <the loss, drawdown, or observation that ends the position>
+- **Tripwire:** <the one signal worth interrupting for early>
 ```
+
+A self-reported win rate is C-grade at best. Kelly is exquisitely sensitive to `p`, so a
+C-grade `p` is the single strongest argument for fractional sizing — say that in the brief
+rather than presenting `f*` as if it were measured. The **stop condition** is what keeps a
+sized bet from quietly becoming an unbounded one.

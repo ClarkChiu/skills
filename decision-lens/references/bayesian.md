@@ -6,11 +6,12 @@ its likelihood ratio, update to a posterior, and tie the posterior to an action 
 ## Protocol
 
 1. **State the hypothesis** precisely (X vs not-X), and the **prior** P(X). The prior must
-   come from a base rate, the user, or a stated assumption — never invented silently. If
-   you assume, say so.
+   come from a base rate, the user, or an assumption — never invented silently. Tag it with
+   its grade (`SKILL.md`); a prior you had to assume is **grade D**, which *is* the
+   assumption label — don't write "assumption" as a second, separate tag.
 2. **List the evidence.** For each item, assign a **likelihood ratio** LR = P(evidence | X)
    / P(evidence | not-X). LR > 1 supports X, < 1 argues against, = 1 is uninformative. Get
-   these from the user or justify each from the evidence; label assumptions.
+   these from the user or justify each from the evidence; grade each one (A/B/C/D).
 3. **Update.** Call the script:
    ```bash
    python3 scripts/bayes_update.py --json '{"mode":"odds","prior_p":0.3,"likelihood_ratios":[4.0,0.5]}'
@@ -30,12 +31,20 @@ its likelihood ratio, update to a posterior, and tie the posterior to an action 
 ```
 ## Decision — <hypothesis>
 - **Read:** belief decision, stake <…>
-- **Prior:** P(X) = <…>  (source / assumption)
+- **Prior:** P(X) = <…>  (grade <A/B/C/D>, source)
 - **Evidence:**
-  | item | LR | why |
-  |---|---|---|
+  | item | LR | grade | why |
+  |---|---|---|---|
 - **Posterior:** P(X) = <…>   (via bayes_update.py)
 - **Threshold:** act if P(X) <…>; we are <above/below>
-- **Sensitivity:** <does it survive down-weighting / dropping the weakest evidence?>
+- **Sensitivity:** <survives down-weighting / dropping the weakest evidence?>
+  <does it survive the C and D inputs moving? cheapest input to upgrade to A/B:>
 - **Recommendation:** <…>
+- **Watch window:** <date or event when this gets re-examined>
+- **Stop condition:** <the observation that means this call was wrong>
+- **Tripwire:** <the one signal worth interrupting for early>
 ```
+
+The **grade** column is not decoration: it is what stops a measured 90-day log and a
+half-remembered blog claim being multiplied together into one confident posterior. Use
+each grade's own wording in the prose (`SKILL.md`).
