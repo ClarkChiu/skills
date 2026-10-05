@@ -60,6 +60,7 @@ If you can't attach fresh output that confirms it, don't claim it. Say what you 
 - Reading "0 failed" but missing "12 skipped" or "3 errored".
 - A test that passed because it asserts nothing (a test you never watched fail proves nothing — see the red-step rule in `design-gate`).
 - "The linter passed" when you actually only ran it on one file.
+- Running only the test file your task touched instead of the project's whole suite — or leaving a failure out of the report because you didn't cause it. Name every failure the run shows, pre-existing ones included.
 - Exit code 0 from a wrapper script that swallowed an inner failure.
 
 ## Second axis: did it drift from intent?
