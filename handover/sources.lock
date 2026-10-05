@@ -1,30 +1,37 @@
 {
   "_comment": "Maintained by skill-evolve. handover composes METHODS from three upstreams; original rewrite, no files copied. Key changes: three-state progress (verified/unverified/not-started, Rule 12), receiver-decides-the-mode (repo file vs paste-ready chat block with the reference-rule inverted), single first-action, review gate, .claude/handovers/ instead of OS temp (WSL2 /tmp doesn't survive reboot). Prose-only sources (jdhodges handoff-prompt template, tessl.io Amp-retires-compaction, Cline Memory Bank docs) are recorded in references/attribution.md, not here — blogs/docs aren't diffable repos. Log: research/2026-07-23-skill-research-log.md.",
-  "checked_at": "2026-07-23",
+  "checked_at": "2026-10-05",
   "sources": {
     "mattpocock/skills :: productivity/handoff": {
       "ref": "main",
-      "commit": "ed37663cc5fb",
-      "date": "2026-07-21",
+      "commit": "d28dfdc39bea",
+      "date": "2026-08-15",
       "license": "MIT",
       "vendored": "METHOD ONLY — no files. Reference-don't-duplicate (paths/hashes over copied content), suggested-skills section, redact secrets. Upstream is ~15 lines; rejected its OS-temp-dir target in favor of .claude/handovers/.",
-      "note": "2026-07-23 baseline. This entry supersedes grill's 391a2701 (2026-07-10) as the freshest tracker of mattpocock/skills. Sibling skills/in-progress/claude-handoff exists (agents/openai.yaml, Codex-oriented) — watch whether it graduates out of in-progress with new method content."
+      "note": "2026-10-05 bump (was ed37663cc5fb): SKILL.md gained one line (name which skills the next agent should invoke). The docs page now recommends '/compact unless the work has to travel' — conflicts with this skill's premise that compaction distorts earlier reasoning; kept ours, not blended. Nothing adopted. Previous: 2026-07-23 baseline. This entry supersedes grill's 391a2701 (2026-07-10) as the freshest tracker of mattpocock/skills. Sibling skills/in-progress/claude-handoff exists (agents/openai.yaml, Codex-oriented) — watch whether it graduates out of in-progress with new method content.",
+      "release": "v1.3.1"
     },
     "softaworks/agent-toolkit :: skills/session-handoff": {
       "ref": "main",
-      "commit": "3027f20f3181",
-      "date": "2026-03-05",
+      "commit": "ebb0419d8c5a",
+      "date": "2026-01-19",
       "license": "MIT",
       "vendored": "METHOD ONLY — no files. Section skeleton (current state / context / decisions-with-rationale / next steps / gotchas), continues-from chaining, validation-gate spirit (no TODO placeholders, secrets block completion) reimplemented as prose rules. Rejected the Python create_handoff.py scoring machinery — handover stays pure prompt.",
-      "note": "2026-07-23 baseline. Repo quiet since 2026-03-05; low drift expected."
+      "note": "2026-10-05 re-pin (was 3027f20f3181): NOT an upstream change — same path-scoped vs repo-HEAD mismatch as ace-fca.md (compare: behind_by=70). Re-pinned to the last commit touching the path. Previous: 2026-07-23 baseline. Repo quiet since 2026-03-05; low drift expected."
     },
     "humanlayer/advanced-context-engineering-for-coding-agents :: ace-fca.md": {
       "ref": "main",
-      "commit": "f9f0837cbf3b",
-      "date": "2026-07-22",
+      "commit": "18608dedb759",
+      "date": "2025-12-03",
       "license": "none declared",
       "vendored": "IDEAS ONLY — no content copied (no license file, so nothing may be). Timing rule (intentional handover at ~40–60% context, at a phase boundary) and human-review-at-high-leverage-points (the review gate).",
-      "note": "2026-07-23 baseline. Active repo (HEAD moved the day before pinning); re-check whether the 40–60% guidance shifts."
+      "note": "2026-10-05 re-pin (was f9f0837cbf3b): NOT an upstream change. The old baseline stored the repo HEAD; the checker reports the last commit touching this path (18608dedb759, 2025-12-03), which is OLDER than the old baseline (compare: behind_by=1). The file is unchanged; re-pinned to the path-scoped SHA so future runs stay quiet. Previous: 2026-07-23 baseline. Active repo (HEAD moved the day before pinning); re-check whether the 40–60% guidance shifts."
+    },
+    "Sonovore/claude-code-handoff": {
+      "commit": "c6cb717f2af5",
+      "date": "2026-06-03",
+      "note": "2026-10-05 first pin (cited in attribution.md, previously unpinned so every run reported it NEW). Last commit 2026-06-03 predates the 2026-07-23 evaluation, so nothing new since review. IDEAS ONLY — forward-looking > backward (Hard rule 5); hook machinery rejected.",
+      "license": "MIT"
     }
   }
 }

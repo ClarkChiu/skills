@@ -46,7 +46,7 @@ sources (not diffable, recorded here only). Evaluated 2026-07-23; verdicts in
   per-message live-handoff injection, four modes) is too invasive next to the
   existing RTK hook. Its one retained idea — **forward-looking (decisions +
   next steps) beats backward (completed work)** — survives as Hard rule 5.
-  Idea-only, so no sources.lock pin (same treatment as ACE-FCA).
+  Idea-only; pinned in sources.lock since 2026-10-05 so drift checks stop reporting it as new.
 - **Cline Memory Bank** (https://docs.cline.bot/best-practices/memory-bank)
   — evaluated and **not** adopted as
   structure: its layered persistent files (projectbrief → activeContext) solve
