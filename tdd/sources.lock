@@ -1,14 +1,15 @@
 {
   "_comment": "Maintained by skill-evolve. tdd adapts the METHOD (red-green-refactor) of mattpocock/skills engineering/tdd; the discipline is universal (Beck), this is an original rewrite re-aimed at pytest/protocol testing, no files copied. Full audit: research/audits/2026-06-08-mattpocock-skills.md.",
-  "checked_at": "2026-07-20",
+  "checked_at": "2026-10-05",
   "sources": {
     "mattpocock/skills :: engineering/tdd": {
       "ref": "main",
-      "commit": "697d4ce9742d",
-      "date": "2026-07-13",
+      "commit": "d80fa0f4ebe0",
+      "date": "2026-09-17",
       "license": "MIT",
       "vendored": "METHOD ONLY — no files. Red-green-refactor loop reimplemented in SKILL.md + references/{test-design,mocking}.md, re-aimed at pytest + network-protocol integration examples, wired into design-gate → tdd → verify-before-done.",
-      "note": "2026-06-08 baseline (7afa86d3a5dd). 2026-07-20 re-sync (697d4ce9742d, 2026-07-13): adopted the tautological-test anti-pattern (43ea0884) into references/test-design.md; reviewed and rejected the reference-only reshape (e81f9766 — our loop stays executable, wired design-gate → tdd → verify-before-done) and the refactor-stage drop (80e9dcc6 — upstream offloads refactor to its code-review skill; we keep Beck's third step with the existing only-refactor-on-green guard). On re-sync mine rule phrasings / test-design ideas; keep the pytest/protocol re-aiming and pipeline wiring."
+      "note": "2026-10-05 bump (was 321658273cb1): one line — CONTEXT.md renamed GLOSSARY.md upstream-wide; tdd doesn't reference it. Nothing adopted. Previous: 2026-09-17 bump: repo-wide em-dash cleanup plus one pointer to a new upstream codebase-design skill (vocabulary for module depth, seams, interfaces). The pre-agreed-seams rule was already in the baseline and already reviewed. Nothing adopted. Previous: 2026-06-08 baseline (7afa86d3a5dd). 2026-07-20 re-sync (697d4ce9742d, 2026-07-13): adopted the tautological-test anti-pattern (43ea0884) into references/test-design.md; reviewed and rejected the reference-only reshape (e81f9766 — our loop stays executable, wired design-gate → tdd → verify-before-done) and the refactor-stage drop (80e9dcc6 — upstream offloads refactor to its code-review skill; we keep Beck's third step with the existing only-refactor-on-green guard). On re-sync mine rule phrasings / test-design ideas; keep the pytest/protocol re-aiming and pipeline wiring.",
+      "release": "v1.3.1"
     }
   }
 }

@@ -1,16 +1,16 @@
 {
   "_comment": "Maintained by skill-evolve: the upstream that translate's three-stage method was adapted from, used to detect new critique dimensions / workflow refinements. Update only after reviewing the report (--write-lock). Method rewrite, no files vendored; the upstream zh-CN glossary and all engineering (chunking scripts, EXTEND.md, subagent fan-out) were deliberately not adopted and are not tracked as vendored content.",
-  "checked_at": "2026-07-20",
+  "checked_at": "2026-09-17",
   "sources": {
     "JimLiu/baoyu-skills": {
       "ref": "main",
-      "commit": "a4e78af8136f",
-      "date": "2026-07-02",
+      "commit": "1567581c26ec",
+      "date": "2026-09-10",
       "license": "MIT",
       "skills": [
         "baoyu-translate"
       ],
-      "note": "Adapted the separated critique discipline (draft → diagnose-only review → revision) and the analyze-first long-document strategy. Local divergences kept on re-sync: two modes instead of three, zh-TW target + bidirectional direction-specific checklists, glossary wired to chinese-typography's word-preference stack, zero scripts. Re-sync by diffing skills/baoyu-translate/SKILL.md and references/refined-workflow.md."
+      "note": "2026-09-17 bump (v2.5.2): no commits touched skills/baoyu-translate; the movement is in other sub-skills (fetch, image-gen). Nothing adopted. Previous: Adapted the separated critique discipline (draft → diagnose-only review → revision) and the analyze-first long-document strategy. Local divergences kept on re-sync: two modes instead of three, zh-TW target + bidirectional direction-specific checklists, glossary wired to chinese-typography's word-preference stack, zero scripts. Re-sync by diffing skills/baoyu-translate/SKILL.md and references/refined-workflow.md."
     }
   }
 }

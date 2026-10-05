@@ -1,22 +1,19 @@
 {
   "_comment": "由 skill-evolve 維護：references/ 下 vendored HTML 的上游，用來偵測上游更新。檢視報告後才重新同步。html-diagram 的 SKILL.md/evals 為本專案自寫，不在此追蹤。",
-  "checked_at": "2026-08-04",
+  "checked_at": "2026-09-18",
   "sources": {
     "plannotator/effective-html": {
-      "commit": "cc1f962d65f4",
-      "release": null,
-      "date": "2026-08-03",
-      "note": "2026-08-04 bump (was 63b1bf04d3e4): 31 commits, nearly all docs-site copy and navigation (homepage tagline, catalog intro, guide links, credits). The one content addition is wireframe/mockup catalog studies — not diagram material, skipped this round. Reviewed up to cc1f962d65f4 only; upstream had already moved to d95debbaef15 (2026-08-03) mid-review. 2026-07-20 bump (was 50260e15d9a0): upstream added two interaction rules — dismissible overlay cards (visible close button, never permanently occlude the diagram) and pan/zoom for oversized diagrams (single transform group, 1:1 SVG-coordinate pan, cursor-anchored zoom, drag-vs-click suppression, grab cursors, zoom indicator + reset). ADOPTED, rewritten in our own words, into diagram-style.md §4 + SKILL.md workflow step 4. Vendored HTML files not re-synced. 2026-07-06 bump (was 59c437d99256): README-only; architecture-example.html and diagram capability unchanged. No action. MIT 轉散布包；architecture-example.html 出處於此（skills/html-diagram）。2026-06-14 自 commit 36220e286bcc vendored。2026-06-17 bump（原 36220e286bcc）：近期 commit 純屬包裝／文件（外掛 manifest、README、停用 model invocation），圖表能力本身未動。無可採納。新題材若要找則看其引用的 ThariqS/html-effectiveness 語料庫。"
+      "commit": "2ac1dfecb0f2",
+      "date": "2026-09-14",
+      "note": "2026-09-17 bump: 20 commits — docs-site copy, llms.txt, a Chinese README; diagrams.mdx got shorter with no new rules, and design-artifact/SKILL.md was restored from Claude's own artifact-design text. The vendored architecture-example.html is untouched. Nothing adopted. Previous: 2026-08-04 bump (was 63b1bf04d3e4): 31 commits, nearly all docs-site copy and navigation (homepage tagline, catalog intro, guide links, credits). The one content addition is wireframe/mockup catalog studies — not diagram material, skipped this round. Reviewed up to cc1f962d65f4 only; upstream had already moved to d95debbaef15 (2026-08-03) mid-review. 2026-07-20 bump (was 50260e15d9a0): upstream added two interaction rules — dismissible overlay cards (visible close button, never permanently occlude the diagram) and pan/zoom for oversized diagrams (single transform group, 1:1 SVG-coordinate pan, cursor-anchored zoom, drag-vs-click suppression, grab cursors, zoom indicator + reset). ADOPTED, rewritten in our own words, into diagram-style.md §4 + SKILL.md workflow step 4. Vendored HTML files not re-synced. 2026-07-06 bump (was 59c437d99256): README-only; architecture-example.html and diagram capability unchanged. No action. MIT 轉散布包；architecture-example.html 出處於此（skills/html-diagram）。2026-06-14 自 commit 36220e286bcc vendored。2026-06-17 bump（原 36220e286bcc）：近期 commit 純屬包裝／文件（外掛 manifest、README、停用 model invocation），圖表能力本身未動。無可採納。新題材若要找則看其引用的 ThariqS/html-effectiveness 語料庫。"
     },
     "ThariqS/html-effectiveness": {
       "commit": "1787245d94aa",
-      "release": null,
       "date": "2026-07-03",
       "note": "2026-07-06 bump (was 0e8d447494c8): new unknowns/*.html examples (none are diagrams) + top-level index; the vendored subset (05/07/08/10/13 + LICENSE + README) is UNTOUCHED. No re-sync. 原始參考庫（Apache-2.0，作者 Thariq Shihipar）。只 vendored 圖相關子集：05/07/08/10/13 + LICENSE + README。整庫 20 檔，其餘刻意不收（重複 web-artifacts-builder/slide-deck）。"
     },
     "SpaceZephyr/design-buddy": {
       "commit": "f1d835f7fd56",
-      "release": null,
       "date": "2026-07-06",
       "note": "2026-07-20 bump (was d4e9fc42bb7b): reviewed — the change sits in an unrelated sub-skill, space-architecture-diagram untouched; nothing to adopt. 點子來源（非 vendored 檔案）：diagram-style.md 的語意配色／SVG craft／CJK 適配原則改寫自其 space-architecture-diagram 子技能（MIT）。刻意棄用其 Google Fonts CDN 字型（違零網路）。2026-07-05 評估：整包 🟥 跳過、只借此一原則。drift 追蹤低優先——內容創作者快變 repo，除非重寫 diagram-style 否則不必重新同步。"
     }

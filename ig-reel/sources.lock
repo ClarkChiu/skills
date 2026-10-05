@@ -1,14 +1,15 @@
 {
   "_comment": "Maintained by skill-evolve. ig-reel is an ORIGINAL build (recipes/prose all local; see references/attribution.md). This lock pins only the tracked future-extension upstream. MoneyPrinterTurbo/ShortGPT informed the pipeline shape via research/2026-06-21-video-editing-projects-for-ig.md but were never cloned/audited, so they are deliberately NOT pinned — pin them if their code is ever consulted directly (after skill-auditor).",
-  "checked_at": "2026-07-20",
+  "checked_at": "2026-10-05",
   "sources": {
     "alchaincyf/huashu-design": {
       "ref": "master",
-      "commit": "32cc58127f60",
-      "date": "2026-07-19",
+      "commit": "0830494ecb1c",
+      "date": "2026-09-22",
       "license": "MIT",
       "vendored": "NOTHING — idea-level only. 2026-07-20: adopted three export checks from its verify-video.sh into references/pipeline.md §6c (black-frame detection, output LUFS, duration tolerance); commands rewritten locally, no code copied. Still tracked as the candidate engine for the future HTML-animation→MP4 route.",
-      "note": "2026-07-20 bump (was 0e7ec8aca005): upstream's animated-HTML route now defaults to HyperFrames (HeyGen's open-source HTML→video framework, Apache-2.0; headless deterministic frame-seek rendering), demoting its self-built Stage/render-video-seek.js to fallback. If the card-style animated-post extension is ever built, START by evaluating HyperFrames, not the old route — CAVEAT: HyperFrames' init installs ~19 skills into ~/.claude/skills/ and MUST go through skill-auditor before any trial. Original eval 2026-07-02: research/audits/2026-07-02-huashu-design.md (🟦). Re-sync: watch its export verification and HyperFrames integration."
+      "note": "2026-10-05 bump (was c4b83675d1cd): v2.0 = clean-room html2pptx.js rewrite + SVG className crash fix. Export verification / HyperFrames untouched. Nothing adopted. Previous: 2026-09-17 bump: 11 commits — new storyboard, camera-language and UI-demo animation references; 60fps export now duplicates frames instead of interpolating (no effect here, we output 30fps). Its brand-asset protocol and anti-slop list are unchanged, and its warning about installing 19 skills still matches the note below. OPTIONAL, not adopted: a verify-the-verifier rule (run the checker on a known-good file first) would fit our SS6c blackdetect/LUFS gate as a one-liner. Previous: 2026-07-20 bump (was 0e7ec8aca005): upstream's animated-HTML route now defaults to HyperFrames (HeyGen's open-source HTML→video framework, Apache-2.0; headless deterministic frame-seek rendering), demoting its self-built Stage/render-video-seek.js to fallback. If the card-style animated-post extension is ever built, START by evaluating HyperFrames, not the old route — CAVEAT: HyperFrames' init installs ~19 skills into ~/.claude/skills/ and MUST go through skill-auditor before any trial. Original eval 2026-07-02: research/audits/2026-07-02-huashu-design.md (🟦). Re-sync: watch its export verification and HyperFrames integration.",
+      "release": "v2.0"
     }
   }
 }
