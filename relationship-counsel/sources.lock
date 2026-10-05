@@ -1,0 +1,14 @@
+{
+  "_comment": "由 skill-evolve 維護：各參考來源上次看到的版本，用來偵測更新。檢視報告後才更新（--write-lock）。注意本技能另有一類 sources.lock 追不到的來源——references/safety-taiwan.md 的專線號碼、服務時段與法條來自政府網站而非 git repo，靠該檔開頭的『最後查證』日期人工每年複查，見 references/attribution.md。",
+  "checked_at": "2026-09-18",
+  "sources": {
+    "powerycy/goutoujunshi": {
+      "ref": "main",
+      "commit": "6db7354a4002",
+      "date": "2026-09-15",
+      "license": "MIT（2026-08-17 起，上游提交 8d30c86）；本鎖基準 619463a 當時仍是 PolyForm Noncommercial 1.0.0。仍僅取方法、不收檔——理由改為語境（中國法規、性別預設、MBTI 評分）與維護成本，不再是授權。",
+      "vendored": "METHOD ONLY — 不收錄任何檔案、不搬運成段文字；例外是三分支標籤「積極／含糊／拒絕」與上游同詞（已在 attribution.md 揭露，常用詞不構成受保護表達）。 取：五步回應順序（含停止條件）、輸入的證據邊界（截圖只認可見原文、長紀錄先鎖定說話人映射）、一則訊息只做一件事＋三分支後續。七類分類法是自己重寫的，分類軸改為『這則訊息要求對方做什麼』而非上游的情境訊號。",
+      "note": "2026-09-17 bump: 12 commits — hackathon/branding/README only, no method files. Nothing to adopt. License field corrected this round (MIT since 2026-08-17). Previous: 2026-08-05 baseline。上游兩週內 23 次提交、單一維護者、1681 星但僅 4 位訂閱者（瘋傳而非採用的比例）——churn 當雜訊，只在出現新的『方法層』形成時才需要複看。明確不取且不要日後回頭採納：中國法律與轉介（對臺灣是錯的）、性別預設的主動度、MBTI 與 0–100 評分欄位、PUA/Mystery/Blueprint 體系轉譯、首次問卷、長期記憶（工具層做不到刪檔）、演練引擎（交棒 roleplay-coach）。理由見 references/attribution.md 與 research/audits/2026-08-05-goutoujunshi.md。"
+    }
+  }
+}
