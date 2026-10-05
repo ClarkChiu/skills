@@ -31,12 +31,29 @@
       "name": "plan-tasks-are-concrete",
       "lang": "en",
       "prompt": "The design is already approved (SQLite for each measurement, cron to run it, a CLI report). Turn it into a plan.",
-      "expected_output": "Each plan task should be 2–5 minutes and one action, with exact file paths, complete runnable code, verification commands and expected output, and a commit. No TBD/TODO, no 'same as Task N' without repeating the code. Tests how concrete the plan is.",
+      "expected_output": "Each plan task should be 2–5 minutes and one action, with exact file paths, the signature + test assertions + spec-pinned values (a body only for an algorithm the tests don't determine), verification commands and expected output, and a commit. The header carries a Review Focus list. No TBD/TODO; a task using another's output points at that task's Interfaces block. After saving, it asks the user to review the plan and does not start executing. Tests how concrete — and how proportionate — the plan is.",
       "assertions": [
         {"text": "the plan contains no TBD, TODO, 'implement later', or 'fill in the details' placeholders", "deterministic": true},
         {"text": "every task has exact file paths (create/modify/test)", "deterministic": false},
         {"text": "every task has verification commands with expected output (e.g. a pytest command + expected PASS/FAIL)", "deterministic": false},
-        {"text": "the plan is written under docs/plans/", "deterministic": false}
+        {"text": "the plan is written under docs/plans/", "deterministic": false},
+        {"text": "code steps give signatures and test assertions rather than full function bodies that the tests already determine", "deterministic": false},
+        {"text": "the plan header has a Review Focus list, and each item is pinned by a test in some task", "deterministic": false},
+        {"text": "after saving the plan, asks the user to review it instead of starting execution", "deterministic": false}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "bounded-change-short-design-still-gated",
+      "lang": "en",
+      "_intent": "Tests the bounded path adopted 2026-09-17 from superpowers v6.3.0. A flag on an existing CLI is too big to skip the gate but too small for a spec + plan. The failure modes on either side: writing docs/specs + docs/plans for it (old all-or-nothing behavior), or presenting a design and starting to code in the same reply (skipping the gate because the design looked obvious).",
+      "prompt": "Add a --json flag to our existing `nat-probe report` command so it prints the same results as JSON instead of the table.",
+      "expected_output": "Announces the request as bounded (a change to an existing command). Asks only the clarifying questions that matter (e.g. field names / whether the schema is a stable interface), then presents a short in-chat design: approach, files touched, how it's tested. Then stops and waits for an explicit yes. Writes no design doc and no plan doc, and no code before approval.",
+      "assertions": [
+        {"text": "states the classification out loud (bounded, or equivalent wording) before or alongside the first question", "deterministic": false},
+        {"text": "does not create files under docs/specs/ or docs/plans/", "deterministic": true},
+        {"text": "produces no implementation code or file edits in the same turn it presents the design", "deterministic": false},
+        {"text": "the in-chat design names the files it would touch and how the change is tested", "deterministic": false}
       ]
     }
   ]
