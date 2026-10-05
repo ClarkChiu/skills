@@ -2,13 +2,21 @@
 
 ## 英文規則（rules-en.md）
 
-原樣收錄自 **blader/humanizer**（MIT 授權，v2.8.0）。
+原樣收錄自 **blader/humanizer**（MIT 授權，v3.1.0）。
 - 儲存庫：https://github.com/blader/humanizer
 - 它本身整理自維基百科 **「Signs of AI writing」**（WikiProject AI Cleanup 維護）：
   https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
 - v2.8.0 再同步（2026-06-08，由 `skill-evolve` 偵測）：新增 #31 製造戲劇感的短句連發、
   #32 格言公式、#33 對話式修辭開場三條痕跡，並擴充 #20 收進「Want me to…?／Should I
   continue?」這類「要不要我繼續」結尾。
+- v3.0.0 整份換新（2026-09-17，由 `skill-evolve` 偵測、使用者決定）：上游把規則重寫成
+  五類 25 條、由強到弱排序；依維基百科現況刪掉「假範圍」與「同義詞輪替」，新增模糊關聯、
+  跟不存在的人爭辯、句首重複、限定詞疊太多等痕跡；弱痕跡標「單獨出現不算」。編號全部改變，
+  `rules-zh-tw.md` 已按內容重新對應（上游的新舊編號表是從 35 條版本算的，不適用於我們收錄的 33 條版）。
+  同時採用到 SKILL.md（原創重述）：強痕跡出現一次就改、不得編造事實、三種回傳方式。
+- v3.1.0 同步（2026-10-05，由 `skill-evolve` 偵測）：新增 F 類第 26 條「替讀者重講他早就知道的事」
+  （回覆訊息先講決定）；第 25 條從「寫上一版」放寬成「寫文件本身、不寫它要講的東西」（交代做法與來源、
+  描述讀者看得到的版面）；第 2 條補上「替讀者解讀剛看完的例子」。`rules-zh-tw.md` 已對應補上這三處。
 
 `sources.lock` 追蹤 blader/humanizer 的版本；上游出新規則時由 `skill-evolve` 提醒重新同步。
 **rules-en.md 的規則內容請保持原樣、不要修改**，這樣才能讓 `skill-evolve` 比對上游更新。

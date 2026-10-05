@@ -8,7 +8,7 @@
       "lang": "en",
       "source": "https://www.magictouchsteamclean.com/blog/tracing-the-vibrant-tapestry-a-historical-journey-through-scottsdale-az/",
       "prompt": "Humanize this: The history of Scottsdale is a testament to the indomitable spirit of its people and the enduring allure of the desert landscape. From humble beginnings as a remote outpost to its emergence as a dynamic modern city, Scottsdale's journey is a testament to resilience, innovation, and the power of community. As we look to the future, let us continue to honor and celebrate the legacy of those who came before us, ensuring that Scottsdale remains a beacon of opportunity and inspiration for generations to come.",
-      "expected_output": "Strips significance inflation, the double 'is a testament', rule of three, false range, and the canned upbeat close. Output is short and factual because the original has almost no concrete content. Should NOT pad fluff to match length.",
+      "expected_output": "Strips significance inflation, the double 'is a testament', rule of three, and the canned upbeat close. Output is short and factual because the original has almost no concrete content. Should NOT pad fluff to match length.",
       "assertions": [
         {"text": "output contains no em dash or en dash (— or –)", "deterministic": true},
         {"text": "output does not contain 'testament', 'beacon', 'indomitable', or 'let us'", "deterministic": true},
@@ -66,6 +66,33 @@
         {"text": "具體細節（CI、pipeline、token 權限）保留", "deterministic": true},
         {"text": "輸出與輸入高度相似、長度相當，未大幅重寫或加長", "deterministic": true},
         {"text": "改完讀起來還是同一個人在講話，沒被潤飾成編者腔（保留作者人味）", "deterministic": false}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "strong-tell-once-no-invented-facts",
+      "lang": "zh-tw",
+      "_intent": "測兩條 v3 規則（2026-09-17 採用）。一、強痕跡出現一次就改：整段只有一個否定平行句，沒有其他痕跡陪著，舊的『要成群才算』規則會放過它。二、不得編造事實：原文說『速度大幅提升』『反應非常好』卻沒給數字，改寫最容易順手補上毫秒數、百分比或問卷人數，那些都是編的。",
+      "prompt": "幫我去掉這段的 AI 味：這次改版不是單純的介面調整，而是一次體驗的全面升級。新版載入速度大幅提升，使用者反應非常好。",
+      "expected_output": "拆掉『不是……而是……』對比，直接講這次改版做了什麼。不補任何原文沒有的數字、百分比、時間或人數；缺具體數字時可以問使用者，或寫得更簡單。『載入變快』『使用者反應好』兩個說法都要保留。",
+      "assertions": [
+        {"text": "輸出不含「不是……而是」「不只是……更是」這類否定平行句", "deterministic": true},
+        {"text": "輸出不含任何阿拉伯數字或百分比（原文一個數字都沒有）", "deterministic": true},
+        {"text": "「載入變快」和「使用者反應好」兩個說法都還在，沒有被刪掉", "deterministic": false}
+      ]
+    },
+    {
+      "id": 7,
+      "name": "reply-leads-with-decision",
+      "lang": "zh-tw",
+      "_intent": "測第 26 條（v3.1.0 新增，2026-10-05 採用）：回覆訊息替讀者重講他早就知道的背景，決定放在最後。每一句單看都通順，逐句清理抓不到，要看整則的順序。提示裡附上審查者的留言，讓『這是一則回覆』一眼看得出來，符合第 26 條『看得到前後對話才動手』的但書。",
+      "prompt": "幫我去掉這則回覆的 AI 味。審查者在 PR 上留言：「這段看起來是繞過問題，不是真的修好吧？」我準備回的是：對，你說得沒錯，這段是繞過問題而不是修好它。真正的問題在同步模組：搬移裝置到新群組時，它只更新了 group_id，沒有一起更新 policy_id。我查過測試環境，過去 120 次搬移裡只有 6 筆資料是錯的，所以清理起來不難，可以從稽核紀錄把錯的資料補回來。因為同步模組是共用的程式，不是只有這個客戶在用，所以我想另外開一張工單處理，不要把這個 PR 的範圍撐大。在那之前，這段繞過的寫法可以先留著。",
+      "expected_output": "第一句就給決定：同意這是繞過的寫法，這個 PR 先留著它，真正的修正另開工單。理由只留審查者不知道、又會影響他同不同意的那一件事：同步模組是共用程式，修它會讓這個 PR 範圍變大。重述問題、診斷過程（只更新 group_id）、『120 次搬移只有 6 筆錯』這組證明清理不難的數字，移到工單去，或縮成一句帶過。不補原文沒有的事實。",
+      "assertions": [
+        {"text": "輸出的第一句就表態同意、並講出決定（先留著繞過的寫法、另開工單），不是先重述問題或診斷", "deterministic": false},
+        {"text": "輸出比輸入明顯短（拿掉了審查者已經知道的背景）", "deterministic": true},
+        {"text": "「另開工單」和「同步模組是共用程式」這兩點都保留", "deterministic": false},
+        {"text": "輸出不含輸入沒有的數字（120、6 以外的數字都不該出現）", "deterministic": true}
       ]
     }
   ]

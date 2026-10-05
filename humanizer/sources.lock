@@ -1,22 +1,20 @@
 {
   "_comment": "由 skill-evolve 維護：rules-en.md 原樣收錄的上游，用來偵測新規則。檢視報告後才更新。中文規則的文章類參考非 GitHub repo、不在此追蹤；ali-words 雖是 repo 但僅為靜態術語表參考（非逐字收錄），列在此處只為避免每次掃描都誤報為 NEW。",
-  "checked_at": "2026-08-04",
+  "checked_at": "2026-10-05",
   "sources": {
     "blader/humanizer": {
-      "commit": "523374dee72d",
-      "release": "2.9.1",
-      "date": "2026-07-22",
-      "note": "2026-08-04 bump (was 1b48564898e9 / 2.8.2): rules-en.md is UNTOUCHED in this range (still the vendored 33 rules) — all movement is in their SKILL.md (+33/-243). v2.9.0 adds two substantive things: a NEVER-INVENT-FACTS rule (no fact, name, number, date, quote, or citation may appear in the rewrite unless it is in the source; opinions are voice, not facts; fiction exempted) and three INVOCATION MODES (pasted-text / file-in-place / embedded-output-only). Our SKILL.md has no counterpart for either. Both FLAGGED for adoption, NOT adopted this round — pending user decision. v2.9.1 is packaging/portability only. 2026-07-06 bump (was 9600f2b7241c / 2.8.0): 2.8.2 — rules-en.md UNCHANGED (still 33 rules, no #34+). ADOPTED the new Secondhand-text false-positive caveat into humanizer/SKILL.md (mention-vs-use guard), reworded not vendored. Example swap ignored. rules-en.md 原樣收錄；33 條規則。2026-06-08 自 v2.7.0 同步到 v2.8.0（新增 #31–#33、擴充 #20）。"
+      "commit": "225a6f39ac85",
+      "release": "v3.1.0",
+      "date": "2026-09-28",
+      "note": "2026-10-05 RE-COPY to v3.1.0 (was 9862685f575c / v3.0.0): rules-en.md body re-copied verbatim from upstream SKILL.md at 225a6f39ac85 (cmp-verified). New §26 're-explaining what the reader knows' and §25 widened to 'writing about the document instead of its subject'; §2 covers explaining an example just shown. rules-zh-tw.md: 第 26 條 added, 第 25 條 widened, 第 2 條 sub-item added; new eval id 7. Previous: 2026-09-17 RE-VENDORED to v3.0.0 (user decision): rules-en.md body replaced verbatim with upstream SKILL.md at 9862685f575c (25 patterns in 5 sections; false ranges + synonym cycling dropped per Wikipedia; weak-alone markers). rules-zh-tw.md cross-references remapped BY CONTENT (upstream's old→new table counts from a 35-pattern version, not our 33). ADOPTED into SKILL.md (reworded): strong tells act on one sighting / weak-alone need company (replaces the old all-tells-need-company rule); never-invent-facts + fact-diff self-check; three return modes (pasted / file / embedded). New eval #6 guards the first two. Previous: 2026-08-04 bump (was 1b48564898e9 / 2.8.2): rules-en.md is UNTOUCHED in this range (still the vendored 33 rules) — all movement is in their SKILL.md (+33/-243). v2.9.0 adds two substantive things: a NEVER-INVENT-FACTS rule (no fact, name, number, date, quote, or citation may appear in the rewrite unless it is in the source; opinions are voice, not facts; fiction exempted) and three INVOCATION MODES (pasted-text / file-in-place / embedded-output-only). Our SKILL.md has no counterpart for either. Both FLAGGED for adoption, NOT adopted this round — pending user decision. v2.9.1 is packaging/portability only. 2026-07-06 bump (was 9600f2b7241c / 2.8.0): 2.8.2 — rules-en.md UNCHANGED (still 33 rules, no #34+). ADOPTED the new Secondhand-text false-positive caveat into humanizer/SKILL.md (mention-vs-use guard), reworded not vendored. Example swap ignored. rules-en.md 原樣收錄；33 條規則。2026-06-08 自 v2.7.0 同步到 v2.8.0（新增 #31–#33、擴充 #20）。"
     },
     "justjavac/ali-words": {
       "commit": "f358597dbafa",
-      "release": null,
       "date": "2022-08-24",
       "note": "中國網路術語表，僅供中文規則參考的靜態來源（非逐字收錄）；2022 後即無更動。"
     },
     "orange2ai/renwei-writing": {
       "commit": "c6566884997f",
-      "release": null,
       "date": "2026-06-13",
       "note": "SKILL.md「保留作者人味」減法紀律的原則來源（非逐字收錄；自訂雙授權，未收原檔）。2026-06-14 評估後併入。上游若新增編輯原則，skill-evolve 提醒評估。"
     }
