@@ -1,22 +1,54 @@
 {
   "_comment": "Maintained by skill-evolve. last30d VENDORS files verbatim from mvanhorn/last30days-skill (MIT) — the Reddit keyless leaf fetchers/parsers + xai_x + their shallow deps. Copied from main HEAD below. On drift: re-pull the changed leaf file verbatim (don't hand-port); tests/test_reddit_parsers.py guards the re-pull. The reddit_keyless orchestrator was NOT vendored (own reddit_lane.py); hn/arxiv/github/youtube are original. Full audit: research/audits/2026-07-08-last30days.md.",
-  "checked_at": "2026-07-20",
+  "checked_at": "2026-10-05",
   "sources": {
     "mvanhorn/last30days-skill": {
       "ref": "main",
-      "copied_from_commit": "39cca461aab5",
+      "copied_from_commit": "5103ba478b38",
       "upstream_path": "skills/last30days/scripts/lib/ — upstream MOVED the vendored files here (was scripts/lib/ relative to the skill root at the 2026-07-09 baseline). Future `commits?path=` drift checks MUST use this new path or they false-negative.",
       "license": "MIT",
-      "vendored": "FILES (verbatim copy into scripts/sources/): reddit_rss.py, reddit_listing.py, reddit_shreddit.py, reddit_enrich.py, xai_x.py + shared deps http.py, relevance.py, cjk.py, dates.py, log.py.",
+      "vendored": "FILES (verbatim copy into scripts/sources/): reddit_search.py, reddit_listing.py, reddit_shreddit.py, reddit_enrich.py, xai_x.py + shared deps http.py, health.py, relevance.py, cjk.py, dates.py, log.py; plus reddit.py = VERBATIM EXTRACT of two functions only (_days_to_reddit_bucket, _window_to_time_filter) because reddit_search lazily imports one of them on its hot path.",
       "vendored_file_commits": {
-        "reddit_shreddit.py": {"commit": "ca3fbbe377bf", "date": "2026-06-17"},
-        "reddit_rss.py": {"commit": "ca3fbbe377bf", "date": "2026-06-17"},
-        "reddit_listing.py": {"commit": "298310ca34a5", "date": "2026-07-12"},
-        "xai_x.py": {"commit": "39cca461aab5", "date": "2026-07-15"},
-        "log.py": {"commit": "39cca461aab5", "date": "2026-07-15"}
+        "reddit_shreddit.py": {
+          "commit": "b28775e45a71",
+          "date": "2026-08-31"
+        },
+        "reddit_listing.py": {
+          "commit": "39a0adda954f",
+          "date": "2026-10-01"
+        },
+        "xai_x.py": {
+          "commit": "39cca461aab5",
+          "date": "2026-07-15"
+        },
+        "log.py": {
+          "commit": "39cca461aab5",
+          "date": "2026-07-15"
+        },
+        "reddit_search.py": {
+          "commit": "39a0adda954f",
+          "date": "2026-10-01"
+        },
+        "http.py": {
+          "commit": "39a0adda954f",
+          "date": "2026-10-01"
+        },
+        "health.py": {
+          "commit": "b15e2eb46a1b",
+          "date": "2026-09-09"
+        },
+        "reddit.py (extract: _days_to_reddit_bucket, _window_to_time_filter)": {
+          "commit": "39a0adda954f",
+          "date": "2026-10-01"
+        },
+        "relevance.py": {
+          "commit": "3360ef3b23f5",
+          "date": "2026-06-17",
+          "held": "deliberately not re-pulled at 698bfd0c3d05 (adds planner-only stopwords; planner not vendored)"
+        }
       },
-      "not_vendored": "reddit_keyless.py (orchestrator — own reddit_lane.py instead), reddit_arctic.py, reddit.py (keyed), rerank.py, health.py (new upstream module — see note), and all other platforms.",
-      "note": "2026-07-20 re-pull (baseline 2026-07-09 at ae8c32327f86): xai_x.py + log.py re-pulled at 39cca461aab5 (fixes AttributeError on the xAI error path — `http.DEBUG` → `log.is_debug()`); reddit_listing.py re-pulled at 298310ca34a5 (backward-compatible: timeframe param, r/all, discovery helpers). http.py DELIBERATELY HELD at the ae8c32327f86 baseline — upstream's http.py is now coupled to a health.py module / fixture tooling we don't vendor; before re-pulling any leaf later, confirm it doesn't use the new http API. On re-sync watch the shreddit /svc endpoints (reddit_listing/reddit_shreddit) and the xAI x_search contract (xai_x) — those rot. Keep the verbatim-copy + own-orchestrator split; re-pull, don't hand-merge."
+      "not_vendored": "reddit_keyless.py (orchestrator — own reddit_lane.py instead), reddit_arctic.py (lazy import in reddit_listing.fetch_discovery_listings, which we never call), reddit.py beyond the 2-function extract (keyed ScrapeCreators path), env.py (lazy import in http.config_secret_values, fixture-recording only), rerank.py, and all other platforms. reddit_rss.py REMOVED 2026-10-05 (upstream deleted it in 39a0adda954f; Reddit shuts off RSS 2026-11-13).",
+      "note": "2026-07-20 re-pull (baseline 2026-07-09 at ae8c32327f86): xai_x.py + log.py re-pulled at 39cca461aab5 (fixes AttributeError on the xAI error path — `http.DEBUG` → `log.is_debug()`); reddit_listing.py re-pulled at 298310ca34a5 (backward-compatible: timeframe param, r/all, discovery helpers). http.py DELIBERATELY HELD at the ae8c32327f86 baseline — upstream's http.py is now coupled to a health.py module / fixture tooling we don't vendor; before re-pulling any leaf later, confirm it doesn't use the new http API. On re-sync watch the shreddit /svc endpoints (reddit_listing/reddit_shreddit) and the xAI x_search contract (xai_x) — those rot. Keep the verbatim-copy + own-orchestrator split; re-pull, don't hand-merge. 2026-09-17 re-pull (checked against HEAD 4ee76ab6ef63): reddit_shreddit.py re-pulled at b28775e45a71 (drops bot authors such as AutoModerator before ranking — reddit_lane shows only top_comments[0]; enrich limits 3/5/8→4/8/12, MAX_COMMENTS 10→12; uses only http.reddit_keyless_get_text, which we have); guarded by test_shreddit_drops_bot_comments_before_ranking (fails on the old file). reddit_rss.py (upstream also touched 57f8d2c 07-30 and b28775e45a71) + reddit_listing.py DELIBERATELY HELD: the new versions call http.reddit_keyless_get_text_retry_429 / reddit_keyless_wait_allowance / submit_with_context and reddit_listing imports reddit_arctic — none exist here, so a verbatim re-pull crashes at fetch time and the offline parser tests would NOT catch it; their parsers (_parse_feed, parse_cards) are unchanged. GUARD ADDED: tests/test_vendored_symbols_resolve.py walks every vendored file's AST and asserts each sibling-module attribute it reads exists locally — it fails offline on exactly this case (verified by dropping in upstream's newer reddit_rss.py), which the parser tests could not catch. http.py still held; upstream a46c419 strips credential headers on cross-host redirects (#1062) — candidate for an original guard, not a re-pull. 2026-10-05 re-vendor to v3.26.0 (5103ba478b38; audit research/audits/2026-10-05-last30d-v3.26.0-revendor.md, verdict SAFE): Reddit discovery switched from RSS to site search — reddit_search.py added verbatim, reddit_rss.py + its fixture removed, reddit_lane.py rewired (search posts arrive dated and scored, so the listing score-backfill step is gone; lane now passes from/to and trims to the window). http.py UN-HELD and re-pulled with its new hard dep health.py (gains a46c419 #1069 cross-origin credential-header stripping, which covers the XAI_API_KEY Authorization header). reddit_listing.py re-pulled (its 2026-09-17 hold reason — missing http helpers — is gone). relevance.py DELIBERATELY HELD: upstream 698bfd0c3d05 adds planner-scaffolding stopwords (last/days/recent/new/people/...) for a planner we don't vendor; nothing here needs it. GUARD EXTENDED: tests/test_vendored_symbols_resolve.py now also checks `from .mod import name` (it would have caught a missing reddit._window_to_time_filter, which reddit_search swallows into a silent empty lane) and fails on any relative import of an unvendored module unless listed in NOT_VENDORED_UNREACHED with a reason. CAVEAT: upstream requires Python >=3.12; on Python 3.10 reddit_listing._to_date cannot parse Reddit's '+0000' offset, so Reddit records have blank dates and the window trim is a no-op (test_search_page_posts_are_dated skips on <3.11). Parser tests: reddit_search_{page1,last_page,challenge,no_results}.html copied verbatim from upstream fixtures/ at 5103ba478b38."
     }
   }
 }

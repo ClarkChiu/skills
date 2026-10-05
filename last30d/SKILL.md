@@ -27,9 +27,13 @@ comparable.
 ## Run it
 
 ```bash
-python3 last30d/scripts/last30d.py "<topic>" [--depth quick|default|deep] \
-    [--lanes reddit,x,hn,github,arxiv,youtube] [--json] [--save PATH]
+uv run --python 3.12 --no-project python last30d/scripts/last30d.py "<topic>" \
+    [--depth quick|default|deep] [--lanes reddit,x,hn,github,arxiv,youtube] [--json] [--save PATH]
 ```
+
+Run it on Python 3.12 via `uv` (stdlib only, nothing to install): the vendored upstream
+targets 3.12, and on 3.10 Reddit dates parse blank. Plain `python3` still works if it is
+3.11+.
 
 - `--depth` sets per-lane top-N: quick=10, default=25, deep=50.
 - `--lanes` runs a subset (default: all six).
@@ -41,9 +45,12 @@ Read the printed digest and synthesize from it, or pass the `--json` output to
 ## Lanes
 
 **Four always-on (keyless / free):**
-- **Reddit** — RSS discovery + shreddit listing partials for real upvote scores + top
-  comment per post. No key. (Keyless Reddit has no date-range query, so the window is
-  approximated by the feeds' `t=month`; `--as-of` doesn't shift the Reddit window.)
+- **Reddit** — Reddit's own site search (`/svc/shreddit/search/`, which returns each post
+  with its upvotes and comment count) + top comment per post. No key. Reddit's time filter
+  is a rolling bucket ending *now* (`t=week|month|year`), so the lane picks the smallest
+  bucket that reaches the window start, then drops posts dated outside the window. Post
+  dates need **Python 3.11+** (hence `uv run --python 3.12` above); on 3.10 they come
+  back blank and nothing is trimmed.
 - **Hacker News** — Algolia Search API. No key.
 - **GitHub** — REST Search, scoped to repos pushed within the window, **ranked by lifetime
   stars** (GitHub's API has no stars-gained-in-window sort — a popular repo with one recent

@@ -1,33 +1,36 @@
-"""Adapters over the vendored engines. Intent: reddit_lane backfills real scores by
-post-id and attaches the top comment; x_lane degrades to []+skip without a key and maps
+"""Adapters over the vendored engines. Intent: reddit_lane ranks site-search posts by
+relevance+engagement, keeps only the requested window, and attaches the top comment; x_lane degrades to []+skip without a key and maps
 xai items to records when keyed. Vendored fns are mocked."""
 import conftest  # noqa: F401
 from sources import reddit_lane, x_lane
 
 
 # ---- Reddit adapter ----
-def test_reddit_lane_backfills_scores_and_top_comment(monkeypatch):
-    rss_posts = [
-        {"title": "A", "url": "https://www.reddit.com/r/rust/comments/aaa/x/",
-         "subreddit": "rust", "score": 0, "num_comments": 0,
-         "engagement": {"score": 0, "num_comments": 0}, "relevance": 0.9, "selftext": ""},
-        {"title": "B", "url": "https://www.reddit.com/r/rust/comments/bbb/y/",
-         "subreddit": "rust", "score": 0, "num_comments": 0,
-         "engagement": {"score": 0, "num_comments": 0}, "relevance": 0.4, "selftext": ""},
-    ]
-    listing = [{"score": 500, "num_comments": 42, "metadata": {"post_id": "aaa"}}]
-    monkeypatch.setattr(reddit_lane.reddit_rss, "search_rss", lambda *a, **k: rss_posts)
-    monkeypatch.setattr(reddit_lane.reddit_listing, "fetch_listings", lambda *a, **k: listing)
+def test_reddit_lane_ranks_trims_window_and_adds_top_comment(monkeypatch):
+    def post(title, pid, score, rel, date):
+        return {"title": title, "url": f"https://www.reddit.com/r/rust/comments/{pid}/x/",
+                "subreddit": "rust", "score": score, "num_comments": 3,
+                "engagement": {"score": score, "num_comments": 3}, "relevance": rel,
+                "selftext": "", "date": date}
+    found = [post("B", "bbb", 2, 0.4, "2026-07-01"), post("A", "aaa", 500, 0.9, "2026-07-02"),
+             post("Old", "ooo", 9000, 1.0, "2026-05-01"),  # outside the window -> dropped
+             post("Undated", "uuu", 1, 0.1, None)]          # no date -> kept, not guessed
+    seen = {}
+
+    def fake_search(topic, **kw):
+        seen.update(kw)
+        return found
+    monkeypatch.setattr(reddit_lane.reddit_search, "search", fake_search)
     monkeypatch.setattr(reddit_lane.reddit_shreddit, "fetch_comments",
                         lambda url, **k: {"top_comments": [{"score": 99, "excerpt": "the real point"}],
                                           "num_comments": 42})
-    out = reddit_lane.search("rust async", "2026-06-09", "2026-07-09", limit=25, enrich=2)
-    a = next(r for r in out if r["title"] == "A")
-    assert a["lane"] == "reddit" and a["score_label"] == "upvotes"
-    assert a["score"] == 500, "score not backfilled from listing by post-id"
-    assert a["top_comment"] == "(99↑) the real point"
-    # A (relevance .9 + backfilled engagement) must outrank B.
-    assert out[0]["title"] == "A"
+    out = reddit_lane.search("rust async", "2026-06-09", "2026-07-09", limit=25, enrich=1)
+    # The window must reach the engine, or reddit_search falls back to t=month regardless.
+    assert seen["from_date"] == "2026-06-09" and seen["to_date"] == "2026-07-09"
+    assert [r["title"] for r in out] == ["A", "B", "Undated"], "rank or window trim wrong"
+    a = out[0]
+    assert a["lane"] == "reddit" and a["score_label"] == "upvotes" and a["score"] == 500
+    assert a["top_comment"] == "(99↑) the real point" and "42 comments" in a["meta"]
 
 
 # ---- X adapter ----

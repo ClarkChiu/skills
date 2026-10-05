@@ -2,26 +2,20 @@
 
 Replaces upstream reddit_keyless (which balloons into keyed/rerank/arctic code we don't
 use). The essential keyless flow, kept small:
-  RSS discover (no scores) -> listing partials backfill real upvote scores by post-id
-  -> rank by relevance+engagement -> enrich the top few with their single top comment.
+  site-search discover (/svc/shreddit/search/ — each post arrives dated and scored)
+  -> trim to the requested window -> rank by relevance+engagement
+  -> enrich the top few with their single top comment.
 Maps to the common record shape. Never raises (returns []).
 
-NOTE: keyless Reddit has no date-range query, so the window is APPROXIMATED by the
-vendored feeds' `?t=month`. `from_date`/`to_date` are accepted for a uniform lane
-signature but not applied here (so `--as-of` does not shift the Reddit window).
+Discovery used to be Reddit RSS (`reddit_rss`), which Reddit shuts off on 2026-11-13;
+upstream replaced it with `reddit_search` (39a0adda954f, #1189) and so do we.
+Reddit's `t=` buckets are rolling windows ending *now*, so `reddit_search` picks the
+smallest bucket that reaches `from_date`, and this lane drops posts dated outside
+`from_date`..`to_date` (undated posts are kept).
 """
 import math
-import re
-from collections import Counter
 
-from . import reddit_rss, reddit_listing, reddit_shreddit
-
-_PID = re.compile(r"/comments/([A-Za-z0-9]+)")
-
-
-def _pid(url):
-    m = _PID.search(url or "")
-    return m.group(1) if m else ""
+from . import reddit_search, reddit_shreddit
 
 
 def _rank(p):
@@ -35,30 +29,16 @@ def _to_record(p):
         "lane": "reddit", "title": p.get("title", ""), "url": p.get("url", ""),
         "score": p.get("score", 0) or 0, "score_label": "upvotes",
         "meta": f'{p.get("num_comments", 0) or 0} comments · r/{p.get("subreddit", "")}',
-        "date": p.get("date", ""), "excerpt": (p.get("selftext") or "")[:200],
+        "date": p.get("date") or "", "excerpt": (p.get("selftext") or "")[:200],
         "top_comment": p.get("_top_comment"), "relevance": p.get("relevance", 0.0) or 0.0,
     }
 
 
 def search(topic, from_date, to_date, limit=25, depth="default", enrich=3):
-    posts = reddit_rss.search_rss(topic, depth=depth)
+    posts = reddit_search.search(topic, depth=depth, from_date=from_date, to_date=to_date)
+    posts = [p for p in posts if not p.get("date") or from_date <= p["date"] <= to_date]
     if not posts:
         return []
-    # Backfill real upvote scores from the listing partials of the most common subs.
-    subs = [s for s, _ in Counter(
-        p.get("subreddit", "") for p in posts if p.get("subreddit")).most_common(5)]
-    scored = reddit_listing.fetch_listings(subs, depth=depth, query=topic) if subs else []
-    score_map = {}
-    for p in scored:
-        pid = p.get("metadata", {}).get("post_id", "")
-        if pid:
-            score_map[pid] = (p.get("score", 0), p.get("num_comments", 0))
-    for p in posts:
-        hit = score_map.get(_pid(p.get("url", "")))
-        if hit:
-            p["score"], p["num_comments"] = hit
-            p.setdefault("engagement", {})["score"] = hit[0]
-            p["engagement"]["num_comments"] = hit[1]
     posts.sort(key=_rank, reverse=True)
     posts = posts[:limit]
     # Enrich the top few with their single highest-scored comment (the substance).
