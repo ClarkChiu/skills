@@ -12,19 +12,19 @@ each source keeps its own shape; you read and reason over them directly.
 
 | file | rows | what's in it | key columns | read when |
 |---|---|---|---|---|
-| `styles.csv` | 84 | UI style catalog (minimalism, glassmorphism, brutalism…) | Style Category, Keywords, Primary/Secondary Colors, Effects, Best For, Do Not Use For, Light/Dark, Performance, Accessibility | choosing the visual style |
-| `ui-reasoning.csv` | 161 | the decision engine: per UI category → recommended pattern + priorities | UI_Category, Recommended_Pattern, Style_Priority, Color_Mood, Typography_Mood, Key_Effects, Decision_Rules, Anti_Patterns | **start here** to reason about a screen/component |
+| `styles.csv` | 88 | UI style catalog (minimalism, glassmorphism, brutalism…) | Style Category, Keywords, Primary/Secondary Colors, Effects, Best For, Do Not Use For, Light/Dark, Performance, Accessibility, Preferred Mode, Style ID, Aliases, Status, Parent Style ID, Replacement Domain/ID | choosing the visual style |
+| `ui-reasoning.csv` | 192 | the decision engine: per UI category → recommended pattern + priorities | UI_Category, Recommended_Pattern, Style_Priority, Color_Mood, Typography_Mood, Key_Effects, Decision_Rules, Anti_Patterns, Reasoning, Confidence | **start here** to reason about a screen/component |
 | `colors.csv` | 192 | functional palettes by product type (shadcn-style token set) | Product Type, Primary/Secondary/Accent, Background, Card, Muted, Border, Destructive (+ On- pairs) | picking a working palette / tokens |
 | `typography.csv` | 74 | curated font pairings | Font Pairing Name, Heading Font, Body Font, Mood Keywords, Best For, Google Fonts URL, CSS Import, Tailwind Config | choosing fonts |
-| `charts.csv` | 25 | chart-type selection | Data Type, Best Chart Type, When to Use / NOT, Data Volume, Color Guidance, Accessibility Grade | picking a chart/visualization |
+| `charts.csv` | 25 | chart-type selection | Data Type, Best Chart Type, When to Use / NOT, Data Volume, Color Guidance, Accessibility Grade/Risk | picking a chart/visualization |
 | `products.csv` | 192 | per product-type recommendation bundle | Product Type, Primary/Secondary Style, Landing Pattern, Dashboard Style, Color Focus, Key Considerations | quick "what fits this kind of product" |
-| `landing.csv` | 34 | landing-page section patterns | Pattern Name, Section Order, CTA Placement, Color Strategy, Effects, Conversion | designing a landing page |
-| `icons.csv` | 105 | icon-library guidance | Category, Icon Name, Library, Import Code, Best For, Style | choosing icons |
-| `ux-guidelines.csv` | 99 | UX do/don't rules with severity | Category, Issue, Platform, Do, Don't, Code Good/Bad, Severity | reviewing UX correctness |
-| `app-interface.csv` | 30 | native/app-specific UI rules | (same shape as ux-guidelines) | mobile/app interfaces |
+| `landing.csv` | 34 | landing-page section patterns | Pattern Name, Section Order, CTA Placement, Color Strategy, Effects, Conversion, Pattern ID, Aliases | designing a landing page |
+| `icons.csv` | 105 | icon-library guidance | Category, Icon Name, Library, Import Code, Best For, Style, Semantic Role, Allowed Contexts | choosing icons |
+| `ux-guidelines.csv` | 119 | UX do/don't rules with severity | Category, Issue, Platform, Do, Don't, Code Good/Bad, Severity | reviewing UX correctness |
+| `app-interface.csv` | 32 | native/app-specific UI rules | (same shape as ux-guidelines) | mobile/app interfaces |
 | `react-performance.csv` | 44 | React perf do/don't | (same shape as ux-guidelines) | React performance review |
-| `google-fonts.csv` | 1923 | **large** raw Google Fonts catalog | font metadata | only for exhaustive font lookup — prefer `typography.csv` first |
-| `stacks/<framework>.csv` | 22 files | per-framework implementation guidelines | Category, Guideline, Do, Don't, Code Good/Bad, Severity, Docs URL | when implementing in react / nextjs / vue / svelte / astro / tailwind / shadcn / swiftui / flutter / angular / laravel / nuxt / jetpack-compose / threejs / react-native — or desktop: wpf / winui / uwp / uno / avalonia / javafx |
+| `google-fonts.csv` | 1934 | **large** raw Google Fonts catalog | font metadata | only for exhaustive font lookup — prefer `typography.csv` first |
+| `stacks/<framework>.csv` | 22 files | per-framework implementation guidelines | Category, Guideline, Do, Don't, Code Good/Bad, Severity, Docs URL, Applies To, Status, Verified At | when implementing in react / nextjs / vue / svelte / astro / tailwind / shadcn / swiftui / flutter / angular / laravel / nuxt / jetpack-compose / threejs / react-native — or desktop: wpf / winui / uwp / uno / avalonia / javafx |
 
 ## color-combinations/ — curated aesthetic palettes (JSON, MIT)
 
@@ -37,7 +37,7 @@ each source keeps its own shape; you read and reason over them directly.
 | file | what's in it | read when |
 |---|---|---|
 | `wcag-checklist.md` | WCAG 2.2 checklist, P0/P1/P2 prioritized | accessibility audit / compliance pass |
-| `aria-patterns.md` | 15+ WAI-ARIA interactive patterns | building accessible interactive components |
+| `aria-patterns.md` | 19 WAI-ARIA interactive patterns | building accessible interactive components |
 
 ## ux-heuristics/ — classic UX/design principles (Markdown, MIT)
 

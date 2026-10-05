@@ -1,15 +1,15 @@
 {
   "_comment": "Maintained by skill-evolve: upstream data sources vendored into data/. Pins the commit each was copied at, to detect new/updated design data. Update only after reviewing the report (--write-lock). Only DATA was vendored — no scripts/CLI. Full audit: research/audits/2026-06-05-ui-ux-pro-max.md.",
-  "checked_at": "2026-08-04",
+  "checked_at": "2026-10-05",
   "sources": {
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "ref": "main",
-      "commit": "14ddef5c05e5",
-      "release": "v2.12.0",
-      "date": "2026-08-01",
+      "commit": "477bcb28c981",
+      "release": "v2.15.0",
+      "date": "2026-10-03",
       "license": "MIT",
       "vendored": ".claude/skills/ui-ux-pro-max/data/*.csv (12 domain + stacks/22); dropped draft.csv, design.csv (now deleted upstream too), motion.csv, all scripts",
-      "note": "2026-08-04 bump (was b484e8338c25 / v2.11.0): the one on-domain change is #428/#434 — palette and anti-patterns are now resolved against the STYLE'S MODE (light vs dark) instead of a single flat lookup. Our vendored CSVs are the data, not that resolution logic, so no re-vendor is required; the mode-aware resolution itself is FLAGGED as worth considering for the brief's palette step, not adopted. The rest is CLI/installer plumbing (.agents paths, Codex/Copilot targets, pinned shadcn CLI) plus a gallery Style Detail Modal. Reviewed up to v2.12.0; upstream already at v2.13.0. 2026-07-20 bump (was 4baa399d00da / v2.10.1): v2.11.0 data resync, diffed CSV-by-CSV against the pinned commit. Upstream fixed drift between its three internal data copies (#412); synced from .claude/skills/ui-ux-pro-max/data/ (LF, canonical — the src/ copy still carries mixed CRLF), blob-SHA-verified. ADDED the 6 desktop stacks (wpf/winui/uwp/uno/avalonia/javafx, reversing the 2026-07-06 off-core skip now that the resync scope was approved). REWRITTEN threejs.csv re-vendored (adds No column, r128 CDN-pinning guidance). 7 files (charts/colors/google-fonts/landing/ui-reasoning/ux-guidelines/stacks-react-native) were content-identical, only normalized CRLF→LF to match upstream blobs so future diffs stay clean. colors/products/typography/angular/laravel/nuxt-ui already matched (picked up at v2.10.1). Still NOT vendored: motion.csv (GSAP snippet pack, off the vendored subset). Security scan clean: no hidden Unicode, no injection phrasing, no credential URLs; <script>/CDN strings are guideline example code, expected in this dataset. Never vendor the CLI or image-gen scripts that read ~/.claude/.env. Older history: 2026-07-06 v2.10.1 first data re-vendor (products 162→193 rows); 2026-06-28 v2.5.0 bump; 2026-06-08 SHA widened to full."
+      "note": "2026-10-05 RE-VENDOR 3 files to 477bcb28c981 (was 15de38fb70bc, a pre-final v2.15.0 commit; 477bcb28 carries the same tag). Before: all 34 local CSVs matched 15de38fb blobs. Upstream changed only stacks/react.csv (61->66 rows, React 19 useActionState/useFormStatus/use()), stacks/nuxt-ui.csv (70->76 rows, retagged nuxt-ui 4.11), stacks/threejs.csv (THREE.Clock deprecated since r183 -> THREE.Timer; old copy recommended the deprecated API). Replaced verbatim from .claude/skills/ui-ux-pro-max/data/stacks/; blob SHAs verified equal to upstream; no CRLF, no hidden Unicode, no base64/data: strings; 13 columns unchanged. Other upstream work is CLI/scripts/ZCode — not vendored. Previous: 2026-09-17 RE-VENDOR to v2.15.0 (was 14ddef5c05e5 / v2.12.0), user-approved. Upstream changed ALL 34 vendored CSVs — mostly new provenance columns (stacks/*.csv gained Applies To / Status / Verified At). All 34 local files matched the old pinned blobs byte-for-byte first (no local edits), then were replaced verbatim from .claude/skills/ui-ux-pro-max/data/ (LF canonical) at 15de38fb70bc. Row/column changes: styles 84->88 rows, 22->29 cols; ui-reasoning 161->192, 10->12; ux-guidelines 99->119 (adds WCAG 2.2: focus not obscured, target size, dragging, accessible authentication; drops old absolutes like the universal 150-300ms claim); app-interface 30->32; google-fonts 1923->1934; charts/icons/landing gained columns. data/INDEX.md corrected (10 facts: row counts + key-column lists). Injection scan of every changed file: clean — no hidden Unicode, no base64/data: blobs, no CRLF, five .env hits all legitimate framework guidance, four new domains all citations/CDN examples. CONTRAST VERIFIED (this repo, WCAG 2.x maths over the 7 fg/bg pairs in colors.csv): the on-colors moving toward #000000 is a FIX, not a regression — old had 398 of 1344 pairs below 4.5:1 (min 2.28), new has 0 (min 4.6); e.g. row 1 Secondary 3.68->5.71, Accent 3.56->5.9. Still only FLAGGED, not adopted: styles.csv now ships Preferred Mode, the data side of upstream mode-aware palette resolution (#428/#434) — SKILL.md palette step could use it. NOT vendored: catalog-summary.json, data-provenance.json, google-font-licenses.json, phosphor-icons-upstream.json (new upstream files), motion.csv (deliberately dropped). Previous: 2026-08-04 bump (was b484e8338c25 / v2.11.0): the one on-domain change is #428/#434 — palette and anti-patterns are now resolved against the STYLE'S MODE (light vs dark) instead of a single flat lookup. Our vendored CSVs are the data, not that resolution logic, so no re-vendor is required; the mode-aware resolution itself is FLAGGED as worth considering for the brief's palette step, not adopted. The rest is CLI/installer plumbing (.agents paths, Codex/Copilot targets, pinned shadcn CLI) plus a gallery Style Detail Modal. Reviewed up to v2.12.0; upstream already at v2.13.0. 2026-07-20 bump (was 4baa399d00da / v2.10.1): v2.11.0 data resync, diffed CSV-by-CSV against the pinned commit. Upstream fixed drift between its three internal data copies (#412); synced from .claude/skills/ui-ux-pro-max/data/ (LF, canonical — the src/ copy still carries mixed CRLF), blob-SHA-verified. ADDED the 6 desktop stacks (wpf/winui/uwp/uno/avalonia/javafx, reversing the 2026-07-06 off-core skip now that the resync scope was approved). REWRITTEN threejs.csv re-vendored (adds No column, r128 CDN-pinning guidance). 7 files (charts/colors/google-fonts/landing/ui-reasoning/ux-guidelines/stacks-react-native) were content-identical, only normalized CRLF→LF to match upstream blobs so future diffs stay clean. colors/products/typography/angular/laravel/nuxt-ui already matched (picked up at v2.10.1). Still NOT vendored: motion.csv (GSAP snippet pack, off the vendored subset). Security scan clean: no hidden Unicode, no injection phrasing, no credential URLs; <script>/CDN strings are guideline example code, expected in this dataset. Never vendor the CLI or image-gen scripts that read ~/.claude/.env. Older history: 2026-07-06 v2.10.1 first data re-vendor (products 162→193 rows); 2026-06-28 v2.5.0 bump; 2026-06-08 SHA widened to full."
     },
     "mattdesl/dictionary-of-colour-combinations": {
       "ref": "master",
@@ -21,12 +21,12 @@
     },
     "plugin87/ux-ui-agent-skills": {
       "ref": "main",
-      "commit": "93a7fbbdb3f1",
-      "release": "v2.4.0",
-      "date": "2026-06-22",
+      "commit": "f2e2f7fcc5cb",
+      "release": "v2.8.0",
+      "date": "2026-09-16",
       "license": "MIT (declared in README; NO LICENSE file — weaker grant)",
       "vendored": "accessibility/wcag-checklist.md, accessibility/aria-patterns.md",
-      "note": "2026-06-28 bump (was 55c9347ce2a1 / v2.3.1). v2.4.0 adds a CONTEXT.md shared-vocabulary layer, /gate //ship //scaffold-project slash commands, project-scoped Figma MCP, and a real-screenshot reference folder — all build/verification toolchain + project scaffold, the same category explicitly NOT adopted before. The prior 'measurement over opinion' checks weren't extended. Nothing to adopt. Vendored a11y files unchanged; no re-vendor. 2026-06-17 bump (was 3f288fac0a62): adopted 'measurement over opinion' as two checks in references/anti-default.md §4."
+      "note": "2026-09-17 bump (was 93a7fbbdb3f1 / v2.7.x), user-approved. CORRECTS TWO STALE CLAIMS in the notes below. (1) aria-patterns.md was NOT unchanged: our local copy was still upstream initial release 49552992a1f5 (2026-03-16); sections 16-19 (Carousel, Grid/Calendar, Toolbar, Feed) landed in 5d0e66f6864e (2026-06-08), BEFORE the previous pin, so the drift sat unnoticed for two bumps. Re-vendored at f2e2f7fcc5cb: 517->561 lines, 15->19 patterns, strictly additive (one hunk, zero removed lines). The file is byte-identical between the old pin and new HEAD, so the bump itself changed nothing — our copy was simply stale. (2) NO LICENSE is no longer true: upstream added an MIT LICENSE on 2026-09-13. wcag-checklist.md remains byte-identical at both commits. Lesson for future re-syncs: diff the vendored file against the LOCAL copy, not just old-pin against new-HEAD. Previous: 2026-06-28 bump (was 55c9347ce2a1 / v2.3.1). v2.4.0 adds a CONTEXT.md shared-vocabulary layer, /gate //ship //scaffold-project slash commands, project-scoped Figma MCP, and a real-screenshot reference folder — all build/verification toolchain + project scaffold, the same category explicitly NOT adopted before. The prior 'measurement over opinion' checks weren't extended. Nothing to adopt. Vendored a11y files unchanged; no re-vendor. 2026-06-17 bump (was 3f288fac0a62): adopted 'measurement over opinion' as two checks in references/anti-default.md §4."
     },
     "SteveBarnett/Checklists": {
       "ref": "main",
@@ -38,19 +38,20 @@
     },
     "Leonxlnx/taste-skill": {
       "ref": "main",
-      "commit": "7c397f22d3af",
-      "date": "2026-07-17",
+      "commit": "ce26fc25c0e5",
+      "date": "2026-09-26",
       "license": "MIT",
       "vendored": "PRINCIPLES ONLY — no files. references/anti-default.md rewrites 3 directives: the Design Read declaration, the anti-default cliché list, the 3 dials (variance/motion/density).",
-      "note": "2026-06-08: adapted, not vendored. Prompt-only frontend generator, 37k★ but viral/solo/4-months-old; verdict build-your-own (not install/vendor) — research/audits/2026-06-08-taste-skill.md. Tracked so skill-evolve can surface upstream wording tweaks; refinement would live in upstream skills/taste-skill/SKILL.md — re-read it on a bump. 2026-07-20 reviewed: sponsor/README churn only; the one rule fix (LAYOUT_VARIANCE→DESIGN_VARIANCE typo) is already correct in our local anti-default.md."
+      "note": "2026-10-05 bump (was 7c397f22d3af): sponsor/README churn only. Nothing adopted. Previous: 2026-06-08: adapted, not vendored. Prompt-only frontend generator, 37k★ but viral/solo/4-months-old; verdict build-your-own (not install/vendor) — research/audits/2026-06-08-taste-skill.md. Tracked so skill-evolve can surface upstream wording tweaks; refinement would live in upstream skills/taste-skill/SKILL.md — re-read it on a bump. 2026-07-20 reviewed: sponsor/README churn only; the one rule fix (LAYOUT_VARIANCE→DESIGN_VARIANCE typo) is already correct in our local anti-default.md."
     },
     "alchaincyf/huashu-design": {
       "ref": "master",
-      "commit": "32cc58127f60",
-      "date": "2026-07-19",
+      "commit": "0830494ecb1c",
+      "date": "2026-09-22",
       "license": "MIT",
       "vendored": "PRINCIPLES ONLY — no files. references/brand-assets.md adapts the brand-asset protocol (never guess brand colors from memory; fetch official sources and pin) + the 'default AI output = average of all brands' anti-slop framing.",
-      "note": "2026-07-02: adapted, not vendored — research/audits/2026-07-02-huashu-design.md (🟦 build-your-own). Ladder restructured offline-first (user spec → WebFetch pin → ask); upstream's mandatory WebSearch step dropped. Re-sync: watch upstream SKILL.md 品牌资产协议 §1.a and the anti-slop list for protocol refinements."
+      "note": "2026-10-05 bump (was c4b83675d1cd): v2.0 html2pptx rewrite + SVG fix; brand-asset protocol and anti-slop list untouched. Nothing adopted. Previous: 2026-09-17 bump (was 32cc58127f60): 11 commits — new storyboard / camera-language / UI-demo animation references; 60fps export now duplicates frames instead of interpolating (no effect here). Nothing adopted; the verify-the-verifier idea was noted for ig-reel, not this skill. Previous: 2026-07-02: adapted, not vendored — research/audits/2026-07-02-huashu-design.md (🟦 build-your-own). Ladder restructured offline-first (user spec → WebFetch pin → ask); upstream's mandatory WebSearch step dropped. Re-sync: watch upstream SKILL.md 品牌资产协议 §1.a and the anti-slop list for protocol refinements.",
+      "release": "v2.0"
     }
   }
 }

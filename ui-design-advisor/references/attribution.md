@@ -37,16 +37,20 @@ or executed. Each source's full security review is in
   colour **values** (hex/lab/cmyk) are facts and not copyrightable. Kept as an
   aesthetic layer the functional `colors.csv` lacks.
 
-### 3. ux-ui-agent-skills (accessibility references) — MIT (declared, no LICENSE file)
+### 3. ux-ui-agent-skills (accessibility references) — MIT (LICENSE file added 2026-09-13)
 - Repo: https://github.com/plugin87/ux-ui-agent-skills
 - Vendored: `accessibility/wcag-checklist.md` + `accessibility/aria-patterns.md`
   → `data/accessibility/`.
-- **Licensing caveat:** the README's License section states "MIT", but the repo
-  ships **no LICENSE file** (GitHub reports `license: null`). Treated as an MIT
-  grant per the author's stated intent; flagged here because it is weaker than a
-  LICENSE-file MIT. Its design-token / atomic-design / framework-code layers were
-  **not** taken (different layer; overlaps `frontend-design`). One-shot repo
-  (created and last pushed the same 20-minute window, 2026-03-16).
+- **Licensing:** the caveat is resolved — upstream added an MIT LICENSE file on
+  2026-09-13. Until then only the README declared MIT (GitHub reported
+  `license: null`), which is why the earlier notes flagged it as weaker.
+  Its design-token / atomic-design / framework-code layers were
+  **not** taken (different layer; overlaps `frontend-design`).
+- **Re-vendored 2026-09-17:** `aria-patterns.md` had been stale since the initial
+  release — sections 16–19 (Carousel, Grid/Calendar, Toolbar, Feed) landed upstream
+  in June and two earlier re-syncs missed it, because they diffed old-pin against
+  new-HEAD instead of against our local copy. Now at 19 patterns, 561 lines.
+  `wcag-checklist.md` is unchanged and byte-identical to upstream.
 
 ### 4. SteveBarnett/Checklists (UX heuristics) — MIT
 - Repo: https://github.com/SteveBarnett/Checklists (LICENSE file: MIT)
