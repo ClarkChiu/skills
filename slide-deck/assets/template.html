@@ -66,10 +66,14 @@
     background: var(--bg); color: var(--ink);
     display: flex; flex-direction: column; justify-content: center;
     /* show/hide via opacity, NOT display:none — display rules can fight each other */
-    opacity: 0; visibility: hidden; pointer-events: none;
-    transition: opacity .22s cubic-bezier(0,0,0.2,1);
+    opacity: 0; visibility: hidden; pointer-events: none; z-index: 0;
+    /* The outgoing slide stays fully opaque underneath until the incoming one has
+       covered it, then drops out. Fading it out instead lets the dark page behind
+       the stage show through: a light deck dips toward black on every advance. */
+    transition: opacity 0s .22s, visibility 0s .22s;
   }
-  .slide.active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .slide.active { opacity: 1; visibility: visible; pointer-events: auto; z-index: 1;
+                  transition: opacity .22s cubic-bezier(0,0,0.2,1); }
 
   /* Chinese + Latin mixed text: a touch more line-height, plus Taiwan line-breaking.
      line-break:strict = 避頭尾 (punctuation never starts/ends a line wrongly);
@@ -78,6 +82,15 @@
      enhancement — unsupported browsers ignore them, nothing breaks. */
   .slide { line-height: 1.5; text-wrap: pretty;
            line-break: strict; text-spacing-trim: normal; hanging-punctuation: allow-end; }
+
+  /* Speaker notes: the spoken line from the narrative table (narrative.md §6). Never
+     rendered — on screen or in print — but travels with the deck so the speaker keeps
+     their script attached to the page it belongs to. check_deck.py strips these before
+     counting on-screen density.
+     The selector is `aside.notes` — exactly the form the checker strips. Keep them in
+     lockstep: a class the checker ignores but CSS still renders would put the whole
+     speaker script on the slide with a clean lint. */
+  aside.notes { display: none; }
 
   /* Links stay clickable — the click-to-advance handler ignores <a>. Use
      <a href="…" target="_blank" rel="noopener"> for any URL you want tappable.
@@ -149,7 +162,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .slide { transition: none; }
+    .slide, .slide.active { transition: none; }
   }
 </style>
 </head>
@@ -179,6 +192,8 @@
       <li>一頁最多五點，超過就拆成續頁</li>
       <li>擠了就拆頁，永遠不要把字縮小</li>
     </ul>
+    <!-- The spoken line from the narrative table. Hidden; add one per slide. -->
+    <aside class="notes">這一頁只做一件事：把三個重點講成一句可以被反駁的主張。</aside>
     <div class="foot"><span>Deck Title</span><span class="pageno"></span></div>
   </section>
 

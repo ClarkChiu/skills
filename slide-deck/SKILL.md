@@ -32,13 +32,16 @@ Save as PDF` gives one slide per page. No framework, no build step, no dependenc
 ## The non-negotiables (read `references/principles.md` for the full reasoning)
 
 These are the rules that separate a clean deck from a cramped one. Internalize them;
-they drive every decision below.
+they drive every decision below. They govern how a deck *looks* — what it *argues* is
+settled earlier, at the Phase 1.5 spine gate (`references/narrative.md`).
 
 1. **One idea per slide.** If a slide carries more than ~40 words / one concept, split
    it. More slides is always better than a crowded slide.
-2. **Split, never shrink.** When content overflows, cut text or split the slide —
-   *never* drop the font below the scale or tighten line-height to cram. This is the
-   single most important rule; it is what makes a deck feel comfortable.
+2. **Split, never shrink type.** When content overflows, cut text or split the slide —
+   *never* drop the font below the scale or tighten line-height to cram. A small overflow
+   may be absorbed by spacing, within the layout's ranges (Phase 5 overflow ladder); type
+   is never the lever. This is the single most important rule; it is what makes a deck
+   feel comfortable.
 3. **Big enough to read.** Body text 32–44px on the 1920×1080 canvas; never below 28px.
    Hero 140–200, section 80–120, page heading 56–80, caption 22–28.
 4. **Do the vertical-budget math before writing a slide.** The canvas does not scroll;
@@ -66,7 +69,8 @@ they drive every decision below.
 Gather in a single `AskUserQuestion` round — don't drip questions:
 
 - **Purpose & audience** (pitch / teaching / report / keynote) — sets tone and density.
-- **Length** (rough slide count).
+- **Length ceiling** — a time box or a maximum slide count. A *constraint to satisfy*,
+  not a quota to fill: the argument decides how many slides there are (Phase 1.5).
 - **Density mode** — the most load-bearing choice:
   - *Speaker-led* (talks): one idea per slide, large type, 1–3 bullets, more slides.
   - *Reading-first* (handouts/async): more self-contained slides, 4–8 bullets or 4–6
@@ -74,6 +78,28 @@ Gather in a single `AskUserQuestion` round — don't drip questions:
 - **Motion** (static / subtle / rich).
 
 If the user already pasted the content, infer answers and confirm rather than asking cold.
+
+### Phase 1.5 — Narrative spine (GATE — read `references/narrative.md`)
+
+Settle the argument before anything else. A deck that never decided what it claims
+cannot be rescued by type or palette — high slide count, high density, zero takeaway is
+an *argument* failure, and it is the most common way a generated deck fails.
+
+Produce two artifacts:
+
+1. **The claim** — one sentence: if they forget everything else, what must they
+   remember? A claim they could disagree with, not a topic.
+2. **The page table** — one row per page: `page job` · `relation to previous ∈ {cause,
+   progression, turn, contrast}` · `evidence it carries` · `spoken line`.
+
+**The gate: no HTML until every non-exempt row has a relation.** A blank relation means
+two adjacent pages have no argued connection — the chopped-document defect. Structural
+pages (cover, agenda, dividers, closing) are exempt; mark them `—`. `check_deck.py` cannot
+catch this — it reads finished HTML and an argument is not in the DOM — so nothing
+downstream will save a missing spine.
+
+Then reconcile against the Phase 1 ceiling: over budget, cut the rows furthest from the
+claim. Never compress by cramming (that breaks non-negotiable #2).
 
 ### Phase 2 — Style (pick the source — see the three legal paths)
 
@@ -97,9 +123,10 @@ render internal process labels ("option A", "preset: swiss") onto a slide.
 
 ### Phase 3 — Plan the deck
 
-Sketch page roles before writing any HTML: Cover · Agenda · Section divider · Content ·
-Big number · Quote · Comparison · Timeline · Closing (catalog + when-to-use in
-`references/layouts.md`). Commit to the chosen preset's palette and type scale. For each
+Assign each row of the Phase 1.5 table a page role: Cover · Agenda · Section divider ·
+Content · Big number · Quote · Comparison · Timeline · Closing (catalog + when-to-use in
+`references/layouts.md`). The role serves the row's *page job* — a `contrast` relation
+usually wants Comparison, a single decisive figure wants Big number. Commit to the chosen preset's palette and type scale. For each
 content slide, do the vertical-budget check (rule 4).
 
 Also assign each slide a **rhythm** — `anchor` / `dense` / `breathing` — and lay them out
@@ -113,7 +140,17 @@ Start from `assets/template.html` (the engine: fixed stage, scaler, nav, print C
 the seven page archetypes). Replace the `:root` variables with the chosen preset; write
 each `<section class="slide">` following the principles — and give every slide a
 `data-label` naming its registered role from `references/layouts.md` (the checker's
-role-lock hook; an invented label draws a warning). 雙語簡報的字體堆疊遵守 §3 兩軸
+role-lock hook; an invented label draws a warning). Carry each row's **spoken line**
+into its slide as `<aside class="notes">…</aside>` — hidden on screen and in print, and
+stripped by the checker before density counting, so the speaker keeps their script
+inside the same single file. **The deck MUST carry `aside.notes { display: none; }`** —
+`assets/template.html` already has it, but a deck built on paths C/D or an existing deck
+being improved may not, and without that rule the entire speaker script renders as body
+copy. `check_deck.py` fails the deck with an ERROR if notes are present and no such rule
+is — add the rule, or omit the notes. Use exactly `<aside class="notes">`: the checker
+matches the same forms the CSS does (case-sensitive class token, `<aside>` only), so a
+near-miss like `speaker-notes` or `class="Notes"` counts against the density budget
+instead of vanishing silently. 雙語簡報的字體堆疊遵守 §3 兩軸
 順序（Latin face 在前、CJK face 在後，依主導語言決定是否載入 CJK webfont）。 Use absolute px for everything —
 the scaler handles fit. Never hardcode page counts; the engine derives nav dots and page
 numbers from the DOM.
@@ -142,6 +179,20 @@ python3 <skill>/scripts/check_deck.py deck.html
 ```
 
 Fix every `ERROR`; weigh each `WARN`. Then open the file in a browser to eyeball it.
+
+**Overflow ladder.** The checker reads source, not layout, so measure overflow on the
+rendered slide: how many px its content runs past the canvas or its container (e.g.
+`scrollHeight − clientHeight`). Then pick the fix by size:
+
+- **Small (≤ ~40px) → tweak spacing.** Pull gaps toward 32px, staying inside the range
+  in `references/principles.md` §5. Padding stays the deck-wide value (§5); never font
+  size, never line-height.
+- **Large → split.** Over ~40px, cut words if a line or bullet can honestly go (enough up
+  to ~160px); past ~160px, or when nothing can go, split the slide.
+
+After any fix, re-render and look again: the overflow is gone, and the bottom whitespace
+didn't balloon — a split that leaves two half-empty slides wants its content rebalanced
+or re-centered (aim for the 40–60% fill of §4), not a third tweak.
 For PDF, either `Ctrl/Cmd-P → Save as PDF`, or run `scripts/export_pdf.py deck.html`
 (needs Playwright — it renders each slide at 1920×1080).
 
@@ -166,6 +217,8 @@ Envato), explain we can match its *style* but cannot redistribute its *files*.
 
 ## References
 
+- `references/narrative.md` — the argument layer: the claim, the page table, the relation
+  vocabulary, and the no-HTML-without-a-spine gate. **Read at Phase 1.5.**
 - `references/principles.md` — the full design system + the vertical-budget method. **Read first.**
 - `references/style-presets.md` — the built-in original style library (path B).
 - `references/layouts.md` — page-role catalog and the layout decision tree.

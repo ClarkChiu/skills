@@ -11,7 +11,9 @@ never hand over a deck with a 14px caption or a `Lorem ipsum` still in it.
 
 Usage:
     python3 check_deck.py deck.html [--strict]
-    python3 check_deck.py --selftest      # self-check the font-axis rules (no file)
+    python3 check_deck.py --selftest      # self-check the checker itself (no file needed):
+                                          # font-axis rules, page-role lock, and the
+                                          # speaker-notes/CSS lockstep end-to-end
 
 Exit codes: 0 = clean (warnings allowed), 1 = errors found (or --strict + warnings),
 2 = file unreadable. Stdlib only.
@@ -19,6 +21,10 @@ Exit codes: 0 = clean (warnings allowed), 1 = errors found (or --strict + warnin
 import sys
 import re
 import html as _html
+import io
+import os
+import contextlib
+import tempfile
 
 # Body text below this (in the 1920x1080 canvas) is unreadable on a projector.
 MIN_BODY_PX = 24
@@ -44,6 +50,30 @@ PLACEHOLDER_RE = re.compile(
 )
 
 TAG_RE = re.compile(r"<[^>]+>")
+# Speaker notes (narrative.md §6) live inside the slide but never render. They must not
+# count toward the one-idea density budget, the bullet cap, or the emphasis check —
+# otherwise a well-noted slide looks overfull. They ARE still placeholder-checked.
+# `notes` must be a whole class token (so `speaker-notes` / `notes-draft` do NOT match)
+# and the element must be <aside> — this mirrors the template's `aside.notes` CSS rule
+# exactly. The two must agree: anything the checker ignores but CSS still renders is a
+# silent hole, and anything CSS hides but the checker counts is a bogus warning.
+# Ceiling: a nested <aside> inside a note ends the match early (non-greedy), and an
+# unclosed <aside> is not stripped at all. Both are authoring errors, not worth an HTML
+# parser here; the deck's own rendering makes them obvious.
+# `notes` is matched CASE-SENSITIVELY via (?-i:…): HTML class selectors are
+# case-sensitive in standards mode, so `class="Notes"` is NOT hidden by `aside.notes`
+# and must therefore not be stripped either. `(?<![-\w])` keeps `data-class="notes"`
+# from counting as a class attribute. Whitespace around `=` and unquoted values are
+# legal HTML and CSS hides them, so the checker must strip them too.
+NOTES_RE = re.compile(
+    r'<aside\b[^>]*?(?<![-\w])class\s*=\s*'
+    r'(?:(["\'])(?:[^"\']*\s)?(?-i:notes)(?:\s[^"\']*)?\1'
+    r'|(?-i:notes)(?=[\s>]))'
+    r'[^>]*>.*?</aside>',
+    re.IGNORECASE | re.DOTALL)
+# A deck may declare the hiding rule as `aside.notes`, `.slide aside.notes`, etc. What
+# matters is that SOME rule hides it; without one the whole speaker script renders.
+NOTES_CSS_RE = re.compile(r'aside\.notes\b[^{]*\{[^}]*display\s*:\s*none', re.IGNORECASE)
 COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 SCRIPT_STYLE_RE = re.compile(r"<(script|style)\b.*?</\1>", re.IGNORECASE | re.DOTALL)
 SLIDE_RE = re.compile(r'<section\b([^>]*class="[^"]*\bslide\b[^"]*"[^>]*)>(.*?)</section>',
@@ -89,6 +119,11 @@ def visible_text(fragment: str) -> str:
     """Strip tags and decode entities to get on-screen text from an HTML fragment."""
     no_tags = TAG_RE.sub(" ", fragment)
     return _html.unescape(no_tags)
+
+
+def strip_notes(fragment: str) -> str:
+    """Drop <aside class="notes"> blocks — spoken script, never rendered."""
+    return NOTES_RE.sub(" ", fragment)
 
 
 def count_units(text: str) -> int:
@@ -199,6 +234,63 @@ def _selftest() -> int:
     assert wh == [], f"H: single-quoted data-label should parse, got {wh}"
     wi = slide_role_warns('class="slide" data-label="Section divider"', "<h1>Part 2</h1>", 6)
     assert wi == [], f"I: space variant 'Section divider' should normalize, got {wi}"
+    # Speaker notes (narrative.md §6) — end-to-end through main(), because the thing
+    # that can break is the WIRING, not the regex. An assertion that hand-feeds an
+    # already-stripped fragment to slide_role_warns still passes when main() forgets to
+    # strip at all; these run the real file path under --strict, where a warning fails.
+    def _lint(body: str, notes_css: bool = True) -> int:
+        """Run the real checker over a minimal deck; return its exit code."""
+        hide = "aside.notes{display:none}" if notes_css else ""
+        deck = ('<style>:root{--font-display:"Switzer",sans-serif}'
+                f'{hide}.slide{{font-size:40px}}</style>'
+                '<div id="stage" style="width:1920px;height:1080px">'
+                f'<section class="slide" data-label="Cover">{body}</section></div>')
+        fd, path = tempfile.mkstemp(suffix=".html")
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as fh:
+                fh.write(deck)
+            argv, sys.argv = sys.argv, ["check_deck.py", path, "--strict"]
+            try:
+                with contextlib.redirect_stdout(io.StringIO()):
+                    return main()
+            finally:
+                sys.argv = argv
+        finally:
+            os.unlink(path)
+
+    prose = "字" * 80          # well over MAX_SPARSE_UNITS for a Cover slide
+    # L: the control — this much prose ON SCREEN must fail, or the test proves nothing.
+    assert _lint(f"<h1>標題</h1><p>{prose}</p>") == 1, \
+        "L: sparse-role control should fail; the notes cases below would be vacuous"
+    # M: the same text as notes must NOT count — this fails if main() stops stripping.
+    assert _lint(f'<h1>標題</h1><aside class="notes">{prose}</aside>') == 0, \
+        "M: notes must not count toward on-screen density"
+    assert _lint(f"<h1>標題</h1><aside class='notes'>{prose}</aside>") == 0, \
+        "M: single-quoted class='notes' must strip too (CSS hides it)"
+    # N: near-miss class names are NOT hidden by `aside.notes` CSS, so they must count.
+    assert _lint(f'<h1>標題</h1><aside class="speaker-notes">{prose}</aside>') == 1, \
+        "N: 'speaker-notes' renders on screen — the checker must not ignore it"
+    assert _lint(f'<h1>標題</h1><div class="notes">{prose}</div>') == 1, \
+        "N: only <aside class=notes> is the canonical hidden form"
+    # O: notes are still scanned for leftover placeholder text.
+    assert _lint('<h1>標題</h1><aside class="notes">TODO write this</aside>') == 1, \
+        "O: a TODO inside a note is a TODO in the deliverable"
+    # P: notes with NO hiding rule must be an ERROR, not a clean deck. Without this the
+    # strip silently turns "forgot the CSS" into "whole speaker script on the slide,
+    # 0 warnings" — the worst outcome the notes feature can produce.
+    assert _lint(f'<h1>標題</h1><aside class="notes">{prose}</aside>', notes_css=False) == 1, \
+        "P: notes without an aside.notes display:none rule must fail"
+    # Q: checker and CSS must agree on EXACT attribute forms. Class selectors are
+    # case-sensitive in standards mode, `data-class` is not a class, and whitespace
+    # around `=` / unquoted values are legal HTML that CSS does hide.
+    for attr, hidden_by_css in (('class="Notes"', False),      # CSS: case-sensitive → visible
+                                ('data-class="notes"', False),  # not a class attribute
+                                ('class = "notes"', True),      # legal HTML, CSS hides it
+                                ('class=notes', True)):         # unquoted, CSS hides it
+        code = _lint(f'<h1>標題</h1><aside {attr}>{prose}</aside>')
+        want = 0 if hidden_by_css else 1
+        assert code == want, \
+            f"Q: <aside {attr}> — CSS hides={hidden_by_css}, checker disagreed (exit {code})"
     print("selftest OK")
     return 0
 
@@ -240,12 +332,22 @@ def main() -> int:
     for m in PLACEHOLDER_RE.finditer(visible_text(body)):
         errors.append(f"placeholder text not replaced: {m.group(0)!r}")
 
+    # 3b. Speaker notes present but nothing hides them (narrative.md §6). The checker
+    # strips notes from the density budget, so without this check a deck that forgot the
+    # CSS rule prints the entire spoken script on the slides and still lints clean —
+    # exactly the silent failure the strip introduced. Decks built on paths C/D or an
+    # existing deck being improved do not inherit the rule from assets/template.html.
+    if NOTES_RE.search(doc) and not NOTES_CSS_RE.search(doc):
+        errors.append("<aside class=\"notes\"> present but no `aside.notes { display: none }` "
+                      "rule — the speaker script will render on the slides")
+
     # 4. Per-slide density — one idea per slide.
     slides = SLIDE_RE.findall(doc)
     if not slides:
         warns.append("no <section class=\"slide\"> blocks found")
     nav_dots_dynamic = "createElement('button')" in doc or 'createElement("button")' in doc
     for n, (attrs, frag) in enumerate(slides, 1):
+        frag = strip_notes(frag)      # spoken script is not on-screen content
         units = count_units(visible_text(frag))
         if units > MAX_VISIBLE_UNITS:
             warns.append(f"slide {n}: ~{units} text units (> {MAX_VISIBLE_UNITS}) — likely more than one idea, consider splitting")

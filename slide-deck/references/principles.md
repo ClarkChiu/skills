@@ -8,7 +8,7 @@ enforces them. Read this before generating a deck; re-read when a slide feels of
 ## Table of contents
 
 1. One idea per slide
-2. Split, never shrink
+2. Split, never shrink type
 3. The type scale
 4. The vertical-budget method (anti-overflow)
 5. Layout & grid
@@ -40,18 +40,20 @@ you are tempted to put two, split into two slides — slides are free, attention
 Why: the audience reads a slide in 3 seconds while also listening to you. Two ideas means
 they finish neither. Density is the enemy of comprehension, not the sign of substance.
 
-## 2. Split, never shrink
+## 2. Split, never shrink type
 
 **The most important rule.** When content does not fit, the instinct is to shrink the
-font or tighten spacing. Never do this. Instead:
+font. Never do this. Instead:
 
 - Cut words (most slides have 30% that can go), or
 - Split into a continuation slide.
 
-Shrinking type below the scale, raising padding past the layout, or squeezing
-line-height under 1.4 to make something fit are all the *same mistake* — they trade the
-audience's comfort for your convenience. Splitting is always the right answer when the
-budget is tight.
+Shrinking type below the scale, squeezing line-height under 1.4, or pushing gaps and
+padding outside the layout's ranges to make something fit are all the *same mistake* —
+they trade the audience's comfort for your convenience. The one allowance: a rendered
+overflow of a few dozen px may be absorbed by tightening gaps *within* their range — padding
+stays deck-wide (the overflow
+ladder in SKILL.md Phase 5). Past that, splitting is always the right answer.
 
 ## 3. The type scale (1920×1080 canvas)
 
@@ -103,8 +105,9 @@ element_height ≈ font_size × line_height × number_of_lines
 (a wrapped bullet counts as 2+ lines; add a 32–64px gap before the next element)
 ```
 
-Sum every element. If the total exceeds `usable_height`, split — do not raise padding or
-shrink type (rule 2). And **never truncate with an ellipsis** to fake a fit: a `…` clip
+Sum every element. If the total exceeds `usable_height`, split — do not change padding or
+shrink type (rule 2); an overshoot of ~40px or less may first be absorbed by tightening
+gaps (Phase 5 overflow ladder). And **never truncate with an ellipsis** to fake a fit: a `…` clip
 hides content the slide was supposed to carry. Treat any length limit as advisory and the
 box geometry as the real test — if the text doesn't fit, reflow, resize the block, or split
 the slide; don't clip.
@@ -165,7 +168,10 @@ the bullet cap by role.
 
 - The loudest "made in PowerPoint" signal is six different transitions in one deck. Pick
   **one** family and hold it.
-- Duration 140–280ms (exit faster ~150, enter ~220). >350ms feels like video editing.
+- Duration 140–280ms (enter ~220). >350ms feels like video editing.
+- On a slide change, don't fade the outgoing slide out: keep it opaque underneath while
+  the incoming one fades in on top, then drop it. Fading both lets the page behind the
+  stage show through, so a light deck dips toward black on every advance.
 - Magnitude ceiling: **12px translate or 3% scale.** A full-width slide-in reads as "a
   different document."
 - Opacity is always part of it. Ease-out for enter, ease-in for exit; **never `linear`.**
@@ -257,7 +263,8 @@ things a source linter can't fully see. These thresholds are worth eyeballing pe
 - **Rhythm:** did you actually alternate anchor / dense / breathing (§10), or did every
   slide become a card grid?
 
-Fix by splitting or cutting (rule 2), never by shrinking.
+Fix by splitting or cutting (rule 2), never by shrinking type; for overflow, size the fix
+with the overflow ladder in SKILL.md Phase 5.
 
 ## 13. Chinese line-breaking (繁中換行)
 

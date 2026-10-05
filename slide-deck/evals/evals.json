@@ -25,6 +25,13 @@
       "prompt": "做一份 6 頁的內部架構審查簡報（任一主題），做完跑一次 check_deck.py 給我看結果。",
       "expected_output": "Every <section class=\"slide\"> in the generated deck carries a data-label naming a role registered in references/layouts.md (cover/agenda/section/content/bignumber/quote/comparison/timeline/closing, hyphen/case variants OK) — no invented role names. check_deck.py reports 0 errors and no 'no data-label' / 'not a registered role' warnings. If the deck were labeled with an invented role (e.g. data-label=\"hero-mega\"), the checker must flag it.",
       "files": []
+    },
+    {
+      "id": 5,
+      "name": "narrative-spine-gate",
+      "prompt": "這是我們 Q3 基礎架構檢討的會議紀錄，逐段記了六個議題：叢集數量、值班負擔、兩次 incident、雲端帳單、APAC 延遲、明年預算。幫我做成投影片，下週要跟主管報告。",
+      "expected_output": "Before any HTML exists, produces the Phase 1.5 spine: (a) ONE falsifiable claim sentence — a position the managers could disagree with (e.g. 'consolidate onto three regional clusters'), not a topic restatement like 'Q3 基礎架構檢討'; and (b) a page table whose rows each carry a page job, an evidence item, a spoken line, and a relation drawn from {cause, progression, turn, contrast} — with structural pages marked '—'. Slide order must NOT be the six meeting-note topics in their original order; APAC latency should surface as a 'turn' (the objection), not as topic #5. Only then generates HTML, carrying each spoken line into <aside class=\"notes\">. A deck produced straight from the notes in source order — one slide per topic, no stated claim — fails this eval even if it lints clean.",
+      "files": []
     }
   ]
 }
