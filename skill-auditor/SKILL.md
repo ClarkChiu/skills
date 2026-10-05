@@ -113,8 +113,9 @@ skillspector scan <skill-dir-or-url> --no-llm --format json
 - Covers static patterns across a growing category set (prompt injection,
   exfiltration, MCP tool poisoning, YARA signatures, taint tracking; recent
   additions cover privileged-container escape, cloud-storage exfiltration,
-  privileged-Kubernetes deploy, and untrusted container-image pulls — SC7,
-  `docker pull` with no content trust) plus live OSV.dev CVE lookups — feed its
+  privileged-Kubernetes deploy, untrusted container-image pulls — SC7,
+  `docker pull` with no content trust — and dependency source redirection, SC10)
+  plus live OSV.dev CVE lookups — feed its
   findings into Steps 3–6 as machine-generated leads.
 - It is now **fail-closed**: a degraded or partial deep scan can no longer return
   SAFE, and silent LLM-stage degradation is surfaced rather than hidden. So an
@@ -137,7 +138,20 @@ skillspector scan <skill-dir-or-url> --no-llm --format json
   MCP, untrusted content only via stdin) instead of an NVIDIA/OpenAI key. It
   still sends the skill's content to that session, so weigh the exfil caveat
   above before enabling it on an untrusted skill.
-- Record its risk score and verdict in the report NOTES.
+- Record its risk score and verdict in the report NOTES. As of v2.11.2 the JSON
+  holds them under `risk_assessment` as `score` / `severity` / `recommendation`,
+  plus **`max_issue_severity`** — record that one too: it is the highest single
+  finding's severity, so a normalized score can no longer hide one HIGH finding.
+  `analysis_completeness.status` may read `partial` merely because a path-like
+  reference in prose didn't resolve; read `ledger_exceptions` before treating
+  `partial` as a degraded scan. The default scan deadline is now 600s
+  (`SKILLSPECTOR_MAX_WORKFLOW_SECONDS`), up from 60s, so a large skill no longer
+  times out. Verified against v2.12.0 on 2026-10-05: `scan --no-llm --format json`
+  still works. Exit codes: **0** = under the risk threshold; **1** = risk score
+  over the threshold (or an opt-in `--fail-on-findings` / `--fail-on-incomplete`
+  gate tripped) — a finished scan, not a failed run; **2** = input or execution
+  error — the scan did not run, so rescan before relying on it. A GitHub
+  `/tree/<branch>/<subdir>` URL scans one skill inside a larger repo directly.
 
 ### Step 0 — Source check 🔍
 
@@ -256,6 +270,12 @@ If the skill installs packages (`npm install`, `pip install`, `go get`,
       malicious payload after your review. Require digest pinning
       (`image@sha256:…`) or content trust; treat an unpinned or
       unknown-publisher image as a supply-chain red flag
+- [ ] **Dependency source redirection**: the skill points installs at a
+      non-default index — `pip --index-url` / `--extra-index-url`,
+      `PIP_INDEX_URL`, `npm config set registry` or a written `.npmrc`, a Cargo
+      registry/`[source]` override. Every package name then resolves against a
+      server the author chose, so a clean-looking name can still deliver a
+      different payload; treat as a supply-chain red flag (SkillSpector SC10)
 - [ ] **MCP rug-pull**: if the skill wires in an MCP server, its tool
       definitions are fetched at runtime and can change *after* you trust it —
       a server that serves benign tools on review can swap in malicious ones on
@@ -279,7 +299,11 @@ Read SKILL.md **and every other file in the skill directory**.
 
 **Before scanning, normalize text:** decode base64, expand unicode, strip
 zero-width characters, flatten HTML / markdown comments. Attackers hide
-instructions in any of those layers.
+instructions in any of those layers. Also **collapse spacing tricks** before
+matching (added 2026-09-17 from SkillSpector's P9 work): letter-spaced text
+(`i g n o r e   a b o v e`), padding runs used to push an instruction out of a
+reviewer's view, and words split across characters or lines. A phrase your eye
+reads as noise can still parse as an instruction — normalize first, then match.
 
 **🔴 Critical — block immediately:**
 
@@ -376,6 +400,18 @@ Read **every file** in the skill, not just SKILL.md.
 - Privilege escalation (`sudo`, `doas`, setuid)
 - Modifications to system files outside the workspace
 - Package installs that don't list what's being installed
+- **A bundled permission grant**: a `.claude/settings.json` /
+  `settings.local.json`, hook config, or equivalent shipped inside the skill that
+  pre-approves broad tool access (wildcard allow lists, `bypassPermissions`,
+  auto-approved shell). A skill may ask for scope in its frontmatter; shipping a
+  settings file that grants it silently is a different thing.
+- **Shipped bytecode or a concealed executable**: `__pycache__/`, `.pyc`/`.pyo`,
+  an executable inside a nested zip/docx/archive, or one parked in a dotfile or
+  dot-directory that normal discovery skips. Read what it is, not just that it's
+  there. Caveat for a *local working copy* (this repo included): `__pycache__/`
+  is usually a build artifact from running the scripts — check whether it is
+  gitignored and untracked before treating it as shipped. In a downloaded or
+  packaged skill, it is shipped, and bytecode nobody reads is a real hiding place.
 
 **🟡 Warning — flag for review:**
 
