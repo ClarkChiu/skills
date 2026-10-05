@@ -61,6 +61,20 @@ def _same_commit(a, b):
     return a[:n].lower() == b[:n].lower()
 
 
+def _latest_is_older(repo, base, latest):
+    """True if `latest` is an ancestor of the `base` baseline — not an update.
+
+    Happens when a path-scoped lookup returns the last commit touching that path while
+    the lock stored the repo HEAD from an earlier run (handover's ace-fca.md and
+    session-handoff, 2026-10-05). Any lookup failure answers False: report, don't hide.
+    """
+    try:
+        cmp = _api(API.format(repo) + f"/compare/{base}...{latest}")
+    except (urllib.error.URLError, ValueError):
+        return False
+    return cmp.get("status") == "behind"
+
+
 def split_key(key):
     """Split a lock key into (repo, subpath). 'owner/repo :: a/b' → ('owner/repo', 'a/b').
 
@@ -221,6 +235,22 @@ def _selftest() -> int:
         "D: '::' sub-skill entries are not in rows and must survive"
     assert out["acme/brand-new"]["commit"] == "eeee5555", "E: new source not added"
     assert lock["acme/upstream"]["commit"] == "aaaa1111", "F: input lock was mutated"
+    # K: a "latest" that is an ancestor of the baseline must not read as UPDATED, and a
+    # failed compare must fall back to reporting (False), never to silently "unchanged".
+    global _api
+    real_api = _api
+    try:
+        _api = lambda path: {"status": "behind"}
+        assert _latest_is_older("o/r", "base", "older"), "K: ancestor not recognised"
+        _api = lambda path: {"status": "ahead"}
+        assert not _latest_is_older("o/r", "base", "newer"), "K: a real update was hidden"
+
+        def _boom(path):
+            raise urllib.error.URLError("offline")
+        _api = _boom
+        assert not _latest_is_older("o/r", "base", "x"), "K: a failed compare hid an update"
+    finally:
+        _api = real_api
     print("selftest OK")
     return 0
 
@@ -279,6 +309,9 @@ def main():
         elif _same_commit(cur.get("commit"),
                           base.get("commit") or base.get("copied_from_commit")):
             status = "unchanged"
+        elif _latest_is_older(repo, base.get("commit") or base.get("copied_from_commit"),
+                              cur.get("commit")):
+            status = "unchanged"            # baseline is newer than the path's last commit
         else:
             status = "updated"
         rows.append({"repo": key, "status": status,

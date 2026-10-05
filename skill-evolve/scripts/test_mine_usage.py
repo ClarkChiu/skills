@@ -86,6 +86,19 @@ def test_deterministic():
     assert mu.build_digest(FIX, 0, 0, 500, False) == mu.build_digest(FIX, 0, 0, 500, False)
 
 
+def test_vanished_transcript_does_not_crash():
+    # A transcript deleted between collect_paths and the mtime sort used to raise
+    # FileNotFoundError and kill the whole run; now it is skipped and counted.
+    real = mu.collect_paths
+    mu.collect_paths = lambda root: real(root) + [os.path.join(FIX, "gone-mid-run.jsonl")]
+    try:
+        d = mu.build_digest(FIX, 0, 0, 500, False)
+    finally:
+        mu.collect_paths = real
+    assert d["session_count"] == 2, d["session_count"]
+    assert d["skipped_lines"] >= 2, "vanished file must be counted as skipped"
+
+
 def test_no_network_imports():
     src = open(os.path.join(HERE, "mine_usage.py"), encoding="utf-8").read()
     for bad in ("import socket", "import requests", "urllib.request", "http.client", "urlopen"):

@@ -125,13 +125,22 @@ def _mine_session(path, cap_prompt, max_prompts):
     return sid, prompts, sorted(skills), skipped
 
 
+def _safe_mtime(path):
+    """getmtime, or 0.0 if the transcript vanished mid-run (one gone file must not crash
+    the whole digest; idea from microsoft/SkillOpt 0008a0b8)."""
+    try:
+        return os.path.getmtime(path)
+    except OSError:
+        return 0.0
+
+
 def build_digest(root, lookback_hours=72, max_sessions=0, cap_prompt=500, redact=False,
                  max_prompts_per_session=50):
     paths = collect_paths(root)
     if lookback_hours and lookback_hours > 0:
         cutoff = (datetime.now(timezone.utc) - timedelta(hours=lookback_hours)).timestamp()
-        paths = [p for p in paths if os.path.getmtime(p) >= cutoff]
-    paths.sort(key=os.path.getmtime, reverse=True)
+        paths = [p for p in paths if _safe_mtime(p) >= cutoff]
+    paths.sort(key=_safe_mtime, reverse=True)
     if max_sessions and max_sessions > 0:
         paths = paths[:max_sessions]
 
