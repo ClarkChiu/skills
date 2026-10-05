@@ -148,8 +148,8 @@ skillspector scan <skill-dir-or-url> --no-llm --format json
   (`SKILLSPECTOR_MAX_WORKFLOW_SECONDS`), up from 60s, so a large skill no longer
   times out. Verified against v2.12.0 on 2026-10-05: `scan --no-llm --format json`
   still works. Exit codes: **0** = under the risk threshold; **1** = risk score
-  over the threshold (or an opt-in `--fail-on-findings` / `--fail-on-incomplete`
-  gate tripped) — a finished scan, not a failed run; **2** = input or execution
+  over the threshold (or an opt-in `--fail-on-findings` / `--fail-on-incomplete` /
+  `--min-coverage` gate tripped) — a finished scan, not a failed run; **2** = input or execution
   error — the scan did not run, so rescan before relying on it. A GitHub
   `/tree/<branch>/<subdir>` URL scans one skill inside a larger repo directly.
 

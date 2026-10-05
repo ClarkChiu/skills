@@ -94,7 +94,7 @@ Expect: PASS
 - [ ] **Step 5: Commit**
 
 ```bash
-git add tests/path/test_file.py src/path/file.py
+git add tests/exact/path/to/test_file.py exact/path/to/file.py
 git commit -m "✨ feat: add specific behavior"
 ```
 ````

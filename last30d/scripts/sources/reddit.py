@@ -12,8 +12,6 @@ every name a vendored file imports from here exists.
 """
 from datetime import date, datetime, timezone
 
-_TIMEFRAME_ORDER = {"hour": 0, "day": 1, "week": 2, "month": 3, "year": 4, "all": 5}
-
 
 def _days_to_reddit_bucket(days: float) -> str:
     """Map a day count onto the smallest Reddit rolling bucket that covers it.
