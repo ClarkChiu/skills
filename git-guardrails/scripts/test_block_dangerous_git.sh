@@ -28,6 +28,8 @@ check block 'git checkout .'
 check block 'git restore .'
 check block 'git push origin --delete feature'
 check block 'cd /tmp && git reset --hard'
+check block 'git worktree remove --force ../wt-feature'
+check block 'git worktree remove -f ../wt-feature'
 
 # NOTE: an `rtk `-prefixed form (e.g. `rtk git reset --hard`) is intentionally NOT blocked.
 # The agent types plain `git reset --hard` (rtk rewrites transparently), and both hooks see
@@ -41,6 +43,8 @@ check allow 'git push --force-with-lease'
 check allow 'git status'
 check allow 'git reset HEAD~1'
 check allow 'git checkout feature-branch'
+check allow 'git worktree remove ../wt-feature'
+check allow 'git worktree list'
 check allow 'git commit -m "fix: document git push --force pitfalls"'
 check allow 'echo "git push --force is dangerous"'
 check allow 'git clean -n'

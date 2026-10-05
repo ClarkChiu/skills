@@ -33,6 +33,9 @@ command quoted in an echo or commit message is **not** falsely caught:
 - `git push --force` / `-f` — **but allows `--force-with-lease`** (the safe force).
 - `git reset --hard`, `git clean -f…`, `git branch -D`, `git checkout .` / `git restore .`
   (discard all), `git push --delete` / `git push :branch` (delete remote branch).
+- `git worktree remove --force` / `-f` — it deletes a worktree that still holds
+  uncommitted or untracked work. Plain `git worktree remove` is **allowed**: git itself
+  refuses it when the tree is dirty, so the check is already there.
 
 It does **not** block pushing to `main`/`master` (committing to master is a normal
 workflow here). Tune the `DANGEROUS_PATTERNS` in the script if your needs differ.

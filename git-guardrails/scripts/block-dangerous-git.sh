@@ -48,5 +48,12 @@ has "${B}git[[:space:]]+clean\b[^;&|]*(-[a-zA-Z]*f|--force)" && block "clean -f"
 has "${B}git[[:space:]]+branch\b[^;&|]*(-[a-zA-Z]*D)"    && block "branch -D (force delete)"
 has "${B}git[[:space:]]+(checkout|restore)\b[^;&|]*([[:space:]]\.([[:space:]]|$)|--[[:space:]]+\.)" && block "discard all working changes"
 has "${B}git[[:space:]]+push\b[^;&|]*(--delete|[[:space:]]:[A-Za-z])" && block "delete remote branch"
+# `git worktree remove --force` deletes a worktree that still holds uncommitted or
+# untracked files — the same loss as `clean -f`, and it bit obra/superpowers' own
+# finishing-branch script (their issues #1223/#2016/#2024). Plain `worktree remove`
+# refuses when the tree is dirty, so only the forced form is blocked.
+# The flag must be its own argument: a bare `-[a-z]*f` would also match the `-f` inside a
+# path like `../wt-feature` and block the safe form.
+has "${B}git[[:space:]]+worktree[[:space:]]+remove\b[^;&|]*[[:space:]](-[a-zA-Z]*f[a-zA-Z]*|--force)([[:space:]]|=|$)" && block "worktree remove --force"
 
 exit 0
