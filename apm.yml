@@ -3,40 +3,43 @@ version: 1.0.0
 description: Clark Chiu's Skills
 author: Clark Chiu
 targets:
-- claude
-- opencode
+  - claude
+  - opencode
 dependencies:
   apm:
-  - ./skill-auditor/
-  - ./skill-finder/
-  - ./p2pscout/
-  - ./chinese-typography/
-  - ./slide-deck/
-  - ./skill-evolve/
-  - ./skill-curator/
-  - ./humanizer/
-  - ./design-gate/
-  - ./verify-before-done/
-  - ./systematic-debugging/
-  - ./ui-design-advisor/
-  - ./solo-think/
-  - ./tutor/
-  - ./roleplay-coach/
-  - ./social-card/
-  - ./decision-lens/
-  - ./tdd/
-  - ./git-guardrails/
-  - ./terse/
-  - ./to-issues/
-  - ./html-diagram/
-  - ./daily-brief/
-  - ./translate/
-  - ./ig-reel/
-  - ./grill/
-  - ./last30d/
-  - ./handover/
-  - vercel-labs/agent-browser
-  - anthropics/skills
+    - ./skill-auditor/
+    - ./skill-finder/
+    - ./p2pscout/
+    - ./chinese-typography/
+    - ./slide-deck/
+    - ./skill-evolve/
+    - ./skill-curator/
+    - ./humanizer/
+    - ./design-gate/
+    - ./verify-before-done/
+    - ./systematic-debugging/
+    - ./ui-design-advisor/
+    - ./solo-think/
+    - ./tutor/
+    - ./roleplay-coach/
+    - ./social-card/
+    - ./decision-lens/
+    - ./tdd/
+    - ./git-guardrails/
+    - ./terse/
+    - ./to-issues/
+    - ./html-diagram/
+    - ./daily-brief/
+    - ./translate/
+    - ./ig-reel/
+    - ./grill/
+    - ./last30d/
+    - ./handover/
+    - ./travel-agent/
+    - ./single-source-docs/
+    - ./relationship-counsel/
+    - vercel-labs/agent-browser
+    - anthropics/skills
   mcp: []
 includes: auto
 scripts: {}
