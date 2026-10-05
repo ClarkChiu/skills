@@ -50,7 +50,7 @@ to THIS repo's layout — skip it when scouting skills elsewhere. Rules and rati
 ### 0.5 — Environment health (deterministic, this repo only)
 
 ```bash
-python3 scripts/env_health.py            # add --json for machine-readable output
+python3 skill-evolve/scripts/env_health.py            # add --json for machine-readable output
 ```
 
 Probe each self-built skill's **declared external CLIs** on THIS machine and report
@@ -79,7 +79,18 @@ python3 <skill>/scripts/check_updates.py <target-skill-dir>
 
 Compares each source's current latest commit/release (GitHub API) against the skill's
 `sources.lock` baseline and prints `🔄 UPDATED` / `🆕 NEW (no baseline)` / `✓ unchanged`
-/ `⚠️ ERROR`. Set `GITHUB_TOKEN` to avoid rate limits. It does **not** write the lock.
+/ `⚠️ ERROR` / `⏭️ SKIPPED`. Set `GITHUB_TOKEN` to avoid rate limits — and check it still
+works (`gh auth status`); an **expired** token makes every lookup fail with HTTP 401,
+which is louder than a rate limit but just as fatal. It does **not** write the lock.
+
+It checks the **union of the cited URLs and the keys already in `sources.lock`**. That
+matters: attribution files often name an upstream as bare `owner/repo` or as
+`owner/repo :: sub-skill`, which the URL scanner cannot see — before 2026-09-17 nine
+skills reported "0 GitHub sources" and their upstreams were never checked, silently. A
+`::` key is checked path-scoped (the repo's newest commit says nothing about whether that
+sub-skill moved), a key whose entry carries a non-GitHub `url` is reported as SKIPPED
+rather than queried, and a vendored-files entry's `copied_from_commit` counts as its
+baseline. `--selftest` pins all of this.
 
 ### 3 — Expand: look for new projects (agent + web)
 
@@ -117,7 +128,7 @@ says should change. Run the deterministic pre-pass (read-only, no network — it
 digest so you never load a 47 MB transcript directly):
 
 ```bash
-python3 scripts/mine_usage.py [~/.claude/projects] --lookback-hours 72 [--redact]
+python3 skill-evolve/scripts/mine_usage.py [~/.claude/projects] --lookback-hours 72 [--redact]
 ```
 
 Then YOU (the LLM) cluster the digest into three **mutually-exclusive** signals, each
@@ -162,7 +173,13 @@ git:
 
 - **Bounded edit**: change ONE thing per iteration, then re-run its evals.
 - **git-revert ratchet**: branch per attempt; read the `benchmark.json` delta it already
-  emits; `git revert` if the change isn't strictly positive.
+  emits; `git revert` if the change isn't strictly positive. Two ways a "positive" delta
+  lies, so both are revert conditions too:
+  - **Any single eval regressing counts as failure**, even when the total improves — a
+    total hides a trade (three cases fixed, one broken, sum still up).
+  - **An eval written from the failure you just fixed proves nothing.** Scoring a change
+    on the cases it was built from is *unverified*, never validated; it needs cases that
+    existed before the edit (or ones mined from usage, per the GAP flow above).
 
 (Held-out validation and blind-comparator anti-bias already live in `skill-creator` — don't
 rebuild them.)
@@ -243,7 +260,13 @@ obvious secrets in the emitted digest.
   timer — scheduling itself stays external (wire the built-in `schedule`/cron); this skill
   stays trigger-agnostic and only produces the report.
 - **Never auto-edits a skill.** Scout + advise. The lone write is `sources.lock`, on
-  explicit acknowledgement.
+  explicit acknowledgement — and `--write-lock` **merges** rather than rebuilding: it owns
+  only `commit`/`release`/`date`, and preserves every hand-written field (`license`,
+  `vendored`, `note`, `ref`, `url`, `::` sub-skill keys) plus any source whose lookup
+  errored this run. That matters because some of those notes are load-bearing — e.g. a
+  "PolyForm Noncommercial — ideas only, never vendor" restriction on an upstream this
+  publicly-redistributed repo must not vendor. `check_updates.py --selftest` pins the
+  merge behaviour; run it after touching that script.
 - Complements, doesn't overlap: `skill-finder` finds *other people's skills*; this tracks
   *your skills' upstream sources* **and your own usage**. Boundary: vs `solo-think` =
   outward proposal from usage evidence, not inward reflection to memory; vs `skill-creator`

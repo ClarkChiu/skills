@@ -30,6 +30,7 @@ CLI_DEPS = {
     "git-guardrails":     [("jq", "cli")],                          # hook parses tool_input.command with jq
     "chinese-typography": [("python3", "cli"), ("opencc", "pymod")],
     "humanizer":          [("opencc", "pymod")],                    # via chinese-typography normalize.py
+    "last30d":            [("uv", "cli")],                          # uv run --python 3.12 (Reddit dates need 3.11+)
 }
 
 # CLIs that don't accept --version; override the probe args here (verified on real tools).
