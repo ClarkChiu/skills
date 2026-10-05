@@ -1,16 +1,24 @@
 {
   "_comment": "Maintained by skill-evolve: the upstream this debugging method was adapted from, used to detect new rules. Update only after reviewing the report (--write-lock).",
-  "checked_at": "2026-08-04",
+  "checked_at": "2026-10-05",
   "sources": {
+    "powerycy/goutoujunshi": {
+      "ref": "main",
+      "commit": "6db7354a4002",
+      "date": "2026-09-15",
+      "license": "MIT（2026-08-17 起，上游提交 8d30c86fc498 自 PolyForm Noncommercial 1.0.0 改授權）。本技能採用的方法取自改授權前的版本，且文字全為自寫，所以不受影響；仍維持只取方法、不收檔——沒有需要收的檔案。",
+      "vendored": "METHOD ONLY — no files. Phase 1 gained the observed/inferred/unknown split and the lock-the-source-first rule; upstream applies both to chat screenshots (lock the speaker mapping from an explicit sender ID, never from bubble side or tone), ours to logs/traces/dumps (lock host/process/env/clock from an explicit field).",
+      "note": "2026-10-05 bump (was 619463afae60): hackathon materials, README_EN, branding; no new evidence-handling rule. Relicensed to MIT (see license field). Nothing adopted. Previous: 2026-08-05 baseline. Two-week-old repo, single maintainer, 23 commits — churn is noise; re-check only for new *evidence-handling* rules. Everything else it contains is out of scope for this skill. Evaluation: research/audits/2026-08-05-goutoujunshi.md."
+    },
     "obra/superpowers": {
       "ref": "main",
-      "commit": "44c9b2d6e889",
-      "release": "v6.2.0",
-      "date": "2026-07-28",
+      "commit": "8ca22dba9a94",
+      "release": "v6.4.2",
+      "date": "2026-09-25",
       "skills": [
         "systematic-debugging"
       ],
-      "note": "2026-08-04 bump (was d884ae04edeb / v6.1.1): reviewed v6.1.1→v6.2.0 — the referenced sub-skill lost 14 lines of motivational prose (Real-World Impact stats, the Related-skills list) and gained one cross-reference (invoke verification-before-completion before claiming success). The 4-phase root-cause method is unchanged. find-polluter.sh got a ./-prefix path-matching fix plus a new test — a script this skill never vendored. Nothing to adopt. 2026-07-06 bump (was 896224c4b187 / v6.0.3): reviewed v6.0.3→v6.1.1 — the referenced systematic-debugging sub-skill is UNCHANGED; all movement is carrier/packaging orchestration, deliberately not vendored. Nothing to adopt. Rules adapted, not vendored verbatim. 2026-06-28 bump (was a21956e48c13 / v6.0.0): reviewed v6.0.0→v6.0.3 — pure SDD-orchestration/packaging/test maintenance, no debugging-method change. The 4-phase root-cause method is unchanged. Nothing to adopt. 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — it is a subagent-driven-development orchestration overhaul; the only systematic-debugging change was narrowing a too-broad extended-thinking trigger keyword (a harness-loading packaging detail), not a method change. Re-sync by diffing this skill's content."
+      "note": "2026-10-05 bump (was b36e0829c6d0, now v6.4.2): systematic-debugging changed one line (bash ./find-polluter.sh). Nothing adopted. Previous: 2026-09-17 bump (v6.3.0): the vendored sub-skill (skills/systematic-debugging/) is NOT in the v6.2.0->v6.3.0 diff — nothing to adopt. The release's content is the orchestration layer we don't vendor. Previous: 2026-08-04 bump (was d884ae04edeb / v6.1.1): reviewed v6.1.1→v6.2.0 — the referenced sub-skill lost 14 lines of motivational prose (Real-World Impact stats, the Related-skills list) and gained one cross-reference (invoke verification-before-completion before claiming success). The 4-phase root-cause method is unchanged. find-polluter.sh got a ./-prefix path-matching fix plus a new test — a script this skill never vendored. Nothing to adopt. 2026-07-06 bump (was 896224c4b187 / v6.0.3): reviewed v6.0.3→v6.1.1 — the referenced systematic-debugging sub-skill is UNCHANGED; all movement is carrier/packaging orchestration, deliberately not vendored. Nothing to adopt. Rules adapted, not vendored verbatim. 2026-06-28 bump (was a21956e48c13 / v6.0.0): reviewed v6.0.0→v6.0.3 — pure SDD-orchestration/packaging/test maintenance, no debugging-method change. The 4-phase root-cause method is unchanged. Nothing to adopt. 2026-06-17 bump (was 6fd450765978 / v5.1.0): reviewed v6.0.0 — it is a subagent-driven-development orchestration overhaul; the only systematic-debugging change was narrowing a too-broad extended-thinking trigger keyword (a harness-loading packaging detail), not a method change. Re-sync by diffing this skill's content."
     }
   }
 }

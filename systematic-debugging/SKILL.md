@@ -35,6 +35,9 @@ Guess-and-check — changing something plausible and re-running — wastes time 
 - Read the error message and stack trace in full. They often name the exact cause; don't skim past warnings.
 - Check what changed recently (diff, recent commits) — most regressions have a culprit commit.
 - Gather evidence across component boundaries; trace the data flow backward from the symptom to its source.
+- **Split what you have three ways and keep the split visible**: **observed** (what the log line, trace, or test output literally says) · **inferred** (what you concluded from it) · **unknown** (what you'd need and don't have). Most stuck debugging is an inference that got promoted to a fact three steps back and was never re-examined. Say "the log shows a 200 at 14:03" — not "the request succeeded"; those are different claims and only one of them is evidence.
+- **Lock the source of every artifact before reasoning about it.** For pasted logs, screenshots, or dumps, establish *which* host, process, container, environment, and clock each line came from — from an explicit field, not from position, ordering, or formatting. Interleaved logs from two services, two replicas, or two timezones look like one causal sequence and are not. If a line's origin is ambiguous, ask; do not guess and proceed. A truncated paste hides exactly the part you need — ask for the surrounding lines rather than reasoning from the window you were given.
+- Contradictory evidence is a finding, not noise: name the contradiction instead of quietly picking the half that fits the current theory.
 
 ### 2. Pattern analysis
 

@@ -9,8 +9,14 @@
       "prompt": "The login endpoint returns 500 intermittently. Just try a few things to make it stop.",
       "expected_output": "Should NOT start guess-and-check. Should first reproduce consistently, read the error/stack trace, check recent changes, and trace the data flow backward — then form a hypothesis. Resists 'try a few things'.",
       "assertions": [
-        {"text": "investigates root cause (reproduce, read trace, check recent changes) before changing any code", "deterministic": false},
-        {"text": "does not apply multiple speculative changes at once", "deterministic": false}
+        {
+          "text": "investigates root cause (reproduce, read trace, check recent changes) before changing any code",
+          "deterministic": false
+        },
+        {
+          "text": "does not apply multiple speculative changes at once",
+          "deterministic": false
+        }
       ]
     },
     {
@@ -20,7 +26,10 @@
       "prompt": "I think it's either the cache, the DB pool, or the retry logic. Change all three and see.",
       "expected_output": "Should refuse to change all three at once. Should pick one hypothesis, make a single-variable change, verify, and only then move to the next — so the cause is actually identifiable.",
       "assertions": [
-        {"text": "tests one hypothesis / one variable at a time rather than changing all three together", "deterministic": false}
+        {
+          "text": "tests one hypothesis / one variable at a time rather than changing all three together",
+          "deterministic": false
+        }
       ]
     },
     {
@@ -30,8 +39,40 @@
       "prompt": "Root cause found: off-by-one in the pagination offset. Fix it. (Note: three earlier fixes already failed.)",
       "expected_output": "Should write a failing test that reproduces the off-by-one first, then the minimal fix, then verify the suite. Given three earlier fixes failed, should also raise whether the architecture/assumption is wrong rather than just patching again.",
       "assertions": [
-        {"text": "writes a failing repro test before implementing the fix", "deterministic": false},
-        {"text": "notes the ≥3-failed-fixes escalation (question the architecture/assumption)", "deterministic": false}
+        {
+          "text": "writes a failing repro test before implementing the fix",
+          "deterministic": false
+        },
+        {
+          "text": "notes the ≥3-failed-fixes escalation (question the architecture/assumption)",
+          "deterministic": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "locks-log-source-before-reasoning",
+      "intent": "Phase 1 evidence discipline: interleaved output from two replicas in two timezones reads as one causal sequence and is not. The failure this guards against is an inference ('the retry caused the timeout') promoted to a fact and never re-examined. NOTE ON DISCRIMINATION: 'refuses to act on the user's guess' is the skill's pre-existing headline rule and a competent model may pass it unaided — it is a precondition here, not the discriminator. The discriminating assertions are the clock/replica one (resolve origin from an explicit field, NOT from paste order) and the explicit three-way split; grade the eval on those.",
+      "lang": "zh",
+      "prompt": "這是我從 Grafana 複製出來的一段 log，你看一下為什麼會 timeout：\n```\n14:03:11 gateway  POST /v1/pay upstream=payments retry=1\n14:03:11 payments handler start\n06:03:12 payments db query 4812ms\n14:03:12 gateway  504 upstream timeout\n```\n很明顯就是 retry 打爆了資料庫對吧？先幫我把 retry 關掉。",
+      "expected_output": "Must not accept the user's causal conclusion or turn off retry. Flags that the four lines cannot be assumed to be one sequence: the 06:03:12 line is 8 hours off, so either the payments log is on a different clock/timezone or it came from a different replica — that must be resolved from an explicit field (host / pod / instance / trace ID), not from the order the lines were pasted in. Separates observed (gateway logged retry=1; a db query took 4812ms; a 504 was returned) from inferred (that THIS retry caused THAT query, that the query belongs to this request) from unknown (whether the two services share a clock, whether the paste is complete, whether more than one replica is involved). Asks for the surrounding lines or a trace/correlation ID rather than reasoning from the window given.",
+      "assertions": [
+        {
+          "text": "does not disable retry or accept 'retry 打爆資料庫' as established cause",
+          "deterministic": false
+        },
+        {
+          "text": "flags the 06:03:12 vs 14:03 discrepancy as a clock/replica question to be resolved from an explicit field, not from paste order",
+          "deterministic": false
+        },
+        {
+          "text": "separates what the log literally shows from what was inferred from it, and names what is still unknown",
+          "deterministic": false
+        },
+        {
+          "text": "asks for a correlation/trace ID or the surrounding lines instead of reasoning only from the pasted window",
+          "deterministic": false
+        }
       ]
     }
   ]
