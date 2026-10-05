@@ -27,10 +27,12 @@ copied; no single canonical file exists for it. The pattern shows up across comm
 prompt collections (see `sources.lock`).
 
 ### 3. Multilingual prompt design — NirDiamant/Prompt_Engineering (MIT)
-- Repo: https://github.com/NirDiamant/Prompt_Engineering
+- Repo: `NirDiamant/Prompt_Engineering` on GitHub (written without a link on purpose, so
+  drift checks don't pick it up again).
 - Adapted: the "respond in the input's language" technique and structured-output prompting
-  discipline. Method/idea only — no files vendored. Tracked in `sources.lock` so
-  `skill-evolve` can spot a sharper formulation upstream.
+  discipline. Method/idea only — no files vendored. No longer tracked (2026-10-05): four
+  reviews in a row (through 2724f4f4c2bf) found only README marketing, and the adopted
+  technique is stable.
 
 ### 4. Prompt-library reference — 0x2e-Tech/awesome-ai-prompts
 - Repo: https://github.com/0x2e-Tech/awesome-ai-prompts
@@ -61,7 +63,7 @@ not in `sources.lock`.
   gets Traditional Chinese with 盤古之白.
 
 ## Re-sync
-`sources.lock` pins the two trackable GitHub references (NirDiamant/Prompt_Engineering,
-0x2e-Tech/awesome-ai-prompts). When `skill-evolve` runs, diff them for a genuinely better
+`sources.lock` pins the one trackable GitHub reference still worth watching
+(0x2e-Tech/awesome-ai-prompts). When `skill-evolve` runs, diff it for a genuinely better
 multilingual or daily-planning prompt formulation worth folding in. The methods themselves
 are public-domain and stable; only the prompt craft may improve upstream.
