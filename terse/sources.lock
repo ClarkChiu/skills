@@ -1,14 +1,23 @@
 {
   "_comment": "Maintained by skill-evolve. terse adapts the METHOD (a toggled token-economy mode) of mattpocock/skills caveman; original rewrite, no files copied. The key change: cut content not grammar, and stay language-aware (Chinese must read as natural Taiwan Traditional). Full audit: research/audits/2026-06-08-mattpocock-skills.md.",
-  "checked_at": "2026-07-20",
+  "checked_at": "2026-10-05",
   "sources": {
+    "ayghri/i-have-adhd": {
+      "ref": "main",
+      "commit": "839872f9d1cd",
+      "date": "2026-09-19",
+      "license": "MIT",
+      "vendored": "METHOD ONLY — no files. Took 4 ideas: first-line/last-line send check; keep hedges carrying real uncertainty (cutting them manufactures confidence); end with the next step rather than a pleasantry; rank-and-bucket long lists. Plus its break-the-rules §5/§6 generalized into 'the shape yields, the content wins'.",
+      "note": "2026-10-05 bump (was b15d0be58f55): Arabic and Indonesian translations only. Nothing adopted. Previous: 2026-09-17 bump: 95 commits, mostly installers, translations and their eval harness. The only rule change is their Rule 9, from a hard cap of 5 items to group-and-rank with <=5 per group and the rest kept back until asked. REVIEWED AND REJECTED: our ranked-and-bucketed rule already covers it and is better — theirs hides relevant items, ours never drops them. (This is DO-NOT item (a) in the note below; it stays rejected.) Their evals/RESULTS.md notes their Rule 8 pushed the model to name causes it had no evidence for; terse has no such rule and our keep-real-hedges rule already guards it. Previous: 2026-08-17 baseline. Upstream has NO releases and NO tags — only floating `main`, so this commit pin is the only version anchor. DO NOT re-adopt on re-sync: (a) hard cap of 5 items — upstream issue #96 shows models truncate literally, and it contradicts CLAUDE.md Rule 0; (b) specific time estimates — contradicts Rule 0 'never hallucinate' + confidence levels; (c) numbered steps / restate-state — CLAUDE.md Rule 4 and Rule 10 already stricter; (d) lead-with-an-action as a general rule — conflicts with Rule 1 and misfires on report-shaped output. Rules are English-only with English-string blocklists, so the zh-TW canned-phrase gap belongs to `humanizer`, not here. Its paired eval harness (3-arm baseline/candidate/comparator) is separately valuable and NOT part of this adoption — see the day log."
+    },
     "mattpocock/skills :: productivity/caveman": {
       "ref": "main",
       "commit": "7d3ada9716a9",
       "date": "2026-06-12",
       "license": "MIT",
       "vendored": "METHOD ONLY — no files. Toggled brevity mode reimplemented in SKILL.md, redesigned to compress by cutting content (not mangling grammar) and to stay language-aware (Chinese stays natural Taiwan Traditional, not telegraphic).",
-      "note": "2026-06-08 baseline. Keep the cut-content-not-grammar + language-aware rule on any re-sync; that is the fix for the Chinese 怪腔怪調 problem the upstream caused. 2026-07-20 reviewed: upstream REMOVED the caveman skill docs on 2026-06-12 (7d3ada9716a9); the method survives only in this rewrite — treat source as historical."
+      "note": "2026-06-08 baseline. Keep the cut-content-not-grammar + language-aware rule on any re-sync; that is the fix for the Chinese 怪腔怪調 problem the upstream caused. 2026-07-20 reviewed: upstream REMOVED the caveman skill docs on 2026-06-12 (7d3ada9716a9); the method survives only in this rewrite — treat source as historical.",
+      "release": "v1.3.1"
     }
   }
 }

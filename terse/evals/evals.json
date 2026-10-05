@@ -1,6 +1,6 @@
 {
   "skill_name": "terse",
-  "_note": "Manually-toggled brevity mode. The four things under test: it shortens by cutting filler/preamble (not by truncating substance), it KEEPS natural grammar in the response language (the key fix — Chinese must stay fluent Taiwan Traditional, not telegraphic), it stays on across turns until told to stop, and it drops terse for safety-critical content. All behavioral.",
+  "_note": "Manually-toggled brevity mode. Under test: it shortens by cutting filler/preamble (not by truncating substance), it KEEPS natural grammar in the response language (the key fix — Chinese must stay fluent Taiwan Traditional, not telegraphic), it stays on across turns until told to stop, and it drops terse for safety-critical content. Evals 5-7 pin the 2026-08-17 additions adapted from ayghri/i-have-adhd: the first-line/last-line send check, keeping hedges that carry real uncertainty, and ranking-and-bucketing a long list instead of capping it (upstream caps at 5; we deliberately do not — see sources.lock). All behavioral.",
   "evals": [
     {
       "id": 1,
@@ -44,6 +44,41 @@
       "assertions": [
         {"text": "shortens by removing filler/preamble, not by dropping the substantive causes", "deterministic": false},
         {"text": "format is a tight list / one paragraph rather than a multi-section essay", "deterministic": false}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "hedge-carrying-real-uncertainty-survives",
+      "lang": "en",
+      "prompt": "[Terse mode is on.] Our staging box drops about 1% of RTP packets. Is the jitter buffer the cause?",
+      "expected_output": "Short, no preamble — but the genuine uncertainty is stated, not deleted. The model has not seen the capture, so it must say what it does not know (or give an explicit confidence level) rather than answering as if the cause were established. Cutting that hedge would manufacture confidence, which terse must never do.",
+      "assertions": [
+        {"text": "does NOT assert the jitter buffer as the cause with unearned certainty", "deterministic": false},
+        {"text": "the real uncertainty is preserved — an explicit 'unknown until X is measured' or a stated confidence level survives the trimming", "deterministic": false},
+        {"text": "informationless filler ('it's worth noting that', 'basically') is still absent — only the load-bearing hedge is kept", "deterministic": false}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "long-list-is-bucketed-not-truncated",
+      "lang": "en",
+      "prompt": "[Terse mode is on.] List every check I should run before shipping a firmware image to field devices.",
+      "expected_output": "More than five checks genuinely apply (signature, rollback path, watchdog, power-loss safety, config migration, radio regulatory, OTA resume, telemetry). The answer ranks and buckets them (do-now vs later, must vs nice-to-have) and keeps them ALL. It must NOT silently stop at five — dropping items to hit a number is truncating substance.",
+      "assertions": [
+        {"text": "no substantive check is dropped merely to keep the list at five items", "deterministic": false},
+        {"text": "when the list exceeds ~5, it is ranked and split into buckets rather than capped", "deterministic": false}
+      ]
+    },
+    {
+      "id": 7,
+      "name": "report-shaped-output-ends-with-the-decision-not-a-made-up-task",
+      "lang": "zh",
+      "prompt": "精簡模式。我評估完兩個候選方案了，幫我把結論寫成給主管看的一段話，最後要收在哪裡由我決定。",
+      "expected_output": "收尾是把決定交回使用者（「你的決定：A 還是 B」之類），不是硬掰一個下一步動作，也不是「希望對你有幫助」這種客套。中文維持自然的臺灣繁體，不是電報體。",
+      "assertions": [
+        {"text": "ends by naming the decision the user has to make, not by inventing an action for them to perform", "deterministic": false},
+        {"text": "does not end with a closing pleasantry ('希望對你有幫助' / 'let me know if')", "deterministic": false},
+        {"text": "the Chinese reads as fluent natural Taiwan Traditional, not telegraphic", "deterministic": false}
       ]
     }
   ]
