@@ -1,7 +1,15 @@
 {
   "_comment": "Maintained by skill-evolve: roleplay-coach adapts prompts #9 (Salary Negotiation Roleplay), #10 (Interview Simulator) and #12 (Difficult Conversation Prep) from a 20-prompt article. The source is a static article/thread, not a repo — no ref to diff; re-check is only worthwhile if the author publishes a revised collection.",
-  "checked_at": "2026-07-20",
+  "checked_at": "2026-09-18",
   "sources": {
+    "powerycy/goutoujunshi": {
+      "ref": "main",
+      "commit": "6db7354a4002",
+      "date": "2026-09-15",
+      "license": "MIT（2026-08-17 起，上游提交 8d30c86）；本鎖基準 619463a 當時仍是 PolyForm Noncommercial 1.0.0。仍僅取方法、不收檔——理由改為語境（中國法規、性別預設、MBTI 評分）與維護成本，不再是授權。",
+      "vendored": "METHOD ONLY — no files. Two disciplines reimplemented in SKILL.md: one-move-per-line (seven professional moves, retargeted from its seven relationship moves — same structural shape, and `close` is a direct counterpart to upstream's 收線; the rest of the move set and the domain are ours) and the positive/non-committal/refusal branch tree.",
+      "note": "2026-09-17 bump: 12 commits — hackathon material, an English README, branding, a reference-library image. No method file (SKILL.md or references) changed, so nothing to adopt. The license field above was corrected this round (MIT since 2026-08-17). Previous: 2026-08-05 baseline. Two-week-old repo, single maintainer, 23 commits — churn is noise; re-check only for new *conversation-structure* formulations. Its relationship content, PRC-law chapter, MBTI/0–100 scoring, and PUA-translation chapter are out of scope. Evaluation: research/audits/2026-08-05-goutoujunshi.md."
+    },
     "blocktempo/20-claude-prompts-productivity": {
       "url": "https://www.blocktempo.com/20-claude-prompts-productivity/",
       "release": null,
