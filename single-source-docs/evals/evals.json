@@ -1,0 +1,58 @@
+{
+  "skill_name": "single-source-docs",
+  "_note": "架構紀律 skill：受測的是「內容只能有一個家」這條鐵則有沒有被守住——(a) 要改多格式交付物時，改的是資料源還是產物，(b) 資料列是固定長度 tuple 時要不要加欄位，(c) 驗證閘是否 exit 非零、有沒有把它當完成條件，(d) 啟發式轉換出錯時是點修還是全域稽核，(e) 憑證沒說的事會不會被腦補成已確認。多為質性判定。",
+  "evals": [
+    {
+      "id": 1,
+      "name": "edit-source-not-artifact",
+      "lang": "zh-TW",
+      "prompt": "行程表的 Word 檔裡有個店名打錯了，幫我改一下。",
+      "expected_output": "不得直接開 .docx 手改。應指出產物是唯讀的、改了下次重產就會被蓋掉且與真源不一致，正確做法是改資料源（如 data.py）後重跑管線，並跑驗證閘確認 exit 0。",
+      "deterministic": true,
+      "check": "回應指向資料源／重跑管線，而非直接編輯 .docx／.xlsx／產出的 .html"
+    },
+    {
+      "id": 2,
+      "name": "no-new-field-on-fixed-tuple",
+      "lang": "zh-TW",
+      "prompt": "我想在時間軸每一項後面加一個「是否已預訂」的欄位。時間軸的資料長這樣：(time, title, type, tag, note, price, map)",
+      "expected_output": "應指出所有 `for a,b,c,d,e,f,g in rows` 的解包會全部爆掉，改用以標題關鍵字比對的側表（如 BOOKING = {關鍵字: 狀態}），render 時查表，不動 tuple 結構。並提醒側表與其目標清單要交叉檢查，避免懸空錨點。",
+      "deterministic": true,
+      "check": "回應提出側表／關鍵字對應的做法，且明確反對在 tuple 上加欄位"
+    },
+    {
+      "id": 3,
+      "name": "gate-must-fail-loud",
+      "lang": "zh-TW",
+      "prompt": "驗證腳本跑完會印出有幾個問題，這樣夠了吧？",
+      "expected_output": "不夠。應指出驗證閘必須 exit 非零才擋得下壞產物，只印訊息等於沒有閘；並且『閘通過』才算完成，不能自行宣稱沒問題。",
+      "deterministic": true,
+      "check": "回應要求 exit code 非零（或等價的讓管線失敗）"
+    },
+    {
+      "id": 4,
+      "name": "heuristic-conversion-global-audit",
+      "lang": "zh-TW",
+      "prompt": "你那個自動換算把房價 15,395 台幣當成外幣換算成 NT$20 了，把這筆改掉就好。",
+      "expected_output": "不得只修這一筆。應(a) 改守門條件用顯性單位標記（字串已含 NT$／TWD 就跳過），(b) 對同類輸出做全域稽核、逐筆反算驗證，並回報稽核了幾筆、幾筆是錯的。點修＝假修。",
+      "deterministic": false
+    },
+    {
+      "id": 5,
+      "name": "receipt-reconciliation-fail-loud",
+      "lang": "zh-TW",
+      "prompt": "這是機票的電子憑證，幫我把行李額度寫進行前準備。（憑證上託運欄只寫「包含」）",
+      "expected_output": "不得腦補公斤數。應照憑證寫「託運：包含（未列公斤數）」並標記為待向航空公司確認，同時指出憑證沒證明的事就是未知——標出未知比假裝已確認安全。",
+      "deterministic": true,
+      "check": "回應標示為待確認／未知，而非直接給一個公斤數"
+    },
+    {
+      "id": 6,
+      "name": "diff-oracle-after-refactor",
+      "lang": "zh-TW",
+      "prompt": "我把產生器重構了，怎麼確定沒弄壞既有的東西？",
+      "expected_output": "應提出用既有 live 產物當 diff oracle：重構後重產，新舊產物 diff 應為空（除非本來就要改內容）。這是「沒弄壞」唯一可信的證據；再配合驗證閘 exit 0。",
+      "deterministic": false
+    }
+  ]
+}
