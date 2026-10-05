@@ -44,9 +44,16 @@ design-gate helps you *think it up*; grill tries to *break it*.
 4. **Look up facts yourself; put decisions to the user.** If a *fact* is knowable
    from the codebase (does this function exist, what does that config default to),
    read it — don't ask. The *decisions* are the user's: surface each one and wait.
+   **Don't block on a lookup either**: a running exploration is just an unsettled
+   prerequisite, so dispatch it (a sub-agent for anything broad) and meanwhile ask a
+   question that doesn't depend on its answer. Only the questions downstream of that
+   fact wait for it.
 5. **Stop at shared understanding, not at a fixed question count.** Keep going until
    you and the user genuinely agree the idea holds (or agree it needs to change).
-   There is no quota — converge on understanding.
+   There is no quota — converge on understanding. Understanding is only shared when
+   **every branch of the idea has been visited and nothing is left silently
+   assumed** — so before you call it done, name the branches you never asked about.
+   An unvisited branch is an assumption, not an agreement.
 6. **Do not enact anything.** No code, no plan, no issues, no implementation until
    the user says the grilling is done. Grilling ends by handing off, not by building.
 

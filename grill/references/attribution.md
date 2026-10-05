@@ -3,7 +3,8 @@
 `grill` is adapted from **mattpocock/skills** → `skills/productivity/grilling` (MIT),
 with its sibling trigger `grill-me`. The core — interview relentlessly, one question
 at a time, each with a recommended answer, look up facts but defer decisions, don't
-enact until shared understanding — is Matt's. This is an **original rewrite**, no
+enact until shared understanding — is Matt's. **Upstream no longer asks one question
+at a time** (see the re-sync note below); that rule is now ours to keep. This is an **original rewrite**, no
 files copied. Full evaluation: `research/audits/2026-07-08-grilling.md` (verdict:
 🟦 build-your-own; discovered via the r/opencodeCLI "hmm" post, which named grilling
 as its adversarial counterpart).
@@ -47,3 +48,17 @@ refinements now land.
 `sources.lock` pins upstream at the grilling SKILL.md commit. On `skill-evolve`, mine
 any refinement to the interrogation protocol; keep the standalone-vs-design-gate
 framing, the explicit adversarial temperament, and the handoff-not-build close.
+
+## 2026-09-17 re-sync (upstream 85f83d3f, user decision)
+
+Upstream replaced one-question-at-a-time with **rounds over a "frontier"**: ask every
+question whose prerequisites are settled in one numbered batch, each with a recommended
+answer, then recompute. **Deliberately not adopted** — batching is exactly what this
+skill's rule 1 forbids, because weak questions hide behind strong ones and the
+adversarial pressure drops. Two parts were adopted, reworded, without the batching:
+
+- **The stop condition sharpened**: shared understanding means every branch visited and
+  nothing silently assumed, so name the branches you never asked about before calling it
+  done (rule 5). Upstream's version is "done when the frontier is empty".
+- **Non-blocking fact lookup**: a running exploration is an unsettled prerequisite, so
+  dispatch it and ask a question that doesn't depend on it meanwhile (rule 4).
