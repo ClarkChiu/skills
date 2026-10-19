@@ -29,6 +29,9 @@ def search(topic, from_date, to_date, limit=25):
     except Exception:
         SKIP["reason"] = "yt-dlp failed"
         return []
+    if p.returncode != 0:  # the run surfaces this only if no videos came back
+        last = next((l for l in reversed((p.stderr or "").splitlines()) if l.strip()), "")
+        SKIP["reason"] = f"yt-dlp exit {p.returncode}" + (f": {last}" if last else "")
     out = []
     for line in (p.stdout or "").splitlines():
         try:

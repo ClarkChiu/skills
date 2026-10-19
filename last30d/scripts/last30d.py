@@ -5,8 +5,9 @@ Fetches a topic's recent discussion across Reddit / X / HN / GitHub / arXiv / Yo
 ranks each lane by its own engagement metric, and prints a per-lane digest. Synthesis is
 NOT done here — hand the digest to the session model or `deep-research`.
 
-Lanes run concurrently; a failing lane degrades to 0 results (logged), never aborts the run.
-X (needs XAI_API_KEY) and YouTube (needs yt-dlp) skip visibly when unavailable.
+Lanes run concurrently; a failing lane never aborts the run — it comes back empty and the
+digest shows `skipped: <reason>` instead of 0. X (needs XAI_API_KEY) and YouTube (needs
+yt-dlp) also skip visibly when unavailable.
 """
 import argparse
 import os
@@ -40,19 +41,22 @@ def run(topic, depth="default", lanes=None, as_of=None):
 
     def one(lane):
         try:
-            return lane, _call(lane, topic, from_date, to_date, n, depth)
+            return lane, _call(lane, topic, from_date, to_date, n, depth), None
         except Exception as e:  # fail loud, don't abort the run
-            sys.stderr.write(f"[last30d] lane {lane} failed: {type(e).__name__}: {e}\n")
-            return lane, []
+            why = f"{type(e).__name__}: {e}"
+            sys.stderr.write(f"[last30d] lane {lane} failed: {why}\n")
+            return lane, [], why
 
     with ThreadPoolExecutor(max_workers=min(len(lanes), 6) or 1) as ex:
-        for lane, recs in ex.map(one, lanes):
+        for lane, recs, why in ex.map(one, lanes):
             results[lane] = recs
-    # Surface skip reasons for the optional lanes when they came back empty.
-    if "x" in lanes and not results.get("x") and x_lane.SKIP.get("reason"):
-        skips["x"] = x_lane.SKIP["reason"]
-    if "youtube" in lanes and not results.get("youtube") and youtube.SKIP.get("reason"):
-        skips["youtube"] = youtube.SKIP["reason"]
+            if why:
+                skips[lane] = why
+    # An empty lane that recorded why it failed or skipped is reported, never shown as 0.
+    for lane in lanes:
+        reason = getattr(_MOD[lane], "SKIP", {}).get("reason")
+        if not results.get(lane) and reason:
+            skips.setdefault(lane, reason)  # a crash reason, if any, stays
     return from_date, to_date, results, skips
 
 

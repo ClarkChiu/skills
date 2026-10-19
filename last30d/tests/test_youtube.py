@@ -13,8 +13,8 @@ def _line(title, vid_url, views, likes, upload_date, desc="d"):
 
 
 class _Proc:
-    def __init__(self, stdout):
-        self.stdout = stdout
+    def __init__(self, stdout, returncode=0, stderr=""):
+        self.stdout, self.returncode, self.stderr = stdout, returncode, stderr
 
 
 def test_youtube_ranks_by_views_and_filters_window(monkeypatch):
@@ -31,6 +31,17 @@ def test_youtube_ranks_by_views_and_filters_window(monkeypatch):
     assert top["lane"] == "youtube" and top["score"] == 90000 and top["score_label"] == "views"
     assert top["url"] == "https://youtu.be/2" and top["date"] == "2026-07-05"
     assert "4000 likes" in top["meta"]
+
+
+def test_youtube_records_why_when_ytdlp_exits_nonzero(monkeypatch):
+    # yt-dlp breaks often (YouTube changes, bot checks); a non-zero exit with no output
+    # must say so instead of reading as "no videos about this topic".
+    monkeypatch.setattr(youtube.shutil, "which", lambda _n: "/usr/bin/yt-dlp")
+    err = "WARNING: slow\nERROR: Sign in to confirm you're not a bot\n"
+    monkeypatch.setattr(youtube.subprocess, "run", lambda *a, **k: _Proc("", 1, err))
+    monkeypatch.setitem(youtube.SKIP, "reason", None)
+    assert youtube.search("x", "2026-06-09", "2026-07-09") == []
+    assert youtube.SKIP["reason"] == "yt-dlp exit 1: ERROR: Sign in to confirm you're not a bot"
 
 
 def test_youtube_skips_when_ytdlp_absent(monkeypatch):

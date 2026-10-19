@@ -43,6 +43,28 @@ def test_json_flag_emits_valid_json(monkeypatch, capsys):
     assert data["from"] == "2026-06-09" and data["to"] == "2026-07-09"
 
 
+def test_any_empty_lane_reports_its_reason(monkeypatch):
+    # Only X and YouTube used to explain an empty lane; a failed HN/GitHub/arXiv lane read
+    # as "0 results". Every lane with a recorded reason must be reported as skipped.
+    _patch_lanes(monkeypatch, [])
+    monkeypatch.setattr(last30d.hn, "search", lambda *a, **k: [])
+    monkeypatch.setitem(last30d.hn.SKIP, "reason", "HTTPError: HTTP Error 503: Service Unavailable")
+    _, _, results, skips = last30d.run("Peter", lanes=["hn", "github"], as_of="2026-07-09")
+    assert results["hn"] == []
+    assert skips == {"hn": "HTTPError: HTTP Error 503: Service Unavailable"}
+
+
+def test_lane_that_crashes_reports_why(monkeypatch):
+    # A lane that raises (e.g. Reddit, which has no SKIP of its own) used to show only in
+    # stderr; the digest still read "0". The crash reason must reach the skipped list too.
+    _patch_lanes(monkeypatch, [])
+    def crash(*_a, **_k):
+        raise RuntimeError("boom")
+    monkeypatch.setattr(last30d.reddit_lane, "search", crash)
+    _, _, results, skips = last30d.run("Peter", lanes=["reddit", "hn"], as_of="2026-07-09")
+    assert results["reddit"] == [] and skips == {"reddit": "RuntimeError: boom"}
+
+
 def test_save_writes_file(monkeypatch, tmp_path):
     _patch_lanes(monkeypatch, [])
     f = tmp_path / "out.md"

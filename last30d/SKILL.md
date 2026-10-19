@@ -64,8 +64,10 @@ Read the printed digest and synthesize from it, or pass the `--json` output to
 - **YouTube** — via **`yt-dlp`** (external CLI, user-installed like `ffmpeg`; never
   auto-installed). Absent → `skipped: yt-dlp not installed`.
 
-The digest header lists per-lane counts, so a lane that failed or returned nothing is
-visible, not silently hidden.
+A lane that failed shows `skipped: <reason>` (e.g. `URLError: …`, `HTTPError: HTTP Error 403: …`,
+`yt-dlp exit 1: …`); a lane that worked but found nothing shows `0` in the header counts — the
+two are never confused. One gap: Reddit's vendored fetchers swallow their own errors, so a
+Reddit failure can still read as `0` unless it crashes the lane.
 
 ## Boundaries
 

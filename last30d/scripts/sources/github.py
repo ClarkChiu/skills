@@ -6,9 +6,11 @@ import urllib.parse
 import urllib.request
 
 BASE = "https://api.github.com/search/repositories"
+SKIP = {"reason": None}
 
 
 def search(topic, from_date, to_date, limit=25):
+    SKIP["reason"] = None  # clear any stale reason from a prior in-process run
     # NOTE: ranked by LIFETIME stars — GitHub's API has no stars-gained-in-window sort.
     # `pushed:from..to` scopes to repos active in the window; stars reflect total popularity.
     query = f"{topic} pushed:{from_date}..{to_date}"
@@ -26,7 +28,8 @@ def search(topic, from_date, to_date, limit=25):
             req.add_unredirected_header("Authorization", f"Bearer {tok}")
         with urllib.request.urlopen(req, timeout=15) as r:
             items = json.loads(r.read().decode()).get("items", [])
-    except Exception:
+    except Exception as e:
+        SKIP["reason"] = f"{type(e).__name__}: {e}"
         return []
     out = []
     for it in items:

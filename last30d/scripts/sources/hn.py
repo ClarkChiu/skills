@@ -7,9 +7,11 @@ from datetime import datetime, timezone
 # /search ranks by relevance then points, so the top hits span the whole window;
 # search_by_date is newest-first and would cover only the last few days of a hot topic.
 BASE = "https://hn.algolia.com/api/v1/search"
+SKIP = {"reason": None}
 
 
 def search(topic, from_date, to_date, limit=25):
+    SKIP["reason"] = None  # clear any stale reason from a prior in-process run
     frm = int(datetime.fromisoformat(from_date).replace(tzinfo=timezone.utc).timestamp())
     to = int(datetime.fromisoformat(to_date).replace(tzinfo=timezone.utc).timestamp()) + 86400
     q = urllib.parse.urlencode({
@@ -20,7 +22,8 @@ def search(topic, from_date, to_date, limit=25):
     try:
         with urllib.request.urlopen(f"{BASE}?{q}", timeout=15) as r:
             hits = json.loads(r.read().decode()).get("hits", [])
-    except Exception:
+    except Exception as e:
+        SKIP["reason"] = f"{type(e).__name__}: {e}"
         return []
     out = []
     for h in hits:

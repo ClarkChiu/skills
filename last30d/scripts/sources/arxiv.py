@@ -9,9 +9,11 @@ import xml.etree.ElementTree as ET
 
 ATOM = "{http://www.w3.org/2005/Atom}"
 BASE = "http://export.arxiv.org/api/query"
+SKIP = {"reason": None}
 
 
 def search(topic, from_date, to_date, limit=25):
+    SKIP["reason"] = None  # clear any stale reason from a prior in-process run
     q = urllib.parse.urlencode({
         "search_query": f"all:{topic}", "sortBy": "submittedDate",
         "sortOrder": "descending", "max_results": max(limit * 2, 40),
@@ -19,7 +21,8 @@ def search(topic, from_date, to_date, limit=25):
     try:
         with urllib.request.urlopen(f"{BASE}?{q}", timeout=20) as r:
             root = ET.fromstring(r.read().decode())
-    except Exception:
+    except Exception as e:
+        SKIP["reason"] = f"{type(e).__name__}: {e}"
         return []
     out = []
     for e in root.iter(f"{ATOM}entry"):
