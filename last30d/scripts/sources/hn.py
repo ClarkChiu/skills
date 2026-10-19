@@ -4,7 +4,9 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
-BASE = "https://hn.algolia.com/api/v1/search_by_date"
+# /search ranks by relevance then points, so the top hits span the whole window;
+# search_by_date is newest-first and would cover only the last few days of a hot topic.
+BASE = "https://hn.algolia.com/api/v1/search"
 
 
 def search(topic, from_date, to_date, limit=25):
