@@ -65,13 +65,18 @@ file unless you pass `--in-place`.
 
    > **Validated against `opencc-python-reimplemented==0.1.7`** (pure-Python; it
    > bundles its own s2twp dictionaries, so the conversion output is *frozen* at
-   > that snapshot and stays stable — see `requirements.txt`). Note: the official
-   > C++ **BYVoid/OpenCC is now at v1.4.2 and has changed some s2twp mappings**
-   > (程序/程式, 通过/透過, 缺省/預設, plus 33 phrase-segmentation fixes). That does
-   > **not** affect this skill unless you switch to the official `opencc` package or
-   > bump the reimplemented one. If you do either, **re-run
-   > `scripts/test_normalize.py` and spot-check 簡轉繁 output** before trusting it —
-   > the conversion is the one dependency that can silently change results.
+   > that snapshot and stays stable — see `requirements.txt`). Frozen also means
+   > **upstream fixes never reach it**: the official C++ BYVoid/OpenCC keeps correcting
+   > s2twp (e.g. #1509: 高级 is no longer always 高階), but 0.1.7 still makes those
+   > mistakes. Unambiguous ones are patched in `data/defaults.json` `vocab_fixes`
+   > (e.g. 高階中學→高級中學, 資訊保安→資訊安全, 膝上型電腦→筆記型電腦, 字符集→字元集).
+   > The rest can't be patched by plain replacement, so **after converting simplified
+   > text, check these by hand** (measured 2026-10-19): 高级 → 高階 everywhere (高階主管
+   > is right, 很高階 is wrong — see `references/glossary.md`); 通过 → 透過 even when it
+   > means "passed" (法案透過了); 程序 → 程式 even outside code (訴訟程式); 这台 → 這檯.
+   > If you switch to the official `opencc` package or bump the reimplemented one,
+   > **re-run `scripts/test_normalize.py` and spot-check 簡轉繁 output** before trusting
+   > it — the conversion is the one dependency that can silently change results.
 3. **Show the result.** Present the normalized text (or the diff). If anything in
    the diff looks wrong, say so — see *When to override the script* below.
 4. **Apply** with `--in-place` once the user is happy, or just hand back the
