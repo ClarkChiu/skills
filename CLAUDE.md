@@ -26,6 +26,7 @@
 - 評估外部技能時，安裝前一定要先跑 `skill-auditor` 做安全稽核，再用 `skill-curator` 走完整流程：相關性、重複性、資安、來源、裁決、記錄。每次評估的決策都寫進當天的工作日誌 `research/<YYYY-MM-DD>-skill-research-log.md`，完整稽核報告寫進 `research/audits/`。要記得研究不等於安裝；對這位使用者來說「直接安裝」很少見，純文字或人格類的技能多半值得自己重寫成貼合他的版本，只有難以複製的精選資料或工程才值得原樣收錄（vendor）。
 - 用 chinese-typography 的 `normalize.py` 時，只處理純中文的一般文字，不要拿去處理英文或 markdown 技能文件——它會把英文引號改成「」、括號改成全形，反而破壞這類文件。
 - 暫存或用完即丟的產物（測試用的拋棄式物件、臨時輸出、scratch 檔）寫到系統暫存區 `/tmp`，不要散在工作磁碟的根目錄、或儲存庫以外的地方；正式產物才放進儲存庫對應位置。用意是別讓一次性的東西混進版控、或弄髒磁碟根目錄。
+- 不使用 Claude Managed Agents。用 Claude API 寫程式時，跳過 `claude-api` 技能裡 `When to offer Managed Agents` 那一步，回覆結尾不要提議改用 Managed Agents。理由：2026-10-19 起，APM 引入的 `anthropics/skills` 版 `claude-api` 會在寫完大量重複的 API 工作後主動推薦這個雲端服務，使用者不要；全域的 `~/.claude/CLAUDE.md` 不會跟著 git 走，寫在這裡，每台電腦裝了這份技能都擋得到。
 - **撰寫語言看主題、不看儲存庫，分兩層：**
   1. **一個技能用哪種語言寫，看它的主題。** 主題本身綁定某種語言的（中文排版、中文文風）就用那種語言；與語言無關的工程／流程技能（設計流程、計畫、安全稽核）用英文。因為這類內容本來就在以程式碼／git／英文為主的環境裡，硬翻中文會一路中英夾雜、讀起來處處彆扭；上游若是英文，也讓 `skill-evolve` 比對更新更省事。例：`chinese-typography`、`humanizer` 的中文規則用中文；`design-gate`、`skill-auditor`、`skill-finder`、`skill-curator`、`skill-evolve`、`verify-before-done`、`systematic-debugging` 用英文。
   2. **當內容確實是中文時**（`SKILL.md`、`references/` 規則檔、`evals.json` 說明文字，以及**對話回覆本身**），一律用清楚的臺灣繁體中文，不中英夾雜、不簡稱縮寫。這條凌駕 `terse` 那種英文短句風格。
