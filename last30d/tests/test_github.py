@@ -1,7 +1,11 @@
 """GitHub lane: parse REST repo-search into records ranked by stars. Intent: map
 full_name/stars/pushed_at, and attach the Authorization header when GITHUB_TOKEN is set
-(higher rate limit). Network mocked; the mock captures the Request to check the header."""
+(higher rate limit) — but never let it follow a redirect to another host. Network mocked;
+the mock captures the Request to check the header. The redirect test uses real loopback
+servers instead, so it exercises urllib's actual redirect handling."""
+import http.server
 import json
+import threading
 from contextlib import contextmanager
 
 import conftest  # noqa: F401
@@ -42,7 +46,57 @@ def test_github_sends_auth_header_when_token_set(monkeypatch):
     monkeypatch.setenv("GITHUB_TOKEN", "ghp_test")
     monkeypatch.setattr(github.urllib.request, "urlopen", _make_fake(captured))
     github.search("cli", "2026-06-09", "2026-07-09")
-    assert captured["req"].headers.get("Authorization") == "Bearer ghp_test"
+    assert captured["req"].get_header("Authorization") == "Bearer ghp_test"
+
+
+def _serve(handler_cls):
+    srv = http.server.HTTPServer(("127.0.0.1", 0), handler_cls)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    return srv
+
+
+def test_github_token_not_forwarded_on_cross_host_redirect(monkeypatch):
+    # The token can carry repo/workflow scope: a redirect must never hand it to another
+    # host. 127.0.0.1 redirects to localhost (a different host); the target records what
+    # it received. Expecting exactly one hit also proves the redirect was really followed.
+    seen = []
+
+    class Target(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            seen.append(self.headers.get("Authorization"))
+            body = json.dumps(CANNED).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        def log_message(self, *_a):
+            pass
+
+    target = _serve(Target)
+
+    class Redirector(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(302)
+            self.send_header("Location", f"http://localhost:{target.server_port}/search")
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+
+        def log_message(self, *_a):
+            pass
+
+    redirector = _serve(Redirector)
+    monkeypatch.setenv("GITHUB_TOKEN", "ghp_test")
+    monkeypatch.setenv("no_proxy", "*")  # a proxy env var must not reroute loopback
+    monkeypatch.setattr(github, "BASE", f"http://127.0.0.1:{redirector.server_port}/search")
+    try:
+        github.search("cli", "2026-06-09", "2026-07-09")
+    finally:
+        for srv in (redirector, target):
+            srv.shutdown()
+            srv.server_close()
+    assert seen == [None], f"redirect target received Authorization: {seen}"
 
 
 def test_github_empty_on_error(monkeypatch):

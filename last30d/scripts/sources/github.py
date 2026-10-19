@@ -18,10 +18,12 @@ def search(topic, from_date, to_date, limit=25):
     })
     hdr = {"Accept": "application/vnd.github+json", "User-Agent": "last30d"}
     tok = os.environ.get("GITHUB_TOKEN")
-    if tok:
-        hdr["Authorization"] = f"Bearer {tok}"
     try:
         req = urllib.request.Request(url, headers=hdr)
+        if tok:
+            # unredirected: urllib copies normal headers onto every redirect, even to
+            # another host — the token must reach api.github.com only.
+            req.add_unredirected_header("Authorization", f"Bearer {tok}")
         with urllib.request.urlopen(req, timeout=15) as r:
             items = json.loads(r.read().decode()).get("items", [])
     except Exception:
