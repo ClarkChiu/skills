@@ -138,6 +138,12 @@ skillspector scan <skill-dir-or-url> --no-llm --format json
   MCP, untrusted content only via stdin) instead of an NVIDIA/OpenAI key. It
   still sends the skill's content to that session, so weigh the exfil caveat
   above before enabling it on an untrusted skill.
+- **`claude_cli` is not free.** Every LLM call is a separate `claude -p` session
+  billed to the user's plan. Upstream #808: scanning 15 skills in parallel opened
+  434 sessions in about 6 minutes, used 98% of a 5-hour plan window, and left
+  1,144 folders in `~/.claude/projects`. Use it only when the user explicitly asks;
+  never pick or switch the provider yourself; never run CLI-provider scans in
+  parallel.
 - Record its risk score and verdict in the report NOTES. As of v2.11.2 the JSON
   holds them under `risk_assessment` as `score` / `severity` / `recommendation`,
   plus **`max_issue_severity`** — record that one too: it is the highest single
