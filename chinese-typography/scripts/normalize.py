@@ -40,7 +40,7 @@ import sys
 # 的標點判斷。刻意排除全形符號（＀-），因為那些是已正確的輸出，不是待轉換的輸入。
 CJK = (
     r'⺀-⻿぀-ゟ゠-ヺー-ヿ'
-    r'㄀-ㄯ㐀-䶿一-鿿豈-﫿'
+    r'㄀-ㄯ㐀-䶿一-鿿\uf900-\ufaff'   # 相容漢字用跳脫：字面 U+F900 會被 NFC 換成同形的 U+8C48，範圍就吞進韓文與私用區
 )
 ANY_CJK = re.compile(f'[{CJK}]')
 
@@ -66,7 +66,8 @@ _CODE_PATTERNS = [
     re.compile(r'`[^`\n]+`'),                                   # 行內 code
 ]
 _SPAN_PATTERNS = [
-    re.compile(r"https?://[A-Za-z0-9\-._~:/?#@!$&'()*+;=%]+"),  # URL（不含結尾逗號，那多半是標點）
+    # URL：逗號後面還接英數才算網址（查詢字串 usd,twd）；結尾逗號多半是標點，不收
+    re.compile(r"https?://(?:[A-Za-z0-9\-._~:/?#@!$&'()*+;=%]|,(?=[A-Za-z0-9]))+"),
     re.compile(r'[A-Za-z0-9._+-]+@[A-Za-z0-9-]+\.[A-Za-z0-9.-]+'),  # email
     re.compile(r'\d+(?:\.\d+)+'),                               # 版本號／小數鏈 3.14、8.2.10
     re.compile(r'(?:[A-Za-z0-9._-]+/)+[A-Za-z0-9._-]+'),        # 檔案路徑 a/b/c.py
@@ -89,27 +90,35 @@ def _enc(i):
     return ''.join(chr(0xE010 + int(d)) for d in str(i))
 
 
+def _stasher(store, verbatim):
+    """給 re.sub 用：把命中的片段存進 store，原地換成哨符。"""
+    def stash(m):
+        store.append((m.group(0), verbatim))
+        return _PLACEHOLDER.format(_enc(len(store) - 1))
+    return stash
+
+
 def _protect(text, extra_protect=None):
     store = []   # 每筆是 (原文, verbatim)；verbatim=True 者最後才還原（純逐字）
-
-    def stash_factory(verbatim):
-        def stash(m):
-            store.append((m.group(0), verbatim))
-            return _PLACEHOLDER.format(_enc(len(store) - 1))
-        return stash
 
     # 個人字典 protect 詞優先抽出（最長優先，避免子字串先被吃掉）。
     # 歸 SPAN 類（pangu 前還原）＝沿用原行為：擋住 opencc/quotes/punct/width/fixes，
     # 但 pangu 的 CJK 邊界空格照常（protect 詞多為中文品牌，CJK↔CJK 本就不加空格）。
     for term in sorted(extra_protect or [], key=len, reverse=True):
         if term:
-            text = re.sub(re.escape(term), stash_factory(False), text)
+            text = re.sub(re.escape(term), _stasher(store, False), text)
     # 先抽 code（最先，URL 在 code block 內就不會被重複抽），再抽 span。
     for pat in _CODE_PATTERNS:
-        text = pat.sub(stash_factory(True), text)
+        text = pat.sub(_stasher(store, True), text)
+    return _stash_spans(text, store), store
+
+
+def _stash_spans(text, store):
+    """抽出 SPAN（網址／email／版本號／路徑／縮寫），接在既有 store 後面。
+    _protect 用它，casing 前也再呼叫一次。"""
     for pat in _SPAN_PATTERNS:
-        text = pat.sub(stash_factory(False), text)
-    return text, store
+        text = pat.sub(_stasher(store, False), text)
+    return text
 
 
 def _restore(text, store, verbatim=None):
@@ -302,30 +311,31 @@ def _fix_quotes(text):
 # 只在標點緊鄰 CJK 時才轉全形，這樣英文句子與被保護的 code 都能毫髮無傷。
 # 句點是特例：只有在 CJK 之後、且不是小數點時才轉 。（小數早已被保護）。
 def _fix_punct(text):
+    # 空白一律用 [ \t]*，不用 \s*：\s 會吃換行，把標題、分隔線和下一段併成一行。
     # 省略號／破折號（台灣 MOE 標準：…… 六點、—— 雙破折號）。
     # 必須在句點規則「之前」處理，否則 "..." 的點會被句點規則咬成 "。.。"。
     text = re.sub(r'…+', '……', text)                          # 全形省略號一律收斂成六點 ……
     text = re.sub(f'(?<=[{CJK}])\\.{{3,}}', '……', text)        # 中文後的 ... → ……
     text = re.sub(f'\\.{{3,}}(?=[{CJK}])', '……', text)         # 中文前的 ... → ……
     text = re.sub(r'。{3,}', '……', text)                       # 。。。 → ……
-    text = re.sub(f'([{CJK}])\\s*-{{2,}}\\s*(?=[{CJK}])', r'\1——', text)  # 中文間 -- → ——
-    text = re.sub(f'([{CJK}])\\s*—+\\s*(?=[{CJK}])', r'\1——', text)       # 中文間 — → ——
+    text = re.sub(f'([{CJK}])[ \\t]*-{{2,}}[ \\t]*(?=[{CJK}])', r'\1——', text)  # 中文間 -- → ——
+    text = re.sub(f'([{CJK}])[ \\t]*—+[ \\t]*(?=[{CJK}])', r'\1——', text)       # 中文間 — → ——
     pairs = [(',', '，'), (';', '；'), (':', '：'), ('?', '？'), ('!', '！')]
     for a, b in pairs:
         # 標點前面是 CJK
-        text = re.sub(f'([{CJK}])\\s*{re.escape(a)}', rf'\1{b}', text)
+        text = re.sub(f'([{CJK}])[ \\t]*{re.escape(a)}', rf'\1{b}', text)
         # 標點後面是 CJK（例如開頭語境）
-        text = re.sub(f'{re.escape(a)}\\s*([{CJK}])', rf'{b}\1', text)
+        text = re.sub(f'{re.escape(a)}[ \\t]*([{CJK}])', rf'{b}\1', text)
     # 句點 → 。只在緊接 CJK 之後、且後面不是數字／字母時
-    text = re.sub(f'([{CJK}])\\s*\\.(?![0-9A-Za-z])', r'\1。', text)
+    text = re.sub(f'([{CJK}])[ \\t]*\\.(?![0-9A-Za-z])', r'\1。', text)
     # 句點 → 。當它出現在 CJK 之前、且不是西文縮寫或清單/數字標記的一部分。
     # 用來抓被保護版本號後面的句末句點，例如 "2.31.0.然後" → "2.31.0。然後"
     # （版本號此時是佔位符，所以句點前面的字元是 "}"，不是字母／數字）。
     # look-behind 裡的數字正是用來保護 Markdown 有序清單標記：
     # "1. 記得…" 必須維持 "1."──轉成 "1。" 會破壞清單。
-    text = re.sub(f'(?<![A-Za-z0-9])\\.\\s*(?=[{CJK}])', '。', text)
+    text = re.sub(f'(?<![A-Za-z0-9])\\.[ \\t]*(?=[{CJK}])', '。', text)
     # 括號：任一側碰到 CJK 時轉全形
-    text = re.sub(f'\\(\\s*([^()\n]*?[{CJK}][^()\n]*?)\\)', r'（\1）', text)
+    text = re.sub(f'\\([ \\t]*([^()\n]*?[{CJK}][^()\n]*?)\\)', r'（\1）', text)
     return text
 
 
@@ -389,7 +399,8 @@ def _space_code_edges(text):
 def _cleanup(text):
     out = []
     for line in text.split('\n'):
-        line = re.sub(r'[ \t]{2,}', ' ', line)       # 壓縮行內連續空白
+        indent = re.match(r'[ \t]*', line).group(0)  # 行首縮排保留：巢狀清單靠它分層
+        line = indent + re.sub(r'[ \t]{2,}', ' ', line[len(indent):])  # 壓縮行內連續空白
         # 全形標點周圍不留空格
         line = re.sub(r'\s+([，。；：？！）」』])', r'\1', line)
         line = re.sub(r'([（「『])\s+', r'\1', line)
@@ -422,7 +433,8 @@ def _fix_casing(text, extra=None):
         table.update({k.lower(): v for k, v in extra.items()})  # 使用者覆寫內建
     for low, canon in table.items():
         # 詞界線比對、忽略大小寫；只在整個 token 與 key 相同時替換。
-        text = re.sub(rf'(?<![A-Za-z0-9.]){re.escape(low)}(?![A-Za-z0-9])',
+        # 前後接 - _ 或「.英數」是複合名稱（網域 er-api.com、變數 api_key）的一部分，不動。
+        text = re.sub(rf'(?<![A-Za-z0-9._-]){re.escape(low)}(?![A-Za-z0-9_-]|\.[A-Za-z0-9])',
                       canon, text, flags=re.IGNORECASE)
     return text
 
@@ -501,7 +513,12 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
     if spacing:
         text = _pangu(text)
     if casing:
+        # SPAN 已在 pangu 前還原（為了邊界空格），casing 前要再抽一次，不然
+        # max-api.maicoin.com/api/v3 會被改成 max-API…/API/…。接在同一個 store 後面，
+        # 索引才不會跟還在文中的 code 哨符撞號。
+        text = _stash_spans(text, store)
         text = _fix_casing(text, extra=user_dict.get('casing'))
+        text = _restore(text, store, verbatim=False)
     text = _cleanup(text)
     # 個人字典的逐字替換放最後 ── 權限最高，凌駕所有規則與 OpenCC。與 defaults.json
     # 共用 _apply_map 的長鍵先套規則，字典檔才不必靠人工排列順序。
