@@ -1,10 +1,10 @@
 lockfile_version: '1'
-generated_at: '2026-10-19T08:10:22.393340+00:00'
-apm_version: 0.27.0
+generated_at: '2026-10-20T03:34:12.586539+00:00'
+apm_version: 0.33.0
 dependencies:
 - repo_url: _local/chinese-typography
   name: chinese-typography
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/chinese-typography
@@ -20,9 +20,6 @@ dependencies:
   - .agents/skills/chinese-typography/references/glossary.md
   - .agents/skills/chinese-typography/references/typography-rules.md
   - .agents/skills/chinese-typography/requirements.txt
-  - .agents/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc
-  - .agents/skills/chinese-typography/scripts/__pycache__/test_normalize.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc
   - .agents/skills/chinese-typography/scripts/apm.yml
   - .agents/skills/chinese-typography/scripts/normalize.py
   - .agents/skills/chinese-typography/scripts/test_normalize.py
@@ -43,9 +40,6 @@ dependencies:
   - .claude/skills/chinese-typography/references/glossary.md
   - .claude/skills/chinese-typography/references/typography-rules.md
   - .claude/skills/chinese-typography/requirements.txt
-  - .claude/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc
-  - .claude/skills/chinese-typography/scripts/__pycache__/test_normalize.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc
   - .claude/skills/chinese-typography/scripts/apm.yml
   - .claude/skills/chinese-typography/scripts/normalize.py
   - .claude/skills/chinese-typography/scripts/test_normalize.py
@@ -58,20 +52,17 @@ dependencies:
     .agents/skills/chinese-typography/.pytest_cache/CACHEDIR.TAG: sha256:37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4
     .agents/skills/chinese-typography/.pytest_cache/README.md: sha256:73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad
     .agents/skills/chinese-typography/.pytest_cache/v/cache/nodeids: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-    .agents/skills/chinese-typography/SKILL.md: sha256:dc18b105542cd79930635d70b68a2048d304e1d8d9c5d99536551881df69cd70
-    .agents/skills/chinese-typography/data/defaults.json: sha256:a5785e1c7eee21982c23de57d8b67965d16fa449598e9d7bef3b6972730646cd
+    .agents/skills/chinese-typography/SKILL.md: sha256:0ffd501d589b4906807dee532458134ca9f007f8d6614c3c80ebf5c063737cf1
+    .agents/skills/chinese-typography/data/defaults.json: sha256:b187749d6c21b19d0ad9de7a72b62ce6ac80eb1adce31acff8ea53938304d5f7
     .agents/skills/chinese-typography/evals/evals.json: sha256:2fe0821ce27ab5699e3640ac4553a3b6221b5438b850f056819289e171919514
     .agents/skills/chinese-typography/evals/files/blog-draft.md: sha256:b089399b160d20f08071282366a5cf833e056d6a54666cccc2759bfea63efe65
     .agents/skills/chinese-typography/references/attribution.md: sha256:29c0f6f8efe77f9f0e3e284fd8c2a933af676492218076b59f2f0e30fcd5e8d4
-    .agents/skills/chinese-typography/references/glossary.md: sha256:2291d2b28cfed922fc8dfc861ff20b7c6d503e4d0579312192fd156e56d328ec
+    .agents/skills/chinese-typography/references/glossary.md: sha256:be828144bf4ead756d321ad567dc8cddac67f1abfde54c917f1d4752a4a6fb00
     .agents/skills/chinese-typography/references/typography-rules.md: sha256:111de565d0bd0e2394e7bb73976e73c34a6da2674fbf5fa22d12e72494bfc2aa
     .agents/skills/chinese-typography/requirements.txt: sha256:26f22a81a1cbb525f4cbeaa33949389dfd00e53844d6e8a4c072f9848ebfe8f5
-    .agents/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc: sha256:c37b2b96de239b85001cc3bda699d133b40062ca50d865844897f8e1d0567f78
-    .agents/skills/chinese-typography/scripts/__pycache__/test_normalize.cpython-310-pytest-9.0.3.pyc: sha256:77cb3c28a873a9e2813838d3af23b963414dfee4a22ede049b22c04874759d2d
-    .agents/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc: sha256:1e9ecd76655dd355531870f854a863ebb55335f2a1de1448860b2d5902e56f09
     .agents/skills/chinese-typography/scripts/apm.yml: sha256:af9e25857dd1ca44aa76fb03cae6889590d1c7d02d19a86cfd8bb6e9ddd289d4
     .agents/skills/chinese-typography/scripts/normalize.py: sha256:e2800385ad248fe874f6828af833aef0acba0bd11dc04d0ab0f2456e1f0cdfd4
-    .agents/skills/chinese-typography/scripts/test_normalize.py: sha256:fdb199212955beef2b5e95e196acaaaba7e97d83a94fa560ee2b9120e761300f
+    .agents/skills/chinese-typography/scripts/test_normalize.py: sha256:dc38334325791d84fe4329caf42a1306c9590004660fcea7bd8b56ab38f87a35
     .agents/skills/chinese-typography/scripts/test_weekday.py: sha256:52905510bf1a385d0f9999dc2cf1273516ff987f6626fc23f87999988a9e1a92
     .agents/skills/chinese-typography/scripts/weekday.py: sha256:8ae2ea384ba816245b4dfdbaebd34e99783698c6eccca1dd8c66ebafbdf5bb9a
     .agents/skills/chinese-typography/sources.lock: sha256:044ffb884d785fd604477f1c35d96ace18470fb4c413af9b0dea10cd9b4c927c
@@ -80,20 +71,17 @@ dependencies:
     .claude/skills/chinese-typography/.pytest_cache/CACHEDIR.TAG: sha256:37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4
     .claude/skills/chinese-typography/.pytest_cache/README.md: sha256:73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad
     .claude/skills/chinese-typography/.pytest_cache/v/cache/nodeids: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-    .claude/skills/chinese-typography/SKILL.md: sha256:dc18b105542cd79930635d70b68a2048d304e1d8d9c5d99536551881df69cd70
-    .claude/skills/chinese-typography/data/defaults.json: sha256:a5785e1c7eee21982c23de57d8b67965d16fa449598e9d7bef3b6972730646cd
+    .claude/skills/chinese-typography/SKILL.md: sha256:0ffd501d589b4906807dee532458134ca9f007f8d6614c3c80ebf5c063737cf1
+    .claude/skills/chinese-typography/data/defaults.json: sha256:b187749d6c21b19d0ad9de7a72b62ce6ac80eb1adce31acff8ea53938304d5f7
     .claude/skills/chinese-typography/evals/evals.json: sha256:2fe0821ce27ab5699e3640ac4553a3b6221b5438b850f056819289e171919514
     .claude/skills/chinese-typography/evals/files/blog-draft.md: sha256:b089399b160d20f08071282366a5cf833e056d6a54666cccc2759bfea63efe65
     .claude/skills/chinese-typography/references/attribution.md: sha256:29c0f6f8efe77f9f0e3e284fd8c2a933af676492218076b59f2f0e30fcd5e8d4
-    .claude/skills/chinese-typography/references/glossary.md: sha256:2291d2b28cfed922fc8dfc861ff20b7c6d503e4d0579312192fd156e56d328ec
+    .claude/skills/chinese-typography/references/glossary.md: sha256:be828144bf4ead756d321ad567dc8cddac67f1abfde54c917f1d4752a4a6fb00
     .claude/skills/chinese-typography/references/typography-rules.md: sha256:111de565d0bd0e2394e7bb73976e73c34a6da2674fbf5fa22d12e72494bfc2aa
     .claude/skills/chinese-typography/requirements.txt: sha256:26f22a81a1cbb525f4cbeaa33949389dfd00e53844d6e8a4c072f9848ebfe8f5
-    .claude/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc: sha256:c37b2b96de239b85001cc3bda699d133b40062ca50d865844897f8e1d0567f78
-    .claude/skills/chinese-typography/scripts/__pycache__/test_normalize.cpython-310-pytest-9.0.3.pyc: sha256:77cb3c28a873a9e2813838d3af23b963414dfee4a22ede049b22c04874759d2d
-    .claude/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc: sha256:1e9ecd76655dd355531870f854a863ebb55335f2a1de1448860b2d5902e56f09
     .claude/skills/chinese-typography/scripts/apm.yml: sha256:af9e25857dd1ca44aa76fb03cae6889590d1c7d02d19a86cfd8bb6e9ddd289d4
     .claude/skills/chinese-typography/scripts/normalize.py: sha256:e2800385ad248fe874f6828af833aef0acba0bd11dc04d0ab0f2456e1f0cdfd4
-    .claude/skills/chinese-typography/scripts/test_normalize.py: sha256:fdb199212955beef2b5e95e196acaaaba7e97d83a94fa560ee2b9120e761300f
+    .claude/skills/chinese-typography/scripts/test_normalize.py: sha256:dc38334325791d84fe4329caf42a1306c9590004660fcea7bd8b56ab38f87a35
     .claude/skills/chinese-typography/scripts/test_weekday.py: sha256:52905510bf1a385d0f9999dc2cf1273516ff987f6626fc23f87999988a9e1a92
     .claude/skills/chinese-typography/scripts/weekday.py: sha256:8ae2ea384ba816245b4dfdbaebd34e99783698c6eccca1dd8c66ebafbdf5bb9a
     .claude/skills/chinese-typography/sources.lock: sha256:044ffb884d785fd604477f1c35d96ace18470fb4c413af9b0dea10cd9b4c927c
@@ -102,7 +90,7 @@ dependencies:
   local_path: ./chinese-typography/
 - repo_url: _local/daily-brief
   name: daily-brief
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/daily-brief
@@ -132,7 +120,7 @@ dependencies:
   local_path: ./daily-brief/
 - repo_url: _local/decision-lens
   name: decision-lens
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/decision-lens
@@ -148,10 +136,6 @@ dependencies:
   - .agents/skills/decision-lens/scripts/.pytest_cache/README.md
   - .agents/skills/decision-lens/scripts/.pytest_cache/v/cache/lastfailed
   - .agents/skills/decision-lens/scripts/.pytest_cache/v/cache/nodeids
-  - .agents/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc
-  - .agents/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc
-  - .agents/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc
-  - .agents/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc
   - .agents/skills/decision-lens/scripts/bayes_update.py
   - .agents/skills/decision-lens/scripts/crux_score.py
   - .agents/skills/decision-lens/scripts/kelly_size.py
@@ -170,10 +154,6 @@ dependencies:
   - .claude/skills/decision-lens/scripts/.pytest_cache/README.md
   - .claude/skills/decision-lens/scripts/.pytest_cache/v/cache/lastfailed
   - .claude/skills/decision-lens/scripts/.pytest_cache/v/cache/nodeids
-  - .claude/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc
-  - .claude/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc
-  - .claude/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc
-  - .claude/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc
   - .claude/skills/decision-lens/scripts/bayes_update.py
   - .claude/skills/decision-lens/scripts/crux_score.py
   - .claude/skills/decision-lens/scripts/kelly_size.py
@@ -192,10 +172,6 @@ dependencies:
     .agents/skills/decision-lens/scripts/.pytest_cache/README.md: sha256:73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad
     .agents/skills/decision-lens/scripts/.pytest_cache/v/cache/lastfailed: sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
     .agents/skills/decision-lens/scripts/.pytest_cache/v/cache/nodeids: sha256:2be203b26fb606abe3d239c671f7d5f11fd049f87a789874dfed8ff8f90bc637
-    .agents/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc: sha256:169e22687248cfc9aeda1dc516c7071fbd0ca1548780163731c9668968befc68
-    .agents/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc: sha256:22213aa6d2d344d0a445755989a52cfa97a8f7c96602b7248e551f52902137c5
-    .agents/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc: sha256:f7771cc28e97b0b794e4f1950bfb9c7c76cc320c47dc9a59b6650416e848938a
-    .agents/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc: sha256:9d28755a1714326b04d1e6effc94d84cbf83d1bc062e92d4f83693986e3210cc
     .agents/skills/decision-lens/scripts/bayes_update.py: sha256:ec3959448ed17512413f82593667c6840f2d4e3f904a49253919bfca3d6fd2fb
     .agents/skills/decision-lens/scripts/crux_score.py: sha256:2d75168f9b6f225953b342b6a0251e9b1739190f82fa51ec258297d7722c0630
     .agents/skills/decision-lens/scripts/kelly_size.py: sha256:e74440285081892a9af550443a2185af2d8f0f4410d6786652e10544e4d42701
@@ -213,10 +189,6 @@ dependencies:
     .claude/skills/decision-lens/scripts/.pytest_cache/README.md: sha256:73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad
     .claude/skills/decision-lens/scripts/.pytest_cache/v/cache/lastfailed: sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
     .claude/skills/decision-lens/scripts/.pytest_cache/v/cache/nodeids: sha256:2be203b26fb606abe3d239c671f7d5f11fd049f87a789874dfed8ff8f90bc637
-    .claude/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc: sha256:169e22687248cfc9aeda1dc516c7071fbd0ca1548780163731c9668968befc68
-    .claude/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc: sha256:22213aa6d2d344d0a445755989a52cfa97a8f7c96602b7248e551f52902137c5
-    .claude/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc: sha256:f7771cc28e97b0b794e4f1950bfb9c7c76cc320c47dc9a59b6650416e848938a
-    .claude/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc: sha256:9d28755a1714326b04d1e6effc94d84cbf83d1bc062e92d4f83693986e3210cc
     .claude/skills/decision-lens/scripts/bayes_update.py: sha256:ec3959448ed17512413f82593667c6840f2d4e3f904a49253919bfca3d6fd2fb
     .claude/skills/decision-lens/scripts/crux_score.py: sha256:2d75168f9b6f225953b342b6a0251e9b1739190f82fa51ec258297d7722c0630
     .claude/skills/decision-lens/scripts/kelly_size.py: sha256:e74440285081892a9af550443a2185af2d8f0f4410d6786652e10544e4d42701
@@ -226,7 +198,7 @@ dependencies:
   local_path: ./decision-lens/
 - repo_url: _local/design-gate
   name: design-gate
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/design-gate
@@ -268,7 +240,7 @@ dependencies:
   local_path: ./design-gate/
 - repo_url: _local/git-guardrails
   name: git-guardrails
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/git-guardrails
@@ -302,7 +274,7 @@ dependencies:
   local_path: ./git-guardrails/
 - repo_url: _local/grill
   name: grill
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/grill
@@ -328,7 +300,7 @@ dependencies:
   local_path: ./grill/
 - repo_url: _local/handover
   name: handover
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/handover
@@ -354,7 +326,7 @@ dependencies:
   local_path: ./handover/
 - repo_url: _local/html-diagram
   name: html-diagram
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/html-diagram
@@ -420,7 +392,7 @@ dependencies:
   local_path: ./html-diagram/
 - repo_url: _local/humanizer
   name: humanizer
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/humanizer
@@ -454,7 +426,7 @@ dependencies:
   local_path: ./humanizer/
 - repo_url: _local/ig-reel
   name: ig-reel
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/ig-reel
@@ -492,7 +464,7 @@ dependencies:
   local_path: ./ig-reel/
 - repo_url: _local/last30d
   name: last30d
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/last30d
@@ -504,50 +476,8 @@ dependencies:
   - .agents/skills/last30d/SKILL.md
   - .agents/skills/last30d/evals/evals.json
   - .agents/skills/last30d/references/attribution.md
-  - .agents/skills/last30d/scripts/__pycache__/last30d.cpython-310.pyc
-  - .agents/skills/last30d/scripts/__pycache__/last30d.cpython-312.pyc
   - .agents/skills/last30d/scripts/last30d.py
   - .agents/skills/last30d/scripts/sources/__init__.py
-  - .agents/skills/last30d/scripts/sources/__pycache__/__init__.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/__init__.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/cjk.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/cjk.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/dates.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/dates.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/digest.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/digest.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/github.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/github.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/health.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/health.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/hn.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/hn.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/http.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/http.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/log.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/log.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/relevance.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/relevance.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-312.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/youtube.cpython-310.pyc
-  - .agents/skills/last30d/scripts/sources/__pycache__/youtube.cpython-312.pyc
   - .agents/skills/last30d/scripts/sources/arxiv.py
   - .agents/skills/last30d/scripts/sources/cjk.py
   - .agents/skills/last30d/scripts/sources/dates.py
@@ -568,28 +498,6 @@ dependencies:
   - .agents/skills/last30d/scripts/sources/xai_x.py
   - .agents/skills/last30d/scripts/sources/youtube.py
   - .agents/skills/last30d/sources.lock
-  - .agents/skills/last30d/tests/__pycache__/conftest.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/conftest.cpython-310.pyc
-  - .agents/skills/last30d/tests/__pycache__/conftest.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_arxiv.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_arxiv.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_digest.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_digest.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_github.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_github.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_hn.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_hn.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_lane_failures.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-312-pytest-9.1.1.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_youtube.cpython-310-pytest-9.0.3.pyc
-  - .agents/skills/last30d/tests/__pycache__/test_youtube.cpython-312-pytest-9.1.1.pyc
   - .agents/skills/last30d/tests/conftest.py
   - .agents/skills/last30d/tests/fixtures/reddit_listing_cards_sample.html
   - .agents/skills/last30d/tests/fixtures/reddit_search_challenge.html
@@ -617,50 +525,8 @@ dependencies:
   - .claude/skills/last30d/SKILL.md
   - .claude/skills/last30d/evals/evals.json
   - .claude/skills/last30d/references/attribution.md
-  - .claude/skills/last30d/scripts/__pycache__/last30d.cpython-310.pyc
-  - .claude/skills/last30d/scripts/__pycache__/last30d.cpython-312.pyc
   - .claude/skills/last30d/scripts/last30d.py
   - .claude/skills/last30d/scripts/sources/__init__.py
-  - .claude/skills/last30d/scripts/sources/__pycache__/__init__.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/__init__.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/cjk.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/cjk.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/dates.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/dates.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/digest.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/digest.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/github.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/github.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/health.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/health.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/hn.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/hn.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/http.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/http.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/log.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/log.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/relevance.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/relevance.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-312.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/youtube.cpython-310.pyc
-  - .claude/skills/last30d/scripts/sources/__pycache__/youtube.cpython-312.pyc
   - .claude/skills/last30d/scripts/sources/arxiv.py
   - .claude/skills/last30d/scripts/sources/cjk.py
   - .claude/skills/last30d/scripts/sources/dates.py
@@ -681,28 +547,6 @@ dependencies:
   - .claude/skills/last30d/scripts/sources/xai_x.py
   - .claude/skills/last30d/scripts/sources/youtube.py
   - .claude/skills/last30d/sources.lock
-  - .claude/skills/last30d/tests/__pycache__/conftest.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/conftest.cpython-310.pyc
-  - .claude/skills/last30d/tests/__pycache__/conftest.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_arxiv.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_arxiv.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_digest.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_digest.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_github.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_github.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_hn.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_hn.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_lane_failures.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-312-pytest-9.1.1.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_youtube.cpython-310-pytest-9.0.3.pyc
-  - .claude/skills/last30d/tests/__pycache__/test_youtube.cpython-312-pytest-9.1.1.pyc
   - .claude/skills/last30d/tests/conftest.py
   - .claude/skills/last30d/tests/fixtures/reddit_listing_cards_sample.html
   - .claude/skills/last30d/tests/fixtures/reddit_search_challenge.html
@@ -730,50 +574,8 @@ dependencies:
     .agents/skills/last30d/SKILL.md: sha256:bfcf63d8b21ff344f285b2d05d5118bce97a31197a63b6e8fe0baedc5eec3f90
     .agents/skills/last30d/evals/evals.json: sha256:63a1061bfb2fd37491a335a40b54d0de0a72eb40b1577c073550cbca0ed0911f
     .agents/skills/last30d/references/attribution.md: sha256:999a2898855d9d388128f034184b893f4250a47e49838c78fbd4cad151671b40
-    .agents/skills/last30d/scripts/__pycache__/last30d.cpython-310.pyc: sha256:f25c245b9f37fa02758d1fa58c9f1fdf78c715a6a9a416885a9a3bb870262c68
-    .agents/skills/last30d/scripts/__pycache__/last30d.cpython-312.pyc: sha256:6d731590384d5dcb86d10e641778085502b58b5abb44e5fc5cb0357edf30032d
     .agents/skills/last30d/scripts/last30d.py: sha256:6b0b735bd8f726117e41b19f162b0f82eb579dd7014e0c0d284f292342927321
     .agents/skills/last30d/scripts/sources/__init__.py: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-    .agents/skills/last30d/scripts/sources/__pycache__/__init__.cpython-310.pyc: sha256:6457bded56e020fbd7ab64ae4d28bbeb9c218e4372801f2e277c94129145e199
-    .agents/skills/last30d/scripts/sources/__pycache__/__init__.cpython-312.pyc: sha256:27890a15c170bfa2ac75b08b36eae5689fcf95eb75cf7c7edc9bb6885df9785e
-    .agents/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-310.pyc: sha256:ddf76115f4bc90b1a8a27ed89119d5b540c623f486935d1a6d52bcd7145c34b3
-    .agents/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-312.pyc: sha256:586799053e90fec0acc92791a3e6eb71cc0f5033144bd565f7f604d403bec328
-    .agents/skills/last30d/scripts/sources/__pycache__/cjk.cpython-310.pyc: sha256:51a1ed7ee305095ee3da960152e34e5cf8fa0d882b0050d5d6ce87ab875dc3c9
-    .agents/skills/last30d/scripts/sources/__pycache__/cjk.cpython-312.pyc: sha256:c94b472ead33c9879e641a3efb8bd70e9ab0c711fd7f7e7f6736eb071534c865
-    .agents/skills/last30d/scripts/sources/__pycache__/dates.cpython-310.pyc: sha256:49ecf8a823a34329471bdaeddd5932f6fc6ac09521a0e4bf3566e27376f481d4
-    .agents/skills/last30d/scripts/sources/__pycache__/dates.cpython-312.pyc: sha256:e1bc423b2848ad41004ad7556b98b51dcd617d7191bb26fd52c7c5bb69341e3c
-    .agents/skills/last30d/scripts/sources/__pycache__/digest.cpython-310.pyc: sha256:38844a7cb28ae9c29dbc29df51745451eabd3fd6b9e3b65d7a0e3ef61f4fcd89
-    .agents/skills/last30d/scripts/sources/__pycache__/digest.cpython-312.pyc: sha256:4c752138adf1e96c9ff6725170e01f52c0bad677cc054161e97e01430dafc44a
-    .agents/skills/last30d/scripts/sources/__pycache__/github.cpython-310.pyc: sha256:fe0c487e28eb4c50047d1ad7ce00d89254c80ed532232f22d5c723937bd88e93
-    .agents/skills/last30d/scripts/sources/__pycache__/github.cpython-312.pyc: sha256:024bb71231b718bded608df5a499f70270bd9e38a737b2697d2de5675f353366
-    .agents/skills/last30d/scripts/sources/__pycache__/health.cpython-310.pyc: sha256:91701f5e756ad62d2e4c86067c5ab53aec7aee7edc8d7209f7b8a25b70521d32
-    .agents/skills/last30d/scripts/sources/__pycache__/health.cpython-312.pyc: sha256:49d29b2eece47f9082316bd96ad22d201ebb9cfe4f60f02018b7ba05ada00077
-    .agents/skills/last30d/scripts/sources/__pycache__/hn.cpython-310.pyc: sha256:9cf700f6810c54164e75b4aaaf41e969127e2ad8079b183697e6916e3c658695
-    .agents/skills/last30d/scripts/sources/__pycache__/hn.cpython-312.pyc: sha256:33ebc262b80d9a8d06895ad65dd1f3e31a65a69726c8747e47137e278eaf970f
-    .agents/skills/last30d/scripts/sources/__pycache__/http.cpython-310.pyc: sha256:aadafde1bdf953dd21ea0f0427c281943ea54a290fbd3a0411c2a488b3de69ba
-    .agents/skills/last30d/scripts/sources/__pycache__/http.cpython-312.pyc: sha256:aff5b57fedcfb436d05742956a19dece65aac3592e9ea1fcd8e8bfce4f1e5e0e
-    .agents/skills/last30d/scripts/sources/__pycache__/log.cpython-310.pyc: sha256:6e18850f3a64450d6449440386b26115b3eec1c270cf35275fce00f34e530683
-    .agents/skills/last30d/scripts/sources/__pycache__/log.cpython-312.pyc: sha256:8c2ebef20bce2cb77cfe2419ef65df1990a51f2757ab455562bbe14b0caa740d
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit.cpython-310.pyc: sha256:25508fcc3ea86a3885b55d8c3348cc12b24e892dde10a4fc56bb8deca9cb22a0
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit.cpython-312.pyc: sha256:3100d11862658790bc9976f51b10ebcd8610a3551972c77061874d0498154d33
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-310.pyc: sha256:1b942f3da7edb1be0f091742fae91adacf261da7f37625962d40743e3b680f92
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-312.pyc: sha256:c6066940bec11720297e6db92e002906d3db808caf0b1b3a76fbe8e6b486462b
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-310.pyc: sha256:77bf8b89da4b0f025eb6b9d65aa64b6b9b6124113f60a1b017b437cc94cbbdcb
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-312.pyc: sha256:2c924e3e435edc54a96985bf73d8b291a744649f0c309e549c3df6542bdf5387
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-310.pyc: sha256:50094b7a49ad332863225f74b6dd459ddca8b49edcda8c0c65e7cc25729aa714
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-312.pyc: sha256:460b43cd1327041288159c8a170c6c5ed37f352923c3b5df29a8ae796c0044b4
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-310.pyc: sha256:5f6e8518bc40fb2c2cd66e73fa6fb68aa1055ea972c369680d8ea70e17a98b67
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-312.pyc: sha256:f0c79b6852ab91ffb4cfea1082b8c8f7fdcf1d49ff116f8d282cc4054b28dc3d
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-310.pyc: sha256:9699386d198161189b0019c008924b3bb81af6cafb86172d9bbca410002dc3e7
-    .agents/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-312.pyc: sha256:eead16ba27d4a04ca321663d1f6d4ff915d5b8e9e958a0eb4b214fb73204835e
-    .agents/skills/last30d/scripts/sources/__pycache__/relevance.cpython-310.pyc: sha256:85bc3b21ccc8752313248ab54f7f28b0a287e7ea608731632541a99b645df759
-    .agents/skills/last30d/scripts/sources/__pycache__/relevance.cpython-312.pyc: sha256:f2854ffd72afff7ad9287a45d47f9d8e2efb4f87f5812de83a2f4a6dcc350dc5
-    .agents/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-310.pyc: sha256:39a50021853b80afeb9efb883496a8c029c6e2ae0b721c1e17fcaf4a16efb0af
-    .agents/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-312.pyc: sha256:c5d484d59ff8d51f08285fe95d5f11d5e78c7ee21dedccf7ebab1d01a278b213
-    .agents/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-310.pyc: sha256:58a5b9b0a61bed71778668f284f94b7c38852a38da82d69970ba362ac8075bff
-    .agents/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-312.pyc: sha256:6d7907146e7853b3731648874ab6f0c97e62881d4257806ff484525f37ecaaeb
-    .agents/skills/last30d/scripts/sources/__pycache__/youtube.cpython-310.pyc: sha256:b0ed1224117c243bde82aa1550d3c06683fa215c4c2a80a8e68bc742919d16ed
-    .agents/skills/last30d/scripts/sources/__pycache__/youtube.cpython-312.pyc: sha256:aa7ea08930627a53ece63cf79b0f721c6d31be7680f8a11f295e8765f985f5bb
     .agents/skills/last30d/scripts/sources/arxiv.py: sha256:b3e7568ad19388e02c3a567ae4b3ad2085f91e9925af71da40b5de5ee5089bbb
     .agents/skills/last30d/scripts/sources/cjk.py: sha256:92279dd6d6643b1d4e95793f23e082579c18392114ee19b27a3cdb48cb67d890
     .agents/skills/last30d/scripts/sources/dates.py: sha256:d1c71ec823bf122396523b04875cdd59e169658d158b5dface574233433574c8
@@ -794,28 +596,6 @@ dependencies:
     .agents/skills/last30d/scripts/sources/xai_x.py: sha256:5be102ea2420d6ab905a4f12b8a9129ebaa9ad8250937fe68fde23a3ee79d980
     .agents/skills/last30d/scripts/sources/youtube.py: sha256:ea2d096c96beeaf8407ec17fcca877f0d5e7f7aa22a13e3cb4070974385b5fcb
     .agents/skills/last30d/sources.lock: sha256:077936879a8bfb4e73cdfe7ec246566b70e3616467a5adafa6d3723df99fb71f
-    .agents/skills/last30d/tests/__pycache__/conftest.cpython-310-pytest-9.0.3.pyc: sha256:f67b0285ad04c6e2807439ed6f1bd42e91ac76a79ebe77f0d11b2ae0836c2945
-    .agents/skills/last30d/tests/__pycache__/conftest.cpython-310.pyc: sha256:2d3e80cefe2c403da6618ea51dbbd06220cb9af6074a23d2928a76d044835838
-    .agents/skills/last30d/tests/__pycache__/conftest.cpython-312-pytest-9.1.1.pyc: sha256:a90fdf174c2122812ae5b778d9bf955f4c5593d1a3f43f3e493925e6e841cf67
-    .agents/skills/last30d/tests/__pycache__/test_arxiv.cpython-310-pytest-9.0.3.pyc: sha256:1097b1753bbdb85b8b0eeb930ba26e1af6d5ff0b14d20b6afe05a62cfc3fb54f
-    .agents/skills/last30d/tests/__pycache__/test_arxiv.cpython-312-pytest-9.1.1.pyc: sha256:a89af1036a2ba08f70434fe79b8bfef5bbfdfe211e3a850072cf320f4ce606ab
-    .agents/skills/last30d/tests/__pycache__/test_digest.cpython-310-pytest-9.0.3.pyc: sha256:cade72138b7fb8de4faad23ca8e6df7ec0eb648a0c28c83552af5a9d98ffb1c0
-    .agents/skills/last30d/tests/__pycache__/test_digest.cpython-312-pytest-9.1.1.pyc: sha256:94ff1da11729fa2f032dbf81f01b71f859064833f29ac9cd86ecfe33fb8f62b7
-    .agents/skills/last30d/tests/__pycache__/test_github.cpython-310-pytest-9.0.3.pyc: sha256:ef776879165e9ef8fe586f5d1029199ed21f6f9473c04e173f42334a8061a632
-    .agents/skills/last30d/tests/__pycache__/test_github.cpython-312-pytest-9.1.1.pyc: sha256:498fe3bcaeb5f2ac503276c722ff6532f9e4521b44067b414ca880c5d91fb817
-    .agents/skills/last30d/tests/__pycache__/test_hn.cpython-310-pytest-9.0.3.pyc: sha256:cfd1e820274f3869a6556f3b835a986ea9e98ffd2a995b544115d242d4e7c091
-    .agents/skills/last30d/tests/__pycache__/test_hn.cpython-312-pytest-9.1.1.pyc: sha256:cd0f48d2aecaeb6e79b1a5da7d9270e936d115192c18f883637f94dca21baba9
-    .agents/skills/last30d/tests/__pycache__/test_lane_failures.cpython-310-pytest-9.0.3.pyc: sha256:ee52c26934eaafc11f3390bfd5060b3951fa942e0182f18facf2009a3cc7986f
-    .agents/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-310-pytest-9.0.3.pyc: sha256:3ef2a9c17cdfe92f7b7d0fbae7846afa1569777551e5a438d74c6b1708430161
-    .agents/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-312-pytest-9.1.1.pyc: sha256:99fa39478957720b3131bd0929dca4dc511c757f3f62e52680e5149a4e3bcfde
-    .agents/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-310-pytest-9.0.3.pyc: sha256:384b2b3602b91db46e2d785dc1cb20a88efc7de075c67e67217630ff63fa2898
-    .agents/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-312-pytest-9.1.1.pyc: sha256:11eaf749c4e2d6714e5a3f825ea31a04be768e76e4f07b5efe0589167bb85a02
-    .agents/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-310-pytest-9.0.3.pyc: sha256:60e440545801ccac912ed316ba41781b447e6175abf64b305bcd08cfe0832f82
-    .agents/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-312-pytest-9.1.1.pyc: sha256:8ae04644bdcc24f0190c945d80c0c65095f4630174a63e069e86d98db24f4118
-    .agents/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-310-pytest-9.0.3.pyc: sha256:d21cc47faec228ea22c9298ee21f459eb23c60c274626d9b299b1bd3515204db
-    .agents/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-312-pytest-9.1.1.pyc: sha256:e65468a9157134390ac3e311a735dc42f8660c6bf9a67cbae5d24c14cb78cdf2
-    .agents/skills/last30d/tests/__pycache__/test_youtube.cpython-310-pytest-9.0.3.pyc: sha256:b1dcfd561583dea4512d28d5979dc822db904c4d0bb5724d2206d84cee7edb1b
-    .agents/skills/last30d/tests/__pycache__/test_youtube.cpython-312-pytest-9.1.1.pyc: sha256:82657bc5786c5691aca358c8ad2242987bb6fd59ec4b789e56c5bc89943e9f71
     .agents/skills/last30d/tests/conftest.py: sha256:61e185365123347b504deebae5b12ac0fd2524372b5df9067a0304aabf3876c7
     .agents/skills/last30d/tests/fixtures/reddit_listing_cards_sample.html: sha256:4c46539c44609d09eeab8e9f4009b3b89a668a87130e110c1b9a81972c103209
     .agents/skills/last30d/tests/fixtures/reddit_search_challenge.html: sha256:d564c35e905d9d6e67f3ea39a9664b29bf7325c9d33713c23047c8b722290533
@@ -842,50 +622,8 @@ dependencies:
     .claude/skills/last30d/SKILL.md: sha256:bfcf63d8b21ff344f285b2d05d5118bce97a31197a63b6e8fe0baedc5eec3f90
     .claude/skills/last30d/evals/evals.json: sha256:63a1061bfb2fd37491a335a40b54d0de0a72eb40b1577c073550cbca0ed0911f
     .claude/skills/last30d/references/attribution.md: sha256:999a2898855d9d388128f034184b893f4250a47e49838c78fbd4cad151671b40
-    .claude/skills/last30d/scripts/__pycache__/last30d.cpython-310.pyc: sha256:f25c245b9f37fa02758d1fa58c9f1fdf78c715a6a9a416885a9a3bb870262c68
-    .claude/skills/last30d/scripts/__pycache__/last30d.cpython-312.pyc: sha256:6d731590384d5dcb86d10e641778085502b58b5abb44e5fc5cb0357edf30032d
     .claude/skills/last30d/scripts/last30d.py: sha256:6b0b735bd8f726117e41b19f162b0f82eb579dd7014e0c0d284f292342927321
     .claude/skills/last30d/scripts/sources/__init__.py: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-    .claude/skills/last30d/scripts/sources/__pycache__/__init__.cpython-310.pyc: sha256:6457bded56e020fbd7ab64ae4d28bbeb9c218e4372801f2e277c94129145e199
-    .claude/skills/last30d/scripts/sources/__pycache__/__init__.cpython-312.pyc: sha256:27890a15c170bfa2ac75b08b36eae5689fcf95eb75cf7c7edc9bb6885df9785e
-    .claude/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-310.pyc: sha256:ddf76115f4bc90b1a8a27ed89119d5b540c623f486935d1a6d52bcd7145c34b3
-    .claude/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-312.pyc: sha256:586799053e90fec0acc92791a3e6eb71cc0f5033144bd565f7f604d403bec328
-    .claude/skills/last30d/scripts/sources/__pycache__/cjk.cpython-310.pyc: sha256:51a1ed7ee305095ee3da960152e34e5cf8fa0d882b0050d5d6ce87ab875dc3c9
-    .claude/skills/last30d/scripts/sources/__pycache__/cjk.cpython-312.pyc: sha256:c94b472ead33c9879e641a3efb8bd70e9ab0c711fd7f7e7f6736eb071534c865
-    .claude/skills/last30d/scripts/sources/__pycache__/dates.cpython-310.pyc: sha256:49ecf8a823a34329471bdaeddd5932f6fc6ac09521a0e4bf3566e27376f481d4
-    .claude/skills/last30d/scripts/sources/__pycache__/dates.cpython-312.pyc: sha256:e1bc423b2848ad41004ad7556b98b51dcd617d7191bb26fd52c7c5bb69341e3c
-    .claude/skills/last30d/scripts/sources/__pycache__/digest.cpython-310.pyc: sha256:38844a7cb28ae9c29dbc29df51745451eabd3fd6b9e3b65d7a0e3ef61f4fcd89
-    .claude/skills/last30d/scripts/sources/__pycache__/digest.cpython-312.pyc: sha256:4c752138adf1e96c9ff6725170e01f52c0bad677cc054161e97e01430dafc44a
-    .claude/skills/last30d/scripts/sources/__pycache__/github.cpython-310.pyc: sha256:fe0c487e28eb4c50047d1ad7ce00d89254c80ed532232f22d5c723937bd88e93
-    .claude/skills/last30d/scripts/sources/__pycache__/github.cpython-312.pyc: sha256:024bb71231b718bded608df5a499f70270bd9e38a737b2697d2de5675f353366
-    .claude/skills/last30d/scripts/sources/__pycache__/health.cpython-310.pyc: sha256:91701f5e756ad62d2e4c86067c5ab53aec7aee7edc8d7209f7b8a25b70521d32
-    .claude/skills/last30d/scripts/sources/__pycache__/health.cpython-312.pyc: sha256:49d29b2eece47f9082316bd96ad22d201ebb9cfe4f60f02018b7ba05ada00077
-    .claude/skills/last30d/scripts/sources/__pycache__/hn.cpython-310.pyc: sha256:9cf700f6810c54164e75b4aaaf41e969127e2ad8079b183697e6916e3c658695
-    .claude/skills/last30d/scripts/sources/__pycache__/hn.cpython-312.pyc: sha256:33ebc262b80d9a8d06895ad65dd1f3e31a65a69726c8747e47137e278eaf970f
-    .claude/skills/last30d/scripts/sources/__pycache__/http.cpython-310.pyc: sha256:aadafde1bdf953dd21ea0f0427c281943ea54a290fbd3a0411c2a488b3de69ba
-    .claude/skills/last30d/scripts/sources/__pycache__/http.cpython-312.pyc: sha256:aff5b57fedcfb436d05742956a19dece65aac3592e9ea1fcd8e8bfce4f1e5e0e
-    .claude/skills/last30d/scripts/sources/__pycache__/log.cpython-310.pyc: sha256:6e18850f3a64450d6449440386b26115b3eec1c270cf35275fce00f34e530683
-    .claude/skills/last30d/scripts/sources/__pycache__/log.cpython-312.pyc: sha256:8c2ebef20bce2cb77cfe2419ef65df1990a51f2757ab455562bbe14b0caa740d
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit.cpython-310.pyc: sha256:25508fcc3ea86a3885b55d8c3348cc12b24e892dde10a4fc56bb8deca9cb22a0
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit.cpython-312.pyc: sha256:3100d11862658790bc9976f51b10ebcd8610a3551972c77061874d0498154d33
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-310.pyc: sha256:1b942f3da7edb1be0f091742fae91adacf261da7f37625962d40743e3b680f92
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-312.pyc: sha256:c6066940bec11720297e6db92e002906d3db808caf0b1b3a76fbe8e6b486462b
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-310.pyc: sha256:77bf8b89da4b0f025eb6b9d65aa64b6b9b6124113f60a1b017b437cc94cbbdcb
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-312.pyc: sha256:2c924e3e435edc54a96985bf73d8b291a744649f0c309e549c3df6542bdf5387
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-310.pyc: sha256:50094b7a49ad332863225f74b6dd459ddca8b49edcda8c0c65e7cc25729aa714
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-312.pyc: sha256:460b43cd1327041288159c8a170c6c5ed37f352923c3b5df29a8ae796c0044b4
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-310.pyc: sha256:5f6e8518bc40fb2c2cd66e73fa6fb68aa1055ea972c369680d8ea70e17a98b67
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-312.pyc: sha256:f0c79b6852ab91ffb4cfea1082b8c8f7fdcf1d49ff116f8d282cc4054b28dc3d
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-310.pyc: sha256:9699386d198161189b0019c008924b3bb81af6cafb86172d9bbca410002dc3e7
-    .claude/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-312.pyc: sha256:eead16ba27d4a04ca321663d1f6d4ff915d5b8e9e958a0eb4b214fb73204835e
-    .claude/skills/last30d/scripts/sources/__pycache__/relevance.cpython-310.pyc: sha256:85bc3b21ccc8752313248ab54f7f28b0a287e7ea608731632541a99b645df759
-    .claude/skills/last30d/scripts/sources/__pycache__/relevance.cpython-312.pyc: sha256:f2854ffd72afff7ad9287a45d47f9d8e2efb4f87f5812de83a2f4a6dcc350dc5
-    .claude/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-310.pyc: sha256:39a50021853b80afeb9efb883496a8c029c6e2ae0b721c1e17fcaf4a16efb0af
-    .claude/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-312.pyc: sha256:c5d484d59ff8d51f08285fe95d5f11d5e78c7ee21dedccf7ebab1d01a278b213
-    .claude/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-310.pyc: sha256:58a5b9b0a61bed71778668f284f94b7c38852a38da82d69970ba362ac8075bff
-    .claude/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-312.pyc: sha256:6d7907146e7853b3731648874ab6f0c97e62881d4257806ff484525f37ecaaeb
-    .claude/skills/last30d/scripts/sources/__pycache__/youtube.cpython-310.pyc: sha256:b0ed1224117c243bde82aa1550d3c06683fa215c4c2a80a8e68bc742919d16ed
-    .claude/skills/last30d/scripts/sources/__pycache__/youtube.cpython-312.pyc: sha256:aa7ea08930627a53ece63cf79b0f721c6d31be7680f8a11f295e8765f985f5bb
     .claude/skills/last30d/scripts/sources/arxiv.py: sha256:b3e7568ad19388e02c3a567ae4b3ad2085f91e9925af71da40b5de5ee5089bbb
     .claude/skills/last30d/scripts/sources/cjk.py: sha256:92279dd6d6643b1d4e95793f23e082579c18392114ee19b27a3cdb48cb67d890
     .claude/skills/last30d/scripts/sources/dates.py: sha256:d1c71ec823bf122396523b04875cdd59e169658d158b5dface574233433574c8
@@ -906,28 +644,6 @@ dependencies:
     .claude/skills/last30d/scripts/sources/xai_x.py: sha256:5be102ea2420d6ab905a4f12b8a9129ebaa9ad8250937fe68fde23a3ee79d980
     .claude/skills/last30d/scripts/sources/youtube.py: sha256:ea2d096c96beeaf8407ec17fcca877f0d5e7f7aa22a13e3cb4070974385b5fcb
     .claude/skills/last30d/sources.lock: sha256:077936879a8bfb4e73cdfe7ec246566b70e3616467a5adafa6d3723df99fb71f
-    .claude/skills/last30d/tests/__pycache__/conftest.cpython-310-pytest-9.0.3.pyc: sha256:f67b0285ad04c6e2807439ed6f1bd42e91ac76a79ebe77f0d11b2ae0836c2945
-    .claude/skills/last30d/tests/__pycache__/conftest.cpython-310.pyc: sha256:2d3e80cefe2c403da6618ea51dbbd06220cb9af6074a23d2928a76d044835838
-    .claude/skills/last30d/tests/__pycache__/conftest.cpython-312-pytest-9.1.1.pyc: sha256:a90fdf174c2122812ae5b778d9bf955f4c5593d1a3f43f3e493925e6e841cf67
-    .claude/skills/last30d/tests/__pycache__/test_arxiv.cpython-310-pytest-9.0.3.pyc: sha256:1097b1753bbdb85b8b0eeb930ba26e1af6d5ff0b14d20b6afe05a62cfc3fb54f
-    .claude/skills/last30d/tests/__pycache__/test_arxiv.cpython-312-pytest-9.1.1.pyc: sha256:a89af1036a2ba08f70434fe79b8bfef5bbfdfe211e3a850072cf320f4ce606ab
-    .claude/skills/last30d/tests/__pycache__/test_digest.cpython-310-pytest-9.0.3.pyc: sha256:cade72138b7fb8de4faad23ca8e6df7ec0eb648a0c28c83552af5a9d98ffb1c0
-    .claude/skills/last30d/tests/__pycache__/test_digest.cpython-312-pytest-9.1.1.pyc: sha256:94ff1da11729fa2f032dbf81f01b71f859064833f29ac9cd86ecfe33fb8f62b7
-    .claude/skills/last30d/tests/__pycache__/test_github.cpython-310-pytest-9.0.3.pyc: sha256:ef776879165e9ef8fe586f5d1029199ed21f6f9473c04e173f42334a8061a632
-    .claude/skills/last30d/tests/__pycache__/test_github.cpython-312-pytest-9.1.1.pyc: sha256:498fe3bcaeb5f2ac503276c722ff6532f9e4521b44067b414ca880c5d91fb817
-    .claude/skills/last30d/tests/__pycache__/test_hn.cpython-310-pytest-9.0.3.pyc: sha256:cfd1e820274f3869a6556f3b835a986ea9e98ffd2a995b544115d242d4e7c091
-    .claude/skills/last30d/tests/__pycache__/test_hn.cpython-312-pytest-9.1.1.pyc: sha256:cd0f48d2aecaeb6e79b1a5da7d9270e936d115192c18f883637f94dca21baba9
-    .claude/skills/last30d/tests/__pycache__/test_lane_failures.cpython-310-pytest-9.0.3.pyc: sha256:ee52c26934eaafc11f3390bfd5060b3951fa942e0182f18facf2009a3cc7986f
-    .claude/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-310-pytest-9.0.3.pyc: sha256:3ef2a9c17cdfe92f7b7d0fbae7846afa1569777551e5a438d74c6b1708430161
-    .claude/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-312-pytest-9.1.1.pyc: sha256:99fa39478957720b3131bd0929dca4dc511c757f3f62e52680e5149a4e3bcfde
-    .claude/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-310-pytest-9.0.3.pyc: sha256:384b2b3602b91db46e2d785dc1cb20a88efc7de075c67e67217630ff63fa2898
-    .claude/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-312-pytest-9.1.1.pyc: sha256:11eaf749c4e2d6714e5a3f825ea31a04be768e76e4f07b5efe0589167bb85a02
-    .claude/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-310-pytest-9.0.3.pyc: sha256:60e440545801ccac912ed316ba41781b447e6175abf64b305bcd08cfe0832f82
-    .claude/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-312-pytest-9.1.1.pyc: sha256:8ae04644bdcc24f0190c945d80c0c65095f4630174a63e069e86d98db24f4118
-    .claude/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-310-pytest-9.0.3.pyc: sha256:d21cc47faec228ea22c9298ee21f459eb23c60c274626d9b299b1bd3515204db
-    .claude/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-312-pytest-9.1.1.pyc: sha256:e65468a9157134390ac3e311a735dc42f8660c6bf9a67cbae5d24c14cb78cdf2
-    .claude/skills/last30d/tests/__pycache__/test_youtube.cpython-310-pytest-9.0.3.pyc: sha256:b1dcfd561583dea4512d28d5979dc822db904c4d0bb5724d2206d84cee7edb1b
-    .claude/skills/last30d/tests/__pycache__/test_youtube.cpython-312-pytest-9.1.1.pyc: sha256:82657bc5786c5691aca358c8ad2242987bb6fd59ec4b789e56c5bc89943e9f71
     .claude/skills/last30d/tests/conftest.py: sha256:61e185365123347b504deebae5b12ac0fd2524372b5df9067a0304aabf3876c7
     .claude/skills/last30d/tests/fixtures/reddit_listing_cards_sample.html: sha256:4c46539c44609d09eeab8e9f4009b3b89a668a87130e110c1b9a81972c103209
     .claude/skills/last30d/tests/fixtures/reddit_search_challenge.html: sha256:d564c35e905d9d6e67f3ea39a9664b29bf7325c9d33713c23047c8b722290533
@@ -950,7 +666,7 @@ dependencies:
   local_path: ./last30d/
 - repo_url: _local/p2pscout
   name: p2pscout
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/p2pscout
@@ -1056,7 +772,7 @@ dependencies:
   local_path: ./p2pscout/
 - repo_url: _local/relationship-counsel
   name: relationship-counsel
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/relationship-counsel
@@ -1090,7 +806,7 @@ dependencies:
   local_path: ./relationship-counsel/
 - repo_url: _local/roleplay-coach
   name: roleplay-coach
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/roleplay-coach
@@ -1116,7 +832,7 @@ dependencies:
   local_path: ./roleplay-coach/
 - repo_url: _local/single-source-docs
   name: single-source-docs
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/single-source-docs
@@ -1134,7 +850,7 @@ dependencies:
   local_path: ./single-source-docs/
 - repo_url: _local/skill-auditor
   name: skill-auditor
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/skill-auditor
@@ -1165,8 +881,8 @@ dependencies:
   - .claude/skills/skill-auditor/sources.lock
   deployed_file_hashes:
     .agents/skills/skill-auditor/README.md: sha256:fdcd6417c668341451b30d1d22441b1f3f0cf68addd6c52ff757dbcf8788d77d
-    .agents/skills/skill-auditor/SKILL.md: sha256:c18a68328958bce0cfdd9cdcb35fe22533d4befd19e5d428a4ed3eb012b6e2b2
-    .agents/skills/skill-auditor/evals/evals.json: sha256:c7edb2b9b536336eedbc05a996cf750a7424ab4e0938ee6d30b032ce8da33aff
+    .agents/skills/skill-auditor/SKILL.md: sha256:a92aa3eea8f786c474da0ad0d826e554a2f108abfad576c5c3e12d6fc2f1dd90
+    .agents/skills/skill-auditor/evals/evals.json: sha256:671a3a8cad9db97b0d8f7a02ef83a57eaf1666e7343f9b04580d57519bf4d5c3
     .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/MANIFEST.md: sha256:6107d0159e90f3cc113b974874dc9b41b568f729a48fa507dc87af343efd1579
     .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/SKILL.md: sha256:4969178019f71f15e9247ca1bfa20f13f12b219d5fbdbcdc608dfc7c715c68ab
     .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/templates/code-standards.md: sha256:74e9b9525399c7c47eb8e144b5c75489acb97557b8f239cf2b20fec12ddf3700
@@ -1177,8 +893,8 @@ dependencies:
     .agents/skills/skill-auditor/references/attribution.md: sha256:424eec54366ec7127d5939fe05280332f16b21dd52339d1338e366e2c8c8bb68
     .agents/skills/skill-auditor/sources.lock: sha256:48e070cea21e5affb3a789f6660b5ceec9e3f30f4834da9ddaac3cea8ffe4cea
     .claude/skills/skill-auditor/README.md: sha256:fdcd6417c668341451b30d1d22441b1f3f0cf68addd6c52ff757dbcf8788d77d
-    .claude/skills/skill-auditor/SKILL.md: sha256:c18a68328958bce0cfdd9cdcb35fe22533d4befd19e5d428a4ed3eb012b6e2b2
-    .claude/skills/skill-auditor/evals/evals.json: sha256:c7edb2b9b536336eedbc05a996cf750a7424ab4e0938ee6d30b032ce8da33aff
+    .claude/skills/skill-auditor/SKILL.md: sha256:a92aa3eea8f786c474da0ad0d826e554a2f108abfad576c5c3e12d6fc2f1dd90
+    .claude/skills/skill-auditor/evals/evals.json: sha256:671a3a8cad9db97b0d8f7a02ef83a57eaf1666e7343f9b04580d57519bf4d5c3
     .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/MANIFEST.md: sha256:6107d0159e90f3cc113b974874dc9b41b568f729a48fa507dc87af343efd1579
     .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/SKILL.md: sha256:4969178019f71f15e9247ca1bfa20f13f12b219d5fbdbcdc608dfc7c715c68ab
     .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/fixture-codereview/templates/code-standards.md: sha256:74e9b9525399c7c47eb8e144b5c75489acb97557b8f239cf2b20fec12ddf3700
@@ -1192,7 +908,7 @@ dependencies:
   local_path: ./skill-auditor/
 - repo_url: _local/skill-curator
   name: skill-curator
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/skill-curator
@@ -1222,18 +938,13 @@ dependencies:
   local_path: ./skill-curator/
 - repo_url: _local/skill-evolve
   name: skill-evolve
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/skill-evolve
   - .agents/skills/skill-evolve/SKILL.md
   - .agents/skills/skill-evolve/evals/evals.json
   - .agents/skills/skill-evolve/references/attribution.md
-  - .agents/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc
-  - .agents/skills/skill-evolve/scripts/__pycache__/env_health.cpython-310.pyc
-  - .agents/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc
-  - .agents/skills/skill-evolve/scripts/__pycache__/mine_usage.cpython-310.pyc
-  - .agents/skills/skill-evolve/scripts/__pycache__/test_mine_usage.cpython-310.pyc
   - .agents/skills/skill-evolve/scripts/check_updates.py
   - .agents/skills/skill-evolve/scripts/env_health.py
   - .agents/skills/skill-evolve/scripts/extract_sources.py
@@ -1247,11 +958,6 @@ dependencies:
   - .claude/skills/skill-evolve/SKILL.md
   - .claude/skills/skill-evolve/evals/evals.json
   - .claude/skills/skill-evolve/references/attribution.md
-  - .claude/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc
-  - .claude/skills/skill-evolve/scripts/__pycache__/env_health.cpython-310.pyc
-  - .claude/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc
-  - .claude/skills/skill-evolve/scripts/__pycache__/mine_usage.cpython-310.pyc
-  - .claude/skills/skill-evolve/scripts/__pycache__/test_mine_usage.cpython-310.pyc
   - .claude/skills/skill-evolve/scripts/check_updates.py
   - .claude/skills/skill-evolve/scripts/env_health.py
   - .claude/skills/skill-evolve/scripts/extract_sources.py
@@ -1265,11 +971,6 @@ dependencies:
     .agents/skills/skill-evolve/SKILL.md: sha256:aa11479cef014b145c07bdad0cb51bb0bffca7a5451ae222ed1136dc03631b02
     .agents/skills/skill-evolve/evals/evals.json: sha256:8e241dd3b9bb8c55b10ee4a681a3fb5150da48a503a37d0fdbb8a0883c7c15e8
     .agents/skills/skill-evolve/references/attribution.md: sha256:7b5ba6c3996b99a87b051884d67335c6872ebe95405d3c90eda8ce3a9e125d87
-    .agents/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc: sha256:74df9254fdf8af7126bafb7d65e71766a9c4a9d86fecb02b2fa0478113f90565
-    .agents/skills/skill-evolve/scripts/__pycache__/env_health.cpython-310.pyc: sha256:6408f725990e3cbc167a7c562978ae8bfaca3515ee53de6abef0fdc23cc3d85c
-    .agents/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc: sha256:28f3515a31f98f09c4454da5afe3a6b1ad324700fe53a1bb7dcf6b421d733699
-    .agents/skills/skill-evolve/scripts/__pycache__/mine_usage.cpython-310.pyc: sha256:e4be97a7f66b61a21341022eeea5ec9e01dedfc7c17e4958834f8b2f9ca862d1
-    .agents/skills/skill-evolve/scripts/__pycache__/test_mine_usage.cpython-310.pyc: sha256:8b16b174c42078c27a1f70195151acb4b95c84be124d11fb89f488a4a8a58e1f
     .agents/skills/skill-evolve/scripts/check_updates.py: sha256:c91ee0dea2b87ed5afb80048016988793f4d9fff31ad9005adee8187c5053adc
     .agents/skills/skill-evolve/scripts/env_health.py: sha256:c91925ae85818072988447d2d6085d1e0c3e09fc24191125f254e6414bd129de
     .agents/skills/skill-evolve/scripts/extract_sources.py: sha256:fe8b6d874440681fb3ffc513ac9aa40422abe780b7e054a7c68dfed59eb92dcc
@@ -1282,11 +983,6 @@ dependencies:
     .claude/skills/skill-evolve/SKILL.md: sha256:aa11479cef014b145c07bdad0cb51bb0bffca7a5451ae222ed1136dc03631b02
     .claude/skills/skill-evolve/evals/evals.json: sha256:8e241dd3b9bb8c55b10ee4a681a3fb5150da48a503a37d0fdbb8a0883c7c15e8
     .claude/skills/skill-evolve/references/attribution.md: sha256:7b5ba6c3996b99a87b051884d67335c6872ebe95405d3c90eda8ce3a9e125d87
-    .claude/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc: sha256:74df9254fdf8af7126bafb7d65e71766a9c4a9d86fecb02b2fa0478113f90565
-    .claude/skills/skill-evolve/scripts/__pycache__/env_health.cpython-310.pyc: sha256:6408f725990e3cbc167a7c562978ae8bfaca3515ee53de6abef0fdc23cc3d85c
-    .claude/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc: sha256:28f3515a31f98f09c4454da5afe3a6b1ad324700fe53a1bb7dcf6b421d733699
-    .claude/skills/skill-evolve/scripts/__pycache__/mine_usage.cpython-310.pyc: sha256:e4be97a7f66b61a21341022eeea5ec9e01dedfc7c17e4958834f8b2f9ca862d1
-    .claude/skills/skill-evolve/scripts/__pycache__/test_mine_usage.cpython-310.pyc: sha256:8b16b174c42078c27a1f70195151acb4b95c84be124d11fb89f488a4a8a58e1f
     .claude/skills/skill-evolve/scripts/check_updates.py: sha256:c91ee0dea2b87ed5afb80048016988793f4d9fff31ad9005adee8187c5053adc
     .claude/skills/skill-evolve/scripts/env_health.py: sha256:c91925ae85818072988447d2d6085d1e0c3e09fc24191125f254e6414bd129de
     .claude/skills/skill-evolve/scripts/extract_sources.py: sha256:fe8b6d874440681fb3ffc513ac9aa40422abe780b7e054a7c68dfed59eb92dcc
@@ -1300,7 +996,7 @@ dependencies:
   local_path: ./skill-evolve/
 - repo_url: _local/skill-finder
   name: skill-finder
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/skill-finder
@@ -1322,7 +1018,7 @@ dependencies:
   local_path: ./skill-finder/
 - repo_url: _local/slide-deck
   name: slide-deck
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/slide-deck
@@ -1338,9 +1034,6 @@ dependencies:
   - .agents/skills/slide-deck/references/output-formats.md
   - .agents/skills/slide-deck/references/principles.md
   - .agents/skills/slide-deck/references/style-presets.md
-  - .agents/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc
-  - .agents/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc
-  - .agents/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc
   - .agents/skills/slide-deck/scripts/check_deck.py
   - .agents/skills/slide-deck/scripts/export_pdf.py
   - .agents/skills/slide-deck/scripts/extract_pptx.py
@@ -1358,9 +1051,6 @@ dependencies:
   - .claude/skills/slide-deck/references/output-formats.md
   - .claude/skills/slide-deck/references/principles.md
   - .claude/skills/slide-deck/references/style-presets.md
-  - .claude/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc
-  - .claude/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc
-  - .claude/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc
   - .claude/skills/slide-deck/scripts/check_deck.py
   - .claude/skills/slide-deck/scripts/export_pdf.py
   - .claude/skills/slide-deck/scripts/extract_pptx.py
@@ -1378,9 +1068,6 @@ dependencies:
     .agents/skills/slide-deck/references/output-formats.md: sha256:7a42fa8145240002426805ef1ccc79a81621f5db30ac113cfd324d7bfb4e0d17
     .agents/skills/slide-deck/references/principles.md: sha256:1c611f7e750992bbf4d83907680236eb68656c5b1142cba1a6f0c06a400fddaa
     .agents/skills/slide-deck/references/style-presets.md: sha256:b470c81f5a24dff03b76321e679a69b02816365faef0f54822d0697386b3a2b4
-    .agents/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc: sha256:b48e2b31107292efd37e99b98a6c89da357f7965ee33d87d7b92e427ded7a140
-    .agents/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc: sha256:1333c9513c56eb716742c50a7e879f746c68ef5a8285cedd47c619f3941d0f60
-    .agents/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc: sha256:094de83661e7d4327a862659a8e291f250f184518809242436e48067cf163b97
     .agents/skills/slide-deck/scripts/check_deck.py: sha256:30945d4e2b3d252d0ecfc4947c0c6eb500d4fe6083fb580edd79b8e402a0f9a8
     .agents/skills/slide-deck/scripts/export_pdf.py: sha256:1723fe5aa513113c9fe554f8f3faf781aaca404a80e0b935852e80e0dccdff66
     .agents/skills/slide-deck/scripts/extract_pptx.py: sha256:63db3ddcd09989a09ec80035a810f22dab118de9f1e8b10a2d55add01b342d3b
@@ -1397,9 +1084,6 @@ dependencies:
     .claude/skills/slide-deck/references/output-formats.md: sha256:7a42fa8145240002426805ef1ccc79a81621f5db30ac113cfd324d7bfb4e0d17
     .claude/skills/slide-deck/references/principles.md: sha256:1c611f7e750992bbf4d83907680236eb68656c5b1142cba1a6f0c06a400fddaa
     .claude/skills/slide-deck/references/style-presets.md: sha256:b470c81f5a24dff03b76321e679a69b02816365faef0f54822d0697386b3a2b4
-    .claude/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc: sha256:b48e2b31107292efd37e99b98a6c89da357f7965ee33d87d7b92e427ded7a140
-    .claude/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc: sha256:1333c9513c56eb716742c50a7e879f746c68ef5a8285cedd47c619f3941d0f60
-    .claude/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc: sha256:094de83661e7d4327a862659a8e291f250f184518809242436e48067cf163b97
     .claude/skills/slide-deck/scripts/check_deck.py: sha256:30945d4e2b3d252d0ecfc4947c0c6eb500d4fe6083fb580edd79b8e402a0f9a8
     .claude/skills/slide-deck/scripts/export_pdf.py: sha256:1723fe5aa513113c9fe554f8f3faf781aaca404a80e0b935852e80e0dccdff66
     .claude/skills/slide-deck/scripts/extract_pptx.py: sha256:63db3ddcd09989a09ec80035a810f22dab118de9f1e8b10a2d55add01b342d3b
@@ -1408,7 +1092,7 @@ dependencies:
   local_path: ./slide-deck/
 - repo_url: _local/social-card
   name: social-card
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/social-card
@@ -1494,7 +1178,7 @@ dependencies:
   local_path: ./social-card/
 - repo_url: _local/solo-think
   name: solo-think
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/solo-think
@@ -1528,7 +1212,7 @@ dependencies:
   local_path: ./solo-think/
 - repo_url: _local/systematic-debugging
   name: systematic-debugging
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/systematic-debugging
@@ -1554,7 +1238,7 @@ dependencies:
   local_path: ./systematic-debugging/
 - repo_url: _local/tdd
   name: tdd
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/tdd
@@ -1588,7 +1272,7 @@ dependencies:
   local_path: ./tdd/
 - repo_url: _local/terse
   name: terse
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/terse
@@ -1614,7 +1298,7 @@ dependencies:
   local_path: ./terse/
 - repo_url: _local/to-issues
   name: to-issues
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/to-issues
@@ -1640,7 +1324,7 @@ dependencies:
   local_path: ./to-issues/
 - repo_url: _local/translate
   name: translate
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/translate
@@ -1682,7 +1366,7 @@ dependencies:
   local_path: ./translate/
 - repo_url: _local/travel-agent
   name: travel-agent
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/travel-agent
@@ -1768,7 +1452,7 @@ dependencies:
   local_path: ./travel-agent/
 - repo_url: _local/tutor
   name: tutor
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/tutor
@@ -1794,7 +1478,7 @@ dependencies:
   local_path: ./tutor/
 - repo_url: _local/ui-design-advisor
   name: ui-design-advisor
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/ui-design-advisor
@@ -2052,7 +1736,7 @@ dependencies:
   local_path: ./ui-design-advisor/
 - repo_url: _local/verify-before-done
   name: verify-before-done
-  version: 0.0.0
+  version: unknown
   package_type: claude_skill
   deployed_files:
   - .agents/skills/verify-before-done
@@ -2081,7 +1765,7 @@ dependencies:
   host: github.com
   resolved_commit: dbd4588f9e1033efb41dad4bef2f7947c8993d44
   version: dbd4588
-  package_type: marketplace_plugin
+  package_type: skill_bundle
   deployed_files:
   - .agents/skills/academy-guide
   - .agents/skills/academy-guide/LICENSE.txt
@@ -3884,7 +3568,7 @@ dependencies:
   host: github.com
   resolved_commit: dac13bb87468fe9d74a040d862720f6cc17a9565
   version: dac13bb
-  package_type: marketplace_plugin
+  package_type: skill_bundle
   deployed_files:
   - .agents/skills/agent-browser
   - .agents/skills/agent-browser/SKILL.md
@@ -4821,7 +4505,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:dc18b105542cd79930635d70b68a2048d304e1d8d9c5d99536551881df69cd70
+  content_hash: sha256:0ffd501d589b4906807dee532458134ca9f007f8d6614c3c80ebf5c063737cf1
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/data/defaults.json
@@ -4830,7 +4514,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:a5785e1c7eee21982c23de57d8b67965d16fa449598e9d7bef3b6972730646cd
+  content_hash: sha256:b187749d6c21b19d0ad9de7a72b62ce6ac80eb1adce31acff8ea53938304d5f7
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/evals/evals.json
@@ -4866,7 +4550,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:2291d2b28cfed922fc8dfc861ff20b7c6d503e4d0579312192fd156e56d328ec
+  content_hash: sha256:be828144bf4ead756d321ad567dc8cddac67f1abfde54c917f1d4752a4a6fb00
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/references/typography-rules.md
@@ -4885,33 +4569,6 @@ deployments:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
   content_hash: sha256:26f22a81a1cbb525f4cbeaa33949389dfd00e53844d6e8a4c072f9848ebfe8f5
-- kind: project-relative
-  target: claude
-  value: .claude/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./chinese-typography/
-  active_owner: ./chinese-typography/
-  content_hash: sha256:c37b2b96de239b85001cc3bda699d133b40062ca50d865844897f8e1d0567f78
-- kind: project-relative
-  target: claude
-  value: .claude/skills/chinese-typography/scripts/__pycache__/test_normalize.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./chinese-typography/
-  active_owner: ./chinese-typography/
-  content_hash: sha256:77cb3c28a873a9e2813838d3af23b963414dfee4a22ede049b22c04874759d2d
-- kind: project-relative
-  target: claude
-  value: .claude/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./chinese-typography/
-  active_owner: ./chinese-typography/
-  content_hash: sha256:1e9ecd76655dd355531870f854a863ebb55335f2a1de1448860b2d5902e56f09
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/scripts/apm.yml
@@ -4938,7 +4595,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:fdb199212955beef2b5e95e196acaaaba7e97d83a94fa560ee2b9120e761300f
+  content_hash: sha256:dc38334325791d84fe4329caf42a1306c9590004660fcea7bd8b56ab38f87a35
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/scripts/test_weekday.py
@@ -6019,42 +5676,6 @@ deployments:
   - ./decision-lens/
   active_owner: ./decision-lens/
   content_hash: sha256:2be203b26fb606abe3d239c671f7d5f11fd049f87a789874dfed8ff8f90bc637
-- kind: project-relative
-  target: claude
-  value: .claude/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./decision-lens/
-  active_owner: ./decision-lens/
-  content_hash: sha256:169e22687248cfc9aeda1dc516c7071fbd0ca1548780163731c9668968befc68
-- kind: project-relative
-  target: claude
-  value: .claude/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./decision-lens/
-  active_owner: ./decision-lens/
-  content_hash: sha256:22213aa6d2d344d0a445755989a52cfa97a8f7c96602b7248e551f52902137c5
-- kind: project-relative
-  target: claude
-  value: .claude/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./decision-lens/
-  active_owner: ./decision-lens/
-  content_hash: sha256:f7771cc28e97b0b794e4f1950bfb9c7c76cc320c47dc9a59b6650416e848938a
-- kind: project-relative
-  target: claude
-  value: .claude/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./decision-lens/
-  active_owner: ./decision-lens/
-  content_hash: sha256:9d28755a1714326b04d1e6effc94d84cbf83d1bc062e92d4f83693986e3210cc
 - kind: project-relative
   target: claude
   value: .claude/skills/decision-lens/scripts/bayes_update.py
@@ -7380,24 +7001,6 @@ deployments:
   content_hash: sha256:999a2898855d9d388128f034184b893f4250a47e49838c78fbd4cad151671b40
 - kind: project-relative
   target: claude
-  value: .claude/skills/last30d/scripts/__pycache__/last30d.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:f25c245b9f37fa02758d1fa58c9f1fdf78c715a6a9a416885a9a3bb870262c68
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/__pycache__/last30d.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:6d731590384d5dcb86d10e641778085502b58b5abb44e5fc5cb0357edf30032d
-- kind: project-relative
-  target: claude
   value: .claude/skills/last30d/scripts/last30d.py
   runtime: null
   scope: project
@@ -7414,366 +7017,6 @@ deployments:
   - ./last30d/
   active_owner: ./last30d/
   content_hash: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/__init__.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:6457bded56e020fbd7ab64ae4d28bbeb9c218e4372801f2e277c94129145e199
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/__init__.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:27890a15c170bfa2ac75b08b36eae5689fcf95eb75cf7c7edc9bb6885df9785e
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:ddf76115f4bc90b1a8a27ed89119d5b540c623f486935d1a6d52bcd7145c34b3
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:586799053e90fec0acc92791a3e6eb71cc0f5033144bd565f7f604d403bec328
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/cjk.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:51a1ed7ee305095ee3da960152e34e5cf8fa0d882b0050d5d6ce87ab875dc3c9
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/cjk.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:c94b472ead33c9879e641a3efb8bd70e9ab0c711fd7f7e7f6736eb071534c865
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/dates.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:49ecf8a823a34329471bdaeddd5932f6fc6ac09521a0e4bf3566e27376f481d4
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/dates.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:e1bc423b2848ad41004ad7556b98b51dcd617d7191bb26fd52c7c5bb69341e3c
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/digest.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:38844a7cb28ae9c29dbc29df51745451eabd3fd6b9e3b65d7a0e3ef61f4fcd89
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/digest.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:4c752138adf1e96c9ff6725170e01f52c0bad677cc054161e97e01430dafc44a
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/github.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:fe0c487e28eb4c50047d1ad7ce00d89254c80ed532232f22d5c723937bd88e93
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/github.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:024bb71231b718bded608df5a499f70270bd9e38a737b2697d2de5675f353366
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/health.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:91701f5e756ad62d2e4c86067c5ab53aec7aee7edc8d7209f7b8a25b70521d32
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/health.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:49d29b2eece47f9082316bd96ad22d201ebb9cfe4f60f02018b7ba05ada00077
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/hn.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:9cf700f6810c54164e75b4aaaf41e969127e2ad8079b183697e6916e3c658695
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/hn.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:33ebc262b80d9a8d06895ad65dd1f3e31a65a69726c8747e47137e278eaf970f
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/http.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:aadafde1bdf953dd21ea0f0427c281943ea54a290fbd3a0411c2a488b3de69ba
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/http.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:aff5b57fedcfb436d05742956a19dece65aac3592e9ea1fcd8e8bfce4f1e5e0e
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/log.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:6e18850f3a64450d6449440386b26115b3eec1c270cf35275fce00f34e530683
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/log.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:8c2ebef20bce2cb77cfe2419ef65df1990a51f2757ab455562bbe14b0caa740d
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:25508fcc3ea86a3885b55d8c3348cc12b24e892dde10a4fc56bb8deca9cb22a0
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:3100d11862658790bc9976f51b10ebcd8610a3551972c77061874d0498154d33
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:1b942f3da7edb1be0f091742fae91adacf261da7f37625962d40743e3b680f92
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:c6066940bec11720297e6db92e002906d3db808caf0b1b3a76fbe8e6b486462b
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:77bf8b89da4b0f025eb6b9d65aa64b6b9b6124113f60a1b017b437cc94cbbdcb
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:2c924e3e435edc54a96985bf73d8b291a744649f0c309e549c3df6542bdf5387
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:50094b7a49ad332863225f74b6dd459ddca8b49edcda8c0c65e7cc25729aa714
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:460b43cd1327041288159c8a170c6c5ed37f352923c3b5df29a8ae796c0044b4
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:5f6e8518bc40fb2c2cd66e73fa6fb68aa1055ea972c369680d8ea70e17a98b67
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:f0c79b6852ab91ffb4cfea1082b8c8f7fdcf1d49ff116f8d282cc4054b28dc3d
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:9699386d198161189b0019c008924b3bb81af6cafb86172d9bbca410002dc3e7
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:eead16ba27d4a04ca321663d1f6d4ff915d5b8e9e958a0eb4b214fb73204835e
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/relevance.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:85bc3b21ccc8752313248ab54f7f28b0a287e7ea608731632541a99b645df759
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/relevance.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:f2854ffd72afff7ad9287a45d47f9d8e2efb4f87f5812de83a2f4a6dcc350dc5
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:39a50021853b80afeb9efb883496a8c029c6e2ae0b721c1e17fcaf4a16efb0af
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:c5d484d59ff8d51f08285fe95d5f11d5e78c7ee21dedccf7ebab1d01a278b213
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:58a5b9b0a61bed71778668f284f94b7c38852a38da82d69970ba362ac8075bff
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:6d7907146e7853b3731648874ab6f0c97e62881d4257806ff484525f37ecaaeb
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/youtube.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:b0ed1224117c243bde82aa1550d3c06683fa215c4c2a80a8e68bc742919d16ed
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/scripts/sources/__pycache__/youtube.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:aa7ea08930627a53ece63cf79b0f721c6d31be7680f8a11f295e8765f985f5bb
 - kind: project-relative
   target: claude
   value: .claude/skills/last30d/scripts/sources/arxiv.py
@@ -7954,204 +7197,6 @@ deployments:
   - ./last30d/
   active_owner: ./last30d/
   content_hash: sha256:077936879a8bfb4e73cdfe7ec246566b70e3616467a5adafa6d3723df99fb71f
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/conftest.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:f67b0285ad04c6e2807439ed6f1bd42e91ac76a79ebe77f0d11b2ae0836c2945
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/conftest.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:2d3e80cefe2c403da6618ea51dbbd06220cb9af6074a23d2928a76d044835838
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/conftest.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:a90fdf174c2122812ae5b778d9bf955f4c5593d1a3f43f3e493925e6e841cf67
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_arxiv.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:1097b1753bbdb85b8b0eeb930ba26e1af6d5ff0b14d20b6afe05a62cfc3fb54f
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_arxiv.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:a89af1036a2ba08f70434fe79b8bfef5bbfdfe211e3a850072cf320f4ce606ab
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_digest.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:cade72138b7fb8de4faad23ca8e6df7ec0eb648a0c28c83552af5a9d98ffb1c0
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_digest.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:94ff1da11729fa2f032dbf81f01b71f859064833f29ac9cd86ecfe33fb8f62b7
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_github.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:ef776879165e9ef8fe586f5d1029199ed21f6f9473c04e173f42334a8061a632
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_github.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:498fe3bcaeb5f2ac503276c722ff6532f9e4521b44067b414ca880c5d91fb817
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_hn.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:cfd1e820274f3869a6556f3b835a986ea9e98ffd2a995b544115d242d4e7c091
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_hn.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:cd0f48d2aecaeb6e79b1a5da7d9270e936d115192c18f883637f94dca21baba9
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_lane_failures.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:ee52c26934eaafc11f3390bfd5060b3951fa942e0182f18facf2009a3cc7986f
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:3ef2a9c17cdfe92f7b7d0fbae7846afa1569777551e5a438d74c6b1708430161
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:99fa39478957720b3131bd0929dca4dc511c757f3f62e52680e5149a4e3bcfde
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:384b2b3602b91db46e2d785dc1cb20a88efc7de075c67e67217630ff63fa2898
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:11eaf749c4e2d6714e5a3f825ea31a04be768e76e4f07b5efe0589167bb85a02
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:60e440545801ccac912ed316ba41781b447e6175abf64b305bcd08cfe0832f82
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:8ae04644bdcc24f0190c945d80c0c65095f4630174a63e069e86d98db24f4118
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:d21cc47faec228ea22c9298ee21f459eb23c60c274626d9b299b1bd3515204db
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:e65468a9157134390ac3e311a735dc42f8660c6bf9a67cbae5d24c14cb78cdf2
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_youtube.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:b1dcfd561583dea4512d28d5979dc822db904c4d0bb5724d2206d84cee7edb1b
-- kind: project-relative
-  target: claude
-  value: .claude/skills/last30d/tests/__pycache__/test_youtube.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:82657bc5786c5691aca358c8ad2242987bb6fd59ec4b789e56c5bc89943e9f71
 - kind: project-relative
   target: claude
   value: .claude/skills/last30d/tests/conftest.py
@@ -9429,7 +8474,7 @@ deployments:
   owners:
   - ./skill-auditor/
   active_owner: ./skill-auditor/
-  content_hash: sha256:c18a68328958bce0cfdd9cdcb35fe22533d4befd19e5d428a4ed3eb012b6e2b2
+  content_hash: sha256:a92aa3eea8f786c474da0ad0d826e554a2f108abfad576c5c3e12d6fc2f1dd90
 - kind: project-relative
   target: claude
   value: .claude/skills/skill-auditor/evals/evals.json
@@ -9438,7 +8483,7 @@ deployments:
   owners:
   - ./skill-auditor/
   active_owner: ./skill-auditor/
-  content_hash: sha256:c7edb2b9b536336eedbc05a996cf750a7424ab4e0938ee6d30b032ce8da33aff
+  content_hash: sha256:671a3a8cad9db97b0d8f7a02ef83a57eaf1666e7343f9b04580d57519bf4d5c3
 - kind: project-relative
   target: claude
   value: .claude/skills/skill-auditor/evals/fixtures/recall-poisoning/MANIFEST.md
@@ -9783,51 +8828,6 @@ deployments:
   content_hash: sha256:7b5ba6c3996b99a87b051884d67335c6872ebe95405d3c90eda8ce3a9e125d87
 - kind: project-relative
   target: claude
-  value: .claude/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:74df9254fdf8af7126bafb7d65e71766a9c4a9d86fecb02b2fa0478113f90565
-- kind: project-relative
-  target: claude
-  value: .claude/skills/skill-evolve/scripts/__pycache__/env_health.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:6408f725990e3cbc167a7c562978ae8bfaca3515ee53de6abef0fdc23cc3d85c
-- kind: project-relative
-  target: claude
-  value: .claude/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:28f3515a31f98f09c4454da5afe3a6b1ad324700fe53a1bb7dcf6b421d733699
-- kind: project-relative
-  target: claude
-  value: .claude/skills/skill-evolve/scripts/__pycache__/mine_usage.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:e4be97a7f66b61a21341022eeea5ec9e01dedfc7c17e4958834f8b2f9ca862d1
-- kind: project-relative
-  target: claude
-  value: .claude/skills/skill-evolve/scripts/__pycache__/test_mine_usage.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:8b16b174c42078c27a1f70195151acb4b95c84be124d11fb89f488a4a8a58e1f
-- kind: project-relative
-  target: claude
   value: .claude/skills/skill-evolve/scripts/check_updates.py
   runtime: null
   scope: project
@@ -10132,33 +9132,6 @@ deployments:
   - ./slide-deck/
   active_owner: ./slide-deck/
   content_hash: sha256:b470c81f5a24dff03b76321e679a69b02816365faef0f54822d0697386b3a2b4
-- kind: project-relative
-  target: claude
-  value: .claude/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./slide-deck/
-  active_owner: ./slide-deck/
-  content_hash: sha256:b48e2b31107292efd37e99b98a6c89da357f7965ee33d87d7b92e427ded7a140
-- kind: project-relative
-  target: claude
-  value: .claude/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./slide-deck/
-  active_owner: ./slide-deck/
-  content_hash: sha256:1333c9513c56eb716742c50a7e879f746c68ef5a8285cedd47c619f3941d0f60
-- kind: project-relative
-  target: claude
-  value: .claude/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./slide-deck/
-  active_owner: ./slide-deck/
-  content_hash: sha256:094de83661e7d4327a862659a8e291f250f184518809242436e48067cf163b97
 - kind: project-relative
   target: claude
   value: .claude/skills/slide-deck/scripts/check_deck.py
@@ -13209,7 +12182,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:dc18b105542cd79930635d70b68a2048d304e1d8d9c5d99536551881df69cd70
+  content_hash: sha256:0ffd501d589b4906807dee532458134ca9f007f8d6614c3c80ebf5c063737cf1
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/data/defaults.json
@@ -13218,7 +12191,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:a5785e1c7eee21982c23de57d8b67965d16fa449598e9d7bef3b6972730646cd
+  content_hash: sha256:b187749d6c21b19d0ad9de7a72b62ce6ac80eb1adce31acff8ea53938304d5f7
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/evals/evals.json
@@ -13254,7 +12227,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:2291d2b28cfed922fc8dfc861ff20b7c6d503e4d0579312192fd156e56d328ec
+  content_hash: sha256:be828144bf4ead756d321ad567dc8cddac67f1abfde54c917f1d4752a4a6fb00
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/references/typography-rules.md
@@ -13273,33 +12246,6 @@ deployments:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
   content_hash: sha256:26f22a81a1cbb525f4cbeaa33949389dfd00e53844d6e8a4c072f9848ebfe8f5
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/chinese-typography/scripts/__pycache__/normalize.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./chinese-typography/
-  active_owner: ./chinese-typography/
-  content_hash: sha256:c37b2b96de239b85001cc3bda699d133b40062ca50d865844897f8e1d0567f78
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/chinese-typography/scripts/__pycache__/test_normalize.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./chinese-typography/
-  active_owner: ./chinese-typography/
-  content_hash: sha256:77cb3c28a873a9e2813838d3af23b963414dfee4a22ede049b22c04874759d2d
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/chinese-typography/scripts/__pycache__/weekday.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./chinese-typography/
-  active_owner: ./chinese-typography/
-  content_hash: sha256:1e9ecd76655dd355531870f854a863ebb55335f2a1de1448860b2d5902e56f09
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/scripts/apm.yml
@@ -13326,7 +12272,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:fdb199212955beef2b5e95e196acaaaba7e97d83a94fa560ee2b9120e761300f
+  content_hash: sha256:dc38334325791d84fe4329caf42a1306c9590004660fcea7bd8b56ab38f87a35
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/scripts/test_weekday.py
@@ -14407,42 +13353,6 @@ deployments:
   - ./decision-lens/
   active_owner: ./decision-lens/
   content_hash: sha256:2be203b26fb606abe3d239c671f7d5f11fd049f87a789874dfed8ff8f90bc637
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/decision-lens/scripts/__pycache__/bayes_update.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./decision-lens/
-  active_owner: ./decision-lens/
-  content_hash: sha256:169e22687248cfc9aeda1dc516c7071fbd0ca1548780163731c9668968befc68
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/decision-lens/scripts/__pycache__/crux_score.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./decision-lens/
-  active_owner: ./decision-lens/
-  content_hash: sha256:22213aa6d2d344d0a445755989a52cfa97a8f7c96602b7248e551f52902137c5
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/decision-lens/scripts/__pycache__/kelly_size.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./decision-lens/
-  active_owner: ./decision-lens/
-  content_hash: sha256:f7771cc28e97b0b794e4f1950bfb9c7c76cc320c47dc9a59b6650416e848938a
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/decision-lens/scripts/__pycache__/test_decision_lens.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./decision-lens/
-  active_owner: ./decision-lens/
-  content_hash: sha256:9d28755a1714326b04d1e6effc94d84cbf83d1bc062e92d4f83693986e3210cc
 - kind: project-relative
   target: opencode
   value: .agents/skills/decision-lens/scripts/bayes_update.py
@@ -15768,24 +14678,6 @@ deployments:
   content_hash: sha256:999a2898855d9d388128f034184b893f4250a47e49838c78fbd4cad151671b40
 - kind: project-relative
   target: opencode
-  value: .agents/skills/last30d/scripts/__pycache__/last30d.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:f25c245b9f37fa02758d1fa58c9f1fdf78c715a6a9a416885a9a3bb870262c68
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/__pycache__/last30d.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:6d731590384d5dcb86d10e641778085502b58b5abb44e5fc5cb0357edf30032d
-- kind: project-relative
-  target: opencode
   value: .agents/skills/last30d/scripts/last30d.py
   runtime: null
   scope: project
@@ -15802,366 +14694,6 @@ deployments:
   - ./last30d/
   active_owner: ./last30d/
   content_hash: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/__init__.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:6457bded56e020fbd7ab64ae4d28bbeb9c218e4372801f2e277c94129145e199
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/__init__.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:27890a15c170bfa2ac75b08b36eae5689fcf95eb75cf7c7edc9bb6885df9785e
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:ddf76115f4bc90b1a8a27ed89119d5b540c623f486935d1a6d52bcd7145c34b3
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/arxiv.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:586799053e90fec0acc92791a3e6eb71cc0f5033144bd565f7f604d403bec328
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/cjk.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:51a1ed7ee305095ee3da960152e34e5cf8fa0d882b0050d5d6ce87ab875dc3c9
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/cjk.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:c94b472ead33c9879e641a3efb8bd70e9ab0c711fd7f7e7f6736eb071534c865
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/dates.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:49ecf8a823a34329471bdaeddd5932f6fc6ac09521a0e4bf3566e27376f481d4
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/dates.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:e1bc423b2848ad41004ad7556b98b51dcd617d7191bb26fd52c7c5bb69341e3c
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/digest.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:38844a7cb28ae9c29dbc29df51745451eabd3fd6b9e3b65d7a0e3ef61f4fcd89
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/digest.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:4c752138adf1e96c9ff6725170e01f52c0bad677cc054161e97e01430dafc44a
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/github.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:fe0c487e28eb4c50047d1ad7ce00d89254c80ed532232f22d5c723937bd88e93
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/github.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:024bb71231b718bded608df5a499f70270bd9e38a737b2697d2de5675f353366
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/health.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:91701f5e756ad62d2e4c86067c5ab53aec7aee7edc8d7209f7b8a25b70521d32
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/health.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:49d29b2eece47f9082316bd96ad22d201ebb9cfe4f60f02018b7ba05ada00077
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/hn.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:9cf700f6810c54164e75b4aaaf41e969127e2ad8079b183697e6916e3c658695
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/hn.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:33ebc262b80d9a8d06895ad65dd1f3e31a65a69726c8747e47137e278eaf970f
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/http.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:aadafde1bdf953dd21ea0f0427c281943ea54a290fbd3a0411c2a488b3de69ba
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/http.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:aff5b57fedcfb436d05742956a19dece65aac3592e9ea1fcd8e8bfce4f1e5e0e
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/log.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:6e18850f3a64450d6449440386b26115b3eec1c270cf35275fce00f34e530683
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/log.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:8c2ebef20bce2cb77cfe2419ef65df1990a51f2757ab455562bbe14b0caa740d
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:25508fcc3ea86a3885b55d8c3348cc12b24e892dde10a4fc56bb8deca9cb22a0
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:3100d11862658790bc9976f51b10ebcd8610a3551972c77061874d0498154d33
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:1b942f3da7edb1be0f091742fae91adacf261da7f37625962d40743e3b680f92
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_enrich.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:c6066940bec11720297e6db92e002906d3db808caf0b1b3a76fbe8e6b486462b
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:77bf8b89da4b0f025eb6b9d65aa64b6b9b6124113f60a1b017b437cc94cbbdcb
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_lane.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:2c924e3e435edc54a96985bf73d8b291a744649f0c309e549c3df6542bdf5387
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:50094b7a49ad332863225f74b6dd459ddca8b49edcda8c0c65e7cc25729aa714
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_listing.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:460b43cd1327041288159c8a170c6c5ed37f352923c3b5df29a8ae796c0044b4
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:5f6e8518bc40fb2c2cd66e73fa6fb68aa1055ea972c369680d8ea70e17a98b67
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_search.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:f0c79b6852ab91ffb4cfea1082b8c8f7fdcf1d49ff116f8d282cc4054b28dc3d
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:9699386d198161189b0019c008924b3bb81af6cafb86172d9bbca410002dc3e7
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/reddit_shreddit.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:eead16ba27d4a04ca321663d1f6d4ff915d5b8e9e958a0eb4b214fb73204835e
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/relevance.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:85bc3b21ccc8752313248ab54f7f28b0a287e7ea608731632541a99b645df759
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/relevance.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:f2854ffd72afff7ad9287a45d47f9d8e2efb4f87f5812de83a2f4a6dcc350dc5
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:39a50021853b80afeb9efb883496a8c029c6e2ae0b721c1e17fcaf4a16efb0af
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/x_lane.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:c5d484d59ff8d51f08285fe95d5f11d5e78c7ee21dedccf7ebab1d01a278b213
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:58a5b9b0a61bed71778668f284f94b7c38852a38da82d69970ba362ac8075bff
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/xai_x.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:6d7907146e7853b3731648874ab6f0c97e62881d4257806ff484525f37ecaaeb
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/youtube.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:b0ed1224117c243bde82aa1550d3c06683fa215c4c2a80a8e68bc742919d16ed
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/scripts/sources/__pycache__/youtube.cpython-312.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:aa7ea08930627a53ece63cf79b0f721c6d31be7680f8a11f295e8765f985f5bb
 - kind: project-relative
   target: opencode
   value: .agents/skills/last30d/scripts/sources/arxiv.py
@@ -16342,204 +14874,6 @@ deployments:
   - ./last30d/
   active_owner: ./last30d/
   content_hash: sha256:077936879a8bfb4e73cdfe7ec246566b70e3616467a5adafa6d3723df99fb71f
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/conftest.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:f67b0285ad04c6e2807439ed6f1bd42e91ac76a79ebe77f0d11b2ae0836c2945
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/conftest.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:2d3e80cefe2c403da6618ea51dbbd06220cb9af6074a23d2928a76d044835838
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/conftest.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:a90fdf174c2122812ae5b778d9bf955f4c5593d1a3f43f3e493925e6e841cf67
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_arxiv.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:1097b1753bbdb85b8b0eeb930ba26e1af6d5ff0b14d20b6afe05a62cfc3fb54f
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_arxiv.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:a89af1036a2ba08f70434fe79b8bfef5bbfdfe211e3a850072cf320f4ce606ab
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_digest.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:cade72138b7fb8de4faad23ca8e6df7ec0eb648a0c28c83552af5a9d98ffb1c0
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_digest.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:94ff1da11729fa2f032dbf81f01b71f859064833f29ac9cd86ecfe33fb8f62b7
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_github.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:ef776879165e9ef8fe586f5d1029199ed21f6f9473c04e173f42334a8061a632
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_github.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:498fe3bcaeb5f2ac503276c722ff6532f9e4521b44067b414ca880c5d91fb817
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_hn.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:cfd1e820274f3869a6556f3b835a986ea9e98ffd2a995b544115d242d4e7c091
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_hn.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:cd0f48d2aecaeb6e79b1a5da7d9270e936d115192c18f883637f94dca21baba9
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_lane_failures.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:ee52c26934eaafc11f3390bfd5060b3951fa942e0182f18facf2009a3cc7986f
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:3ef2a9c17cdfe92f7b7d0fbae7846afa1569777551e5a438d74c6b1708430161
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_lanes_reddit_x.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:99fa39478957720b3131bd0929dca4dc511c757f3f62e52680e5149a4e3bcfde
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:384b2b3602b91db46e2d785dc1cb20a88efc7de075c67e67217630ff63fa2898
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_last30d_cli.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:11eaf749c4e2d6714e5a3f825ea31a04be768e76e4f07b5efe0589167bb85a02
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:60e440545801ccac912ed316ba41781b447e6175abf64b305bcd08cfe0832f82
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_reddit_parsers.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:8ae04644bdcc24f0190c945d80c0c65095f4630174a63e069e86d98db24f4118
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:d21cc47faec228ea22c9298ee21f459eb23c60c274626d9b299b1bd3515204db
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_vendored_symbols_resolve.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:e65468a9157134390ac3e311a735dc42f8660c6bf9a67cbae5d24c14cb78cdf2
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_youtube.cpython-310-pytest-9.0.3.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:b1dcfd561583dea4512d28d5979dc822db904c4d0bb5724d2206d84cee7edb1b
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/last30d/tests/__pycache__/test_youtube.cpython-312-pytest-9.1.1.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./last30d/
-  active_owner: ./last30d/
-  content_hash: sha256:82657bc5786c5691aca358c8ad2242987bb6fd59ec4b789e56c5bc89943e9f71
 - kind: project-relative
   target: opencode
   value: .agents/skills/last30d/tests/conftest.py
@@ -17817,7 +16151,7 @@ deployments:
   owners:
   - ./skill-auditor/
   active_owner: ./skill-auditor/
-  content_hash: sha256:c18a68328958bce0cfdd9cdcb35fe22533d4befd19e5d428a4ed3eb012b6e2b2
+  content_hash: sha256:a92aa3eea8f786c474da0ad0d826e554a2f108abfad576c5c3e12d6fc2f1dd90
 - kind: project-relative
   target: opencode
   value: .agents/skills/skill-auditor/evals/evals.json
@@ -17826,7 +16160,7 @@ deployments:
   owners:
   - ./skill-auditor/
   active_owner: ./skill-auditor/
-  content_hash: sha256:c7edb2b9b536336eedbc05a996cf750a7424ab4e0938ee6d30b032ce8da33aff
+  content_hash: sha256:671a3a8cad9db97b0d8f7a02ef83a57eaf1666e7343f9b04580d57519bf4d5c3
 - kind: project-relative
   target: opencode
   value: .agents/skills/skill-auditor/evals/fixtures/recall-poisoning/MANIFEST.md
@@ -18171,51 +16505,6 @@ deployments:
   content_hash: sha256:7b5ba6c3996b99a87b051884d67335c6872ebe95405d3c90eda8ce3a9e125d87
 - kind: project-relative
   target: opencode
-  value: .agents/skills/skill-evolve/scripts/__pycache__/check_updates.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:74df9254fdf8af7126bafb7d65e71766a9c4a9d86fecb02b2fa0478113f90565
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/skill-evolve/scripts/__pycache__/env_health.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:6408f725990e3cbc167a7c562978ae8bfaca3515ee53de6abef0fdc23cc3d85c
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/skill-evolve/scripts/__pycache__/extract_sources.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:28f3515a31f98f09c4454da5afe3a6b1ad324700fe53a1bb7dcf6b421d733699
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/skill-evolve/scripts/__pycache__/mine_usage.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:e4be97a7f66b61a21341022eeea5ec9e01dedfc7c17e4958834f8b2f9ca862d1
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/skill-evolve/scripts/__pycache__/test_mine_usage.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./skill-evolve/
-  active_owner: ./skill-evolve/
-  content_hash: sha256:8b16b174c42078c27a1f70195151acb4b95c84be124d11fb89f488a4a8a58e1f
-- kind: project-relative
-  target: opencode
   value: .agents/skills/skill-evolve/scripts/check_updates.py
   runtime: null
   scope: project
@@ -18520,33 +16809,6 @@ deployments:
   - ./slide-deck/
   active_owner: ./slide-deck/
   content_hash: sha256:b470c81f5a24dff03b76321e679a69b02816365faef0f54822d0697386b3a2b4
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/slide-deck/scripts/__pycache__/check_deck.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./slide-deck/
-  active_owner: ./slide-deck/
-  content_hash: sha256:b48e2b31107292efd37e99b98a6c89da357f7965ee33d87d7b92e427ded7a140
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/slide-deck/scripts/__pycache__/export_pdf.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./slide-deck/
-  active_owner: ./slide-deck/
-  content_hash: sha256:1333c9513c56eb716742c50a7e879f746c68ef5a8285cedd47c619f3941d0f60
-- kind: project-relative
-  target: opencode
-  value: .agents/skills/slide-deck/scripts/__pycache__/extract_pptx.cpython-310.pyc
-  runtime: null
-  scope: project
-  owners:
-  - ./slide-deck/
-  active_owner: ./slide-deck/
-  content_hash: sha256:094de83661e7d4327a862659a8e291f250f184518809242436e48067cf163b97
 - kind: project-relative
   target: opencode
   value: .agents/skills/slide-deck/scripts/check_deck.py
