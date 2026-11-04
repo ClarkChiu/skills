@@ -31,3 +31,7 @@ test-design ideas; keep the pytest/protocol re-aiming and the pipeline wiring.
   was evaluating `unclebob/ub-mode` (MIT; idea only, no files, not in `sources.lock`), but
   the tool choice and traps come from our own trial of `mutmut` vs `unclebob/mutator` on
   `chinese-typography`.
+- 2026-11-04: added "Current behaviour isn't a requirement" to `references/test-design.md`.
+  Idea from `didi/helixharness` at 44ffc536f73d, `helixharness/reference/harness-generation-protocol.md`
+  (Apache-2.0; idea only, no files, not in `sources.lock`). The example is our own, from the
+  `chinese-typography` inch-mark fix.

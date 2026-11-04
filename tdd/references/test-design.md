@@ -54,6 +54,28 @@ def test_total_adds_the_items():
 Expected values must come from an **independent source of truth** — a known constant, a
 hand-computed example, or the spec. Never re-derived inside the test.
 
+## Current behaviour isn't a requirement
+
+Reading or running the code shows what it does today, not what it must keep doing. A test
+built from that output is a snapshot: a useful safety net during a refactor, but it can pin
+a bug as correct.
+
+```python
+# snapshot — records today's output, right or wrong
+def test_normalize_quotes():
+    assert normalize('19" 和 23" 機櫃')[0] == '19「和 23」 機櫃'   # a bug, now guarded by a test
+
+# requirement — the source is named, so the next reader can check it
+def test_normalize_keeps_inch_marks():
+    # decided 2026-11-03: with no quote open, a " after a number is an inch mark
+    # (typography-rules.md §3)
+    assert normalize('19" 和 23" 機櫃')[0] == '19" 和 23" 機櫃'
+```
+
+Before calling a behaviour a rule, name its source: a spec, a protocol or standard, or a
+decision the user confirmed. Without one, it only describes today, so when that test fails,
+ask whether the behaviour was ever wanted instead of restoring it by reflex.
+
 ## One behaviour per test
 
 ```python
