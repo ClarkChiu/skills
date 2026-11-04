@@ -1,5 +1,5 @@
 lockfile_version: '1'
-generated_at: '2026-10-20T03:34:12.586539+00:00'
+generated_at: '2026-11-04T03:34:27.809411+00:00'
 apm_version: 0.33.0
 dependencies:
 - repo_url: _local/chinese-typography
@@ -52,39 +52,39 @@ dependencies:
     .agents/skills/chinese-typography/.pytest_cache/CACHEDIR.TAG: sha256:37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4
     .agents/skills/chinese-typography/.pytest_cache/README.md: sha256:73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad
     .agents/skills/chinese-typography/.pytest_cache/v/cache/nodeids: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-    .agents/skills/chinese-typography/SKILL.md: sha256:0ffd501d589b4906807dee532458134ca9f007f8d6614c3c80ebf5c063737cf1
-    .agents/skills/chinese-typography/data/defaults.json: sha256:b187749d6c21b19d0ad9de7a72b62ce6ac80eb1adce31acff8ea53938304d5f7
+    .agents/skills/chinese-typography/SKILL.md: sha256:c68ea24983c59be4dd636d5c28699b3022390f9664e32db8a200da7bbc2218af
+    .agents/skills/chinese-typography/data/defaults.json: sha256:370460d1b10f33794bc655953b76cc247b8bf743ed9cc2341d00f4e146609dbe
     .agents/skills/chinese-typography/evals/evals.json: sha256:2fe0821ce27ab5699e3640ac4553a3b6221b5438b850f056819289e171919514
     .agents/skills/chinese-typography/evals/files/blog-draft.md: sha256:b089399b160d20f08071282366a5cf833e056d6a54666cccc2759bfea63efe65
-    .agents/skills/chinese-typography/references/attribution.md: sha256:29c0f6f8efe77f9f0e3e284fd8c2a933af676492218076b59f2f0e30fcd5e8d4
+    .agents/skills/chinese-typography/references/attribution.md: sha256:26f455f5554d937d50eb3047be84dbda3ce20612c3d60ea9cd063d3ef8d1fb66
     .agents/skills/chinese-typography/references/glossary.md: sha256:be828144bf4ead756d321ad567dc8cddac67f1abfde54c917f1d4752a4a6fb00
-    .agents/skills/chinese-typography/references/typography-rules.md: sha256:111de565d0bd0e2394e7bb73976e73c34a6da2674fbf5fa22d12e72494bfc2aa
+    .agents/skills/chinese-typography/references/typography-rules.md: sha256:2cdda02fed7cfcf905bee41c77806b0f1705fe7993f60d87593c4e51e44d7b97
     .agents/skills/chinese-typography/requirements.txt: sha256:26f22a81a1cbb525f4cbeaa33949389dfd00e53844d6e8a4c072f9848ebfe8f5
     .agents/skills/chinese-typography/scripts/apm.yml: sha256:af9e25857dd1ca44aa76fb03cae6889590d1c7d02d19a86cfd8bb6e9ddd289d4
-    .agents/skills/chinese-typography/scripts/normalize.py: sha256:e2800385ad248fe874f6828af833aef0acba0bd11dc04d0ab0f2456e1f0cdfd4
-    .agents/skills/chinese-typography/scripts/test_normalize.py: sha256:dc38334325791d84fe4329caf42a1306c9590004660fcea7bd8b56ab38f87a35
-    .agents/skills/chinese-typography/scripts/test_weekday.py: sha256:52905510bf1a385d0f9999dc2cf1273516ff987f6626fc23f87999988a9e1a92
+    .agents/skills/chinese-typography/scripts/normalize.py: sha256:763fa4826ea832f2ea8e5a20517bb3bfa02eca6db33faf79a40bc79dffdf0712
+    .agents/skills/chinese-typography/scripts/test_normalize.py: sha256:fec9cee0eedc5042f9f324e99f418c2294475307ad36e713b0464548f91115f4
+    .agents/skills/chinese-typography/scripts/test_weekday.py: sha256:64e598d304fa71ec2dcb55a2cebef55ee838663afaa49d868590cc6b50883efa
     .agents/skills/chinese-typography/scripts/weekday.py: sha256:8ae2ea384ba816245b4dfdbaebd34e99783698c6eccca1dd8c66ebafbdf5bb9a
-    .agents/skills/chinese-typography/sources.lock: sha256:044ffb884d785fd604477f1c35d96ace18470fb4c413af9b0dea10cd9b4c927c
+    .agents/skills/chinese-typography/sources.lock: sha256:0211f79851d192aa2c968d7866e7103a288f565b77876b96a0b921ee8e628b8e
     .agents/skills/chinese-typography/user-dictionary.json: sha256:50a14f9f21882ec437e1f7871d7bcedd3fd1f84a13832b3ce4f837b73bd0e912
     .claude/skills/chinese-typography/.pytest_cache/.gitignore: sha256:3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd
     .claude/skills/chinese-typography/.pytest_cache/CACHEDIR.TAG: sha256:37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4
     .claude/skills/chinese-typography/.pytest_cache/README.md: sha256:73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad
     .claude/skills/chinese-typography/.pytest_cache/v/cache/nodeids: sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-    .claude/skills/chinese-typography/SKILL.md: sha256:0ffd501d589b4906807dee532458134ca9f007f8d6614c3c80ebf5c063737cf1
-    .claude/skills/chinese-typography/data/defaults.json: sha256:b187749d6c21b19d0ad9de7a72b62ce6ac80eb1adce31acff8ea53938304d5f7
+    .claude/skills/chinese-typography/SKILL.md: sha256:c68ea24983c59be4dd636d5c28699b3022390f9664e32db8a200da7bbc2218af
+    .claude/skills/chinese-typography/data/defaults.json: sha256:370460d1b10f33794bc655953b76cc247b8bf743ed9cc2341d00f4e146609dbe
     .claude/skills/chinese-typography/evals/evals.json: sha256:2fe0821ce27ab5699e3640ac4553a3b6221b5438b850f056819289e171919514
     .claude/skills/chinese-typography/evals/files/blog-draft.md: sha256:b089399b160d20f08071282366a5cf833e056d6a54666cccc2759bfea63efe65
-    .claude/skills/chinese-typography/references/attribution.md: sha256:29c0f6f8efe77f9f0e3e284fd8c2a933af676492218076b59f2f0e30fcd5e8d4
+    .claude/skills/chinese-typography/references/attribution.md: sha256:26f455f5554d937d50eb3047be84dbda3ce20612c3d60ea9cd063d3ef8d1fb66
     .claude/skills/chinese-typography/references/glossary.md: sha256:be828144bf4ead756d321ad567dc8cddac67f1abfde54c917f1d4752a4a6fb00
-    .claude/skills/chinese-typography/references/typography-rules.md: sha256:111de565d0bd0e2394e7bb73976e73c34a6da2674fbf5fa22d12e72494bfc2aa
+    .claude/skills/chinese-typography/references/typography-rules.md: sha256:2cdda02fed7cfcf905bee41c77806b0f1705fe7993f60d87593c4e51e44d7b97
     .claude/skills/chinese-typography/requirements.txt: sha256:26f22a81a1cbb525f4cbeaa33949389dfd00e53844d6e8a4c072f9848ebfe8f5
     .claude/skills/chinese-typography/scripts/apm.yml: sha256:af9e25857dd1ca44aa76fb03cae6889590d1c7d02d19a86cfd8bb6e9ddd289d4
-    .claude/skills/chinese-typography/scripts/normalize.py: sha256:e2800385ad248fe874f6828af833aef0acba0bd11dc04d0ab0f2456e1f0cdfd4
-    .claude/skills/chinese-typography/scripts/test_normalize.py: sha256:dc38334325791d84fe4329caf42a1306c9590004660fcea7bd8b56ab38f87a35
-    .claude/skills/chinese-typography/scripts/test_weekday.py: sha256:52905510bf1a385d0f9999dc2cf1273516ff987f6626fc23f87999988a9e1a92
+    .claude/skills/chinese-typography/scripts/normalize.py: sha256:763fa4826ea832f2ea8e5a20517bb3bfa02eca6db33faf79a40bc79dffdf0712
+    .claude/skills/chinese-typography/scripts/test_normalize.py: sha256:fec9cee0eedc5042f9f324e99f418c2294475307ad36e713b0464548f91115f4
+    .claude/skills/chinese-typography/scripts/test_weekday.py: sha256:64e598d304fa71ec2dcb55a2cebef55ee838663afaa49d868590cc6b50883efa
     .claude/skills/chinese-typography/scripts/weekday.py: sha256:8ae2ea384ba816245b4dfdbaebd34e99783698c6eccca1dd8c66ebafbdf5bb9a
-    .claude/skills/chinese-typography/sources.lock: sha256:044ffb884d785fd604477f1c35d96ace18470fb4c413af9b0dea10cd9b4c927c
+    .claude/skills/chinese-typography/sources.lock: sha256:0211f79851d192aa2c968d7866e7103a288f565b77876b96a0b921ee8e628b8e
     .claude/skills/chinese-typography/user-dictionary.json: sha256:50a14f9f21882ec437e1f7871d7bcedd3fd1f84a13832b3ce4f837b73bd0e912
   source: local
   local_path: ./chinese-typography/
@@ -928,12 +928,12 @@ dependencies:
     .agents/skills/skill-curator/SKILL.md: sha256:424045e0748d0a439b8ba4badf3c6abf36c319ac2a7409658f3f98e04fac3b58
     .agents/skills/skill-curator/evals/evals.json: sha256:5aa412ce05dd0eb44052c17ac4795eb4239562182a122eff21d3bc0105ea1e77
     .agents/skills/skill-curator/references/criteria.md: sha256:e035e89c89e35addfa873940f0cc4b16a7b8537bdf0c64b883e4d92698effa93
-    .agents/skills/skill-curator/references/skill-map.md: sha256:c2503fc441927da7284532ee0c999a969d8c5890ce51f189be00e8332ae38970
+    .agents/skills/skill-curator/references/skill-map.md: sha256:1742dbeb22670b8b289e9e32caaa99e3b23b750fb3815291816793139f823342
     .claude/skills/skill-curator/README.md: sha256:2ae101d92e4b312a35f16bd40a2a22787bf515e2752f7e06a65109792d9f31a8
     .claude/skills/skill-curator/SKILL.md: sha256:424045e0748d0a439b8ba4badf3c6abf36c319ac2a7409658f3f98e04fac3b58
     .claude/skills/skill-curator/evals/evals.json: sha256:5aa412ce05dd0eb44052c17ac4795eb4239562182a122eff21d3bc0105ea1e77
     .claude/skills/skill-curator/references/criteria.md: sha256:e035e89c89e35addfa873940f0cc4b16a7b8537bdf0c64b883e4d92698effa93
-    .claude/skills/skill-curator/references/skill-map.md: sha256:c2503fc441927da7284532ee0c999a969d8c5890ce51f189be00e8332ae38970
+    .claude/skills/skill-curator/references/skill-map.md: sha256:1742dbeb22670b8b289e9e32caaa99e3b23b750fb3815291816793139f823342
   source: local
   local_path: ./skill-curator/
 - repo_url: _local/skill-evolve
@@ -968,9 +968,9 @@ dependencies:
   - .claude/skills/skill-evolve/scripts/test_mine_usage.py
   - .claude/skills/skill-evolve/sources.lock
   deployed_file_hashes:
-    .agents/skills/skill-evolve/SKILL.md: sha256:aa11479cef014b145c07bdad0cb51bb0bffca7a5451ae222ed1136dc03631b02
+    .agents/skills/skill-evolve/SKILL.md: sha256:ed2c7cb1e234869da4390f05d99d13c881207c21e54255748d744c64fa78f6c1
     .agents/skills/skill-evolve/evals/evals.json: sha256:8e241dd3b9bb8c55b10ee4a681a3fb5150da48a503a37d0fdbb8a0883c7c15e8
-    .agents/skills/skill-evolve/references/attribution.md: sha256:7b5ba6c3996b99a87b051884d67335c6872ebe95405d3c90eda8ce3a9e125d87
+    .agents/skills/skill-evolve/references/attribution.md: sha256:861e5a2e1b3c386091c29364a1d7b236382b0ebd3cecb92caa7910294f4f2a5d
     .agents/skills/skill-evolve/scripts/check_updates.py: sha256:c91ee0dea2b87ed5afb80048016988793f4d9fff31ad9005adee8187c5053adc
     .agents/skills/skill-evolve/scripts/env_health.py: sha256:c91925ae85818072988447d2d6085d1e0c3e09fc24191125f254e6414bd129de
     .agents/skills/skill-evolve/scripts/extract_sources.py: sha256:fe8b6d874440681fb3ffc513ac9aa40422abe780b7e054a7c68dfed59eb92dcc
@@ -979,10 +979,10 @@ dependencies:
     .agents/skills/skill-evolve/scripts/mine_usage.py: sha256:6eb50ffeafa6b7ff9ae40550cf139158fe3d556e690572df54d3d85f7fbe7e6a
     .agents/skills/skill-evolve/scripts/test_env_health.py: sha256:07d15f935b9d889413f4d192941535e104ce23ad537570888c804644c7989229
     .agents/skills/skill-evolve/scripts/test_mine_usage.py: sha256:5556ee599ca9c62295e2588ec45ce70003b1bd6f1445ca5d9140cfa956a4ee0f
-    .agents/skills/skill-evolve/sources.lock: sha256:ec7fea4f8044e6abad0c9b820dcec76e39e5dadfc4786f234ca90b8c771b1d05
-    .claude/skills/skill-evolve/SKILL.md: sha256:aa11479cef014b145c07bdad0cb51bb0bffca7a5451ae222ed1136dc03631b02
+    .agents/skills/skill-evolve/sources.lock: sha256:340e094e6a7bb877ed21b6bcf82590c80a088c5df4a171bbf2247498dd875711
+    .claude/skills/skill-evolve/SKILL.md: sha256:ed2c7cb1e234869da4390f05d99d13c881207c21e54255748d744c64fa78f6c1
     .claude/skills/skill-evolve/evals/evals.json: sha256:8e241dd3b9bb8c55b10ee4a681a3fb5150da48a503a37d0fdbb8a0883c7c15e8
-    .claude/skills/skill-evolve/references/attribution.md: sha256:7b5ba6c3996b99a87b051884d67335c6872ebe95405d3c90eda8ce3a9e125d87
+    .claude/skills/skill-evolve/references/attribution.md: sha256:861e5a2e1b3c386091c29364a1d7b236382b0ebd3cecb92caa7910294f4f2a5d
     .claude/skills/skill-evolve/scripts/check_updates.py: sha256:c91ee0dea2b87ed5afb80048016988793f4d9fff31ad9005adee8187c5053adc
     .claude/skills/skill-evolve/scripts/env_health.py: sha256:c91925ae85818072988447d2d6085d1e0c3e09fc24191125f254e6414bd129de
     .claude/skills/skill-evolve/scripts/extract_sources.py: sha256:fe8b6d874440681fb3ffc513ac9aa40422abe780b7e054a7c68dfed59eb92dcc
@@ -991,7 +991,7 @@ dependencies:
     .claude/skills/skill-evolve/scripts/mine_usage.py: sha256:6eb50ffeafa6b7ff9ae40550cf139158fe3d556e690572df54d3d85f7fbe7e6a
     .claude/skills/skill-evolve/scripts/test_env_health.py: sha256:07d15f935b9d889413f4d192941535e104ce23ad537570888c804644c7989229
     .claude/skills/skill-evolve/scripts/test_mine_usage.py: sha256:5556ee599ca9c62295e2588ec45ce70003b1bd6f1445ca5d9140cfa956a4ee0f
-    .claude/skills/skill-evolve/sources.lock: sha256:ec7fea4f8044e6abad0c9b820dcec76e39e5dadfc4786f234ca90b8c771b1d05
+    .claude/skills/skill-evolve/sources.lock: sha256:340e094e6a7bb877ed21b6bcf82590c80a088c5df4a171bbf2247498dd875711
   source: local
   local_path: ./skill-evolve/
 - repo_url: _local/skill-finder
@@ -1256,17 +1256,17 @@ dependencies:
   - .claude/skills/tdd/references/test-design.md
   - .claude/skills/tdd/sources.lock
   deployed_file_hashes:
-    .agents/skills/tdd/SKILL.md: sha256:a08e7a4163321d75ecaa86abc87759a708b3256f4687e7963b5bc8b721604ef3
+    .agents/skills/tdd/SKILL.md: sha256:2f897ff650acf3dde0ac3dfe2b4f4cd214af072fe68174388933fa3ed108ddeb
     .agents/skills/tdd/evals/evals.json: sha256:4ea260ee4513793aa81d9f07ad4b47b47adbf027e509d649b78186b53c43e7db
-    .agents/skills/tdd/references/attribution.md: sha256:8ef7d9b477fc0885400795ad91ed46e3ab8928e357221dc89957dd83d9cf59bb
+    .agents/skills/tdd/references/attribution.md: sha256:3115e6138483ead4420225208b7cab93cc3d34eb763dc4ec26bad54e8899aadf
     .agents/skills/tdd/references/mocking.md: sha256:50697e53a824e60d094ed63f78fda1631b3ec390a8a8e601d637d3b0c375f084
-    .agents/skills/tdd/references/test-design.md: sha256:39b47528af3333dd3a769e36ef054300fb81cae5bc73b9d698c7f3b4da8dd573
+    .agents/skills/tdd/references/test-design.md: sha256:2769c72ca21a24891104660ac49d805e4e9a9dbaa0d64c1b53dc25e09c2c75d7
     .agents/skills/tdd/sources.lock: sha256:d42eaa145c4af85060a8a4e728d09666ea0f0601891bcbbbfae6a48a28afdace
-    .claude/skills/tdd/SKILL.md: sha256:a08e7a4163321d75ecaa86abc87759a708b3256f4687e7963b5bc8b721604ef3
+    .claude/skills/tdd/SKILL.md: sha256:2f897ff650acf3dde0ac3dfe2b4f4cd214af072fe68174388933fa3ed108ddeb
     .claude/skills/tdd/evals/evals.json: sha256:4ea260ee4513793aa81d9f07ad4b47b47adbf027e509d649b78186b53c43e7db
-    .claude/skills/tdd/references/attribution.md: sha256:8ef7d9b477fc0885400795ad91ed46e3ab8928e357221dc89957dd83d9cf59bb
+    .claude/skills/tdd/references/attribution.md: sha256:3115e6138483ead4420225208b7cab93cc3d34eb763dc4ec26bad54e8899aadf
     .claude/skills/tdd/references/mocking.md: sha256:50697e53a824e60d094ed63f78fda1631b3ec390a8a8e601d637d3b0c375f084
-    .claude/skills/tdd/references/test-design.md: sha256:39b47528af3333dd3a769e36ef054300fb81cae5bc73b9d698c7f3b4da8dd573
+    .claude/skills/tdd/references/test-design.md: sha256:2769c72ca21a24891104660ac49d805e4e9a9dbaa0d64c1b53dc25e09c2c75d7
     .claude/skills/tdd/sources.lock: sha256:d42eaa145c4af85060a8a4e728d09666ea0f0601891bcbbbfae6a48a28afdace
   source: local
   local_path: ./tdd/
@@ -1608,7 +1608,7 @@ dependencies:
   - .claude/skills/ui-design-advisor/references/brand-assets.md
   - .claude/skills/ui-design-advisor/sources.lock
   deployed_file_hashes:
-    .agents/skills/ui-design-advisor/SKILL.md: sha256:033e729f0e1ce8c2a8f7c9500a2a564538db9db011f369388c5cfe2e55b61760
+    .agents/skills/ui-design-advisor/SKILL.md: sha256:a7d28359516552fc2c22f25f3f1a221c667d2e3d232a6db30b361168cac8ca95
     .agents/skills/ui-design-advisor/data/INDEX.md: sha256:9d0dcd65de27e33de70f32d9a7bcf41ed3696e4f73b7a4426f6c4526ab5804dc
     .agents/skills/ui-design-advisor/data/accessibility/aria-patterns.md: sha256:6009ecc236d4f03920c9d5dab8eea0051b354beaaac2f95da9dd146f57886a3b
     .agents/skills/ui-design-advisor/data/accessibility/wcag-checklist.md: sha256:ac405c74b46ce2d37e96eada8e5a17affdb2b7e821a87df079de5cd14ebbf4af
@@ -1666,11 +1666,11 @@ dependencies:
     .agents/skills/ui-design-advisor/evals/evals.json: sha256:67645fbc77fde7279656a2307fac9f0c0e6c2fac6493be2156105c9b4e3d3c25
     .agents/skills/ui-design-advisor/examples/txone-website-redesign.html: sha256:fb0fdee224808e2a92c7ae5e9e35b04024f78405d6290ccf8d141198f6bf5000
     .agents/skills/ui-design-advisor/examples/txone-website-redesign.md: sha256:50f967d97f437f36828e090caa3d72665100f656457166bee282c4bcd8b9aea1
-    .agents/skills/ui-design-advisor/references/anti-default.md: sha256:8be7e51cbeaa13bbe6932afcb43caf3d94ac34c873cc80a5d30998ecec8d2bde
-    .agents/skills/ui-design-advisor/references/attribution.md: sha256:ed73bce4252f6cc4c242109073401fd7bb1eedac2707cd2131dfbe7d9e02447f
+    .agents/skills/ui-design-advisor/references/anti-default.md: sha256:7b28148c7ecb11d7fdf827a78484b9c74fe2ae591cbb7557de53a1429467e40a
+    .agents/skills/ui-design-advisor/references/attribution.md: sha256:b399c376fdc2f3685c14f6937719895df8a73e14fa24311f1b8c7e66d5243b10
     .agents/skills/ui-design-advisor/references/brand-assets.md: sha256:47ecbaeb222d1b01f796d28e6cb92f2c9e4754dc7f526c52b9014a376c5975af
-    .agents/skills/ui-design-advisor/sources.lock: sha256:aa0acfe4f1bb5c97ab59264762417f1915335e0edd1bc2d00b8323e5be30df6c
-    .claude/skills/ui-design-advisor/SKILL.md: sha256:033e729f0e1ce8c2a8f7c9500a2a564538db9db011f369388c5cfe2e55b61760
+    .agents/skills/ui-design-advisor/sources.lock: sha256:3505df3631f89021fe1d707b5f0ea1d9de908c94f87805be11fb0ed74ed44ff3
+    .claude/skills/ui-design-advisor/SKILL.md: sha256:a7d28359516552fc2c22f25f3f1a221c667d2e3d232a6db30b361168cac8ca95
     .claude/skills/ui-design-advisor/data/INDEX.md: sha256:9d0dcd65de27e33de70f32d9a7bcf41ed3696e4f73b7a4426f6c4526ab5804dc
     .claude/skills/ui-design-advisor/data/accessibility/aria-patterns.md: sha256:6009ecc236d4f03920c9d5dab8eea0051b354beaaac2f95da9dd146f57886a3b
     .claude/skills/ui-design-advisor/data/accessibility/wcag-checklist.md: sha256:ac405c74b46ce2d37e96eada8e5a17affdb2b7e821a87df079de5cd14ebbf4af
@@ -1728,10 +1728,10 @@ dependencies:
     .claude/skills/ui-design-advisor/evals/evals.json: sha256:67645fbc77fde7279656a2307fac9f0c0e6c2fac6493be2156105c9b4e3d3c25
     .claude/skills/ui-design-advisor/examples/txone-website-redesign.html: sha256:fb0fdee224808e2a92c7ae5e9e35b04024f78405d6290ccf8d141198f6bf5000
     .claude/skills/ui-design-advisor/examples/txone-website-redesign.md: sha256:50f967d97f437f36828e090caa3d72665100f656457166bee282c4bcd8b9aea1
-    .claude/skills/ui-design-advisor/references/anti-default.md: sha256:8be7e51cbeaa13bbe6932afcb43caf3d94ac34c873cc80a5d30998ecec8d2bde
-    .claude/skills/ui-design-advisor/references/attribution.md: sha256:ed73bce4252f6cc4c242109073401fd7bb1eedac2707cd2131dfbe7d9e02447f
+    .claude/skills/ui-design-advisor/references/anti-default.md: sha256:7b28148c7ecb11d7fdf827a78484b9c74fe2ae591cbb7557de53a1429467e40a
+    .claude/skills/ui-design-advisor/references/attribution.md: sha256:b399c376fdc2f3685c14f6937719895df8a73e14fa24311f1b8c7e66d5243b10
     .claude/skills/ui-design-advisor/references/brand-assets.md: sha256:47ecbaeb222d1b01f796d28e6cb92f2c9e4754dc7f526c52b9014a376c5975af
-    .claude/skills/ui-design-advisor/sources.lock: sha256:aa0acfe4f1bb5c97ab59264762417f1915335e0edd1bc2d00b8323e5be30df6c
+    .claude/skills/ui-design-advisor/sources.lock: sha256:3505df3631f89021fe1d707b5f0ea1d9de908c94f87805be11fb0ed74ed44ff3
   source: local
   local_path: ./ui-design-advisor/
 - repo_url: _local/verify-before-done
@@ -4505,7 +4505,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:0ffd501d589b4906807dee532458134ca9f007f8d6614c3c80ebf5c063737cf1
+  content_hash: sha256:c68ea24983c59be4dd636d5c28699b3022390f9664e32db8a200da7bbc2218af
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/data/defaults.json
@@ -4514,7 +4514,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:b187749d6c21b19d0ad9de7a72b62ce6ac80eb1adce31acff8ea53938304d5f7
+  content_hash: sha256:370460d1b10f33794bc655953b76cc247b8bf743ed9cc2341d00f4e146609dbe
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/evals/evals.json
@@ -4541,7 +4541,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:29c0f6f8efe77f9f0e3e284fd8c2a933af676492218076b59f2f0e30fcd5e8d4
+  content_hash: sha256:26f455f5554d937d50eb3047be84dbda3ce20612c3d60ea9cd063d3ef8d1fb66
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/references/glossary.md
@@ -4559,7 +4559,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:111de565d0bd0e2394e7bb73976e73c34a6da2674fbf5fa22d12e72494bfc2aa
+  content_hash: sha256:2cdda02fed7cfcf905bee41c77806b0f1705fe7993f60d87593c4e51e44d7b97
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/requirements.txt
@@ -4586,7 +4586,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:e2800385ad248fe874f6828af833aef0acba0bd11dc04d0ab0f2456e1f0cdfd4
+  content_hash: sha256:763fa4826ea832f2ea8e5a20517bb3bfa02eca6db33faf79a40bc79dffdf0712
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/scripts/test_normalize.py
@@ -4595,7 +4595,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:dc38334325791d84fe4329caf42a1306c9590004660fcea7bd8b56ab38f87a35
+  content_hash: sha256:fec9cee0eedc5042f9f324e99f418c2294475307ad36e713b0464548f91115f4
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/scripts/test_weekday.py
@@ -4604,7 +4604,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:52905510bf1a385d0f9999dc2cf1273516ff987f6626fc23f87999988a9e1a92
+  content_hash: sha256:64e598d304fa71ec2dcb55a2cebef55ee838663afaa49d868590cc6b50883efa
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/scripts/weekday.py
@@ -4622,7 +4622,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:044ffb884d785fd604477f1c35d96ace18470fb4c413af9b0dea10cd9b4c927c
+  content_hash: sha256:0211f79851d192aa2c968d7866e7103a288f565b77876b96a0b921ee8e628b8e
 - kind: project-relative
   target: claude
   value: .claude/skills/chinese-typography/user-dictionary.json
@@ -8789,7 +8789,7 @@ deployments:
   owners:
   - ./skill-curator/
   active_owner: ./skill-curator/
-  content_hash: sha256:c2503fc441927da7284532ee0c999a969d8c5890ce51f189be00e8332ae38970
+  content_hash: sha256:1742dbeb22670b8b289e9e32caaa99e3b23b750fb3815291816793139f823342
 - kind: project-relative
   target: claude
   value: .claude/skills/skill-evolve
@@ -8807,7 +8807,7 @@ deployments:
   owners:
   - ./skill-evolve/
   active_owner: ./skill-evolve/
-  content_hash: sha256:aa11479cef014b145c07bdad0cb51bb0bffca7a5451ae222ed1136dc03631b02
+  content_hash: sha256:ed2c7cb1e234869da4390f05d99d13c881207c21e54255748d744c64fa78f6c1
 - kind: project-relative
   target: claude
   value: .claude/skills/skill-evolve/evals/evals.json
@@ -8825,7 +8825,7 @@ deployments:
   owners:
   - ./skill-evolve/
   active_owner: ./skill-evolve/
-  content_hash: sha256:7b5ba6c3996b99a87b051884d67335c6872ebe95405d3c90eda8ce3a9e125d87
+  content_hash: sha256:861e5a2e1b3c386091c29364a1d7b236382b0ebd3cecb92caa7910294f4f2a5d
 - kind: project-relative
   target: claude
   value: .claude/skills/skill-evolve/scripts/check_updates.py
@@ -8906,7 +8906,7 @@ deployments:
   owners:
   - ./skill-evolve/
   active_owner: ./skill-evolve/
-  content_hash: sha256:ec7fea4f8044e6abad0c9b820dcec76e39e5dadfc4786f234ca90b8c771b1d05
+  content_hash: sha256:340e094e6a7bb877ed21b6bcf82590c80a088c5df4a171bbf2247498dd875711
 - kind: project-relative
   target: claude
   value: .claude/skills/skill-finder
@@ -9473,7 +9473,7 @@ deployments:
   owners:
   - ./tdd/
   active_owner: ./tdd/
-  content_hash: sha256:a08e7a4163321d75ecaa86abc87759a708b3256f4687e7963b5bc8b721604ef3
+  content_hash: sha256:2f897ff650acf3dde0ac3dfe2b4f4cd214af072fe68174388933fa3ed108ddeb
 - kind: project-relative
   target: claude
   value: .claude/skills/tdd/evals/evals.json
@@ -9491,7 +9491,7 @@ deployments:
   owners:
   - ./tdd/
   active_owner: ./tdd/
-  content_hash: sha256:8ef7d9b477fc0885400795ad91ed46e3ab8928e357221dc89957dd83d9cf59bb
+  content_hash: sha256:3115e6138483ead4420225208b7cab93cc3d34eb763dc4ec26bad54e8899aadf
 - kind: project-relative
   target: claude
   value: .claude/skills/tdd/references/mocking.md
@@ -9509,7 +9509,7 @@ deployments:
   owners:
   - ./tdd/
   active_owner: ./tdd/
-  content_hash: sha256:39b47528af3333dd3a769e36ef054300fb81cae5bc73b9d698c7f3b4da8dd573
+  content_hash: sha256:2769c72ca21a24891104660ac49d805e4e9a9dbaa0d64c1b53dc25e09c2c75d7
 - kind: project-relative
   target: claude
   value: .claude/skills/tdd/sources.lock
@@ -10058,7 +10058,7 @@ deployments:
   owners:
   - ./ui-design-advisor/
   active_owner: ./ui-design-advisor/
-  content_hash: sha256:033e729f0e1ce8c2a8f7c9500a2a564538db9db011f369388c5cfe2e55b61760
+  content_hash: sha256:a7d28359516552fc2c22f25f3f1a221c667d2e3d232a6db30b361168cac8ca95
 - kind: project-relative
   target: claude
   value: .claude/skills/ui-design-advisor/data/INDEX.md
@@ -10580,7 +10580,7 @@ deployments:
   owners:
   - ./ui-design-advisor/
   active_owner: ./ui-design-advisor/
-  content_hash: sha256:8be7e51cbeaa13bbe6932afcb43caf3d94ac34c873cc80a5d30998ecec8d2bde
+  content_hash: sha256:7b28148c7ecb11d7fdf827a78484b9c74fe2ae591cbb7557de53a1429467e40a
 - kind: project-relative
   target: claude
   value: .claude/skills/ui-design-advisor/references/attribution.md
@@ -10589,7 +10589,7 @@ deployments:
   owners:
   - ./ui-design-advisor/
   active_owner: ./ui-design-advisor/
-  content_hash: sha256:ed73bce4252f6cc4c242109073401fd7bb1eedac2707cd2131dfbe7d9e02447f
+  content_hash: sha256:b399c376fdc2f3685c14f6937719895df8a73e14fa24311f1b8c7e66d5243b10
 - kind: project-relative
   target: claude
   value: .claude/skills/ui-design-advisor/references/brand-assets.md
@@ -10607,7 +10607,7 @@ deployments:
   owners:
   - ./ui-design-advisor/
   active_owner: ./ui-design-advisor/
-  content_hash: sha256:aa0acfe4f1bb5c97ab59264762417f1915335e0edd1bc2d00b8323e5be30df6c
+  content_hash: sha256:3505df3631f89021fe1d707b5f0ea1d9de908c94f87805be11fb0ed74ed44ff3
 - kind: project-relative
   target: claude
   value: .claude/skills/verify-before-done
@@ -12182,7 +12182,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:0ffd501d589b4906807dee532458134ca9f007f8d6614c3c80ebf5c063737cf1
+  content_hash: sha256:c68ea24983c59be4dd636d5c28699b3022390f9664e32db8a200da7bbc2218af
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/data/defaults.json
@@ -12191,7 +12191,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:b187749d6c21b19d0ad9de7a72b62ce6ac80eb1adce31acff8ea53938304d5f7
+  content_hash: sha256:370460d1b10f33794bc655953b76cc247b8bf743ed9cc2341d00f4e146609dbe
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/evals/evals.json
@@ -12218,7 +12218,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:29c0f6f8efe77f9f0e3e284fd8c2a933af676492218076b59f2f0e30fcd5e8d4
+  content_hash: sha256:26f455f5554d937d50eb3047be84dbda3ce20612c3d60ea9cd063d3ef8d1fb66
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/references/glossary.md
@@ -12236,7 +12236,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:111de565d0bd0e2394e7bb73976e73c34a6da2674fbf5fa22d12e72494bfc2aa
+  content_hash: sha256:2cdda02fed7cfcf905bee41c77806b0f1705fe7993f60d87593c4e51e44d7b97
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/requirements.txt
@@ -12263,7 +12263,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:e2800385ad248fe874f6828af833aef0acba0bd11dc04d0ab0f2456e1f0cdfd4
+  content_hash: sha256:763fa4826ea832f2ea8e5a20517bb3bfa02eca6db33faf79a40bc79dffdf0712
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/scripts/test_normalize.py
@@ -12272,7 +12272,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:dc38334325791d84fe4329caf42a1306c9590004660fcea7bd8b56ab38f87a35
+  content_hash: sha256:fec9cee0eedc5042f9f324e99f418c2294475307ad36e713b0464548f91115f4
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/scripts/test_weekday.py
@@ -12281,7 +12281,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:52905510bf1a385d0f9999dc2cf1273516ff987f6626fc23f87999988a9e1a92
+  content_hash: sha256:64e598d304fa71ec2dcb55a2cebef55ee838663afaa49d868590cc6b50883efa
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/scripts/weekday.py
@@ -12299,7 +12299,7 @@ deployments:
   owners:
   - ./chinese-typography/
   active_owner: ./chinese-typography/
-  content_hash: sha256:044ffb884d785fd604477f1c35d96ace18470fb4c413af9b0dea10cd9b4c927c
+  content_hash: sha256:0211f79851d192aa2c968d7866e7103a288f565b77876b96a0b921ee8e628b8e
 - kind: project-relative
   target: opencode
   value: .agents/skills/chinese-typography/user-dictionary.json
@@ -16466,7 +16466,7 @@ deployments:
   owners:
   - ./skill-curator/
   active_owner: ./skill-curator/
-  content_hash: sha256:c2503fc441927da7284532ee0c999a969d8c5890ce51f189be00e8332ae38970
+  content_hash: sha256:1742dbeb22670b8b289e9e32caaa99e3b23b750fb3815291816793139f823342
 - kind: project-relative
   target: opencode
   value: .agents/skills/skill-evolve
@@ -16484,7 +16484,7 @@ deployments:
   owners:
   - ./skill-evolve/
   active_owner: ./skill-evolve/
-  content_hash: sha256:aa11479cef014b145c07bdad0cb51bb0bffca7a5451ae222ed1136dc03631b02
+  content_hash: sha256:ed2c7cb1e234869da4390f05d99d13c881207c21e54255748d744c64fa78f6c1
 - kind: project-relative
   target: opencode
   value: .agents/skills/skill-evolve/evals/evals.json
@@ -16502,7 +16502,7 @@ deployments:
   owners:
   - ./skill-evolve/
   active_owner: ./skill-evolve/
-  content_hash: sha256:7b5ba6c3996b99a87b051884d67335c6872ebe95405d3c90eda8ce3a9e125d87
+  content_hash: sha256:861e5a2e1b3c386091c29364a1d7b236382b0ebd3cecb92caa7910294f4f2a5d
 - kind: project-relative
   target: opencode
   value: .agents/skills/skill-evolve/scripts/check_updates.py
@@ -16583,7 +16583,7 @@ deployments:
   owners:
   - ./skill-evolve/
   active_owner: ./skill-evolve/
-  content_hash: sha256:ec7fea4f8044e6abad0c9b820dcec76e39e5dadfc4786f234ca90b8c771b1d05
+  content_hash: sha256:340e094e6a7bb877ed21b6bcf82590c80a088c5df4a171bbf2247498dd875711
 - kind: project-relative
   target: opencode
   value: .agents/skills/skill-finder
@@ -17150,7 +17150,7 @@ deployments:
   owners:
   - ./tdd/
   active_owner: ./tdd/
-  content_hash: sha256:a08e7a4163321d75ecaa86abc87759a708b3256f4687e7963b5bc8b721604ef3
+  content_hash: sha256:2f897ff650acf3dde0ac3dfe2b4f4cd214af072fe68174388933fa3ed108ddeb
 - kind: project-relative
   target: opencode
   value: .agents/skills/tdd/evals/evals.json
@@ -17168,7 +17168,7 @@ deployments:
   owners:
   - ./tdd/
   active_owner: ./tdd/
-  content_hash: sha256:8ef7d9b477fc0885400795ad91ed46e3ab8928e357221dc89957dd83d9cf59bb
+  content_hash: sha256:3115e6138483ead4420225208b7cab93cc3d34eb763dc4ec26bad54e8899aadf
 - kind: project-relative
   target: opencode
   value: .agents/skills/tdd/references/mocking.md
@@ -17186,7 +17186,7 @@ deployments:
   owners:
   - ./tdd/
   active_owner: ./tdd/
-  content_hash: sha256:39b47528af3333dd3a769e36ef054300fb81cae5bc73b9d698c7f3b4da8dd573
+  content_hash: sha256:2769c72ca21a24891104660ac49d805e4e9a9dbaa0d64c1b53dc25e09c2c75d7
 - kind: project-relative
   target: opencode
   value: .agents/skills/tdd/sources.lock
@@ -17735,7 +17735,7 @@ deployments:
   owners:
   - ./ui-design-advisor/
   active_owner: ./ui-design-advisor/
-  content_hash: sha256:033e729f0e1ce8c2a8f7c9500a2a564538db9db011f369388c5cfe2e55b61760
+  content_hash: sha256:a7d28359516552fc2c22f25f3f1a221c667d2e3d232a6db30b361168cac8ca95
 - kind: project-relative
   target: opencode
   value: .agents/skills/ui-design-advisor/data/INDEX.md
@@ -18257,7 +18257,7 @@ deployments:
   owners:
   - ./ui-design-advisor/
   active_owner: ./ui-design-advisor/
-  content_hash: sha256:8be7e51cbeaa13bbe6932afcb43caf3d94ac34c873cc80a5d30998ecec8d2bde
+  content_hash: sha256:7b28148c7ecb11d7fdf827a78484b9c74fe2ae591cbb7557de53a1429467e40a
 - kind: project-relative
   target: opencode
   value: .agents/skills/ui-design-advisor/references/attribution.md
@@ -18266,7 +18266,7 @@ deployments:
   owners:
   - ./ui-design-advisor/
   active_owner: ./ui-design-advisor/
-  content_hash: sha256:ed73bce4252f6cc4c242109073401fd7bb1eedac2707cd2131dfbe7d9e02447f
+  content_hash: sha256:b399c376fdc2f3685c14f6937719895df8a73e14fa24311f1b8c7e66d5243b10
 - kind: project-relative
   target: opencode
   value: .agents/skills/ui-design-advisor/references/brand-assets.md
@@ -18284,7 +18284,7 @@ deployments:
   owners:
   - ./ui-design-advisor/
   active_owner: ./ui-design-advisor/
-  content_hash: sha256:aa0acfe4f1bb5c97ab59264762417f1915335e0edd1bc2d00b8323e5be30df6c
+  content_hash: sha256:3505df3631f89021fe1d707b5f0ea1d9de908c94f87805be11fb0ed74ed44ff3
 - kind: project-relative
   target: opencode
   value: .agents/skills/verify-before-done
