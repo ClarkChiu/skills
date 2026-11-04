@@ -172,14 +172,26 @@ Hand it to the built-in `skill-creator` and apply two disciplines **around** it 
 git:
 
 - **Bounded edit**: change ONE thing per iteration, then re-run its evals.
-- **git-revert ratchet**: branch per attempt; read the `benchmark.json` delta it already
-  emits; `git revert` if the change isn't strictly positive. Two ways a "positive" delta
-  lies, so both are revert conditions too:
+- **git-revert ratchet**: branch per attempt; take `pass_rate.mean` for each version from
+  `run_summary` in `benchmark.json` and subtract, new minus old. Runs must sit in
+  `eval-*/<version>/run-1/`, or `run_summary` comes back with only `delta`. Don't read `delta`:
+  it's the first folder minus the second in sorted order, so `old_skill/` with `with_skill/`
+  gets the sign backwards. `git revert` if the change isn't clearly positive. Four ways a
+  "positive" number lies, so all are revert conditions too:
+  - **A hard gate failed.** Check these before the score, because no score offsets them: the
+    new version adds a false completion claim, a gamed eval, or a security regression.
+    `benchmark.json` doesn't carry them; compare `claims` in each version's `grading.json`,
+    the transcripts, and `skill-auditor`.
   - **Any single eval regressing counts as failure**, even when the total improves — a
     total hides a trade (three cases fixed, one broken, sum still up).
   - **An eval written from the failure you just fixed proves nothing.** Scoring a change
     on the cases it was built from is *unverified*, never validated; it needs cases that
     existed before the edit (or ones mined from usage, per the GAP flow above).
+  - **The gain doesn't repeat.** One run per eval can't tell a fix from luck, so re-run the
+    evals that improved, old and new, and compare them per eval in `runs`. A gain where the
+    new version falls back doesn't count; if none is left, the change doesn't stay. If the
+    new version holds but the old one now passes too, the old failure was intermittent and
+    one more run can't settle it: report that and let the user decide.
 
 (Held-out validation and blind-comparator anti-bias already live in `skill-creator` — don't
 rebuild them.)

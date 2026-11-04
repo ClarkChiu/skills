@@ -12,6 +12,14 @@
       "commit": "8a8b66258e3c",
       "date": "2026-09-18",
       "note": "2026-10-05 bump (was 5539516444cf): fixed a self-reference false positive in their runtime scan (a skill that explains a rule got flagged). skill-evolve has no such scan; skill-auditor already documents this false-positive class. Nothing adopted. Previous: 2026-09-17 bump (was 2fbaf4171e45): 2 commits — a README wording fix plus a silent 30-day git ls-remote version self-check. NOTHING ADOPTED: APM + this skill already cover version checking. STILL OPEN, deferred again by the user on 2026-09-17: their #13 paired-comparison judging (one judge compares old vs new directly instead of scoring each and subtracting). The ratchet now carries the two SkillOpt conditions instead; revisit #13 only if the ratchet proves noisy in practice. Previous: 2026-08-04 bump (was 7c7b7909b630): 15 commits — chart-rubric went from an eight-dimension v1 to a nine-dimension v2 with a weighted-shortfall formula, plus an MIT LICENSE and cross-platform screenshot fixes. One methodological item is on-domain: Phase-2 keep/revert switched from an ABSOLUTE score delta to a PAIRED WITHIN-JUDGE comparison (#13) — directly relevant to this skill's git-revert ratchet, which today just says to read the benchmark.json delta. FLAGGED, not adopted, pending user decision. 2026-07-06 baseline (commit field was blank): evaluated 🟥 this session; latest 7c7b7909b630 (2026-06-14) == reviewed state, no movement. Baseline filled."
+    },
+    "didi/helixharness": {
+      "ref": "main",
+      "commit": "44ffc536f73d",
+      "date": "2026-10-30",
+      "license": "Apache-2.0",
+      "vendored": "PRINCIPLES ONLY — no files. The git-revert ratchet in SKILL.md takes two conditions from helixharness-platform/bench/evaluation_contracts.py: hard gates before the score, and not counting a small gain as a win.",
+      "note": "2026-11-04 baseline. Upstream's test is a fixed ±5 on a 100-point composite score; ours is a re-run, because one real fix can move pass_rate by under 0.05. Audit: research/audits/2026-11-03-helixharness.md."
     }
   }
 }

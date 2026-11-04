@@ -36,9 +36,19 @@ evaluated 🟦 build-your-own (not installed). Full evaluations:
 - **Scheduling stays external** (built-in `schedule`/cron), matching the repo's
   content-engine-vs-timer split — the skill stays trigger-agnostic.
 
+## Ratchet conditions from helixharness
+
+Two revert conditions come from **didi/helixharness** (https://github.com/didi/helixharness),
+`helixharness-platform/bench/evaluation_contracts.py` (Apache-2.0; 🟦 build-your-own, idea
+only, no files; `research/audits/2026-11-03-helixharness.md`): hard gates before the score,
+and not counting a small gain as a win. Upstream tests the second with a fixed ±5 on a
+100-point composite score. A band doesn't carry over to `pass_rate`, where one real fix can
+move the mean by less than 0.05 (`humanizer`: 0.036–0.048), so here a gain has to repeat.
+
 ## Re-sync
 
-`sources.lock` pins both upstream projects. On a future `skill-evolve` run, check SkillOpt
-for a new release (the Sleep engine is evolving fast) and darwin-skill for changes to its
-ratchet/anti-pattern framing; keep the scout-only scope and the "optimize half lives in
-skill-creator" boundary unless the calculus changes.
+`sources.lock` pins the upstream projects. On a future `skill-evolve` run, check SkillOpt
+for a new release (the Sleep engine is evolving fast), darwin-skill for changes to its
+ratchet/anti-pattern framing, and helixharness for changes to its evaluation contract; keep
+the scout-only scope and the "optimize half lives in skill-creator" boundary unless the
+calculus changes.
