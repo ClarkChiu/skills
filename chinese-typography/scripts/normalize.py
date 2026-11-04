@@ -101,15 +101,15 @@ def _stasher(store, verbatim):
 def _protect(text, extra_protect=None):
     store = []   # 每筆是 (原文, verbatim)；verbatim=True 者最後才還原（純逐字）
 
-    # 個人字典 protect 詞優先抽出（最長優先，避免子字串先被吃掉）。
+    # 先抽 code：裡面的 URL 不會被重複抽，protect 詞也不會變成哨符鎖在 code 裡。
+    for pat in _CODE_PATTERNS:
+        text = pat.sub(_stasher(store, True), text)
+    # 個人字典 protect 詞接著抽出（最長優先，避免子字串先被吃掉）。
     # 歸 SPAN 類（pangu 前還原）＝沿用原行為：擋住 opencc/quotes/punct/width/fixes，
     # 但 pangu 的 CJK 邊界空格照常（protect 詞多為中文品牌，CJK↔CJK 本就不加空格）。
     for term in sorted(extra_protect or [], key=len, reverse=True):
         if term:
             text = re.sub(re.escape(term), _stasher(store, False), text)
-    # 先抽 code（最先，URL 在 code block 內就不會被重複抽），再抽 span。
-    for pat in _CODE_PATTERNS:
-        text = pat.sub(_stasher(store, True), text)
     return _stash_spans(text, store), store
 
 
