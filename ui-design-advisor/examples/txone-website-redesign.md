@@ -124,9 +124,14 @@ These look like the defaults in `anti-default.md` §2, and are kept on purpose:
   (5.67:1) and `#38BDF8` in the dark CTA band (8.33:1). Cards aren't links, so they
   have no hover. There's no disabled control and no theme switch on this page.
 - **Computed contrast:** all text elements pass at 1440 px wide (98 of them) and 390 px
-  wide (94, because the nav links are hidden there). The lowest is 4.55:1: `#64748B` on
-  the page background, for captions, the table's generic-IT column and the footer. The
-  ghost button's border uses the same color; it's the only button without a fill.
+  wide (92, because the nav links and the header's "Networks" are hidden there). The
+  lowest is 4.55:1: `#64748B` on the page background, for captions, the table's
+  generic-IT column and the footer. The ghost button's border uses the same color; it's
+  the only button without a fill.
+- **Phone header:** up to 440 px wide, the header drops "Networks" and the button shrinks
+  to 14 px text and 44 px tall, so it stays on one line. Checked from 320 to 440 px.
+- **Known gap:** below 346 px the comparison table runs past the screen, so the page
+  scrolls sideways (26 px at 320).
 - **Type floor:** the smallest text is 12 px. Headings are 1.26× or more of the body
   text they sit with. The longest paragraph runs 48ch: these are short blurbs, not
   running text, so the 65–75ch measure doesn't come into play.

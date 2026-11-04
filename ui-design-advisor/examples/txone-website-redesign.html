@@ -57,6 +57,8 @@
   .nav-links a{color:var(--slate);transition:color .2s}
   .nav-links a:hover{color:var(--blue);text-decoration:underline;text-underline-offset:.3em}
   @media(max-width:820px){.nav-links{display:none}}
+  /* phones: both won't fit at full size, so the name shortens and the button stays on one line */
+  @media(max-width:440px){header .brand span:not(.dot){display:none}header .btn{font-size:.875rem;padding:.7em .85em;white-space:nowrap}}
   /* ---- hero ---- */
   .hero{padding:7rem 0 5rem}
   .hero .label{animation:rise .6s both}
