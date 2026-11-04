@@ -54,7 +54,8 @@ This is the **build** phase. Plan with `design-gate` first; gate the final claim
 
 ## Test design & mocking
 
-- What to test and what not to: `references/test-design.md`.
+- What to test and what not to, and how to check a suite with mutation testing:
+  `references/test-design.md`.
 - When to mock vs use the real thing — especially for **network/protocol** code where a
   real socket on loopback beats a mock that encodes your assumptions:
   `references/mocking.md`.

@@ -71,3 +71,27 @@ def test_parse_rejects_a_truncated_frame(): ...
 
 `test_<unit>_<behaviour>_<condition>` — the name should read as the spec line:
 `test_parse_rejects_a_truncated_frame`. When it fails, the name alone tells you what broke.
+
+## Checking the suite with mutation testing
+
+Rule 9 says a test must fail when the logic breaks. Mutation testing checks that by machine:
+it breaks the code in small ways and reports every break the suite still passes (a
+*survivor*). Green tests and high coverage don't show this.
+
+- **When:** by hand, on pure logic with fast tests where a silent bug is costly (parsers,
+  normalizers, codecs). Not on every change, not in CI. For tests that touch ports, devices
+  or shared state, use `--max-children 1`: any failure counts as a catch, so a collision
+  between parallel mutants inflates the score.
+- **Tool:** `mutmut` for Python: `mutmut run`, then `mutmut results` and `mutmut show <name>`.
+  It also mutates strings inside functions, so inline regexes get a crude break. Module-level
+  patterns and tables aren't mutated at all: test those directly.
+- **Read survivors, don't count them.** A survivor is a gap only if it changes real
+  behaviour, so run it over real inputs or read its diff. Ignore help text, messages and
+  equivalent rewrites, and don't chase 100%.
+- **Distrust the score first.** A perfect score or a suspiciously fast run may mean errors
+  are being counted as catches. Re-run a few verdicts in a fresh process, from `mutants/`:
+  `MUTANT_UNDER_TEST=<name> python -m pytest -q`. Functions called at import need this most.
+- **Setup traps in 3.8.0:** pin `pytest<9` (9.2 crashes it with a `_nodeid` error) and keep
+  pytest test IDs ASCII (others gave false kills). It needs pytest tests and an import name
+  that matches the file it mutates, so a script-style suite needs a thin wrapper. For a flat
+  layout, set `source_paths` (and `also_copy` for data files) under `[tool.mutmut]`.
