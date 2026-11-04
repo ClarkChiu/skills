@@ -3,8 +3,8 @@
 Three habits that separate a considered design read from a default-template one.
 Per-row `Anti_Patterns` in the CSVs catch *style-specific* mistakes; this file catches
 the *universal LLM defaults* that fire regardless of style, plus a way to declare the
-read and tune its intensity. Adapted from Leonxlnx/taste-skill (principles, not files —
-see `attribution.md`).
+read and tune its intensity. Adapted from Leonxlnx/taste-skill and pbakaus/impeccable
+(principles, not files — see `attribution.md`).
 
 ## 1. The Design Read — declare it in one line before deciding
 
@@ -38,6 +38,18 @@ These are what every model defaults to. None is banned outright, but reaching fo
 - **slate-900 / zinc text on pure white** as the only contrast move.
 - **Infinite-loop micro-animations everywhere**, drop shadows and huge border-radius with
   no purpose, decorative icons that carry no information.
+- **Gradient text** on headings or metrics, where weight or size would make the same point.
+- **Cards inside cards**, or **a colored stripe down one side** of a card, callout or list
+  item (`border-left` / `border-right` above 1px).
+- **The hero-metric template** — one oversized number over a small caption, lesser stats
+  beside it, everything in the accent color.
+- **A tiny tracked label above every heading**, and section numbers (`01 / 02 / 03`) that
+  carry no real sequence. One deliberate eyebrow is fine; on every section it's scaffolding.
+- **Costumes for "technical"** — monospace on text that isn't code or data, decorative
+  hairline grids, pulsing "live" dots with nothing live behind them, hard offset shadows
+  outside a neobrutalist style.
+- **Browser surfaces left at their defaults** — text selection, scrollbars, focus rings,
+  underline offset, proportional numerals in tables. Set them on purpose.
 
 When the data row you picked *is* one of these (e.g. a legitimately glassy style), keep it
 — but say so in the brief's rationale, so it reads as a choice, not a default.
@@ -64,10 +76,10 @@ Infer from the read:
 Sensible default when nothing overrides: **6 / 4 / 4**. Overrides happen conversationally,
 not by asking the user to edit a config.
 
-## 4. Measurement over opinion — two checks you can't eyeball
+## 4. Measurement over opinion — three checks you can't eyeball
 
-A design read is a judgment; these two are not — they are measurable, and "looks fine"
-is the wrong test. State both in the brief as checks, not assertions.
+A design read is a judgment; these three are not — they are measurable, and "looks fine"
+is the wrong test. State all three in the brief as checks, not assertions.
 
 - **State coverage.** Every interactive element needs a *defined* `hover`, `focus`, and
   `disabled` state, not just its resting look — and each verified in both light and dark.
@@ -79,3 +91,5 @@ is the wrong test. State both in the brief as checks, not assertions.
   the most common failure is the very low-contrast slate-on-white from §2, which reads
   "clean" and fails the math. If a chosen pair fails, it's a defect to flag, not taste to
   defend.
+- **Type floor.** Body text runs 65–75ch per line; for Han, about 35–40em, since 1em is one
+  character. Body and headings sit at least one clear step apart, 1.25× or more.

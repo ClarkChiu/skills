@@ -76,7 +76,7 @@ aesthetic-palette JSON, and accessibility + UX-heuristic markdown.
    pieces reinforce each other. Resolve concrete values: palette as hex,
    named font pairing, specific chart types, named effects. Check it against the
    chosen rows' `Do Not Use For` / `Anti_Patterns` / severity columns, **and**
-   against the universal LLM clichés in `references/anti-default.md` §2 (AI-purple
+   against the universal LLM clichés in `references/anti-default.md` §2 (e.g. AI-purple
    gradients, centered hero on dark mesh, three equal cards, blanket
    glassmorphism, Inter/Roboto display, slate-on-white) — the row anti-patterns
    are style-specific; the anti-default list fires regardless of style. Set the
@@ -98,6 +98,7 @@ aesthetic-palette JSON, and accessibility + UX-heuristic markdown.
    - **Charts** (if any) — type per data shape, with accessibility note.
    - **Key effects & motion** — restrained, from the style row.
    - **Accessibility** — the P0 items from `wcag-checklist.md` that apply.
+   - **Checks** — state coverage, contrast and type floor (`anti-default.md` §4).
    - **Anti-patterns to avoid** — from the rows you used, plus any universal
      default you deliberately kept and why (`references/anti-default.md`).
    Optionally `Write` the brief to `docs/design/<screen>-brief.md` if the user

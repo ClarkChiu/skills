@@ -52,6 +52,14 @@
       "vendored": "PRINCIPLES ONLY — no files. references/brand-assets.md adapts the brand-asset protocol (never guess brand colors from memory; fetch official sources and pin) + the 'default AI output = average of all brands' anti-slop framing.",
       "note": "2026-10-05 bump (was c4b83675d1cd): v2.0 html2pptx rewrite + SVG fix; brand-asset protocol and anti-slop list untouched. Nothing adopted. Previous: 2026-09-17 bump (was 32cc58127f60): 11 commits — new storyboard / camera-language / UI-demo animation references; 60fps export now duplicates frames instead of interpolating (no effect here). Nothing adopted; the verify-the-verifier idea was noted for ig-reel, not this skill. Previous: 2026-07-02: adapted, not vendored — research/audits/2026-07-02-huashu-design.md (🟦 build-your-own). Ladder restructured offline-first (user spec → WebFetch pin → ask); upstream's mandatory WebSearch step dropped. Re-sync: watch upstream SKILL.md 品牌资产协议 §1.a and the anti-slop list for protocol refinements.",
       "release": "v2.0"
+    },
+    "pbakaus/impeccable": {
+      "ref": "main",
+      "commit": "9fadc41729c3",
+      "date": "2026-11-02",
+      "license": "Apache-2.0",
+      "vendored": "PRINCIPLES ONLY — no files. references/anti-default.md §2 additions and the §4 type floor are rewritten from skill/reference/craft-floor.md and the detector rule list.",
+      "note": "2026-11-04 baseline. Left out: the outright kicker ban, the 6rem display cap and self-hosted fonts only (conflict with slide-deck), and the -0.04em tracking floor (styles.csv rows go tighter). Re-sync: watch skill/reference/craft-floor.md and crates/foundation/src/registry.rs. Audit: research/audits/2026-11-03-impeccable.md."
     }
   }
 }

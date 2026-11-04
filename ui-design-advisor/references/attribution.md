@@ -71,6 +71,17 @@ verdict in `research/audits/2026-06-08-taste-skill.md`); these three directives
 were the parts worth keeping. Pinned in `sources.lock` so `skill-evolve` tracks
 the upstream for better wording later.
 
+`references/anti-default.md` also adapts rules from **pbakaus/impeccable**
+(Apache-2.0): the §2 additions (gradient text, nested cards, side stripes, hero-metric
+template, kickers and section numbers, "technical" costumes, browser surfaces) and the §4
+type floor, rewritten from its `skill/reference/craft-floor.md` and detector rule list. **No
+files copied**, no engine, no hooks; full verdict in `research/audits/2026-11-03-impeccable.md`
+(🟦 build-your-own). Left out because they conflict with `slide-deck`: the outright kicker
+ban (here it's a default to choose deliberately), the 6rem display cap, and self-hosted
+fonts only. Also left out: the −0.04em tracking floor, because rows in `styles.csv` go tighter.
+The Han measure is ours: a 2026-11-04 trial showed its 80-character line check passes a
+64-character Han line. Pinned in `sources.lock` for `skill-evolve`.
+
 `references/brand-assets.md` adapts the **brand-asset protocol** from
 **alchaincyf/huashu-design** (MIT) — never write brand hex/logo rules from model
 memory; fetch from official sources and pin the result — plus its framing of the
