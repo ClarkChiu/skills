@@ -97,7 +97,8 @@ or the user questions a specific change.
   `中文,` → `中文，`, `對吧?` → `對吧？`. The script only converts marks adjacent
   to CJK, so English sentences and code stay half-width.
 - **引號 → 「」『』** — straight/curly quotes become corner brackets, the Taiwan
-  standard (mainland uses `""`). Nested quotes use `『』`.
+  standard (mainland uses `""`). Nested quotes use `『』`. An English apostrophe
+  (`It’s`) stays as it is.
 - **簡轉繁 + 臺灣用語** — OpenCC `s2twp`: not just character conversion but
   vocabulary localization — 软件→軟體, 鼠标→滑鼠, 视频→影片, 内存→記憶體.
   Applied **per line, only to lines that actually contain Simplified characters**
@@ -121,9 +122,10 @@ or the user questions a specific change.
 - **西文縮寫** — `Mr.` `Dr.` `e.g.` `i.e.` `etc.` `Fig.` etc. are protected, so
   their period is never converted to 。.
 
-**Protected, never touched:** fenced/inline code, URLs, emails, file paths,
-version numbers and decimals (`8.2.10`, `3.14`), percentages, Western
-abbreviations. This is why `src/main.py` and `https://…` survive intact.
+**Protected, never touched:** fenced/inline code, HTML tags with attributes, URLs,
+emails, file paths, version numbers and decimals (`8.2.10`, `3.14`), percentages,
+Western abbreviations. This is why `src/main.py` and `https://…` survive intact.
+HTML tags have a few known gaps, listed in `references/typography-rules.md` §6.
 
 **Number + Chinese date/time unit gets a space** (`5月` → `5 月`, `12時30分` →
 `12 時 30 分`) by this user's preference — note this diverges from zhlint's

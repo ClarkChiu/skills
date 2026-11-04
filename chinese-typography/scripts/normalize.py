@@ -6,7 +6,7 @@
 請用本腳本取代手工修改：它更快、更一致，而且可逆。
 
 處理流程（順序有意義，每一步的理由見下方註解）：
-  1. 保護 code / URL / 路徑 / 版本號 / email（這些絕不更動）
+  1. 保護 code / HTML 標籤 / URL / 路徑 / 版本號 / email（這些絕不更動）
   2. OpenCC s2twp           簡體→繁體 ＋ 台灣慣用詞（逐行偵測：已是繁體的行跳過，
                             --force-convert 強制整篇轉；選用相依套件，缺少時大聲警告）
   3. 異體字 / 常見錯字 修正  （小型精選對照表）
@@ -61,6 +61,8 @@ ANY_CJK = re.compile(f'[{CJK}]')
 #   SPAN  — URL／email／版本號／路徑／西文縮寫：要「邊界可加空格」（版本3.14 → 版本 3.14、
 #           見https://x → 見 https://x）。所以在 pangu 之前就還原，讓 pangu 看到真內容
 #           並在 CJK 邊界補空格；句點等內部字元已不再受標點全形化影響（那步更早跑完）。
+#   TAG   — 帶屬性的 HTML 標籤：內部和 CODE 一樣不能動，外緣也不補空格，因為那個空格在
+#           頁面上看得到（見<a href="x">連結</a>的）。所以要趕在補 code 邊界空格之前還原。
 _CODE_PATTERNS = [
     re.compile(r'```.*?```', re.DOTALL),                       # 圍欄式 code block
     re.compile(r'`[^`\n]+`'),                                   # 行內 code
@@ -75,6 +77,16 @@ _SPAN_PATTERNS = [
     re.compile(r'\b(?:Mr|Mrs|Ms|Dr|Jr|Sr|Prof|St|vs|etc|i\.e|e\.g|a\.k\.a|'
                r'No|Fig|Eq|Vol|p\.m|a\.m)\.', re.IGNORECASE),
 ]
+_TAG = 'tag'
+# 要符合屬性語法，一般文字裡的比較式才不會被當成標籤（i<n 的話……k=0……1 -> 2 曾被一路
+# 吞到 >，整段都沒處理）。所以屬性名和沒有引號的值只收 ASCII，引號裡的值可以有 < 和 >。
+# 沒有屬性的標籤（<br>、</a>）裡面沒有引號，不抽（所以 <html> 的 html 仍會被大小寫規則
+# 改成 HTML）。
+_HTML_TAG = re.compile(
+    r'''<[A-Za-z][A-Za-z0-9:_-]*'''
+    r'''(?:\s+[A-Za-z_:@.-][A-Za-z0-9_:.-]*'''
+    r'''(?:\s*=\s*(?:"[^"]*"|'[^']*'|[A-Za-z0-9_.:/#%?&=+-]+))?)+'''
+    r'''\s*/?>''')
 # 佔位符必須是真實文字絕不會出現的字串，否則還原時會誤傷內文。
 # 早期版本用 '{}'.format(i)（也就是裸數字 "0"、"1"…），結果還原時
 # replace("0", …) 會把內文裡每一個 "0" 都換掉，像 "100" 就被毀掉了。
@@ -99,11 +111,12 @@ def _stasher(store, verbatim):
 
 
 def _protect(text, extra_protect=None):
-    store = []   # 每筆是 (原文, verbatim)；verbatim=True 者最後才還原（純逐字）
+    store = []   # 每筆是 (原文, 類別)；類別 True＝CODE、False＝SPAN、_TAG＝HTML 標籤
 
     # 先抽 code：裡面的 URL 不會被重複抽，protect 詞也不會變成哨符鎖在 code 裡。
     for pat in _CODE_PATTERNS:
         text = pat.sub(_stasher(store, True), text)
+    text = _HTML_TAG.sub(_stasher(store, _TAG), text)   # 同理，要排在 protect 詞前面
     # 個人字典 protect 詞接著抽出（最長優先，避免子字串先被吃掉）。
     # 歸 SPAN 類（pangu 前還原）＝沿用原行為：擋住 opencc/quotes/punct/width/fixes，
     # 但 pangu 的 CJK 邊界空格照常（protect 詞多為中文品牌，CJK↔CJK 本就不加空格）。
@@ -123,7 +136,7 @@ def _stash_spans(text, store):
 
 def _restore(text, store, verbatim=None):
     # 反向還原，巢狀的佔位符才能正確解開。
-    # verbatim=None 全部還原；指定 True/False 時只還原該類（雙階段用）。
+    # verbatim=None 全部還原；指定類別時只還原該類（分階段用）。
     for i in range(len(store) - 1, -1, -1):
         content, vb = store[i]
         if verbatim is not None and vb != verbatim:
@@ -295,7 +308,14 @@ def _fix_nbsp(text):
 # 第 4 步：引號 → 「」『』
 # ---------------------------------------------------------------------------
 # 台灣慣例：主引號 「」、巢狀 『』（直角引號），而非中國大陸／西式的 ""''。
-# 彎引號直接對應。直引號分不出開頭結尾，只能在同一行內照順序配對：
+# 彎雙引號直接對應。彎單引號的 ’ 也是英文的撇號，所以要有 ‘ 開頭、在同一行內配到
+# 不是撇號的 ’ 才算一對，其他都不動：‘It’s fine’ → 『It’s fine』、dogs’ 不變。
+# 前後都是英數字，或前面是空格、後面是英數字（the ’90s），才算撇號。 是哨符的結尾：
+# Python 3.14’s 的版本號此時已被抽走。
+_APOSTROPHE = r'(?<=[A-Za-z0-9À-ɏ\s])’(?=[A-Za-z0-9À-ɏ])'
+# 中間不能跨過 『：它可能是上一輪轉好的，跨過去的話跑第二次結果會變（‘a ‘b’ c’）。
+_CURLY_SINGLE = re.compile(f'‘([^‘『\\n]*?)(?!{_APOSTROPHE})’')
+# 直引號分不出開頭結尾，只能在同一行內照順序配對：
 # - 沒有開著的引號時，接在數字後面的 " 是英吋，不算引號。有開著的引號時它是結尾，
 #   "IPv6" 才不會被弄壞（smartquotes.js 也是先配對，剩下的才當英吋）。
 # - 例外：它緊接著文字，後面又有不接在數字後面的 " 能配成一對，就是開頭，
@@ -303,7 +323,10 @@ def _fix_nbsp(text):
 # - 配到最後落單，整行都不轉：前面多一個 " 會讓後面全部錯開，寧可不轉也不要轉錯。
 def _fix_quotes(text, store):
     text = text.replace('“', '「').replace('”', '」')   # “ ” → 「 」
-    text = text.replace('‘', '『').replace('’', '』')   # ‘ ’ → 『 』
+    text = _CURLY_SINGLE.sub(r'『\1』', text)            # ‘ ’ → 『 』
+    unpaired = text.count('‘')
+    if unpaired:
+        print(f'NOTE: {unpaired} 個 ‘ 配不到結尾，沒有轉（在輸出裡搜尋 ‘ 找得到）。', file=sys.stderr)
     # 小數（15.6）此時已被抽成哨符，要從 store 查出來，才知道引號前面是數字。
     numbers = tuple(_PLACEHOLDER.format(_enc(i)) for i, (content, _) in enumerate(store)
                     if content[-1].isdigit())
@@ -416,7 +439,7 @@ def _pangu(text):
 
 # code（行內／圍欄）在最後才逐字還原。pangu 跑時看不到真正的反引號，無法在
 # 「中文↔code」邊界補空格。所以在「還原 code 之前」對 code 的『哨符』補邊界空格——
-# 此時 SPAN／個人字典 protect 都已還原，殘留的哨符必然只剩 code，配對絕無歧義。
+# 此時 SPAN／個人字典 protect／HTML 標籤都已還原，殘留的哨符必然只剩 code，配對絕無歧義。
 # （改用還原後的反引號比對會出錯：≥2 段 code 時，close1 與 open2 會被誤配成一段。）
 # 哨符 =  + 索引(PUA -) + 。
 _SENT_RE = '[-]+'
@@ -560,6 +583,7 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
     # 個人字典的逐字替換放最後 ── 權限最高，凌駕所有規則與 OpenCC。與 defaults.json
     # 共用 _apply_map 的長鍵先套規則，字典檔才不必靠人工排列順序。
     text = _apply_map(text, user_dict.get('replacements') or {})
+    text = _restore(text, store, verbatim=_TAG)
     # 還原 code 前，先對其哨符補 CJK 邊界空格（此時殘留哨符必為 code、無歧義；
     # 改用還原後的反引號比對會在 ≥2 段時誤配 close1↔open2）。
     if spacing:

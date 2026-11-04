@@ -224,6 +224,58 @@ CASES = [
     ("連結文字裡的英吋，後面的引句照轉", '[19"](#a) 機櫃,他說"很重"', '[19"](#a) 機櫃，他說「很重」', {}),
     *[(f"英吋範圍用 {c} 連接，後面的引句照轉",
        f'19"{c}27" 機櫃,他說"很重"', f'19"{c}27" 機櫃，他說「很重」', {}) for c in '-~～×'],
+    # ’ 也是英文的撇號，曾被一律轉成 』：It’s 變成 It』s（2026-11-04）。
+    ("撇號不是引號：字母中間", "It’s fine, don’t worry.", "It’s fine, don’t worry.", {}),
+    ("撇號不是引號：後面接中文", "iPhone’s 螢幕很大", "iPhone’s 螢幕很大", {}),
+    ("撇號不是引號：空格後面", "the ’90s 音樂", "the ’90s 音樂", {}),
+    ("撇號不是引號：字尾", "dogs’ 玩具", "dogs’ 玩具", {}),
+    ("彎單引號在彎雙引號裡", "“他說‘你好’”", "「他說『你好』」", {}),
+    # 引號裡的撇號不能把引號提早關掉。
+    ("引號裡的撇號：字母中間", "‘It’s fine’", "『It’s fine』", {}),
+    ("引號裡的撇號：重音字母後面", "‘café’s 菜單’", "『café’s 菜單』", {}),
+    ("引號裡的撇號：數字後面", "‘1990’s 音樂’", "『1990’s 音樂』", {}),
+    ("引號裡的撇號：空格後面、數字前面", "‘the ’90s 音樂’", "『the ’90s 音樂』", {}),
+    # 後面接英文時，要前面也是英文才算撇號。
+    ("中文後面的 ’ 是結尾，後面接英文也一樣", "他說‘你好’abc", "他說『你好』abc", {}),
+    ("同一行兩組彎單引號各配各的", "‘甲’和‘乙’", "『甲』和『乙』", {}),
+    # 配不起來的不轉，和直引號同一個立場。
+    ("彎單引號只有開頭：不轉", "他說‘你好", "他說‘你好", {}),
+    ("彎單引號後面只有撇號：不轉", "‘It’s", "‘It’s", {}),
+    ("彎單引號跨行：不轉", "‘第一\n第二’", "‘第一\n第二’", {}),
+    ("引號裡的撇號：版本號後面", "‘Python 3.14’s features’", "『Python 3.14’s features』", {}),
+    # 跑第二次結果不能變：第一次留下的 ‘ 不能跨過轉好的 『 配到後面的 ’，
+    # 否則對處理過的檔案再跑一次，括錯的引號會默默出現（2026-11-04 審查）。
+    ("彎單引號：外層配不到，內層照轉", "‘a ‘b’ c’", "‘a 『b』 c’", {}),
+    ("彎單引號：上一條的結果再跑一次不變", "‘a 『b』 c’", "‘a 『b』 c’", {}),
+    ("彎單引號：年代撇號配不到老歌的結尾，再跑一次不變",
+     "他用 ‘90s 的『老歌』,dogs’ 玩具", "他用 ‘90s 的『老歌』,dogs’ 玩具", {}),
+    # 屬性值不是給人讀的文字，引號或空格一動就壞：href="x" 曾變成 href=「x」（2026-11-04）。
+    ("HTML 屬性裡的網址", '<a href="https://x.com">連結</a>', '<a href="https://x.com">連結</a>', {}),
+    ("HTML 標籤有多個屬性", '<img src="a.png" alt="圖">', '<img src="a.png" alt="圖">', {}),
+    ("HTML 屬性裡的中英文不加空格", '<a href="台積電v1">連結</a>', '<a href="台積電v1">連結</a>', {}),
+    ("HTML 標籤跨行", '<img\n  src="a.png"\n  alt="圖">', '<img\n  src="a.png"\n  alt="圖">', {}),
+    # 這個空格在頁面上看得到，中文和中文之間不該有。
+    ("HTML 標籤外緣不加空格", '見<a href="x">連結</a>的', '見<a href="x">連結</a>的', {}),
+    ("HTML 標籤旁邊的引句照轉", '他說"你好"<a href="x">連結</a>', '他說「你好」<a href="x">連結</a>', {}),
+    ("沒有屬性的標籤旁邊的引句照轉", '他說"你好"<br>她說"再見"', '他說「你好」<br>她說「再見」', {}),
+    ("HTML 標籤外面的大小寫照改", '<a href="github">github</a>', '<a href="github">GitHub</a>', {}),
+    # 先抽 protect 詞的話，哨符會鎖在標籤裡，原文從此消失（同程式碼那條）。
+    ("protect 詞在 HTML 屬性裡原樣保留", '<a title="台積電">連結</a>', '<a title="台積電">連結</a>',
+     dict(user_dict={"protect": ["台積電"]})),
+    # 先抽標籤的話，哨符會鎖在程式碼裡。
+    ("HTML 標籤在行內程式碼裡原樣保留", '見`<a href="x">`的', '見 `<a href="x">` 的', {}),
+    # 值裡的 < 和 > 不算標籤的邊界，只算到第一個 > 的話引號會落單或配錯。
+    ("HTML 屬性值裡有 >", '<a title="a>b">和<a title="c>d">', '<a title="a>b">和<a title="c>d">', {}),
+    ("HTML 屬性值裡有 <", '<a title="a<b" href="x">', '<a title="a<b" href="x">', {}),
+    ("HTML 標籤名有冒號、自我關閉", '<xsl:value-of select="a"/>', '<xsl:value-of select="a"/>', {}),
+    # 比較式不是標籤，被當成標籤的話裡面就不會處理。曾經連著等號和後面的 > 吞掉好幾段
+    # （2026-11-04 審查）。
+    ("比較式和等號隔了幾段：整段照常處理", '若 i<n 的話,令k=0。\n\n下一段english混中文,半形.\n\n1 -> 2',
+     '若 i<n 的話，令 k=0。\n\n下一段 english 混中文，半形。\n\n1 -> 2', {}),
+    ("標籤名後面沒有空白：比較式照常處理", 'a<b，且c=1>d', 'a<b，且 c=1>d', {}),
+    ("沒有等號：比較式照常處理", 'x<y 且z>w', 'x<y 且 z>w', {}),
+    ("有等號但不是屬性語法：比較式照常處理", 'x<y 且z=1>w', 'x<y 且 z=1>w', {}),
+    ("等號後面的值有中文：比較式照常處理", 'i<n m=k，且j>0', 'i<n m=k，且 j>0', {}),
 ]
 
 # 需要 OpenCC 才能跑的案例（s2twp 逐行偵測）。缺套件時整段跳過並大聲說，
@@ -360,6 +412,16 @@ def check_unpaired_quote_lines_are_reported():
     return 'NOTE: 2 行' in skipped.getvalue() and clean.getvalue() == ''
 
 
+def check_unpaired_curly_single_quotes_are_reported():
+    # 只有 ‘ 要回報：落單的 ’ 多半是撇號，回報只會是雜訊。
+    skipped, clean = io.StringIO(), io.StringIO()
+    with contextlib.redirect_stderr(skipped):
+        normalize('他說‘你好\n‘It’s', convert=False)
+    with contextlib.redirect_stderr(clean):
+        normalize('他說‘你好’\nIt’s fine，dogs’ 玩具', convert=False)
+    return 'NOTE: 2 個' in skipped.getvalue() and clean.getvalue() == ''
+
+
 def check_user_dict_file_loaded():
     with tempfile.TemporaryDirectory() as d:
         data = {"replacements": {"鐳射": "雷射"}}
@@ -415,6 +477,7 @@ CHECKS = [
     ("OpenCC 不在：原文不變、回報 False、印警告", check_opencc_missing_fails_loud),
     ("命令列：簡轉繁被跳過時結束碼 2", check_cli_exits_2_when_conversion_skipped),
     ("直引號配不起來：回報略過的行數", check_unpaired_quote_lines_are_reported),
+    ("彎單引號配不起來：回報略過的個數", check_unpaired_curly_single_quotes_are_reported),
     ("個人字典：讀得到檔案", check_user_dict_file_loaded),
     ("個人字典：檔案不存在就當空字典", check_user_dict_missing_file_ignored),
     ("個人字典：內容壞掉就警告並忽略", check_user_dict_unreadable_warns),

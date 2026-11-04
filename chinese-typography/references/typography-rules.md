@@ -95,7 +95,7 @@ Mainland Simplified uses `""` and `''` (curved); Taiwan/HK Traditional uses the
 corner brackets 「」『』. Using `""` in a 繁體 document reads as mainland or
 careless.
 
-**The script** maps curly quotes directly and pairs straight quotes in order
+**The script** maps curly double quotes directly and pairs straight quotes in order
 *within a single line*, since a straight `"` can't say whether it opens or closes:
 
 - **Inch mark:** with no quote open, a `"` right after a number stays as it is
@@ -110,6 +110,12 @@ careless.
   where an inch mark was only a guess (no space or punctuation after it) and
   another quote follows. The script prints a `NOTE` with how many lines it skipped.
 - **Straight `'`:** never converted, because it can't be told from an apostrophe.
+- **Curly single quotes:** `’` is also the English apostrophe (`It’s`, `dogs’`,
+  `the ’90s`), so a pair needs a `‘` to open it and a closing `’` on the same line.
+  A `’` with a letter or digit after it, and a letter, digit or space before it, is
+  an apostrophe and doesn't close anything: `‘It’s fine’` → `『It’s fine』`. Anything
+  left over stays as it is, and the script prints a `NOTE` for each `‘` with no
+  closing `’`.
 
 Known limits, where the line alone can't show which reading is right:
 
@@ -119,6 +125,13 @@ Known limits, where the line alone can't show which reading is right:
 - `他說"第一` / `第二"和"第三` / `第四"` → the middle line becomes `第二「和」第三`:
   a quote spanning lines usually leaves its lines unconverted, but this line has an
   even count, so it still pairs.
+- `‘the dogs’ toys’` → `『the dogs』 toys’`, and `‘rock ’n’ roll’` → `『rock ’n』 roll’`:
+  a `’` before a space reads as the closing quote.
+- `‘GPU’3顆` stays as it is, with a `NOTE`: a `’` between a letter and a digit reads
+  as an apostrophe.
+- `‘他說『你好』’` stays as it is, with a `NOTE`: a pair can't span a `『`. The script
+  itself leaves `『` behind, so spanning one would let a second run change the text
+  (`‘a ‘b’ c’` → `‘a 『b』 c’`, then `『a 『b』 c』`).
 
 Quotes inside protected code spans are never converted —
 `` `git commit -m "x"` `` keeps its ASCII quotes.
@@ -196,6 +209,8 @@ To avoid corrupting technical content, these are pulled out before any transform
 and restored verbatim afterward:
 
 - Fenced code blocks ` ``` … ``` ` and inline code `` `…` ``
+- HTML tags with attributes: `<a href="x">`, `<img src="a.png" alt="圖">`, including
+  tags that span lines. Text in `alt` and `title` is left alone too.
 - URLs `https://…`
 - Emails
 - Version numbers / decimal chains: `8.2.10`, `3.14`
@@ -203,7 +218,16 @@ and restored verbatim afterward:
 
 Spacing (盤古之白) IS applied around these after restoration — `版本3.14` →
 `版本 3.14`, `在src/x.py` → `在 src/x.py` — because the boundary space is
-correct; only their internal content is protected.
+correct; only their internal content is protected. HTML tags are the exception:
+`見<a href="x">連結</a>的` stays as it is, since that space would show on the page.
+
+Known gaps with HTML tags:
+
+- Inline code inside an attribute still gets its boundary spaces:
+  `` <img alt="執行`ls`指令"> `` → `` <img alt="執行 `ls` 指令"> ``.
+- A tag the pattern doesn't recognize still changes: `<img src="a.png" alt=圖片>`, or
+  no space between attributes.
+- Text that reads like a tag is left alone: `<your api key>` keeps its lowercase `api`.
 
 ---
 
