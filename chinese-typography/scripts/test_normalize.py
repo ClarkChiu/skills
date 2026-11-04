@@ -5,6 +5,15 @@ normalize.py 的回歸測試 (regression tests).
 執行：python3 test_normalize.py
 每一條都鎖住一個曾經出錯、或容易再出錯的行為。
 """
+import contextlib
+import io
+import json
+import os
+import sys
+import tempfile
+from unittest import mock
+
+import normalize as N
 from normalize import normalize
 
 
@@ -133,6 +142,72 @@ CASES = [
     ("英中混合斜線不出現單邊空格", "English/中文", "English/中文", {}),
     ("原文已有的斜線空格保留", "上行 / 下行", "上行 / 下行", {}),
     ("斜線日期內部不拆、外側照補盤古之白", "截止06/11前", "截止 06/11 前", {}),
+    # 以下來自 2026-11-03 的變異測試：這些行為之前沒有測試守住，或只守住一部分。
+    # 保護片段分兩階段還原。文字裡同時有行內程式碼和網址／版本號時，還原迴圈若提早結束，
+    # 行內程式碼會整段消失（當天試驗的 115 個案例壞了 90 個，原有測試卻全過）。
+    ("行內程式碼與網址並存，兩者都還原",
+     "看`a.md`跟https://example.com/x 的說明", "看 `a.md` 跟 https://example.com/x 的說明", {}),
+    ("行內程式碼與版本號並存，兩者都還原",
+     "看`a.md`的2.31.0版", "看 `a.md` 的 2.31.0 版", {}),
+    # 全形化：SKILL.md 列出的標點都要有人守。分號、驚嘆號、括號原本沒有測試，
+    # 冒號和句點只測到部分情況。
+    ("分號轉全形", "好;走", "好；走", {}),
+    ("驚嘆號轉全形", "太好了!走吧", "太好了！走吧", {}),
+    ("冒號轉全形", "注意:走吧", "注意：走吧", {}),
+    ("中文後的句點轉全形", "結束了.", "結束了。", {}),
+    ("含中文的括號轉全形", "這是(範例)喔", "這是（範例）喔", {}),
+    ("單個全形省略號收斂成六點", "等一下…走", "等一下……走", {}),
+    ("多個全形省略號也收斂成六點", "等一下………走", "等一下……走", {}),
+    ("中文前的半形省略號", "...好的", "……好的", {}),
+    ("連打句號轉省略號", "等等。。。好", "等等……好", {}),
+    # 彎引號常見於從網頁貼上的文字，原本只測了直引號。
+    ("彎雙引號轉直角", "他說“你好”", "他說「你好」", {}),
+    ("彎單引號轉雙直角", "他說‘你好’", "他說『你好』", {}),
+    ("標點前的空白移除", "好 ,走 。", "好，走。", {}),
+    ("括號內側的空白移除", "（ 範例 ）「 你好 」", "（範例）「你好」", {}),
+    # 預設值本身就是規則：程式預設 台，個人字典才翻成 臺。
+    ("預設 臺→台（未設 formal_tai）", "在臺北", "在台北", {}),
+    # 個人字典是權限最高的一層，protect 與 casing 原本完全沒有測試。
+    # 要用會被轉換的詞：沒有 protect 時，這句會變成 臺灣大哥大在臺北。
+    ("個人字典 protect 保住品牌的 台", "台灣大哥大在台北", "台灣大哥大在臺北",
+     dict(user_dict={"formal_tai": True, "protect": ["台灣大哥大"]})),
+    # 短詞先抽的話，長詞剩下的 台 會曝露出來被轉成 臺，輸出才會不同。
+    ("個人字典 protect 最長優先", "台灣大哥大台北店在台北", "台灣大哥大台北店在臺北",
+     dict(user_dict={"formal_tai": True, "protect": ["台灣", "台灣大哥大台北店"]})),
+    ("個人字典新增 casing", "用foobar寫", "用 FooBar 寫",
+     dict(user_dict={"casing": {"foobar": "FooBar"}})),
+    ("個人字典覆寫內建 casing", "用github寫", "用 GITHUB 寫",
+     dict(user_dict={"casing": {"github": "GITHUB"}})),
+    # 鍵盤打的 " 分不出開頭結尾，只能照順序配。前面多一個 "，後面就全部錯開一格，
+    # 「」會括在錯的字上（2026-11-03）。配不起來的行寧可不轉，也不要轉錯。
+    ("引句跨行：配不起來的那一行不轉",
+     '老師說"今天的作業是\n第一章",還有"第二章"也要看',
+     '老師說"今天的作業是\n第一章"，還有"第二章"也要看', {}),
+    # 接在數字後面、又沒有開著的引號，才是英吋。
+    ("英吋在引句前面", '這台是 19" 機櫃,他說"很重"', '這台是 19" 機櫃，他說「很重」', {}),
+    ("英吋在引句後面", '他說"很重",這台是 8" 平板', '他說「很重」，這台是 8" 平板', {}),
+    ("兩個英吋都不當引號", '19" 和 23" 機櫃', '19" 和 23" 機櫃', {}),
+    # 小數在這一步之前已被抽成哨符，引號前面看不到數字，要查回原文。
+    ("小數英吋", '這台是 2.5" 硬碟,他說"很輕"', '這台是 2.5" 硬碟，他說「很輕」', {}),
+    # 有開著的引號時，數字後面的 " 是結尾。把它也當英吋，"IPv6" 這類引句就轉不了。
+    ("引句以數字結尾不算英吋", '規格是"RFC 5389"，尺寸是 19"', '規格是「RFC 5389」，尺寸是 19"', {}),
+    # 編號後面接引句比英吋常見：自家文件換成直引號後有 5 行，英吋 0 行（2026-11-03）。
+    ("編號後面的引句不算英吋", '見 §3"兩軸字體"，還有 Phase 4"A 版"',
+     '見 §3「兩軸字體」，還有 Phase 4「A 版」', {}),
+    # 沒空格時，靠後面的 " 分辨：下一個也接在數字後面，或根本沒有下一個，就是英吋。
+    ("沒空格的兩個英吋", '19"和23"機櫃', '19"和 23"機櫃', {}),
+    ("沒空格的英吋在引句後面", '他說"很重"，這台是19"機櫃', '他說「很重」，這台是 19"機櫃', {}),
+    # 英吋後面緊接著文字時只是猜的。猜了之後又碰到引號，就可能配錯，不如整行不轉。
+    ("猜成英吋後又碰到引號：內容以數字結尾",
+     'IPv6"RFC 8200"和"RFC 4291"', 'IPv6"RFC 8200"和"RFC 4291"', {}),
+    ("猜成英吋後又碰到引號：內容以括號開頭",
+     '步驟3"(a)"是 19" 機櫃', '步驟 3"(a)"是 19" 機櫃', {}),
+    ("標點後面的英吋不是猜的，後面的引句照轉", '19",他說"很重"', '19"，他說「很重」', {}),
+    # Markdown 記號和範圍符號也是標點，接在英吋後面不算猜的（2026-11-04 審查）。
+    ("粗體裡的英吋，後面的引句照轉", '**19"** 機櫃,他說"很重"', '**19"** 機櫃，他說「很重」', {}),
+    ("連結文字裡的英吋，後面的引句照轉", '[19"](#a) 機櫃,他說"很重"', '[19"](#a) 機櫃，他說「很重」', {}),
+    *[(f"英吋範圍用 {c} 連接，後面的引句照轉",
+       f'19"{c}27" 機櫃,他說"很重"', f'19"{c}27" 機櫃，他說「很重」', {}) for c in '-~～×'],
 ]
 
 # 需要 OpenCC 才能跑的案例（s2twp 逐行偵測）。缺套件時整段跳過並大聲說，
@@ -213,11 +288,137 @@ OPENCC_CASES = [
     # 不在測試載入範圍，那是他的檔案）。理由見 references/glossary.md。
     ("數字人文 不進 defaults.json（跨小句會誤傷）",
      "報表上的數字人文科系的學生未必看得懂", "報表上的數字人文科系的學生未必看得懂", {}),
+    # 逐行偵測不可弄丟行結構（2026-11-03 變異測試）。
+    ("簡轉繁保留行結構",
+     "软件\nhello world\n视频", "軟體\nhello world\n影片", {}),
+]
+
+
+def _write(directory, name, content):
+    path = os.path.join(directory, name)
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    return path
+
+
+def _cli(*argv):
+    """在同一個行程跑命令列，回傳 (結束碼, stdout, stderr)。"""
+    out, err = io.StringIO(), io.StringIO()
+    code = 0
+    with mock.patch.object(sys, 'argv', ['normalize.py', *argv]):
+        try:
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                N.main()
+        except SystemExit as e:
+            code = e.code or 0
+    return code, out.getvalue(), err.getvalue()
+
+
+def _without_opencc():
+    # sys.modules 設成 None，import opencc 就會丟 ImportError。
+    return mock.patch.dict(sys.modules, {'opencc': None})
+
+
+def check_opencc_missing_fails_loud():
+    # Rule 12：沒轉換就要讓呼叫端知道，不可默默讓簡體溜過去。
+    err = io.StringIO()
+    with _without_opencc(), contextlib.redirect_stderr(err):
+        out, ok = normalize("软件", convert=True)
+    return out == "软件" and ok is False and "NOT converted" in err.getvalue()
+
+
+def check_cli_exits_2_when_conversion_skipped():
+    # 命令列參數寫錯時 argparse 也會結束碼 2，所以還要看警告。
+    with _without_opencc():
+        code, _, err = _cli('--text', '软件')
+    return code == 2 and 'NOT converted' in err
+
+
+def check_unpaired_quote_lines_are_reported():
+    # Rule 12：整行不轉的行如果沒有其他改動，連差異都看不到，所以要明說略過幾行。
+    skipped, clean = io.StringIO(), io.StringIO()
+    with contextlib.redirect_stderr(skipped):      # 配到最後落單、猜了英吋又碰到引號
+        normalize('老師說"今天\nIPv6"RFC 8200"和"RFC 4291"\n他說"很重"', convert=False)
+    with contextlib.redirect_stderr(clean):        # 引句配得起來、英吋本來就不轉，都不算略過
+        normalize('他說"很重"\n19" 和 23" 機櫃', convert=False)
+    return 'NOTE: 2 行' in skipped.getvalue() and clean.getvalue() == ''
+
+
+def check_user_dict_file_loaded():
+    with tempfile.TemporaryDirectory() as d:
+        data = {"replacements": {"鐳射": "雷射"}}
+        return N._load_user_dict(_write(d, 'd.json', json.dumps(data))) == data
+
+
+def check_user_dict_missing_file_ignored():
+    with tempfile.TemporaryDirectory() as d:
+        return N._load_user_dict(os.path.join(d, 'none.json')) == {}
+
+
+def check_user_dict_unreadable_warns():
+    err = io.StringIO()
+    with tempfile.TemporaryDirectory() as d, contextlib.redirect_stderr(err):
+        loaded = N._load_user_dict(_write(d, 'bad.json', '{not json'))
+    return loaded == {} and 'unreadable' in err.getvalue()
+
+
+def check_default_dict_found_by_walking_up():
+    with tempfile.TemporaryDirectory() as d:
+        nested = os.path.join(d, 'a', 'b')
+        os.makedirs(nested)
+        path = _write(d, 'user-dictionary.json', '{}')
+        with mock.patch.object(N, '__file__', os.path.join(nested, 'normalize.py')):
+            return N._find_default_dict() == path
+
+
+def check_default_dict_absent_returns_none():
+    # 假造「檔案都不存在」，不然上層目錄剛好有同名檔，結果就會因機器而異。
+    with mock.patch.object(os.path, 'exists', return_value=False):
+        return N._find_default_dict() is None
+
+
+def check_cli_applies_personal_dictionary():
+    with tempfile.TemporaryDirectory() as d:
+        path = _write(d, 'd.json', json.dumps({"replacements": {"鐳射": "雷射"}}))
+        code, out, _ = _cli('--text', '使用Python3的鐳射', '--no-convert', '--dict', path)
+    return code == 0 and out.strip() == '使用 Python3 的雷射'
+
+
+def check_cli_in_place_rewrites_file():
+    with tempfile.TemporaryDirectory() as d:
+        path = _write(d, 'a.md', '使用Python3')
+        # 指定不存在的字典，輸出才不受使用者自己的 user-dictionary.json 影響。
+        code = _cli(path, '--in-place', '--no-convert',
+                    '--dict', os.path.join(d, 'none.json'))[0]
+        with open(path, encoding='utf-8') as f:
+            return code == 0 and f.read().strip() == '使用 Python3'
+
+
+# 需要呼叫內部函式、模擬環境或跑命令列的檢查，寫不成 (輸入, 期望輸出) 的表格。
+CHECKS = [
+    ("OpenCC 不在：原文不變、回報 False、印警告", check_opencc_missing_fails_loud),
+    ("命令列：簡轉繁被跳過時結束碼 2", check_cli_exits_2_when_conversion_skipped),
+    ("直引號配不起來：回報略過的行數", check_unpaired_quote_lines_are_reported),
+    ("個人字典：讀得到檔案", check_user_dict_file_loaded),
+    ("個人字典：檔案不存在就當空字典", check_user_dict_missing_file_ignored),
+    ("個人字典：內容壞掉就警告並忽略", check_user_dict_unreadable_warns),
+    ("個人字典：從腳本位置逐層往上找", check_default_dict_found_by_walking_up),
+    ("個人字典：找到根目錄都沒有就回傳 None", check_default_dict_absent_returns_none),
+    ("命令列：--dict 的個人字典有套用", check_cli_applies_personal_dictionary),
+    ("命令列：--in-place 改寫檔案", check_cli_in_place_rewrites_file),
 ]
 
 
 def main():
     fails = total = 0
+
+    def check(desc, fn):
+        nonlocal fails, total
+        total += 1
+        ok = fn()
+        if not ok:
+            fails += 1
+        print(f"{'PASS' if ok else 'FAIL'}  {desc}")
 
     def run(desc, src, want, kw):
         nonlocal fails, total
@@ -235,12 +436,18 @@ def main():
     for desc, src, want, kw in CASES:
         run(desc, src, want, kw)
 
+    for desc, fn in CHECKS:
+        check(desc, fn)
+
     try:
         import opencc  # noqa: F401
         for desc, src, want, kw in OPENCC_CASES:
             run(desc, src, want, {**kw, 'convert': True})
+        check("簡轉繁成功時回報 True（逐行與整篇兩條路徑）",
+              lambda: normalize("软件")[1] is True
+              and normalize("软件", force_convert=True)[1] is True)
     except ImportError:
-        print(f"SKIP  OpenCC not installed — {len(OPENCC_CASES)} 條 s2twp 逐行偵測案例未跑")
+        print(f"SKIP  OpenCC not installed — {len(OPENCC_CASES) + 1} 條 s2twp 逐行偵測案例未跑")
 
     print(f"\n{total-fails}/{total} passed")
     raise SystemExit(1 if fails else 0)

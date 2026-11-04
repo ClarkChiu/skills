@@ -80,6 +80,12 @@ against them.
   full-width punctuation, and proper-noun casing rule (`GitHub`, `iOS`,
   `JavaScript`).
 
+- **smartquotes.js** — kellym. <https://github.com/kellym/smartquotes.js> (MIT).
+  Not a Chinese tool. Consulted for telling an inch mark from a quote: it pairs
+  quotes first and reads only a leftover `"` after a digit as an inch mark.
+  `_fix_quotes` keeps that order and adds its own exception for a quote opening
+  right after a number (`§3"標題"`).
+
 - **StarCC** — StarCC0. <https://github.com/StarCC0/starcc-py>. Newer
   segmentation-aware simp↔trad framework. Evaluated as an OpenCC alternative and
   **declined**: its dictionaries are downstream of OpenCC's, so it is no more

@@ -95,9 +95,32 @@ Mainland Simplified uses `""` and `''` (curved); Taiwan/HK Traditional uses the
 corner brackets 「」『』. Using `""` in a 繁體 document reads as mainland or
 careless.
 
-**The script** maps curly quotes directly and pairs straight quotes greedily
-*within a single line*. An unpaired straight quote (apostrophe, inch mark) is
-left alone. Quotes inside protected code spans are never converted —
+**The script** maps curly quotes directly and pairs straight quotes in order
+*within a single line*, since a straight `"` can't say whether it opens or closes:
+
+- **Inch mark:** with no quote open, a `"` right after a number stays as it is
+  (`19"`, `15.6"`). With a quote open it closes that quote, so `"IPv6"` still
+  converts.
+- **Number, then a quote:** if that `"` runs straight into a letter, digit or Han
+  character and the next `"` doesn't follow a number, it opens a quote:
+  `§3"標題"` → `§3「標題」`.
+- **Doesn't pair:** if a quote is left open at the end of the line, none of that
+  line's straight quotes convert. One stray `"` shifts every pair after it, and
+  leaving them is better than bracketing the wrong words. The same goes for a line
+  where an inch mark was only a guess (no space or punctuation after it) and
+  another quote follows. The script prints a `NOTE` with how many lines it skipped.
+- **Straight `'`:** never converted, because it can't be told from an apostrophe.
+
+Known limits, where the line alone can't show which reading is right:
+
+- `他說"這台 19" 機櫃` → `他說「這台 19」 機櫃`: the first `"` is the stray one.
+- `27"螢幕支援"HDMI 2.1"` → `27「螢幕支援」HDMI 2.1"`: an inch mark with no space
+  after it pairs with the next `"`.
+- `他說"第一` / `第二"和"第三` / `第四"` → the middle line becomes `第二「和」第三`:
+  a quote spanning lines usually leaves its lines unconverted, but this line has an
+  even count, so it still pairs.
+
+Quotes inside protected code spans are never converted —
 `` `git commit -m "x"` `` keeps its ASCII quotes.
 
 ---

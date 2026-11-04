@@ -221,9 +221,11 @@ judgment — the script can't know intent:
   `4K`, `K8s`, `C#`. The script spaces around the CJK boundary, not inside
   these, so they are usually fine — but if it spaces inside a name, fix that one
   by hand and mention it.
-- **Quotes that aren't quotes**: a straight `"` used as an inch mark or an
-  unpaired apostrophe. The script only converts *paired* straight quotes on one
-  line, so this is rare, but scan the diff.
+- **Quotes that aren't quotes**: a straight `"` after a number usually stays as an
+  inch mark (`19"`), and a line whose straight quotes don't pair isn't converted
+  at all, so a quote spanning two lines usually keeps its `"`. The script prints a
+  `NOTE` with how many lines it skipped; search the output for `"` and convert those
+  by hand (rules and known limits in `references/typography-rules.md` §3).
 - **Deliberate Simplified content** (a quotation, a mainland product name).
   Per-line detection already leaves Traditional lines alone, so a Simplified
   quote on its own line converts while the rest is untouched — but if the user

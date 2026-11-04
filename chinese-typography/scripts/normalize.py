@@ -295,14 +295,51 @@ def _fix_nbsp(text):
 # 第 4 步：引號 → 「」『』
 # ---------------------------------------------------------------------------
 # 台灣慣例：主引號 「」、巢狀 『』（直角引號），而非中國大陸／西式的 ""''。
-# 彎引號直接對應。直引號在同一行內成對配對；
-# 落單的直引號保留不動（多半是縮寫的撇號或英寸符號）。
-def _fix_quotes(text):
+# 彎引號直接對應。直引號分不出開頭結尾，只能在同一行內照順序配對：
+# - 沒有開著的引號時，接在數字後面的 " 是英吋，不算引號。有開著的引號時它是結尾，
+#   "IPv6" 才不會被弄壞（smartquotes.js 也是先配對，剩下的才當英吋）。
+# - 例外：它緊接著文字，後面又有不接在數字後面的 " 能配成一對，就是開頭，
+#   例如 §3"標題"、Phase 4"Generate"。
+# - 配到最後落單，整行都不轉：前面多一個 " 會讓後面全部錯開，寧可不轉也不要轉錯。
+def _fix_quotes(text, store):
     text = text.replace('“', '「').replace('”', '」')   # “ ” → 「 」
     text = text.replace('‘', '『').replace('’', '』')   # ‘ ’ → 『 』
-    # 同一行內成對的直雙引號 → 「」
-    text = re.sub(r'"([^"\n]*)"', r'「\1」', text)
-    return text
+    # 小數（15.6）此時已被抽成哨符，要從 store 查出來，才知道引號前面是數字。
+    numbers = tuple(_PLACEHOLDER.format(_enc(i)) for i, (content, _) in enumerate(store)
+                    if content[-1].isdigit())
+    out, skipped = [], 0
+    for line in text.split('\n'):
+        paired = _pair_straight_quotes(line, numbers)
+        skipped += paired is None
+        out.append(line if paired is None else paired)
+    if skipped:
+        print(f'NOTE: {skipped} 行的直引號配不起來，整行沒有轉（在輸出裡搜尋 " 找得到）。',
+              file=sys.stderr)
+    return '\n'.join(out)
+
+
+_AFTER_INCH = '，。、；：？！）」』,.;:?!)/|*~-～×]'     # 英吋後面常接的標點
+
+
+def _pair_straight_quotes(line, numbers):
+    """回傳配好的行；配不起來回傳 None。"""
+    def after_number(s):
+        return s[-1:].isdigit() or s.endswith(numbers)
+
+    parts = line.split('"')
+    out, is_open, guessed = parts[0], False, False
+    for i, part in enumerate(parts[1:], 1):
+        opens = part[:1].isalnum() and i + 1 < len(parts) and not after_number(part)
+        if not is_open and after_number(out) and not opens:
+            out += '"' + part       # 英吋
+            # 後面不是空白或標點，這個英吋只是猜的。
+            guessed = guessed or part[:1].strip() not in _AFTER_INCH
+        elif guessed:               # 猜了英吋又碰到引號，可能配錯，整行不動
+            return None
+        else:
+            out += ('」' if is_open else '「') + part
+            is_open = not is_open
+    return None if is_open else out
 
 
 # ---------------------------------------------------------------------------
@@ -503,7 +540,7 @@ def normalize(text, *, convert=True, fixes=True, quotes=True, punct=True,
     if fixes:
         text = _fix_variants(text, formal_tai=formal_tai)
     if quotes:
-        text = _fix_quotes(text)
+        text = _fix_quotes(text, store)
     if punct:
         text = _fix_punct(text)
     # 第一階段還原：SPAN（版本號／URL／路徑／email／縮寫）在 pangu「之前」還原。
