@@ -128,7 +128,8 @@ Known limits, where the line alone can't show which reading is right:
 - `‘the dogs’ toys’` → `『the dogs』 toys’`, and `‘rock ’n’ roll’` → `『rock ’n』 roll’`:
   a `’` before a space reads as the closing quote.
 - `‘GPU’3顆` stays as it is, with a `NOTE`: a `’` between a letter and a digit reads
-  as an apostrophe.
+  as an apostrophe. So does one between a protected span and a letter:
+  `‘[連結](a.md)’abc`.
 - `‘他說『你好』’` stays as it is, with a `NOTE`: a pair can't span a `『`. The script
   itself leaves `『` behind, so spanning one would let a second run change the text
   (`‘a ‘b’ c’` → `‘a 『b』 c’`, then `『a 『b』 c』`).
@@ -211,6 +212,9 @@ and restored verbatim afterward:
 - Fenced code blocks ` ``` … ``` ` and inline code `` `…` ``
 - HTML tags with attributes: `<a href="x">`, `<img src="a.png" alt="圖">`, including
   tags that span lines. Text in `alt` and `title` is left alone too.
+- Markdown link and image targets with their titles: `[連結](https://x.com "標題")`,
+  `![圖](./圖片.png)`. The text in the square brackets is ordinary text and still gets
+  normalized. The title is left as it is, even if it's Simplified.
 - URLs `https://…`
 - Emails
 - Version numbers / decimal chains: `8.2.10`, `3.14`
@@ -221,13 +225,26 @@ Spacing (盤古之白) IS applied around these after restoration — `版本3.14
 correct; only their internal content is protected. HTML tags are the exception:
 `見<a href="x">連結</a>的` stays as it is, since that space would show on the page.
 
-Known gaps with HTML tags:
+Known gaps:
 
-- Inline code inside an attribute still gets its boundary spaces:
-  `` <img alt="執行`ls`指令"> `` → `` <img alt="執行 `ls` 指令"> ``.
-- A tag the pattern doesn't recognize still changes: `<img src="a.png" alt=圖片>`, or
-  no space between attributes.
-- Text that reads like a tag is left alone: `<your api key>` keeps its lowercase `api`.
+- Inline code inside an HTML attribute, a link title or a link target still gets its
+  boundary spaces: `` <img alt="執行`ls`指令"> `` → `` <img alt="執行 `ls` 指令"> ``. In
+  a link target that breaks the link.
+- An HTML tag the pattern doesn't recognize still changes: `<img src="a.png" alt=圖片>`,
+  or no space between attributes.
+- Text that reads like an HTML tag is left alone: `<your api key>` keeps its lowercase
+  `api`.
+- Reference-style links aren't protected: `[id]: https://x.com "標題"` still changes.
+  They can't be told apart from a footnote such as `[1]: 王小明，"論文"，2020`.
+- A target with Han characters, none of `. / # :` and no title reads as ordinary text,
+  so `[頁面](頁面名稱)` still breaks. The rule is there so that `[註](見下方,第3頁)`
+  still gets normalized, since pasted text and `.txt` files come through here too.
+- `太好了![連結](a.md)` keeps its half-width `!`, because Markdown reads it as an image.
+- Some rarer link forms still break: spaces just inside the parentheses
+  (`[連結]( 說明.md )`), a line break inside them, an escaped quote in the title, an
+  escaped parenthesis, two levels of parentheses or a `<` in the target.
+- Personal-dictionary `replacements` and `protect` entries don't reach link targets:
+  replacing `https://old.com` leaves `[連結](https://old.com)` as it was.
 
 ---
 

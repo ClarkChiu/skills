@@ -122,10 +122,10 @@ or the user questions a specific change.
 - **西文縮寫** — `Mr.` `Dr.` `e.g.` `i.e.` `etc.` `Fig.` etc. are protected, so
   their period is never converted to 。.
 
-**Protected, never touched:** fenced/inline code, HTML tags with attributes, URLs,
-emails, file paths, version numbers and decimals (`8.2.10`, `3.14`), percentages,
-Western abbreviations. This is why `src/main.py` and `https://…` survive intact.
-HTML tags have a few known gaps, listed in `references/typography-rules.md` §6.
+**Protected, never touched:** fenced/inline code, HTML tags with attributes, Markdown
+link targets and titles, URLs, emails, file paths, version numbers and decimals
+(`8.2.10`, `3.14`), percentages, Western abbreviations. This is why `src/main.py` and
+`https://…` survive intact. Known gaps are listed in `references/typography-rules.md` §6.
 
 **Number + Chinese date/time unit gets a space** (`5月` → `5 月`, `12時30分` →
 `12 時 30 分`) by this user's preference — note this diverges from zhlint's
@@ -148,6 +148,9 @@ hard-coding them:
   "formal_tai":   true                 // override the 台/臺 code default
 }
 ```
+
+An entry can't match text inside code, an HTML tag or a Markdown link target: those are
+set aside first and put back after `replacements` runs.
 
 When the user states a recurring preference (a term they always write a certain
 way, a name to leave alone), prefer adding it here over editing the script.

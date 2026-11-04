@@ -6,7 +6,7 @@
 請用本腳本取代手工修改：它更快、更一致，而且可逆。
 
 處理流程（順序有意義，每一步的理由見下方註解）：
-  1. 保護 code / HTML 標籤 / URL / 路徑 / 版本號 / email（這些絕不更動）
+  1. 保護 code / HTML 標籤 / Markdown 連結目標 / URL / 路徑 / 版本號 / email（這些絕不更動）
   2. OpenCC s2twp           簡體→繁體 ＋ 台灣慣用詞（逐行偵測：已是繁體的行跳過，
                             --force-convert 強制整篇轉；選用相依套件，缺少時大聲警告）
   3. 異體字 / 常見錯字 修正  （小型精選對照表）
@@ -61,8 +61,9 @@ ANY_CJK = re.compile(f'[{CJK}]')
 #   SPAN  — URL／email／版本號／路徑／西文縮寫：要「邊界可加空格」（版本3.14 → 版本 3.14、
 #           見https://x → 見 https://x）。所以在 pangu 之前就還原，讓 pangu 看到真內容
 #           並在 CJK 邊界補空格；句點等內部字元已不再受標點全形化影響（那步更早跑完）。
-#   TAG   — 帶屬性的 HTML 標籤：內部和 CODE 一樣不能動，外緣也不補空格，因為那個空格在
-#           頁面上看得到（見<a href="x">連結</a>的）。所以要趕在補 code 邊界空格之前還原。
+#   TAG   — 帶屬性的 HTML 標籤、Markdown 連結的 (目標 "標題")：內部和 CODE 一樣不能動，外緣
+#           也不補空格，因為那個空格在頁面上看得到（見<a href="x">連結</a>的）。所以要趕在
+#           補 code 邊界空格之前還原。
 _CODE_PATTERNS = [
     re.compile(r'```.*?```', re.DOTALL),                       # 圍欄式 code block
     re.compile(r'`[^`\n]+`'),                                   # 行內 code
@@ -87,6 +88,14 @@ _HTML_TAG = re.compile(
     r'''(?:\s+[A-Za-z_:@.-][A-Za-z0-9_:.-]*'''
     r'''(?:\s*=\s*(?:"[^"]*"|'[^']*'|[A-Za-z0-9_.:/#%?&=+-]+))?)+'''
     r'''\s*/?>''')
+# Markdown 連結和圖片的 (目標 "標題")。連結文字在方括號裡，留在外面照常處理。目標可以有
+# 中文和一層括號；有空白就要加尖括號，所以 [註](見下方 說明) 不算連結。括號裡沒有 . / # :
+# 也沒有標題的多半是一般文字（[註](見下方,第3頁)、區間(0,1](含上界)），也不算。
+_MD_LINK_TAIL = re.compile(
+    r'''(?<=\])\((?![^./#:\s()]*\))(?:<[^<>\n]*>|[^\s()<>]*(?:\([^\s()<>]*\)[^\s()<>]*)*)'''
+    r'''(?:[ \t]+(?:"[^"\n]*"|'[^'\n]*'|\([^()\n]*\)))?\)''')
+# 圖片開頭的 !：後面要真的接著 [替代文字](目標)。其他的 ! 照常轉全形（太好了![註]）。
+_MD_IMAGE_MARK = re.compile(r'!(?=\[[^\[\]\n]*\]' + _MD_LINK_TAIL.pattern + ')')
 # 佔位符必須是真實文字絕不會出現的字串，否則還原時會誤傷內文。
 # 早期版本用 '{}'.format(i)（也就是裸數字 "0"、"1"…），結果還原時
 # replace("0", …) 會把內文裡每一個 "0" 都換掉，像 "100" 就被毀掉了。
@@ -111,12 +120,14 @@ def _stasher(store, verbatim):
 
 
 def _protect(text, extra_protect=None):
-    store = []   # 每筆是 (原文, 類別)；類別 True＝CODE、False＝SPAN、_TAG＝HTML 標籤
+    store = []   # 每筆是 (原文, 類別)；類別 True＝CODE、False＝SPAN、_TAG＝HTML 標籤和連結目標
 
     # 先抽 code：裡面的 URL 不會被重複抽，protect 詞也不會變成哨符鎖在 code 裡。
     for pat in _CODE_PATTERNS:
         text = pat.sub(_stasher(store, True), text)
     text = _HTML_TAG.sub(_stasher(store, _TAG), text)   # 同理，要排在 protect 詞前面
+    text = _MD_IMAGE_MARK.sub(_stasher(store, _TAG), text)  # 要看到目標，所以排在抽走目標之前
+    text = _MD_LINK_TAIL.sub(_stasher(store, _TAG), text)
     # 個人字典 protect 詞接著抽出（最長優先，避免子字串先被吃掉）。
     # 歸 SPAN 類（pangu 前還原）＝沿用原行為：擋住 opencc/quotes/punct/width/fixes，
     # 但 pangu 的 CJK 邊界空格照常（protect 詞多為中文品牌，CJK↔CJK 本就不加空格）。
@@ -439,7 +450,7 @@ def _pangu(text):
 
 # code（行內／圍欄）在最後才逐字還原。pangu 跑時看不到真正的反引號，無法在
 # 「中文↔code」邊界補空格。所以在「還原 code 之前」對 code 的『哨符』補邊界空格——
-# 此時 SPAN／個人字典 protect／HTML 標籤都已還原，殘留的哨符必然只剩 code，配對絕無歧義。
+# 此時 SPAN／個人字典 protect／HTML 標籤／連結目標都已還原，殘留的哨符必然只剩 code，配對絕無歧義。
 # （改用還原後的反引號比對會出錯：≥2 段 code 時，close1 與 open2 會被誤配成一段。）
 # 哨符 =  + 索引(PUA -) + 。
 _SENT_RE = '[-]+'
