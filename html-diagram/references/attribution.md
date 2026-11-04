@@ -10,8 +10,13 @@ content, not original.
 
 ## Vendored reference files
 
-`references/architecture-example.html` and everything under
-`references/html-effectiveness/` are copied **verbatim** from upstream.
+Everything under `references/html-effectiveness/` is copied **verbatim** from
+upstream.
+
+`references/architecture-example.html` started as a verbatim copy from commit
+`36220e286bcc`. On 2026-11-04 it was changed locally for readability: darker muted
+text, 12-unit small text, a corrected heading level, and reworded or moved labels so
+they still fit. A re-sync overwrites these changes, so redo them afterwards.
 
 - **Immediate source:** `plannotator/effective-html`
   (https://github.com/plannotator/effective-html), MIT-licensed bundle. The
